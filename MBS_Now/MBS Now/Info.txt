@@ -1,0 +1,15 @@
+You're running version 3.3.8.
+
+Credits:
+* Programming and design: Graham Dyer
+* SVProgressHUD: Sam Vermette
+* Meeting creation powered by Google
+* Offline schedules by Ms. Jaimi Belfi
+* App icon: Lena Rajan
+* Cover photo: Danielle Diraddo
+* Special thanks to Mrs. Barbara Napholtz
+
+Visit us at gdyer.de. There, you can register clubs, view most of the source code, and much more.
+
+Copyright (c) MBS Labs. All rights reserved. 
+mySchool(r) Copyright 2010, Flik Independent School Dining. All rights reserved.

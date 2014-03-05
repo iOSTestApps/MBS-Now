@@ -1,0 +1,12 @@
+New in version 3, there's the ability to view and create meetings for clubs. Everything can be done entirely through the app.
+
+A few tips...
+* Be sure your club is registered. Visit gdyer.de/clubs.html to begin.
+
+* After creating a meeting, you'll be given the option to enable future editing. If you do not save the editing URL, you will have to contact Graham Dyer to modify or remove your meeting.
+
+* You can easily flag a meeting for removal or editing by (1) tapping the output button on a meeting's details page, (2) selecting 'Flag for review', and (3) providing the requested information.
+
+* Please report any fake, inappropriate, or accidentally created meetings through the same method alluded to above.
+
+Please report bugs with clubs through 'Bug Reporter' on the 'Home' tab. Do *not* report invalid meetings through the bug reporter.

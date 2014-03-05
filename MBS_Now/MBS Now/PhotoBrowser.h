@@ -1,0 +1,33 @@
+//
+//  PhotoBrowser.h
+//  MBS Now
+//
+//  Created by 9fermat on 12/10/13.
+//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PhotoBrowser : UIViewController <UIGestureRecognizerDelegate>
+@property (strong, nonatomic) NSArray *imgNames;
+@property (strong, nonatomic) NSMutableArray *imgs;
+@property (strong, nonatomic) NSArray *descriptions;
+@property (strong, nonatomic) NSString *navTitle;
+
+@property (assign) BOOL showDismiss;
+@property (assign) int counter;
+
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
+@property (weak, nonatomic) IBOutlet UIPageControl *pager;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UIButton *dismiss;
+@property (weak, nonatomic) IBOutlet UIButton *left;
+@property (weak, nonatomic) IBOutlet UITextView *txtView;
+
+- (IBAction)rightButton:(id)sender;
+- (IBAction)leftButton:(id)sender;
+- (IBAction)dismiss:(id)sender;
+
+- (id)initWithImages:(NSArray *)imageNames showDismiss:(BOOL)show description:(NSArray *)subtitles title:(NSString *)title; // default
+
+@end

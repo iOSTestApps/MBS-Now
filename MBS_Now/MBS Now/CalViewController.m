@@ -1,0 +1,168 @@
+//
+//  CalViewController.m
+//  MBS Now
+//
+//  Created by gdyer on 1/10/13.
+//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//
+
+#import "CalViewController.h"
+#import <AudioToolbox/AudioServices.h>
+
+@implementation CalViewController
+@synthesize _webView;
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    [_webView setDelegate:self];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
+        // defaults
+        [self loadWithDefaults];
+    } else {
+        // no defaults
+        [self controlChange:self];
+    }
+}
+
+- (void)loadWithDefaults {
+
+    int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
+    NSString *foo = [NSString stringWithFormat:@"http://mbshomework.wikispaces.com/%dth+Grade", q];
+    urlToLoad = [NSURL URLWithString:foo];
+    control.selectedSegmentIndex = 1;
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:urlToLoad cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
+
+    [_webView loadRequest:request];
+
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
+
+    if (connection) {
+        self.receivedData = [NSMutableData data];
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark Connection
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [SVProgressHUD showWithStatus:@"Loading"];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+
+    [SVProgressHUD dismiss];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [SVProgressHUD dismiss];
+    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+}
+
+#pragma mark Actions
+- (IBAction)done:(id)sender {
+    [_webView stopLoading];
+    [SVProgressHUD dismiss];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)pushedReload:(id)sender {
+
+    [_webView reload];
+}
+
+- (IBAction)pushedStop:(id)sender {
+
+    [SVProgressHUD dismiss];
+    [_webView stopLoading];
+}
+
+- (IBAction)controlChange:(id)sender {
+
+    [_webView stopLoading];
+    switch (control.selectedSegmentIndex) {
+        case 0:
+            urlToLoad = [NSURL URLWithString:@"http://gdyer.de/publiccal.html"];
+            break;
+        case 1:
+            urlToLoad = [NSURL URLWithString:@"http://mbshomework.wikispaces.com/"];
+            break;
+        case 2:
+            urlToLoad = [NSURL URLWithString:@"http://gdyer.de/artscal.html"];
+            break;
+        case 3:
+            urlToLoad = [NSURL URLWithString:@"http://www.nwjerseyac.com/g5-bin/client.cgi?G5genie=235&school_id=22"];
+            break;
+        default:
+            break;
+    }
+
+    if (control.selectedSegmentIndex == 1) {
+        // MS HW
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
+            // defaults
+            [self loadWithDefaults];
+        } else {
+            // no defaults. Ask for grade integer.
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Middle school student?" message:@"We'll load your homework by default" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Save my grade", nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+            [alert textFieldAtIndex:0].placeholder = @"Current grade";
+            alert.tag = 1;
+            [alert show];
+        }
+    }
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:urlToLoad cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:30.0f];
+
+    [_webView loadRequest:request];
+
+    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
+
+    if (connection) {
+        self.receivedData = [NSMutableData data];
+    }
+}
+
+#pragma mark Rotation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        return YES;
+    } else {
+        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+        return NO;
+    }
+}
+
+#pragma mark Alert view
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
+        if (alertView.tag == 1) {
+            // middle school alert
+            if (buttonIndex == 1) {
+                // save grade
+                int q = [alertView textFieldAtIndex:0].text.integerValue;
+                NSNumber *grade = [NSNumber numberWithInt:q];
+                NSArray *grades = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8], nil];
+                if ([grades containsObject:grade]) {
+                    [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
+                    [self loadWithDefaults];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You can change or clear your grade in 'Settings' from the 'Home' tab" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+                    [alert show];
+                } else {
+                    [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Tap 'Public' and then 'HW' again"];
+                }
+            }
+        } 
+    }
+}
+
+@end
