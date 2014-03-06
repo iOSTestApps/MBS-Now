@@ -1,10 +1,6 @@
 # MBS Now
 
-**We're still working on documentation.** Check [this](http://gdyer.de/code) out in the meantime.
-
-... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). Feel free to bring MBS Now to your own school—you'll need a web server to host some live content, and that's about it (short of customizing this repository, of course)!
-
-Our temporary home is [here](htttp://gdyer.de).
+... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). Our (temporary) home is [here](htttp://gdyer.de).
 
 ## VCs
 ### General
@@ -45,6 +41,12 @@ SimpleWeb | [Here](http://gdyer.de/code/assets/screenshots/simpleweb.png)
 Welcomes | [Here](http://gdyer.de/code/assets/screenshots/welcomes.png)
 
 # More
+This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by [Sam Vermette](http://samvermette.com/).
+
+Feel free to bring MBS Now to your own school—you'll need a web server to host some live content, and that's about it (short of customizing this repository, of course)! Search for "gdyer.de" in the xcodeproj file to find where we're talking to live data (through PHP or just downloading files). We also handle bug reports and meeting creation through parsing a CSV file hosted on Google Forms. Check out references to "SimpleWebViewController" to find where this happens.
+
+[Contact us](mailto:g@gdyer.de) if you're interested in more information.
+
 MBS Now does not support iOS versions less than 5.
 
 ![Alt text](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)[   Some rights reserved](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
