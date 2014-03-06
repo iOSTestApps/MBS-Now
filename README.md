@@ -1,6 +1,6 @@
 # MBS Now
 
-... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). Our (temporary) home is [here](htttp://gdyer.de).
+... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). Our (temporary) home is [here](http://gdyer.de).
 
 ## VCs
 ### General
