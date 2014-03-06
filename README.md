@@ -6,39 +6,39 @@
 ### General
 Name (w/out "ViewController") | Screenshot
 --- | --- | ---
-Home | [Here](http://gdyer.de/code/assets/screenshots/HomeVC.png)
-Clubs | [Here](http://gdyer.de/code/assets/screenshots/ClubsVC.png)
-Detail | [Here](http://gdyer.de/code/assets/screenshots/DetailVC.png)
-FullPurpose | [Here](http://gdyer.de/code/assets/screenshots/fullpurpose.png)
-RSVP | [Here](http://gdyer.de/code/assets/screenshots/rsvp.png)
-Explore | [Here](http://gdyer.de/code/assets/screenshots/ExploreVC.png)
-Settings | [Here](http://gdyer.de/code/assets/screenshots/SettingsVC.png)
-Lunch | [Here](http://gdyer.de/code/assets/screenshots/LunchVC.png)
-Forms | [Here](http://gdyer.de/code/assets/screenshots/FormsVC.png)
-Data | [Here](http://gdyer.de/code/assets/screenshots/DataVC.png)
-Offline | [Here](http://gdyer.de/code/assets/screenshots/offline.png)
-Info | [Here](http://gdyer.de/code/assets/screenshots/info.png)
-EA | [Here](http://gdyer.de/code/assets/screenshots/distinctions.png)
-Widget | [Here](http://gdyer.de/code/assets/screenshots/widget.png)
-Cal | [Here](http://gdyer.de/code/assets/screenshots/cal.png)
-Data | [Here](http://gdyer.de/code/assets/screenshots/data.png)
-Credentials | [Here](http://gdyer.de/code/assets/screenshots/credentials.png)
-Directions | [Here](http://gdyer.de/code/assets/screenshots/directions.png)
-About | [Here](http://gdyer.de/code/assets/screenshots/about.png)
-Contact | [Here](http://gdyer.de/code/assets/screenshots/contact.png)
-Bugs | [Here](http://gdyer.de/code/assets/screenshots/bugs.png)
+Home | [Here](http://gdyer.de/code/screenshots/HomeVC.png)
+Clubs | [Here](http://gdyer.de/code/screenshots/ClubsVC.png)
+Detail | [Here](http://gdyer.de/code/screenshots/DetailVC.png)
+FullPurpose | [Here](http://gdyer.de/code/screenshots/fullpurpose.png)
+RSVP | [Here](http://gdyer.de/code/screenshots/rsvp.png)
+Explore | [Here](http://gdyer.de/code/screenshots/ExploreVC.png)
+Settings | [Here](http://gdyer.de/code/screenshots/SettingsVC.png)
+Lunch | [Here](http://gdyer.de/code/screenshots/LunchVC.png)
+Forms | [Here](http://gdyer.de/code/screenshots/FormsVC.png)
+Data | [Here](http://gdyer.de/code/screenshots/DataVC.png)
+Offline | [Here](http://gdyer.de/code/screenshots/offline.png)
+Info | [Here](http://gdyer.de/code/screenshots/info.png)
+EA | [Here](http://gdyer.de/code/screenshots/distinctions.png)
+Widget | [Here](http://gdyer.de/code/screenshots/widget.png)
+Cal | [Here](http://gdyer.de/code/screenshots/cal.png)
+Data | [Here](http://gdyer.de/code/screenshots/data.png)
+Credentials | [Here](http://gdyer.de/code/screenshots/credentials.png)
+Directions | [Here](http://gdyer.de/code/screenshots/directions.png)
+About | [Here](http://gdyer.de/code/screenshots/about.png)
+Contact | [Here](http://gdyer.de/code/screenshots/contact.png)
+Bugs | [Here](http://gdyer.de/code/screenshots/bugs.png)
 
 ### Content viewers
 These all have convenience initializers.
 
 Name (w/out "ViewController") | Screenshot
 --- | --- | ---
-FormsViewer | [Here](http://gdyer.de/code/assets/screenshots/formsviewer.png)
-Web | [Here](http://gdyer.de/code/assets/screenshots/WebVC.png)
-OfflineViewer | [Here](http://gdyer.de/code/assets/screenshots/offlineviewer.png)
-PhotoBrowser | [Here](http://gdyer.de/code/assets/screenshots/photobrowser.png)
-SimpleWeb | [Here](http://gdyer.de/code/assets/screenshots/simpleweb.png)
-Welcomes | [Here](http://gdyer.de/code/assets/screenshots/welcomes.png)
+FormsViewer | [Here](http://gdyer.de/code/screenshots/formsviewer.png)
+Web | [Here](http://gdyer.de/code/screenshots/WebVC.png)
+OfflineViewer | [Here](http://gdyer.de/code/screenshots/offlineviewer.png)
+PhotoBrowser | [Here](http://gdyer.de/code/screenshots/photobrowser.png)
+SimpleWeb | [Here](http://gdyer.de/code/screenshots/simpleweb.png)
+Welcomes | [Here](http://gdyer.de/code/screenshots/welcomes.png)
 
 # More
 This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by [Sam Vermette](http://samvermette.com/).
