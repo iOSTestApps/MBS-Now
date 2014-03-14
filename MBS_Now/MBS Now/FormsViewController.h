@@ -2,8 +2,8 @@
 //  FormsViewController.h
 //  MBS Now
 //
-//  Created by gdyer on 3/20/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 3/20/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

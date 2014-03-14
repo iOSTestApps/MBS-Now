@@ -2,8 +2,8 @@
 //  DetailViewController.m
 //  MBS Now
 //
-//  Created by 9fermat on 11/1/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 11/1/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "DetailViewController.h"
@@ -36,6 +36,15 @@
     self.details = [NSArray arrayWithArray:newDetails];
 
     self.navigationItem.title = self.details[0];
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footer;
+
+    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    else self.view.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark Table view
@@ -147,7 +156,7 @@
         NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"<i>Request to delete: %@ meeting on %@, created on %@.</i></font></div></body></html>", [self.details objectAtIndex:0], [self.details objectAtIndex:1], [self.details objectAtIndex:7]]];
 
         [composerView setMessageBody:body isHTML:YES];
-        [composerView setToRecipients:[NSArray arrayWithObjects:@"developmbs@mbs.net", nil]];
+        [composerView setToRecipients:[NSArray arrayWithObjects:@"g@gdyer.de", nil]];
         [self presentViewController:composerView animated:YES completion:nil];
 
     } else {
@@ -247,7 +256,7 @@
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         if (alertView.tag == 1) {
             // copy address -- no mail set up
-            pb.string = [NSString stringWithFormat:@"[send message to developmbs@mbs.net]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
+            pb.string = [NSString stringWithFormat:@"[send message to g@gdyer.de]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
         } else if (alertView.tag == 2) {
             pb.string = [NSString stringWithFormat:@"%@ is meeting on %@ at %@ at this location: %@. This meeting was created on %@. Open MBS Now to view more details.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:3], [self.details objectAtIndex:5], [self.details objectAtIndex:0]];
         }

@@ -2,8 +2,8 @@
 //  CredentialsViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 8/6/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 8/6/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "CredentialsViewController.h"
@@ -55,7 +55,7 @@
 
     if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier1];
 
-    int incrementor;
+    NSInteger incrementor;
     if (indexPath.section == 0) {
         incrementor = 0;
     } else {
@@ -86,7 +86,7 @@
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"loginsTapped"];
     } else {
-        int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"loginsTapped"];
     }

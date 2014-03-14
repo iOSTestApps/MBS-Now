@@ -2,8 +2,8 @@
 //  FormsViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 3/20/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 3/20/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "FormsViewController.h"
@@ -14,10 +14,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    tblView.tableFooterView = footer;
+
     _searchBar.showsCancelButton = NO;
-    self.dataArray = [NSArray arrayWithObjects:@"Tap the reload button", @"A connection is required", nil];
+    self.dataArray = [NSArray arrayWithObjects:@"Tap the reload button", @"Wireless connection required", nil];
     tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
+
+    [tblView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -47,7 +53,7 @@
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"formsTapped"];
     } else {
-        int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"formsTapped"];
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"formsTapped"];
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"formsTapped"];
     }

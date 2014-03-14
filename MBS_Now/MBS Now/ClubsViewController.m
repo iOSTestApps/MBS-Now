@@ -2,8 +2,8 @@
 //  ClubsViewController.m
 //  MBS Now
 //
-//  Created by 9fermat on 10/31/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 10/31/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "ClubsViewController.h"
@@ -18,6 +18,15 @@
     self.descriptions = [NSArray arrayWithObjects:@"Please refresh meetings", @"Return to previous screen", nil];
     self.tblView.userInteractionEnabled = NO;
     firstTime = YES;
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footer;
+
+    [self.tblView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    else self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

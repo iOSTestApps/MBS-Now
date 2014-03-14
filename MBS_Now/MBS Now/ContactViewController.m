@@ -2,8 +2,8 @@
 //  ContactViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 6/6/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 6/6/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "ContactViewController.h"
@@ -58,7 +58,7 @@
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"contactsTapped"];
     } else {
-        int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"contactsTapped"];
     }

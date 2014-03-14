@@ -2,8 +2,8 @@
 //  DataViewController.h
 //  MBS Now
 //
-//  Created by gdyer on 7/19/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 7/19/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,7 +14,7 @@
     IBOutlet UIButton *_1;
     IBOutlet UITextView *textView;
 
-    int q;
+    NSInteger q;
 }
 
 - (IBAction)pushedSend:(id)sender;

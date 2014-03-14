@@ -2,8 +2,8 @@
 //  RSVPViewController.m
 //  MBS Now
 //
-//  Created by 9fermat on 11/3/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 11/3/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "RSVPViewController.h"
@@ -13,6 +13,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.boolLabel.text = @"yes";
+    self.label = [[self.label componentsSeparatedByString:@" "] objectAtIndex:1]; // removes the "RSVP: " text
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"yourName"]) {
         self.nameField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"yourName"];
     }
@@ -28,12 +29,12 @@
 - (IBAction)go:(id)sender {
     [self.nameField resignFirstResponder];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:self.details[7]] == YES) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads up!" message:@"I think you've already RSVPed to this meeting." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact creator", nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads up!" message:@"You've already RSVPed to this meeting." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact creator", nil];
         [alert show];
         return;
     }
     if (self.nameField.text.length < 4 || ([self.nameField.text rangeOfString:@" "].location == NSNotFound)) {
-        [SVProgressHUD showErrorWithStatus:@"Please enter your full name. A space character must be present."];
+        [SVProgressHUD showErrorWithStatus:@"Please enter your full name"];
         return;
     }
     [[NSUserDefaults standardUserDefaults] setObject:self.nameField.text forKey:@"yourName"];
@@ -124,7 +125,7 @@
     }
     else [SVProgressHUD showErrorWithStatus:@"Aw, snap! RSVPing failed; please try again."];
 }
-
+    
 #pragma mark Alerts
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1)

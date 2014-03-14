@@ -2,8 +2,8 @@
 //  SettingsViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 8/16/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 8/16/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "SettingsViewController.h"
@@ -95,12 +95,12 @@
 }
 
 - (IBAction)pushedChangeGrade:(id)sender {
-    int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
     NSString *foo;
     if (q == 0) {
         foo = @"No MS grade has been saved";
     } else {
-        foo = [NSString stringWithFormat:@"Currently in %dth grade", q];
+        foo = [NSString stringWithFormat:@"Currently in %ldth grade", (long)q];
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change MS Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -236,7 +236,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"dressUps"];
 
     if (q == 0) {
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", dateStrings.count]];
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
     }
 }
 
@@ -317,7 +317,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
 
     if (q == 0) {
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", (aWeeks.count + bWeeks.count)]];
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%u alerts created", (aWeeks.count + bWeeks.count)]];
     }
 }
 
@@ -366,7 +366,7 @@
             }
         }
         if (q == 0) {
-            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", dateStrings.count]];
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
         }
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"General alerts are not available. Please report this bug ASAP." delegate:self cancelButtonTitle:@"Report" otherButtonTitles:@"Dismiss", nil];
@@ -383,14 +383,14 @@
         // middle school alert
         if (buttonIndex == 0) {
             // save grade
-            int q = [alertView textFieldAtIndex:0].text.integerValue;
-            NSNumber *grade = [NSNumber numberWithInt:q];
+            NSInteger q = [alertView textFieldAtIndex:0].text.integerValue;
+            NSNumber *grade = [NSNumber numberWithInteger:q];
             NSArray *grades = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8], nil];
             if ([grades containsObject:grade]) {
                 [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self setUpButtonWithImageName:@"grey" andButton:msClear];
-                [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %dth grade!", q]];
+                [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %ldth grade!", (long)q]];
             } else {
                 [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"];
             }

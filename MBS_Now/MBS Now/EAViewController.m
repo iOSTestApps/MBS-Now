@@ -2,8 +2,8 @@
 //  EAViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 9/23/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 9/23/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "EAViewController.h"
@@ -12,9 +12,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _searchBar.showsCancelButton = NO;
+    __searchBar.showsCancelButton = NO;
     distinctions = [NSArray arrayWithObjects:@"Tap the download button", nil];
     string = nil;
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tblView.tableFooterView = footer;
 }
 
 #pragma mark Table View
@@ -77,7 +81,7 @@
         }
         string = @"Go to class first";
     } else [SVProgressHUD dismiss];
-    [tblView reloadData];
+    [_tblView reloadData];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -92,7 +96,8 @@
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch distinctions. %@",[error localizedDescription]]];
     distinctions = [NSArray arrayWithObject:@"Connection failed"];
     string = error.localizedDescription;
-    [tblView reloadData];
+    string=nil;
+    [_tblView reloadData];
 }
 
 #pragma mark Search

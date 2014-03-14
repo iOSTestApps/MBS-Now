@@ -2,8 +2,8 @@
 //  OfflineViewerViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 3/11/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 3/11/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "OfflineViewerViewController.h"

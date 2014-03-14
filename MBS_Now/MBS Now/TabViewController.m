@@ -2,8 +2,8 @@
 //  TabViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 7/23/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 7/23/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "TabViewController.h"

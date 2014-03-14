@@ -2,8 +2,8 @@
 //  PhotoBrowser.m
 //  MBS Now
 //
-//  Created by 9fermat on 12/10/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 12/10/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "PhotoBrowser.h"

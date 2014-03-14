@@ -2,8 +2,8 @@
 //  LunchViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 1/10/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 1/10/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "LunchViewController.h"
@@ -198,7 +198,7 @@
 		// Use the default cell style.
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
 	}
-    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.textColor = [UIColor darkGrayColor];
 	// Set up the cell.
 	NSString *daysCell = [days objectAtIndex:indexPath.row];
 	cell.textLabel.text = daysCell;
@@ -229,7 +229,7 @@
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"menusTapped"];
     } else {
-        int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"menusTapped"];
     }
@@ -250,8 +250,8 @@
 }
 
 - (void)tableView: (UITableView*)tableView willDisplayCell: (UITableViewCell*)cell forRowAtIndexPath: (NSIndexPath*)indexPath {
-    cell.backgroundColor = [UIColor lightGrayColor];
-    cell.textLabel.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.textLabel.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark Rotation

@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  MBS Now
 //
-//  Created by gdyer on 1/10/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 1/10/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -38,7 +38,7 @@
     if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"]) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dfl"];
     } else {
-        int x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+        NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
         x++;
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
@@ -70,7 +70,7 @@
     if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"]) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dfl"];
     } else {
-        int x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+        NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
         x++;
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }

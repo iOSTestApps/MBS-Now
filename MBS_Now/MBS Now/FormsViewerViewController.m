@@ -2,8 +2,8 @@
 //  FormsViewerViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 3/20/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 3/20/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "FormsViewerViewController.h"
@@ -162,7 +162,7 @@
     void (^completionHandler)(UIPrintInteractionController *, BOOL, NSError *) =
     ^(UIPrintInteractionController *printController, BOOL completed, NSError *error) {
         if(!completed && error){
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Failed! due to error in domain %@ with error code %u", error.domain, error.code]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Failed! due to error in domain %@ with error code %ld", error.domain, (long)error.code]];
         }
     };
     UIPrintInfo *printInfo = [UIPrintInfo printInfo];

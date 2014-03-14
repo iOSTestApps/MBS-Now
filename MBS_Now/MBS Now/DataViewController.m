@@ -2,8 +2,8 @@
 //  DataViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 7/19/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 7/19/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "DataViewController.h"
@@ -48,14 +48,14 @@
     CGFloat screenW = screen.size.width;
     CGFloat screenH = screen.size.height;
 
-    int forms = [[NSUserDefaults standardUserDefaults] integerForKey:@"formsTapped"];
-    int offline = [[NSUserDefaults standardUserDefaults] integerForKey:@"schedulesTapped"];
-    int menus = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
-    int contacts = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
+    NSInteger forms = [[NSUserDefaults standardUserDefaults] integerForKey:@"formsTapped"];
+    NSInteger offline = [[NSUserDefaults standardUserDefaults] integerForKey:@"schedulesTapped"];
+    NSInteger menus = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
+    NSInteger contacts = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
 
     BOOL sentBefore = [[NSUserDefaults standardUserDefaults] boolForKey:@"sent"];
 
-    int ms = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
+    NSInteger ms = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
 
     NSString *color = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
 
@@ -66,8 +66,8 @@
     BOOL credential = [[NSUserDefaults standardUserDefaults] boolForKey:@"cred"];
     BOOL logsSaved = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
 
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %d, offline tapped %d, menus tapped %d, contacts tapped %d, launches %d, version %@, sent before %d, MS grade %d, dress notifications %d, A/B notifications %d, General notifications %d, saved password %d, logins tapped %d, button color %@",
-        systemName, systemVersion, model, screenH, screenW, forms, offline, menus, contacts, q, VERSION_NUMBER, sentBefore, ms, formalNs, abNs, generalNs, credential, logsSaved, color];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, saved password %d, logins tapped %d, button color %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, VERSION_NUMBER, sentBefore, (long)ms, formalNs, abNs, generalNs, credential, logsSaved, color];
     
     return string;
 }

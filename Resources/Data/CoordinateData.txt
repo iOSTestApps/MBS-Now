@@ -1,0 +1,37 @@
+Entrance - 40.802721,-74.448287
+Exit - 40.802404,-74.448684
+Frelinghuysen Arboretum - 40.802345,-74.450977
+Beard Hall - 40.803436,-74.449468
+Anderson Library - 40.803596,-74.449204
+Grant Hall - 40.803527,-74.448904
+South Wing - 40.803054,-74.449457
+Alumni House - 40.802703,-74.448942
+Wilkie Hall - 40.803286,-74.448647
+Senior circle - 40.803264,-74.449141
+Math Building - 40.803242,-74.449946
+Science annex - 40.803447,-74.450251
+Science building / cafeteria - 40.803728,-74.449999
+Middle school - 40.804026,-74.4496
+Founders' Hall - 40.80428,-74.449189
+Faculty/Staff and senior parking lot - 40.804944,-74.448631
+Main gym - 40.804542,-74.44788
+Pool - 40.804367,-74.448038
+Auxiliary gym - 40.804479,-74.448325
+Field hockey field - 40.804008,-74.448625
+Football/soccer field - 40.80385,-74.447552
+Baseball field - 40.805161,-74.447088
+Main exit - 40.805697,-74.447131
+The quad - 40.803638,-74.449724
+
+
+
+Rooke Pool, two gymnasiums, Fitness Center, Athletics Department
+1st Floor: offices, 2nd Floor: History Department, 3rd Floor: College Counseling
+Theater, Dance Studio, Band and Choral Classrooms, Performing Arts Department
+1st Floor: World Languages Department, 2nd Floor: English Department
+17,000 volumes, 12 databases, iMac stations, the Writing Center
+1st and 2nd Floor: Math classrooms
+Science classrooms (Geosciences and Physics)
+Lower Level: Science departement, Ground Level: Cafeteria
+Lower and 1st floor: classrooms, 2nd Floor: The Learning Center
+Computer Science Department, iPad Help Desk, Digital Arts

@@ -2,8 +2,8 @@
 //  FullPurposeViewController.m
 //  MBS Now
 //
-//  Created by 9fermat on 11/3/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 11/3/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "FullPurposeViewController.h"

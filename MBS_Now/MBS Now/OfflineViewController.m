@@ -2,8 +2,8 @@
 //  OfflineViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 6/6/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 6/6/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "OfflineViewController.h"
@@ -29,13 +29,13 @@
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"schedulesTapped"];
     } else {
-        int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"schedulesTapped"];
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"schedulesTapped"];
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"schedulesTapped"];
     }
 
     // section, row -- image naming scheme
-    NSString *name = [NSString stringWithFormat:@"%d%d.png", indexPath.section, indexPath.row];
+    NSString *name = [NSString stringWithFormat:@"%ld%ld.png", (long)indexPath.section, (long)indexPath.row];
     OfflineViewerViewController *ovvc = [[OfflineViewerViewController alloc] initWithImageName:name];
     [self presentViewController:ovvc animated:YES completion:nil];
 }

@@ -2,8 +2,8 @@
 //  ExploreViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 3/22/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 3/22/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "ExploreViewController.h"
@@ -15,6 +15,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.listings.tableFooterView = footer;
+    [self.listings setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.listings.hidden = YES;
     CLLocationCoordinate2D radius;
@@ -60,9 +65,7 @@
 }
 
 - (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
-    [SVProgressHUD dismiss];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mapping Failed" message:[NSString stringWithFormat:@"%@", error.localizedDescription] delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
 }
 
 #pragma mark Actions
@@ -85,6 +88,7 @@
 }
 
 - (IBAction)pushedTable:(id)sender {
+    [SVProgressHUD dismiss];
     if (self.mapView.hidden == YES) {
         // going back to the map
         self.mapView.hidden = NO;

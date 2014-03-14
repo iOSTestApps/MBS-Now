@@ -2,8 +2,8 @@
 //  CalViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 1/10/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 1/10/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "CalViewController.h"
@@ -28,8 +28,8 @@
 
 - (void)loadWithDefaults {
 
-    int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
-    NSString *foo = [NSString stringWithFormat:@"http://mbshomework.wikispaces.com/%dth+Grade", q];
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
+    NSString *foo = [NSString stringWithFormat:@"http://mbshomework.wikispaces.com/%ldth+Grade", (long)q];
     urlToLoad = [NSURL URLWithString:foo];
     control.selectedSegmentIndex = 1;
 
@@ -149,8 +149,8 @@
             // middle school alert
             if (buttonIndex == 1) {
                 // save grade
-                int q = [alertView textFieldAtIndex:0].text.integerValue;
-                NSNumber *grade = [NSNumber numberWithInt:q];
+                NSInteger q = [alertView textFieldAtIndex:0].text.integerValue;
+                NSNumber *grade = [NSNumber numberWithInteger:q];
                 NSArray *grades = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8], nil];
                 if ([grades containsObject:grade]) {
                     [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];

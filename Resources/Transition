@@ -1,0 +1,49 @@
+MBS Now--Transition Notes
+Created 5/19/2013
+
+LAST UPDATE: 3/4/2014
+------------------------------------------------------------------------------------------------
+THINGS THAT NEED TO BE UPDATED IN A GIVEN PERIOD OF TIME
+
+	Every new school year (all of these require an app update)
+		In Offline VC
+			- A/B week list THIS ALSO MUST CHANGE IN FORMS VC and on http://fo.gdyer.de/formTitles.txt and gdyer.de/forms (actual PDF)
+			- Possibly the actual offline schedules if there are any changes (Mr. Burns will tell you if so)
+		In Welcomes VC
+			- If there is a new headmaster or director of admissions, image and text must change
+		In About VC
+			- If there is a new headmaster, the text must change
+		In Contact VC
+			- If there is a new attendance, nurse, or head of upper or middle school person, this VC must be updated.
+		In Forms VC
+			- AP and SAT/ACT forms must be updated. Google dates for each exam, get/generate PDF for each.
+		In notifications (SettingsVC)
+			- You need to add A/B weeks, special (general) notifications, and dress-up days.
+				Be SURE to confirm EVERYTHING, even during the school-year, with Mrs. Elliot
+
+	Every month (these changes are all through FTP)
+		In LunchVC
+			- iPad lunch menu (Lunch.pdf) Download new menus from: http://www.myschooldining.com/mbs/
+					NOTE: this will likely need to be changed more frequently, as the cafeteria lady (blondish hair, glasses)
+							often does not write up the entire month at a time. Therefore, change
+							this form to ensure that at least the next two days are there.
+
+	Every week (these changes are all through FTP)
+		In LunchVC
+			- iPhone/iPod touch lunch menus (Monday.pdf, Tuesday.pdf, ... Sunday.pdf)
+				Download new menus from: http://www.myschooldining.com/mbs/
+
+	EACH VERSION
+		1. update screenshots in HomeVC
+		2. update version number text file on fo.gdyer.de/version.txt
+		3. update version number in info.txt and PCH (pre-compiled headers)
+		4. update version number in What’s New (info VC and home VC) and initializer
+		5. update version number in AppDelegate
+
+------------------------------------------------------------------------------------------------
+FRIENDLY WARNINGS
+
+	Do NOT change the names of any objects inside the forms array in FormsVC. If changing a name is necessary, be sure to PRECISELY update the
+		according PDF name through FTP.
+
+	BE SURE TO UPDATE THE FORMNAMES.TXT FILE (http://fo.gdyer.de/formTitles.txt) WITH THE PRECISE PDF NAME.

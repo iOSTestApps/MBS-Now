@@ -2,8 +2,8 @@
 //  BugsViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 10/11/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 10/11/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "BugsViewController.h"
@@ -16,6 +16,11 @@ BOOL unique = YES;
     navBar.topItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", VERSION_NUMBER];
     self.bug = [NSArray arrayWithObject:@"Tap here to refresh"];
     self.description = [NSArray arrayWithObject:@"Connection is required"];
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footer;
+    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

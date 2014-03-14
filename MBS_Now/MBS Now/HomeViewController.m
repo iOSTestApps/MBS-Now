@@ -2,8 +2,8 @@
 //  HomeViewController.m
 //  MBS Now
 //
-//  Created by gdyer on 1/10/13.
-//  Copyright (c) 2013 DevelopMBS. All rights reserved.
+//  Created by Graham Dyer on 1/10/13.
+//  Copyright (c) 2013 MBS Now. All rights reserved.
 //
 
 #import "HomeViewController.h"
@@ -21,7 +21,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
     versionLabel.text = [NSString stringWithFormat:@"You're running %@", VERSION_NUMBER];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
@@ -153,7 +153,7 @@
 #pragma mark - Actions
 - (IBAction)pushedCountdown:(id)sender {
     [self countdown];
-    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %d days", messagePart, days]];
+    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %ld days", messagePart, (long)days]];
 }
 
 - (IBAction)pushedCredentials:(id)sender {
@@ -285,7 +285,7 @@
         fileText = [fileText stringByReplacingOccurrencesOfString:@"\n" withString:@""];
         if (![fileText isEqualToString:VERSION_NUMBER]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An update is available" message:@"MBS Now just got better. Please update!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
-            int q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] synchronize];
 
