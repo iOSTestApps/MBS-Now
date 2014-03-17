@@ -45,7 +45,7 @@ Welcomes | [Here](http://gdyer.de/code/screenshots/welcomes.png)
 # More
 This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by [Sam Vermette](http://samvermette.com/).
 
-Feel free to bring MBS Now to your own school—you'll need a web server to host some live content, and that's about it (short of customizing this repository, of course)! Search for "gdyer.de" in the xcodeproj file to find where we're talking to live data (through PHP or just downloading files). We also handle bug reports and meeting creation through parsing a CSV file hosted on Google Forms. Check out references to "SimpleWebViewController" to find where this happens.
+Feel free to bring MBS Now to your own school—you'll need a web server to host some live content, and that's about it (short of customizing this repository, of course)! Search for "gdyer.de" in the xcodeproj file to find where we're talking to live data (through PHP or just downloading files). We also handle bug reports and meeting creation through parsing a CSV file hosted on Google Forms. Look for references to "SimpleWebViewController" or "forms.google.com" to find what to replace.
 
 [Contact us](mailto:g@gdyer.de) if you're interested in more information.
 
