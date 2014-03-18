@@ -4,7 +4,7 @@
 
 #import <Availability.h>
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:(v) options:NSNumericSearch] != NSOrderedAscending)
-#define VERSION_NUMBER @"3.3.8"
+#define VERSION_NUMBER @"3.4.2"
 #define AUTO 250
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."

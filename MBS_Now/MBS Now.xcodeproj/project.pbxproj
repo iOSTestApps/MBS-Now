@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1507BCDE1857AE8B00F5CA5D /* PhotoBrowser_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1507BCDD1857AE8B00F5CA5D /* PhotoBrowser_6.xib */; };
 		150A29F417B1D66800F81A9A /* CredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 150A29F317B1D66800F81A9A /* CredentialsViewController.m */; };
+		152AE16418D7CFEA00D8BC44 /* HeadmasterWelcome.txt in Resources */ = {isa = PBXBuildFile; fileRef = 152AE16318D7CFEA00D8BC44 /* HeadmasterWelcome.txt */; };
 		152FB66716B8C71300D0CB91 /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152FB66616B8C71300D0CB91 /* DirectionsViewController.m */; };
 		152FB66C16B8C8AA00D0CB91 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152FB66A16B8C8A200D0CB91 /* MapKit.framework */; };
 		153B638518195A7400726215 /* StoryboardPad_6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153B638318195A7400726215 /* StoryboardPad_6.storyboard */; };
@@ -223,6 +224,7 @@
 		1507BCDD1857AE8B00F5CA5D /* PhotoBrowser_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoBrowser_6.xib; sourceTree = "<group>"; };
 		150A29F217B1D66800F81A9A /* CredentialsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CredentialsViewController.h; sourceTree = "<group>"; };
 		150A29F317B1D66800F81A9A /* CredentialsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CredentialsViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
+		152AE16318D7CFEA00D8BC44 /* HeadmasterWelcome.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HeadmasterWelcome.txt; sourceTree = "<group>"; };
 		152FB66516B8C71200D0CB91 /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
 		152FB66616B8C71300D0CB91 /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		152FB66A16B8C8A200D0CB91 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -599,6 +601,7 @@
 		1557D23D169F0D5200F27AE4 /* txt, plist, HTML */ = {
 			isa = PBXGroup;
 			children = (
+				152AE16318D7CFEA00D8BC44 /* HeadmasterWelcome.txt */,
 				15AAF68118D28E4A001AC330 /* clubInfo.txt */,
 				15AAF67F18D28E3F001AC330 /* Info.txt */,
 				15FFD9F618C69D900049FD02 /* Data.txt */,
@@ -983,6 +986,7 @@
 				15FFD95B18C69B040049FD02 /* direction-sign-multiple-7-active.png in Resources */,
 				15FFD91F18C69B040049FD02 /* 3DCulpolaIcon144.png in Resources */,
 				15A878B91808A9B4009A0C21 /* Images.xcassets in Resources */,
+				152AE16418D7CFEA00D8BC44 /* HeadmasterWelcome.txt in Resources */,
 				15FFD95218C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png in Resources */,
 				1507BCDE1857AE8B00F5CA5D /* PhotoBrowser_6.xib in Resources */,
 				15FFD93418C69B040049FD02 /* arrow-right-out@2x.png in Resources */,

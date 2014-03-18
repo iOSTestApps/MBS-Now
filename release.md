@@ -1,17 +1,12 @@
 Release Information
 ===================
 
-+ Next version: **3.4.2**
-+ Anticipated submission date: **3/18**
++ Next version: 3.5.x
++ Anticipated submission date: ?
 
 ## Features completed
-+ Design improvements
-+ Partial iOS 7.1 support
-+ RSVP fix
++ None
 
 ## Features remaining
 + Complete iOS 7.1 support: UITableViewCell reuse identifiers added to each storyboard.
-+ "What's New" version and design modifications/improvements.
-
-## App Store description
-TBD
++ "What's New" for iPad

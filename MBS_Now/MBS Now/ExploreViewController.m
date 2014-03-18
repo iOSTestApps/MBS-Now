@@ -64,10 +64,6 @@
     }
 }
 
-- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
-    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-}
-
 #pragma mark Actions
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -181,6 +177,10 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        ((MKUserLocation *)annotation).title = @"You!";
+        return nil;
+    }
     MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"pinView"];
     if (!pinView) {
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"pinView"];
@@ -193,6 +193,9 @@
         pinView.annotation = annotation;
     }
     return pinView;
+}
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
 }
 
 #pragma mark Segues
