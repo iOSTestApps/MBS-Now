@@ -317,7 +317,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
 
     if (q == 0) {
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%u alerts created", (aWeeks.count + bWeeks.count)]];
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", (aWeeks.count + bWeeks.count)]];
     }
 }
 

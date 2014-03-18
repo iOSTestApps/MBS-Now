@@ -30,7 +30,7 @@ UIAlertView *defaultAlert;
 
 - (void)viewDidAppear:(BOOL)animated {
     if ([imageName isEqualToString:@"02.png"]) {
-        [SVProgressHUD showErrorWithStatus:@"The Monday schedule is not correct. We're working to fix this."];
+        [SVProgressHUD showErrorWithStatus:@"Monday schedule here is not correct. A replacement has yet to be made available."];
     }
 }
 

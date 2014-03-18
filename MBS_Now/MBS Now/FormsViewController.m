@@ -63,7 +63,6 @@
     NSString *bar = [foo stringByReplacingOccurrencesOfString:@"/" withString:@""];
     urlString = [bar stringByReplacingOccurrencesOfString:@" " withString:@""];
     // domain name will be added in FormsViewerVC
-    NSLog(@"%@", urlString);
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithStringForURL:urlString];
     fvvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:fvvc animated:YES completion:nil];
