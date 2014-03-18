@@ -49,7 +49,7 @@ Feel free to bring MBS Now to your own school—you'll need a web server to host
 
 [Contact us](mailto:g@gdyer.de) if you're interested in more information.
 
-MBS Now does not support iOS versions less than 5.
+MBS Now does not support iOS versions less than 5.1.1
 
 [Some rights reserved](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 ![Some rights reserved](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)
