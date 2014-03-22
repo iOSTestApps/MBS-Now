@@ -1,13 +1,11 @@
-MBS Labs, the creators of MBS Now, was founded in late 2012 with the idea to make students', parents', and faculty members' lives easier.
-
-Before we created MBS Now, there was no medium from which those associated with the school could access crucial information.
+MBS Now was created in late 2012 with the idea to make students', parents', and faculty members' lives easier. Before we created the app, there was no medium from which those associated with the school could access crucial information.
 
 We're facilitating Morristown-Beard's mission of having technology in the classroom. As every student is required to have an iPad, our impact can be felt immediately and on a large scale.
 
 MBS Now works differently than most high-school and college applications. Rather than being controlled by a company that runs a myriad of apps that have all been formatted to the same template, MBS Now is much more dynamic. We listen to your suggestions and add functionality accordingly.
 
-Furthermore, MBS Now will always be maintained by students; as soon as a student-developer moves on, the app and its responsibilities will be passed down to a talented underclassman programmer(s). With new course offerings in advanced iOS development thanks to Barabara Napholtz, the number of candidates to choose from continues to grow!
+Furthermore, MBS Now will always be maintained by students; as soon as a student-developer moves on, the app and its responsibilities will be passed down to an underclassman programmer. With new course offerings in advanced iOS development thanks to Barabara Napholtz, the number of candidates to choose from continues to grow.
 
-Let us know if you have any questions, suggestions, or feedback by pressing my name below.
+Let us know if you have any questions, suggestions, or feedback.
 
 I hope you enjoy the app!

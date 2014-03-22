@@ -50,7 +50,7 @@
 #pragma mark Table view
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-	static NSString *simpleTableIdentifier = @"ReuseCell";
+    static NSString *simpleTableIdentifier = @"ReuseCell";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
 

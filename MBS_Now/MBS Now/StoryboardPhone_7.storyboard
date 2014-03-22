@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -693,11 +693,12 @@
                         <outlet property="listings" destination="IF3-L3-ySZ" id="bhb-In-U28"/>
                         <outlet property="mapView" destination="f4K-TX-Or5" id="osL-Bf-W6t"/>
                         <outlet property="swap" destination="wo0-kV-RFk" id="K4K-fK-LYf"/>
+                        <segue destination="C8K-7a-guS" kind="modal" identifier="full" id="18p-mB-R41"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YsE-xG-dUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="-410"/>
+            <point key="canvasLocation" x="1436" y="-402"/>
         </scene>
         <!--Offline View Controller-->
         <scene sceneID="voT-e7-rTf">
@@ -1703,7 +1704,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="lF3-8J-6Fr" detailTextLabel="LEd-dj-pub" style="IBUITableViewCellStyleSubtitle" id="cKS-IS-jNO">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReuseCell" textLabel="lF3-8J-6Fr" detailTextLabel="LEd-dj-pub" style="IBUITableViewCellStyleSubtitle" id="cKS-IS-jNO">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cKS-IS-jNO" id="csL-wH-lpB">
@@ -1773,36 +1774,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="54j-J1-AGD" detailTextLabel="Gus-aj-8Vy" style="IBUITableViewCellStyleSubtitle" id="haS-o1-zQL">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="haS-o1-zQL" id="m0M-Fu-rSd">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="54j-J1-AGD">
-                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gus-aj-8Vy">
-                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="LHB-aw-eaU" kind="push" identifier="showRSVP" id="AXI-8J-Wbb"/>
-                                    <segue destination="C8K-7a-guS" kind="push" identifier="showFullLocation" trigger="accessoryAction" id="RJm-zi-NW2"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="bxI-2Q-r4d" id="Ycr-sQ-t0H"/>
                             <outlet property="delegate" destination="bxI-2Q-r4d" id="aDg-cQ-7EF"/>
@@ -1821,6 +1792,8 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <segue destination="cd9-Kp-crP" kind="modal" identifier="showHelp" modalTransitionStyle="crossDissolve" id="P1X-p3-2sm"/>
                         <segue destination="C8K-7a-guS" kind="push" identifier="showPurpose" id="CP7-J2-2T1"/>
                         <segue destination="WUa-dV-KHc" kind="modal" identifier="showExplore" modalTransitionStyle="crossDissolve" id="jIq-k3-RSJ"/>
+                        <segue destination="LHB-aw-eaU" kind="push" identifier="showRSVP" id="z7I-Dr-FgT"/>
+                        <segue destination="C8K-7a-guS" kind="push" identifier="showFullLocation" id="e0v-VB-lZl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLh-vA-ol8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1967,7 +1940,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrW-M7-B1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3865" y="864"/>
+            <point key="canvasLocation" x="3897" y="819"/>
         </scene>
         <!--Navigation Controller - Clubs-->
         <scene sceneID="CcL-0j-Vdz">
@@ -2234,9 +2207,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P1X-p3-2sm"/>
         <segue reference="jIq-k3-RSJ"/>
-        <segue reference="CP7-J2-2T1"/>
         <segue reference="YN7-qv-aKn"/>
+        <segue reference="P1X-p3-2sm"/>
+        <segue reference="e0v-VB-lZl"/>
     </inferredMetricsTieBreakers>
 </document>

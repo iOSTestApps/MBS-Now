@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1280" identifier="iOS"/>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
@@ -1819,21 +1819,12 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
         <!--Clubs View Controller - Clubs-->
         <scene sceneID="ZoS-Ox-IVn">
             <objects>
-                <searchDisplayController id="F57-uK-hv4">
-                    <connections>
-                        <outlet property="delegate" destination="Oim-sF-Ozu" id="zUQ-2O-1IB"/>
-                        <outlet property="searchContentsController" destination="Oim-sF-Ozu" id="m8d-qF-3ex"/>
-                        <outlet property="searchResultsDataSource" destination="Oim-sF-Ozu" id="81B-ch-k4w"/>
-                        <outlet property="searchResultsDelegate" destination="Oim-sF-Ozu" id="dZh-Ne-5VP"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pcU-ok-hgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="Oim-sF-Ozu" customClass="ClubsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xaz-Ta-2ty">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0sC-II-zhV">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReuseCell" id="0sC-II-zhV">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0sC-II-zhV" id="Gn7-xb-PB5">
@@ -1867,32 +1858,26 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <outlet property="tblView" destination="xaz-Ta-2ty" id="Eks-HV-ehw"/>
                     </connections>
                 </tableViewController>
+                <searchDisplayController id="F57-uK-hv4">
+                    <connections>
+                        <outlet property="delegate" destination="Oim-sF-Ozu" id="zUQ-2O-1IB"/>
+                        <outlet property="searchContentsController" destination="Oim-sF-Ozu" id="m8d-qF-3ex"/>
+                        <outlet property="searchResultsDataSource" destination="Oim-sF-Ozu" id="81B-ch-k4w"/>
+                        <outlet property="searchResultsDelegate" destination="Oim-sF-Ozu" id="dZh-Ne-5VP"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcU-ok-hgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2890" y="769"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="PT8-kj-ONd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bbq-QW-urD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VNx-zb-dPs" customClass="DetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pS3-uU-Q5W">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="M6C-es-ZJN">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M6C-es-ZJN" id="i3W-ko-q99">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="u5V-Yt-B3x" kind="push" identifier="showRSVP" id="k0W-n8-Q3L"/>
-                                    <segue destination="j2F-5G-9Dw" kind="push" identifier="showFullLocation" trigger="accessoryAction" id="7Co-jx-cjB"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="VNx-zb-dPs" id="cUj-BV-pZo"/>
                             <outlet property="delegate" destination="VNx-zb-dPs" id="OKd-7f-jYZ"/>
@@ -1911,15 +1896,17 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <segue destination="j2F-5G-9Dw" kind="push" identifier="showPurpose" id="geH-ce-4LR"/>
                         <segue destination="cd9-Kp-crP" kind="modal" identifier="showHelp" modalTransitionStyle="crossDissolve" id="6yU-y6-P5s"/>
                         <segue destination="WUa-dV-KHc" kind="modal" identifier="showExplore" modalTransitionStyle="crossDissolve" id="T8P-qb-Azf"/>
+                        <segue destination="u5V-Yt-B3x" kind="push" identifier="showRSVP" id="jP3-kM-J1W"/>
+                        <segue destination="j2F-5G-9Dw" kind="push" identifier="showFullLocation" id="PlR-Ba-JfN"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bbq-QW-urD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3263" y="769"/>
+            <point key="canvasLocation" x="3274" y="784"/>
         </scene>
         <!--View Controller - RSVP-->
         <scene sceneID="h2V-jD-Ykv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G9n-oy-rlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="u5V-Yt-B3x" customClass="RSVPViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nfF-jz-EHC">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
@@ -2004,6 +1991,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <outlet property="nameField" destination="dQR-XA-RSj" id="qpa-gg-nE1"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G9n-oy-rlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3669" y="211"/>
         </scene>
@@ -2012,11 +2000,11 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             <objects>
                 <viewController id="j2F-5G-9Dw" customClass="FullPurposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WkJ-IW-mwQ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="xIv-c4-T48">
-                                <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="323"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -2067,12 +2055,11 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CWo-wK-xFm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3669" y="769"/>
+            <point key="canvasLocation" x="3810" y="883"/>
         </scene>
         <!--Navigation Controller - Clubs-->
         <scene sceneID="PTz-bJ-zNj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3cI-6w-aas" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="9ZY-YG-qfm" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Clubs" image="people-communicate-mini.png" id="NI3-Me-jgj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ASE-Wb-Yx3">
@@ -2082,6 +2069,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <segue destination="Oim-sF-Ozu" kind="relationship" relationship="rootViewController" id="UeD-ep-Mp0"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3cI-6w-aas" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2530" y="769"/>
         </scene>
@@ -2122,9 +2110,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LMc-Mf-m1x"/>
+        <segue reference="PlR-Ba-JfN"/>
         <segue reference="YN7-qv-aKn"/>
+        <segue reference="6yU-y6-P5s"/>
         <segue reference="T8P-qb-Azf"/>
-        <segue reference="XBM-ZM-RKd"/>
     </inferredMetricsTieBreakers>
 </document>

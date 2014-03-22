@@ -1,4 +1,4 @@
-You're running version 3.4.2.
+You're running version 3.5.1.
 
 Credits:
 • Programming and design: Graham Dyer
@@ -11,5 +11,5 @@ Credits:
 
 Visit us at gdyer.de. There, you can register clubs, view most of the source code, and much more.
 
-Copyright (c) MBS Labs. All rights reserved. 
+Copyright (c) MBS Now. All rights reserved.
 mySchool(r) Copyright 2010, Flik Independent School Dining. All rights reserved.
