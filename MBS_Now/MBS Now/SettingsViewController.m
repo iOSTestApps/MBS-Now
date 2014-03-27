@@ -215,7 +215,6 @@
         [datesArray addObject:[dateFormat dateFromString:[dateStrings objectAtIndex:x]]];
     }
 
-    NSMutableArray *lclArray = [[NSMutableArray alloc] init];
     for (int y = 0; y < datesArray.count; y++) {
         NSComparisonResult result = [[NSDate date] compare:datesArray[y]];
         if (result == NSOrderedAscending || result == NSOrderedSame) {
@@ -225,7 +224,6 @@
             lcl.alertBody = [NSString stringWithFormat:@"Today: dress-up day"];
             lcl.soundName = UILocalNotificationDefaultSoundName;
             lcl.alertAction = @"View";
-            [lclArray addObject:lcl];
             lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
             lcl.timeZone = [NSTimeZone defaultTimeZone];
 
@@ -317,7 +315,7 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
 
     if (q == 0) {
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", (aWeeks.count + bWeeks.count)]];
+        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (aWeeks.count + bWeeks.count)]];
     }
 }
 
@@ -348,7 +346,6 @@
     }
 
     if (descriptions.count == datesArray.count) {
-        NSMutableArray *lclArray = [[NSMutableArray alloc] init];
         for (int y = 0; y < datesArray.count; y++) {
             // datesArray[y] is in the future or today
             NSComparisonResult result = [[NSDate date] compare:datesArray[y]];
@@ -359,7 +356,6 @@
                 lcl.soundName = UILocalNotificationDefaultSoundName;
                 lcl.alertAction = @"View";
                 lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
-                [lclArray addObject:lcl];
                 lcl.timeZone = [NSTimeZone defaultTimeZone];
 
                 [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
