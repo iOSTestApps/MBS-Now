@@ -4,6 +4,8 @@
 
 Our (temporary) home is [here](http://gdyer.de). You can also go [here](http://gdyer.de/meta) to learn more.
 
+For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://gdyer.de/images).
+
 ## VCs
 ### General
 Name (w/out "ViewController") | Screenshot
