@@ -1,10 +1,8 @@
 # MBS Now
 
-... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [main views](http://gdyer.de/code/screenshots/) to get a feel for what's here.
+... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at site [main views](http://gdyer.de) to get a feel for what's here.
 
-Our (temporary) home is [here](http://gdyer.de). You can also go [here](http://gdyer.de/meta) to learn more.
-
-For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://gdyer.de/images).
+Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/gdyer/MBS-Now/wiki/%3F-Now-at-your-school!).
 
 ## VCs
 ### General
@@ -47,12 +45,11 @@ Welcomes | [Here](http://gdyer.de/code/screenshots/welcomes.png)
 # More
 This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by [Sam Vermette](http://samvermette.com/).
 
-Feel free to bring MBS Now to your own school—you'll need a web server to host some live content, and that's about it (short of customizing this repository, of course)! Search for "gdyer.de" in the xcodeproj file to find where we're talking to live data (through PHP or just downloading files). We also handle bug reports and meeting creation through parsing a CSV file hosted on Google Forms. Look for references to "SimpleWebViewController" or "forms.google.com" to find what to replace.
+For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://gdyer.de/images).
 
-[Contact us](mailto:g@gdyer.de) if you're interested in more information.
+MBS Now does not support iOS versions less than `5.1.1`
 
-MBS Now does not support iOS versions less than 5.1.1
+[Contact us](mailto:g@gdyer.de).
 
 [Some rights reserved](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 ![Some rights reserved](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)
-
