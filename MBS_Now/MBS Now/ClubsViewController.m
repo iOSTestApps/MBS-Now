@@ -38,7 +38,7 @@
 }
 
 - (void)moveAlongWithCreation {
-    SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/meeting.html"]];
+    SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meeting.html"]];
     swvc.specifier = @"rem";
     [self presentViewController:swvc animated:YES completion:nil];
 }
@@ -121,7 +121,7 @@
         }
     }
     else if (buttonIndex == 1 && alertView.tag == 1) {
-        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/report.html"]];
+        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meeting.html"]];
         [self presentViewController:swvc animated:YES completion:nil];
     }
 }

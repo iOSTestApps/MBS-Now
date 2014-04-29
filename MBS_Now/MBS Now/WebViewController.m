@@ -38,7 +38,7 @@
 }
 
 - (id)init {
-    NSURL *standard = [NSURL URLWithString:@"http://gdyer.de"];
+    NSURL *standard = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/"];
     urlToLoad = standard;
     NSLog(@"Call initWithURL:, not init. MBS Now home will display by default");
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
@@ -72,7 +72,7 @@
 - (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
         [SVProgressHUD dismiss];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"If you're on mbs.net or gdyer.de, please report this bug from the Home tab." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"If you're on campus.mbs.net, please report this bug from the Home tab." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
         [alert show];
     }
 }

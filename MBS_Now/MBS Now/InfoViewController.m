@@ -63,18 +63,18 @@
     }
 }
 
-- (IBAction)pushedGraham:(id)sender {
-    [self setUpMailWithTo:@"g@gdyer.de" andSubject:@"MBS Now"];
+- (IBAction)pushedLucas:(id)sender {
+    [self setUpMailWithTo:@"lfagan@mbs.net" andSubject:@"MBS Now"];
 }
 
 - (IBAction)pushedVisitSite:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de"]];
+    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedNew:(id)sender {
-    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"forms.png", @"rsvp.png", @"data.png", @"meetings.png", nil] showDismiss:YES description:[NSArray arrayWithObjects:@"Unified forms makes it easier to find things quickly. Add your own form instantly at gdyer.de/forms.", @"RSVPs are automatic. No more emails. Just enter your name, and we'll handle the rest.", @"Connections, such as automatic data uploads, are much smoother. No more lags.", @"We'll let you know when meetings have been changed or added. Create your own meetings from the 'Clubs' tab.", nil] title:@"What's new in 3.3.8"];
-    [self presentViewController:pb animated:YES completion:nil];
+//    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"forms.png", @"rsvp.png", @"data.png", @"meetings.png", nil] showDismiss:YES description:[NSArray arrayWithObjects:@"Unified forms makes it easier to find things quickly. Add your own form instantly at campus.mbs.net/mbsnow/home/forms.", @"RSVPs are automatic. No more emails. Just enter your name, and we'll handle the rest.", @"Connections, such as automatic data uploads, are much smoother. No more lags.", @"We'll let you know when meetings have been changed or added. Create your own meetings from the 'Clubs' tab.", nil] title:@"What's new in 3.3.8"];
+//    [self presentViewController:pb animated:YES completion:nil];
 }
 
 - (IBAction)done:(id)sender {

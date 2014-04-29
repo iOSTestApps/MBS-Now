@@ -156,7 +156,7 @@
         NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"<i>Request to delete: %@ meeting on %@, created on %@.</i></font></div></body></html>", [self.details objectAtIndex:0], [self.details objectAtIndex:1], [self.details objectAtIndex:7]]];
 
         [composerView setMessageBody:body isHTML:YES];
-        [composerView setToRecipients:[NSArray arrayWithObjects:@"g@gdyer.de", nil]];
+        [composerView setToRecipients:[NSArray arrayWithObjects:@"lfagan@mbs.net", nil]];
         [self presentViewController:composerView animated:YES completion:nil];
 
     } else {
@@ -184,7 +184,7 @@
     NSDate *bar = [dateFormat dateFromString:dateString];
 
     NSComparisonResult result = [[NSDate date] compare:bar];
-    NSLog(@"%d", result);
+    NSLog(@"%ld", result);
     if (result == NSOrderedAscending) {
         lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
         lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", [self.details objectAtIndex:0], [self.details objectAtIndex:4]];
@@ -256,7 +256,7 @@
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         if (alertView.tag == 1) {
             // copy address -- no mail set up
-            pb.string = [NSString stringWithFormat:@"[send message to g@gdyer.de]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
+            pb.string = [NSString stringWithFormat:@"[send message to lfagan@mbs.net]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
         } else if (alertView.tag == 2) {
             pb.string = [NSString stringWithFormat:@"%@ is meeting on %@ at %@ at this location: %@. This meeting was created on %@. Open MBS Now to view more details.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:3], [self.details objectAtIndex:5], [self.details objectAtIndex:0]];
         }

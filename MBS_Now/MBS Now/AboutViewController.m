@@ -60,13 +60,13 @@
 
 - (IBAction)pushedUSCurriculum:(id)sender {
     
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/USCurriculum.html"]];
+    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=529"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedMSCurriculum:(id)sender {
 
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/MSCurriculum.html"]];
+    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=1412"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 

@@ -21,7 +21,7 @@
 
 - (IBAction)pushedNew:(id)sender;
 - (IBAction)done:(id)sender;
-- (IBAction)pushedGraham:(id)sender;
+- (IBAction)pushedLucas:(id)sender;
 - (IBAction)pushedVisitSite:(id)sender;
 
 @property (assign) int segueIndex;

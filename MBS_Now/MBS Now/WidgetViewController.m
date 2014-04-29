@@ -60,7 +60,7 @@
     [SVProgressHUD dismiss];
 
     [SVProgressHUD showWithStatus:@"Loading"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     specialConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
     if (specialConnection) {
         receivedData = [NSMutableData data];

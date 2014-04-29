@@ -42,7 +42,7 @@
     // consult rsvp.php locally
     NSString *string = [NSString stringWithFormat:@"%@;%@;%@;%@;%@", self.details[5], self.nameField.text, self.boolLabel.text, self.details[0], self.details[1]];
     NSString *escapedString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString = [NSString stringWithFormat:@"http://fo.gdyer.de/rsvp.php?query=%@", escapedString];
+    NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/rsvp.php?query=%@", escapedString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
     [request setHTTPMethod:@"GET"];

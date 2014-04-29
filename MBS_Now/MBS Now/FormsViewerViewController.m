@@ -28,7 +28,7 @@
     [super viewDidLoad];
     [_webView setDelegate:self];
 
-    finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://gdyer.de/forms/%@.pdf", extensionName]];
+    finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
     if (connection) {
         receivedData = [NSMutableData data];
@@ -184,7 +184,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/report.html"]]];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
     }
 }
 

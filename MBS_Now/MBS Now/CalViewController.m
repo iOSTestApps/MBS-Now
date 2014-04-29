@@ -88,13 +88,13 @@
     [_webView stopLoading];
     switch (control.selectedSegmentIndex) {
         case 0:
-            urlToLoad = [NSURL URLWithString:@"http://gdyer.de/publiccal.html"];
+            urlToLoad = [NSURL URLWithString:@"http://www.mbs.net/pagecalpop.cfm?p=1424&calview=grid&period=week"];
             break;
         case 1:
             urlToLoad = [NSURL URLWithString:@"http://mbshomework.wikispaces.com/"];
             break;
         case 2:
-            urlToLoad = [NSURL URLWithString:@"http://gdyer.de/artscal.html"];
+            urlToLoad = [NSURL URLWithString:@"http://www.mbs.net/pagecalpop.cfm?p=541&calview=grid&period=week"];
             break;
         case 3:
             urlToLoad = [NSURL URLWithString:@"http://www.nwjerseyac.com/g5-bin/client.cgi?G5genie=235&school_id=22"];

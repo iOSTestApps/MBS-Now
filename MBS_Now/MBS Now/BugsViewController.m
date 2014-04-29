@@ -84,12 +84,10 @@ BOOL unique = YES;
             alert.tag = 2;
             [alert show];
         } else {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://fo.gdyer.de/bugs/bugs.plist"]];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/bugs/bugs.plist"]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             connect = [NSURLConnection connectionWithRequest:request delegate:self];
-            if (connect) {
-                [SVProgressHUD showWithStatus:@"Updating"];
-            }
+            if (connect) [SVProgressHUD showWithStatus:@"Updating"];
         }
     } else if (connection == connect) {
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
@@ -112,7 +110,7 @@ BOOL unique = YES;
     [SVProgressHUD showWithStatus:@"Updating"];
     self.description = self.bug = nil;
 
-    NSURL *myURL = [NSURL URLWithString:@"http://fo.gdyer.de/version.txt"];
+    NSURL *myURL = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:myURL
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:15];
@@ -122,7 +120,7 @@ BOOL unique = YES;
 #pragma mark Actions
 - (IBAction)pushedAdd:(id)sender {
     unique = NO;
-    SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/report.html"]];
+    SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
     swvc.specifier = @"bug";
     [self presentViewController:swvc animated:YES completion:nil];
 }

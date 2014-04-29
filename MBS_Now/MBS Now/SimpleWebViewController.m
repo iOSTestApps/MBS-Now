@@ -41,7 +41,7 @@ BOOL edit;
 }
 
 - (id)init {
-    urlToLoad = [NSURL URLWithString:@"http://gdyer.de"];
+    urlToLoad = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/"];
     NSLog(@"Call initWithURL:, not init. MBS Now home will display by default");
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         return [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil];
@@ -63,7 +63,7 @@ BOOL edit;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if ([webView.request.URL.absoluteString isEqualToString:@"http://gdyer.de/report.html"]) {
+    if ([webView.request.URL.absoluteString isEqualToString:@"http://campus.mbs.net/mbsnow/home/report.html"]) {
         [SVProgressHUD showImage:[UIImage imageNamed:@"bug.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", VERSION_NUMBER, [UIDevice currentDevice].systemVersion]];
     } else if ([webView.request.URL.host isEqualToString:@"docs.google.com"] && [self.specifier isEqualToString:@"rem"]) {
         // they just came from creating a meeting; ask to edit later.
@@ -170,7 +170,7 @@ BOOL edit;
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } else if (buttonIndex == 1 && alertView.tag == 4) {
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/report.html"]]];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
     }
 }
 

@@ -27,11 +27,11 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         /*CHANGES WITH VERSIONS -- CHANGE THIS IN INFO VC AS WELL!!!!!*/
         if ([[NSUserDefaults standardUserDefaults] boolForKey:@"338"] == NO) {
-            PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"forms.png", @"rsvp.png", @"data.png", @"meetings.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"Unified forms makes it easier to find things quickly. Add your own form instantly at gdyer.de/forms.", @"RSVPs are automatic. No more emails. Just enter your name, and we'll handle the rest.", @"Connections, such as automatic data uploads, are much smoother. No more lags.", @"We'll let you know when meetings have been changed or added. Create your own meetings from the 'Clubs' tab.", nil] title:@"What's new in 3.3.8"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"338"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [self presentViewController:pb animated:YES completion:nil];
-            return;
+//            PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"forms.png", @"rsvp.png", @"data.png", @"meetings.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"Unified forms makes it easier to find things quickly. Add your own form instantly at campus.mbs.net/mbsnow/home.", @"RSVPs are automatic. No more emails. Just enter your name, and we'll handle the rest.", @"Connections, such as automatic data uploads, are much smoother. No more lags.", @"We'll let you know when meetings have been changed or added. Create your own meetings from the 'Clubs' tab.", nil] title:@"What's new in 3.3.8"];
+//            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"338"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
+//            [self presentViewController:pb animated:YES completion:nil];
+//            return;
         }
         /*CHANGES WITH VERSIONS -- CHANGE THIS IN INFO VC AS WELL!!!!!*/
     }
@@ -49,7 +49,7 @@
     if (q % AUTO == 0 && q != 0) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *urlString = [NSString stringWithFormat:@"http://fo.gdyer.de/save.php?text_box=%@", escapedDataString];
+        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/save.php?text_box=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];
@@ -71,7 +71,7 @@
     }
 
     if ((q % 5 == 0) && q != 0) {
-        NSURL *myURL = [NSURL URLWithString:@"http://fo.gdyer.de/version.txt"];
+        NSURL *myURL = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/version.txt"];
         NSURLRequest *request = [NSURLRequest requestWithURL:myURL
                                                  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:15];
@@ -176,7 +176,7 @@
 
 - (IBAction)pushedSpecial:(id)sender {
     [SVProgressHUD showWithStatus:@"Checking"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     connection1 = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
     if (connection1) {
         receivedData = [NSMutableData data];

@@ -56,7 +56,7 @@
 #pragma mark Actions
 - (IBAction)pushedDownload:(id)sender {
     [SVProgressHUD showWithStatus:@"Generating distinctions"];
-    NSURL *url = [NSURL URLWithString:@"http://fo.gdyer.de/distinctions.txt"];
+    NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/distinctions.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     firstConnection = [NSURLConnection connectionWithRequest:request delegate:self];
     if (firstConnection) {
@@ -119,7 +119,7 @@
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://gdyer.de/report.html"]];
+        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
         [self presentViewController:swvc animated:YES completion:nil];
     }
 }

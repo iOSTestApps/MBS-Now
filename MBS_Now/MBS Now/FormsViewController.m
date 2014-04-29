@@ -38,7 +38,7 @@
 
 - (void)refresh {
     [SVProgressHUD showWithStatus:@"Updating"];
-    NSURL *url = [NSURL URLWithString:@"http://fo.gdyer.de/formTitles.txt"];
+    NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/formTitles.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLConnection *connect = [NSURLConnection connectionWithRequest:request delegate:self];
     if (connect) {
@@ -124,7 +124,7 @@
     [self refresh];
 }
 - (IBAction)howto:(id)sender {
-    [SVProgressHUD showImage:[UIImage imageNamed:@"paper-clip@2x.png"] status:@"Visit gdyer.de/add, and upload your PDF"];
+    [SVProgressHUD showImage:[UIImage imageNamed:@"paper-clip@2x.png"] status:@"Visit campus.mbs.net/, and upload your PDF"];
 }
 
 #pragma mark Search
