@@ -4,6 +4,8 @@
 
 Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/gdyer/MBS-Now/wiki/%3F-Now-at-your-school!).
 
+MBS Now admins: check/update [the wiki](https://github.com/gdyer/MBS-Now/wiki) for/with release information and commit info.
+
 ## VCs
 ### General
 Name (w/out "ViewController") | Screenshot
