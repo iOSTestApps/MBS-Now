@@ -156,7 +156,7 @@
         NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"<i>Request to delete: %@ meeting on %@, created on %@.</i></font></div></body></html>", [self.details objectAtIndex:0], [self.details objectAtIndex:1], [self.details objectAtIndex:7]]];
 
         [composerView setMessageBody:body isHTML:YES];
-        [composerView setToRecipients:[NSArray arrayWithObjects:@"lfagan@mbs.net", nil]];
+        [composerView setToRecipients:[NSArray arrayWithObjects:@"lucasfagan@verizon.net", nil]];
         [self presentViewController:composerView animated:YES completion:nil];
 
     } else {
@@ -256,7 +256,7 @@
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         if (alertView.tag == 1) {
             // copy address -- no mail set up
-            pb.string = [NSString stringWithFormat:@"[send message to lfagan@mbs.net]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
+            pb.string = [NSString stringWithFormat:@"[send message to lucasfagan@verizon.net]\nRequest to delete: %@ meeting on %@, created on %@.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:0]];
         } else if (alertView.tag == 2) {
             pb.string = [NSString stringWithFormat:@"%@ is meeting on %@ at %@ at this location: %@. This meeting was created on %@. Open MBS Now to view more details.", [self.details objectAtIndex:1], [self.details objectAtIndex:2], [self.details objectAtIndex:3], [self.details objectAtIndex:5], [self.details objectAtIndex:0]];
         }

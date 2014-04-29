@@ -64,7 +64,7 @@
 }
 
 - (IBAction)pushedLucas:(id)sender {
-    [self setUpMailWithTo:@"lfagan@mbs.net" andSubject:@"MBS Now"];
+    [self setUpMailWithTo:@"lucasfagan@verizon.net" andSubject:@"MBS Now"];
 }
 
 - (IBAction)pushedVisitSite:(id)sender {
