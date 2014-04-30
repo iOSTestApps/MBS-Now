@@ -43,10 +43,10 @@
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"338"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"338"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
     } else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"338"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
     }
 
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -75,10 +75,10 @@
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"338"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"338"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
     } else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"338"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
     }
 
     [[NSUserDefaults standardUserDefaults] synchronize];

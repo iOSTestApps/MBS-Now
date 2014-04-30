@@ -25,15 +25,15 @@
     versionLabel.text = [NSString stringWithFormat:@"You're running %@", VERSION_NUMBER];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        /*CHANGES WITH VERSIONS -- CHANGE THIS IN INFO VC AS WELL!!!!!*/
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"338"] == NO) {
-//            PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"forms.png", @"rsvp.png", @"data.png", @"meetings.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"Unified forms makes it easier to find things quickly. Add your own form instantly at campus.mbs.net/mbsnow/home.", @"RSVPs are automatic. No more emails. Just enter your name, and we'll handle the rest.", @"Connections, such as automatic data uploads, are much smoother. No more lags.", @"We'll let you know when meetings have been changed or added. Create your own meetings from the 'Clubs' tab.", nil] title:@"What's new in 3.3.8"];
-//            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"338"];
-//            [[NSUserDefaults standardUserDefaults] synchronize];
-//            [self presentViewController:pb animated:YES completion:nil];
-//            return;
+        /*CHANGES WITH VERSIONS*/
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"361"] == NO) {
+            PhotoBrowser *pb = [[PhotoBrowser alloc] init];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self presentViewController:pb animated:YES completion:nil];
+            return;
         }
-        /*CHANGES WITH VERSIONS -- CHANGE THIS IN INFO VC AS WELL!!!!!*/
+        /*CHANGES WITH VERSIONS*/
     }
 
     if (q == 1) {
