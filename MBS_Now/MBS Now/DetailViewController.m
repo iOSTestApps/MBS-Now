@@ -184,7 +184,7 @@
     NSDate *bar = [dateFormat dateFromString:dateString];
 
     NSComparisonResult result = [[NSDate date] compare:bar];
-    NSLog(@"%d", result);
+    NSLog(@"%ld", result);
     if (result == NSOrderedAscending) {
         lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
         lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", [self.details objectAtIndex:0], [self.details objectAtIndex:4]];
