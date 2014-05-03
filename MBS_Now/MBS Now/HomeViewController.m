@@ -71,8 +71,8 @@
     }
 
     if ((q % 5 == 0) && q != 0) {
-        NSURL *myURL = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/version.txt"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:myURL
+        NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/version.txt"];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:15];
         versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -138,7 +138,7 @@
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:startDate options:0];
         messagePart = @"starts";
     } else if ([current compare:endDate] == NSOrderedDescending) {
-        messagePart = @"UPATE MBS NOW";
+        messagePart = @"UPDATE MBS NOW";
     }
 
     days = [components day];
@@ -157,16 +157,7 @@
 }
 
 - (IBAction)pushedCredentials:(id)sender {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"cred"] != YES) {
-        UIAlertView *cAlert = [[UIAlertView alloc] initWithTitle:@"Verification" message:@"What's our school's nickname?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go", nil];
-        cAlert.tag = 10;
-        cAlert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-        [cAlert textFieldAtIndex:0].placeholder = @"Password";
-        [cAlert textFieldAtIndex:0].returnKeyType = UIReturnKeyDone;
-        [cAlert show];
-    } else {
-        [self performSegueWithIdentifier:@"credentials" sender:self];
-    }
+    [self performSegueWithIdentifier:@"credentials" sender:self];
 }
 
 - (IBAction)pushedLibrary:(id)sender {
@@ -314,26 +305,9 @@
     return YES; // they're the same
 }
 
-#pragma mark Verify
-- (void)verify {
-    if ([login isEqualToString:@"mobeard"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"cred"];
-        [self performSegueWithIdentifier:@"credentials" sender:self];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You can now create club meetings as well!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Try again"];
-    }
-}
-
 #pragma mark - Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 10) {
-        if (buttonIndex == 1) {
-            login = [alertView textFieldAtIndex:0].text;
-            [self verify];
-        }
-    } else if (alertView.tag == 11) {
+    if (alertView.tag == 11) {
         if (buttonIndex == 1) {
             SettingsViewController *svc = [[SettingsViewController alloc] init];
             // passing in 1 does not display an SVProgressHUD -- we'll handle that here

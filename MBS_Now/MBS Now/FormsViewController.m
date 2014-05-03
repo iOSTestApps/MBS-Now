@@ -124,12 +124,11 @@
     [self refresh];
 }
 - (IBAction)howto:(id)sender {
-    [SVProgressHUD showImage:[UIImage imageNamed:@"paper-clip@2x.png"] status:@"Visit campus.mbs.net/, and upload your PDF"];
+    [SVProgressHUD showImage:[UIImage imageNamed:@"paper-clip@2x.png"] status:@"Visit campus.mbs.net/mbsnow, and upload your PDF"];
 }
 
 #pragma mark Search
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchText];
 
     self.searchResults = [self.dataArray filteredArrayUsingPredicate:resultPredicate];

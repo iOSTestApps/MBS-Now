@@ -1532,21 +1532,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                     <action selector="pushedClearGrade:" destination="vwS-IY-k7r" eventType="touchUpInside" id="TCJ-kt-t6x"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nXn-4W-F1b">
-                                <rect key="frame" x="20" y="367" width="280" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Clear Passwords">
-                                    <color key="titleColor" red="0.0" green="0.4823529412" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="pushedClearDatabase:" destination="vwS-IY-k7r" eventType="touchUpInside" id="Fkb-gB-L7E"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aeW-93-Evz">
                                 <rect key="frame" x="169" y="405" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -1588,7 +1573,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="clearDatabases" destination="nXn-4W-F1b" id="oTt-h5-pIX"/>
                         <outlet property="clubSwitch" destination="WGy-iZ-n9A" id="4xi-bH-7mt"/>
                         <outlet property="colorButton" destination="hWn-9j-mdK" id="w3r-hb-Ve5"/>
                         <outlet property="dressTime" destination="zUO-71-BcU" id="dLl-Kk-R47"/>

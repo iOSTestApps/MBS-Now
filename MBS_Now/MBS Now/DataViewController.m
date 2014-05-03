@@ -7,7 +7,7 @@
 //
 
 #import "DataViewController.h"
-
+#import "WebViewController.h"
 @implementation DataViewController
 
 - (void)viewDidLoad {
@@ -29,12 +29,6 @@
                                      resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [button setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark Generate data
@@ -63,11 +57,10 @@
     BOOL abNs = [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"];
     BOOL generalNs = [[NSUserDefaults standardUserDefaults] boolForKey:@"general"];
 
-    BOOL credential = [[NSUserDefaults standardUserDefaults] boolForKey:@"cred"];
     BOOL logsSaved = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
 
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, saved password %d, logins tapped %d, button color %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, VERSION_NUMBER, sentBefore, (long)ms, formalNs, abNs, generalNs, credential, logsSaved, color];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, VERSION_NUMBER, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color];
     
     return string;
 }
@@ -95,9 +88,8 @@
 }
 
 - (IBAction)pushedQuestion:(id)sender {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Collect" ofType:@"txt"];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil] delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
-    [alert show];
+    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"]];
+    [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedHistory:(id)sender {

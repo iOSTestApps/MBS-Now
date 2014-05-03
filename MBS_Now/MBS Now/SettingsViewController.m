@@ -34,24 +34,9 @@
 
     [self setUpButtonWithImageName:@"grey" andButton:msChange];
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"cred"] == YES) {
-        [self setUpButtonWithImageName:@"grey" andButton:clearDatabases];
-    } else {
-        // no password saved
-        [self setUpButtonWithImageName:@"black" andButton:clearDatabases];
-    }
-    
-    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"]) {
-        [self setUpButtonWithImageName:@"black" andButton:msClear];
-    } else {
-        [self setUpButtonWithImageName:@"grey" andButton:msClear];
-    }
+    [self setUpButtonWithImageName:([[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"] ? @"grey" : @"black") andButton:msClear];
 
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"]) {
-        dressTime.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
-    } else {
-        dressTime.text = @"7:00 AM";
-    }
+    dressTime.text = ([[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"]) ? [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"] : @"7:00 AM";
 }
 
 - (void)setUpButtonWithImageName:(NSString *)iName andButton:(UIButton *)button {
@@ -142,18 +127,6 @@
         [self setUpGeneralNotifications:0];
     } else {
         [self turnOff];
-    }
-}
-
-- (IBAction)pushedClearDatabase:(id)sender {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"cred"] == YES) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"cred"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self setUpButtonWithImageName:@"black" andButton:clearDatabases];
-        [SVProgressHUD showSuccessWithStatus:@"Password cleared"];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Password never saved."];
     }
 }
 

@@ -19,7 +19,6 @@
 
     IBOutlet UIButton *msClear;
     IBOutlet UIButton *msChange;
-    IBOutlet UIButton *clearDatabases;
 
     IBOutlet UILabel *dressTime;
 
@@ -38,7 +37,6 @@
 
 - (IBAction)pushedClearGrade:(id)sender;
 - (IBAction)pushedChangeGrade:(id)sender;
-- (IBAction)pushedClearDatabase:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)question:(id)sender;
 

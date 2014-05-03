@@ -77,20 +77,22 @@ BOOL unique = YES;
     [SVProgressHUD dismiss];
     if (connection == versionConnection) {
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
-        fileText = [fileText stringByReplacingOccurrencesOfString:@" " withString:@""];
-        fileText = [fileText stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        if (![fileText isEqualToString:VERSION_NUMBER]) {
+        float v = [[[[fileText stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue];
+        NSString *f = VERSION_NUMBER;
+        if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update MBS Now" message:@"You're not running the current version. Bugs have likely been fixed already." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             alert.tag = 2;
             [alert show];
         } else {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/bugs/bugs.plist"]];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.plist"]];
+            NSLog(@"%@", url.absoluteString);
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
-            connect = [NSURLConnection connectionWithRequest:request delegate:self];
+            connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
             if (connect) [SVProgressHUD showWithStatus:@"Updating"];
         }
     } else if (connection == connect) {
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
+        NSLog(@"HERE");
         self.bug = [dict allValues];
         self.description = [dict allKeys];
         [SVProgressHUD dismiss];
@@ -110,8 +112,8 @@ BOOL unique = YES;
     [SVProgressHUD showWithStatus:@"Updating"];
     self.description = self.bug = nil;
 
-    NSURL *myURL = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/version.txt"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:myURL
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/version.txt"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:15];
     versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];

@@ -1,1 +1,0 @@
-System name, version number, model, screen dimensions, current button color, forms tapped, offline schedules tapped, lunch menus tapped, contacts copied, launches, version of MBS Now, if you've sent before, if you're an MS student, if you are receiving notifications from MBS Now, if you have access to database credentials, database logins copied

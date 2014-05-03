@@ -23,8 +23,6 @@
     NSURLConnection *versionConnection;
     NSURLConnection *sendingData;
 
-    NSString *login;
-
     // countdown
     NSInteger days;
     UIImage *bImage;

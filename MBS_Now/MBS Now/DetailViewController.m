@@ -184,8 +184,7 @@
     NSDate *bar = [dateFormat dateFromString:dateString];
 
     NSComparisonResult result = [[NSDate date] compare:bar];
-    NSLog(@"%ld", result);
-    if (result == NSOrderedAscending) {
+    if (result == -1) {
         lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
         lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", [self.details objectAtIndex:0], [self.details objectAtIndex:4]];
         lcl.soundName = UILocalNotificationDefaultSoundName;

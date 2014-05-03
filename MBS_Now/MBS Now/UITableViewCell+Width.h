@@ -1,9 +1,9 @@
 //
 //  UITableViewCell+Width.h
-//  GasMoney
+//  MBS Now
 //
 //  Created by gdyer on 3/8/14.
-//  Copyright (c) 2014 Hack@Brown. All rights reserved.
+//  Copyright (c) 2014 MBS Now. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

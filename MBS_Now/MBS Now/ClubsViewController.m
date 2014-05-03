@@ -96,31 +96,12 @@
 }
 
 - (IBAction)pushedAdd:(id)sender {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"cred"] == YES) {
-        [self moveAlongWithCreation];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"For Security" message:@"What's our school's nickname?" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Go", nil];
-        alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-        [alert textFieldAtIndex:0].placeholder = @"Password";
-        [alert textFieldAtIndex:0].returnKeyType = UIReturnKeyDone;
-        alert.tag = 2;
-        [alert show];
-    }
+    [self moveAlongWithCreation];
 }
 
 #pragma mark UIAlertView delegate methods
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1 && alertView.tag == 2) {
-        if ([[alertView textFieldAtIndex:0].text isEqualToString:@"mobeard"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You'll never have to do that again. You can also access database credentials now." delegate:self cancelButtonTitle:@"Yay!" otherButtonTitles:nil, nil];
-            [alert show];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"cred"];
-            [self moveAlongWithCreation];
-        } else {
-            [SVProgressHUD showErrorWithStatus:@"That wasn't correct; please try again."];
-        }
-    }
-    else if (buttonIndex == 1 && alertView.tag == 1) {
+    if (buttonIndex == 1 && alertView.tag == 1) {
         SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meeting.html"]];
         [self presentViewController:swvc animated:YES completion:nil];
     }

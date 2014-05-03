@@ -43,7 +43,7 @@
 }
 
 - (id)init {
-    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"lucas.png", @"campus.png", @"github.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"We're happy to announce Lucas Fagan will be running the app from now on! Graham is leaving for college!", @"All of our data is now stored on campus.mbs.net/mbsnow, making connections much faster (and more secure).", @"The app is now entirely open sourced on GitHub. Tell your friends! ow.ly/wlnSW.", nil] title:@"What's new in 3.6.1"];
+    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"lucas.png", @"campus.png", @"github.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"We're happy to announce Lucas Fagan will be running the app from now on! Graham is leaving for college!", @"All of our data is now stored on campus.mbs.net/mbsnow, making connections much faster (and more secure).", @"The app is now entirely open sourced on GitHub. Tell your friends! ow.ly/wlnSW.", nil] title:@"What's new in 3.7.1"];
     return pb;
 }
 
