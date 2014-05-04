@@ -2,9 +2,14 @@
 
 ... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to get a feel for what's here.
 
-Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/gdyer/MBS-Now/wiki).
 
 > MBS Now admins: check/update [the wiki](https://github.com/gdyer/MBS-Now/wiki) for/with release information and commit info.
+
+> **Reminder**: do NOT change the version number in Xcode settings until the release is on the store.
+
+
+
+Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/gdyer/MBS-Now/wiki).
 
 ## VCs
 ### General
