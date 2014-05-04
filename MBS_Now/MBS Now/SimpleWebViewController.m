@@ -64,7 +64,8 @@ BOOL edit;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if ([webView.request.URL.absoluteString isEqualToString:@"http://campus.mbs.net/mbsnow/home/report.html"]) {
-        [SVProgressHUD showImage:[UIImage imageNamed:@"bug.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", VERSION_NUMBER, [UIDevice currentDevice].systemVersion]];
+        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        [SVProgressHUD showImage:[UIImage imageNamed:@"bug.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", [infoDict objectForKey:@"CFBundleShortVersionString"], [UIDevice currentDevice].systemVersion]];
     } else if ([webView.request.URL.host isEqualToString:@"docs.google.com"] && [self.specifier isEqualToString:@"rem"]) {
         // they just came from creating a meeting; ask to edit later.
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Meeting created!" message:@"Would you like to add the ability to edit this meeting later? Note: it will take up to 5 minutes for it to go live." delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];

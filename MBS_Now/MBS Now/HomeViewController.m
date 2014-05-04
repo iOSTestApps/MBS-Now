@@ -22,7 +22,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-    versionLabel.text = [NSString stringWithFormat:@"You're running %@", VERSION_NUMBER];
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    versionLabel.text = [NSString stringWithFormat:@"You're running %@", [infoDict objectForKey:@"CFBundleShortVersionString"]];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         /*CHANGES WITH VERSIONS*/
@@ -274,7 +275,8 @@
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
         fileText = [fileText stringByReplacingOccurrencesOfString:@" " withString:@""];
         fileText = [fileText stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        if (![fileText isEqualToString:VERSION_NUMBER]) {
+        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        if (![fileText isEqualToString:[infoDict objectForKey:@"CFBundleShortVersionString"]]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An update is available" message:@"MBS Now just got better. Please update!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];

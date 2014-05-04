@@ -13,7 +13,8 @@
 BOOL unique = YES;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    navBar.topItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", VERSION_NUMBER];
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    navBar.topItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
     self.bug = [NSArray arrayWithObject:@"Tap here to refresh"];
     self.description = [NSArray arrayWithObject:@"Connection is required"];
 
@@ -78,7 +79,8 @@ BOOL unique = YES;
     if (connection == versionConnection) {
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
         float v = [[[[fileText stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue];
-        NSString *f = VERSION_NUMBER;
+        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
         if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update MBS Now" message:@"You're not running the current version. Bugs have likely been fixed already." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             alert.tag = 2;
@@ -112,6 +114,8 @@ BOOL unique = YES;
     [SVProgressHUD showWithStatus:@"Updating"];
     self.description = self.bug = nil;
 
+
+    // in future versions... use https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/MBS%20Now/MBS%20Now-Info.plist and get the key "CFBundleShortVersionString"
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData

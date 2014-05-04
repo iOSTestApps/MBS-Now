@@ -54,7 +54,8 @@
         CGFloat screenH = screen.size.height;
 
         NSString *path = [[NSBundle mainBundle] pathForResource:@"contactme" ofType:@"html"];
-        NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"MBS Now: %@\niOS: %@\nCurrent device: %@\nDimensions: %.1f, %.1f</font></div></body></html>", VERSION_NUMBER, iOSVersion, device, screenW, screenH]];
+        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"MBS Now: %@\niOS: %@\nCurrent device: %@\nDimensions: %.1f, %.1f</font></div></body></html>", [infoDict objectForKey:@"CFBundleShortVersionString"], iOSVersion, device, screenW, screenH]];
         [composerView setMessageBody:body isHTML:YES];
         [self presentViewController:composerView animated:YES completion:nil];
     } else {
@@ -85,22 +86,23 @@
     NSString *path;
     switch (control.selectedSegmentIndex) {
         case 0: {
-            // About us
             textView.userInteractionEnabled = NO;
-            path = [[NSBundle mainBundle] pathForResource:@"Info"
-                                                             ofType:@"txt"];
+            path = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Info"
+                                                                                      ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+            NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            path = [path stringByReplacingOccurrencesOfString:@"%@" withString:version];
             break;
         }
         case 1: {
             textView.userInteractionEnabled = YES;
-            path = [[NSBundle mainBundle] pathForResource:@"AboutUs"
-                                                             ofType:@"txt"];
+            path = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AboutUs"
+                                                                                      ofType:@"txt"]encoding:NSUTF8StringEncoding error:nil];
             break;
         }
         case 2: {
             textView.userInteractionEnabled = YES;
-            path = [[NSBundle mainBundle] pathForResource:@"clubInfo"
-                                                   ofType:@"txt"];
+            path = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"clubInfo"
+                                                                                      ofType:@"txt"]encoding:NSUTF8StringEncoding error:nil];
             break;
         }
         default: {
@@ -108,7 +110,7 @@
         }
     }
 
-    [textView setText:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]]
+    [textView setText:path];
     ;
 }
 

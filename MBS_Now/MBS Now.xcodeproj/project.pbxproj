@@ -891,6 +891,14 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				da,
+				de,
+				"es-ES",
+				es,
+				fr,
+				ja,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 1557D1FD169F0D3E00F27AE4;
 			productRefGroup = 1557D209169F0D3E00F27AE4 /* Products */;

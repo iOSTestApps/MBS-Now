@@ -59,8 +59,11 @@
 
     BOOL logsSaved = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
 
+    NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
+
     NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, VERSION_NUMBER, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color];
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color];
     
     return string;
 }
@@ -76,8 +79,11 @@
         composerView.mailComposeDelegate = self;
         [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
         [composerView setSubject:@"Your sample data"];
-        
-        [composerView addAttachmentData:[[self generateData] dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/rtf" fileName:[NSString stringWithFormat:@"Data_%@.txt", VERSION_NUMBER]];
+
+        NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
+
+        [composerView addAttachmentData:[[self generateData] dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/rtf" fileName:[NSString stringWithFormat:@"Data_%@.txt", version]];
 
         [composerView setMessageBody:@"You'll be able to view the attachment on any computer. Devices with iOS 7 and later can natively view it. We only see the attachment data upon automatic uploads — nothing else." isHTML:NO];
 

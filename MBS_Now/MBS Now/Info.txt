@@ -1,4 +1,4 @@
-You're running version 3.7.1.
+You're running version %@.
 
 Credits:
 • Programming and design: Lucas Fagan

@@ -12,8 +12,7 @@
 @implementation WebViewController
 @synthesize _webView, receivedData;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [_webView setDelegate:self];
     [super viewDidLoad];
 
@@ -28,33 +27,18 @@
 }
 
 - (id)initWithURL:(NSURL *)url {
-
     urlToLoad = url;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"WebViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"WebViewController_6"  bundle:nil];
-    }
+    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WebViewController_7"  bundle:nil] : [super initWithNibName:@"WebViewController_6"  bundle:nil];
 }
 
 - (id)init {
     NSURL *standard = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/"];
     urlToLoad = standard;
     NSLog(@"Call initWithURL:, not init. MBS Now home will display by default");
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"WebViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"WebViewController_6"  bundle:nil];
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WebViewController_7"  bundle:nil] : [super initWithNibName:@"WebViewController_6"  bundle:nil];
 }
 
 #pragma mark Connections
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD showWithStatus:@"Loading"];
@@ -153,8 +137,7 @@
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         return YES;
     } else {
