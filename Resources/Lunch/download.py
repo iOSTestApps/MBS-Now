@@ -2,6 +2,11 @@
 # run this on a Saturday or Sunday
 import urllib.request, urllib.parse, urllib.error, time, datetime
 
+# CHANGE THIS:
+home_name = "gdyer"
+# ^ CHANGE THAT
+
+
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
@@ -17,7 +22,7 @@ for i in range(len(days) + 1):
         print(url)
         f = urllib.request.urlopen(url)
         data = f.read()
-        with open("/Users/gdyer/Dropbox/MBS-Now/Resources/Lunch/" + days[q] + ".pdf", "wb") as code:
+        with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + days[q] + ".pdf", "wb") as code:
             code.write(data)
 
 # now do the monthly menu
@@ -27,12 +32,12 @@ if (last.month != datetime.datetime.today().month):
     print(url)
     f = urllib.request.urlopen(url)
     data = f.read()
-    with open("/Users/gdyer/Dropbox/MBS-Now/Resources/Lunch/" + "Month2.pdf", "wb") as code:
+    with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + "Month2.pdf", "wb") as code:
         code.write(data)
 
 url = 'http://myschooldining.com/mbs/createPDFMenuMonthAct.cfm?currDT=' + datetime.datetime.today().strftime('%m/%d/%y')
 print(url)
 f = urllib.request.urlopen(url)
 data = f.read()
-with open("/Users/gdyer/Dropbox/MBS-Now/Resources/Lunch/" + "Month.pdf", "wb") as code:
+with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + "Month.pdf", "wb") as code:
     code.write(data)
