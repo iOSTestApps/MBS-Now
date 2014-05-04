@@ -33,18 +33,17 @@
     nextWeekDay = [formatter stringFromDate:tomorrow];
 
     // create a URL for tomorrow's menu
-    nextLunchURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/lunch/%@.pdf", nextWeekDay]];
+    nextLunchURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/%@.pdf", nextWeekDay]];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         NSString *datePart = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
         days = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@ - %@", weekDay, datePart], nextWeekDay, @"Month", nil];
-        // Lunch.pdf is the monthly calendar
-        lunchURL = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/lunch/Lunch.pdf"];
+        lunchURL = [NSURL URLWithString:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/Month.pdf"];
     } else {
         // iPhone
         days = [NSArray arrayWithObjects:weekDay, nextWeekDay, nil];
         // create a URL for today's menu
-        lunchURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/lunch/%@.pdf", weekDay]];
+        lunchURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/%@.pdf", weekDay]];
     }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:lunchURL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:25];
@@ -236,13 +235,13 @@
 
     switch (indexPath.row) {
         case 0:
-            [self loadFromTable:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/lunch/%@.pdf", weekDay]]];
+            [self loadFromTable:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/%@.pdf", weekDay]]];
             break;
         case 1:
-            [self loadFromTable:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/lunch/%@.pdf", nextWeekDay]]];
+            [self loadFromTable:[NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/%@.pdf", nextWeekDay]]];
             break;
         case 2:
-            [self loadFromTable:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/lunch/Lunch.pdf"]]; // Lunch.pdf is the monthly calendar (iPad only)
+            [self loadFromTable:[NSURL URLWithString:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/Month.pdf"]]; //iPad only
             break;
         default:
             break;
