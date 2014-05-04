@@ -1,5 +1,4 @@
 # works with Python 3.3
-home_name = 'gdyer'
 import urllib.request, urllib.parse, urllib.error, re
 
 def avg(list):

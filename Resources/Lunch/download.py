@@ -3,7 +3,7 @@
 import urllib.request, urllib.parse, urllib.error, time, datetime
 
 # CHANGE THIS:
-home_name = "gdyer"
+home_name = "lucasfagan"
 # ^ CHANGE THAT
 
 
