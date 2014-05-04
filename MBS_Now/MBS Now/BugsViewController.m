@@ -77,24 +77,22 @@ BOOL unique = YES;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
     if (connection == versionConnection) {
-        NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
-        float v = [[[[fileText stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
+        NSInteger v = [[[dict objectForKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
-        if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] floatValue]) {
+        if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update MBS Now" message:@"You're not running the current version. Bugs have likely been fixed already." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             alert.tag = 2;
             [alert show];
         } else {
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.plist"]];
-            NSLog(@"%@", url.absoluteString);
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
             if (connect) [SVProgressHUD showWithStatus:@"Updating"];
         }
     } else if (connection == connect) {
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
-        NSLog(@"HERE");
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connect.currentRequest.URL];
         self.bug = [dict allValues];
         self.description = [dict allKeys];
         [SVProgressHUD dismiss];
@@ -114,13 +112,11 @@ BOOL unique = YES;
     [SVProgressHUD showWithStatus:@"Updating"];
     self.description = self.bug = nil;
 
-
-    // in future versions... use https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/MBS%20Now/MBS%20Now-Info.plist and get the key "CFBundleShortVersionString"
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/version.txt"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/MBS%20Now/MBS%20Now-Info.plist"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:15];
-    versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
 #pragma mark Actions

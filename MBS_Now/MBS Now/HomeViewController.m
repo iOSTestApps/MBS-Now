@@ -72,7 +72,7 @@
     }
 
     if ((q % 5 == 0) && q != 0) {
-        NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/version.txt"];
+        NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/MBS%20Now/MBS%20Now-Info.plist"];
         NSURLRequest *request = [NSURLRequest requestWithURL:url
                                                  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                              timeoutInterval:15];
@@ -272,11 +272,11 @@
             [[NSUserDefaults standardUserDefaults] setObject:csv forKey:@"meetingLog"];
         }
     } else if (connection == versionConnection) {
-        NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
-        fileText = [fileText stringByReplacingOccurrencesOfString:@" " withString:@""];
-        fileText = [fileText stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
+        NSInteger v = [[[dict objectForKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-        if (![fileText isEqualToString:[infoDict objectForKey:@"CFBundleShortVersionString"]]) {
+        NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
+        if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An update is available" message:@"MBS Now just got better. Please update!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];

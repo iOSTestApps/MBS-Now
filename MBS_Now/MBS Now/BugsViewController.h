@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface BugsViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIAlertViewDelegate> {
-    NSString *version;
-    IBOutlet UINavigationBar *navBar;
+
+    NSURLConnection *versionConnection;
 
     NSURLConnection *connect;
-    NSURLConnection *versionConnection;
+
+    IBOutlet UINavigationBar *navBar;
 }
 
 - (IBAction)pushedAdd:(id)sender;
