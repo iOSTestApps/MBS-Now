@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D51998E2-861D-4602-87A2-E256AD3DA491</string>
+	<string>2A18D9E2-544C-48B5-8316-EB9A90798E8F</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MBS Now</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3339A08F-F7A3-4310-9D5E-EA5CB1E6EF83</key>
-		<string>https://github.com/gdyer/MBS-Now</string>
+		<key>27B29AF5-6B60-4E1D-B526-728D99A5781D</key>
+		<string>https://github.com/gdyer/MBS-Now.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MBS_Now/MBS Now.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3339A08F-F7A3-4310-9D5E-EA5CB1E6EF83</key>
+		<key>27B29AF5-6B60-4E1D-B526-728D99A5781D</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/gdyer/MBS-Now</string>
+	<string>https://github.com/gdyer/MBS-Now.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3339A08F-F7A3-4310-9D5E-EA5CB1E6EF83</string>
+	<string>27B29AF5-6B60-4E1D-B526-728D99A5781D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3339A08F-F7A3-4310-9D5E-EA5CB1E6EF83</string>
+			<string>27B29AF5-6B60-4E1D-B526-728D99A5781D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MBS-Now</string>
 		</dict>
