@@ -118,7 +118,7 @@
 }
 
 - (void)countdown {
-    NSString *startSchool = @"2013-09-03";
+    NSString *startSchool = @"2014-09-03";
     NSString *endSchool = @"2014-05-31";
     NSDate *current = [NSDate date];
 
@@ -129,7 +129,6 @@
     NSDate *startDate = [formatter dateFromString:startSchool];
 
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-
     if ([endDate compare:current] == NSOrderedDescending && [startDate compare:current] == NSOrderedAscending) {
         // school's in session
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
@@ -138,17 +137,15 @@
         // summer
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:startDate options:0];
         messagePart = @"starts";
-    } else if ([current compare:endDate] == NSOrderedDescending) {
-        messagePart = @"UPDATE MBS NOW";
+    } else if ([current compare:endDate] == NSOrderedDescending) messagePart = @"UPDATE MBS NOW";
+
+    if ([startDate compare:endDate] == NSOrderedDescending && [endDate compare:current] == NSOrderedDescending) {
+        messagePart = @"ends";
+        components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
     }
 
     days = [components day];
-
-    if ([messagePart isEqualToString:@"starts"]) {
-        bImage = [UIImage imageNamed:@"sun@2x.png"];
-    } else {
-        bImage = [UIImage imageNamed:@"backpack@2x.png"];
-    }
+    bImage = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun@2x.png"] : [UIImage imageNamed:@"backpack@2x.png"];
 }
 
 #pragma mark - Actions
