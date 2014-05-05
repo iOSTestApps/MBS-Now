@@ -19,7 +19,7 @@
     tblView.tableFooterView = footer;
 
     _searchBar.showsCancelButton = NO;
-    self.dataArray = [NSArray arrayWithObjects:@"Tap the reload button", @"Wireless connection required", nil];
+    self.dataArray = [NSArray arrayWithObjects:@"Tap the refresh button", @"Wireless connection required", nil];
     tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
 
