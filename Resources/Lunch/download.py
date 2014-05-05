@@ -6,13 +6,12 @@ import urllib.request, urllib.parse, urllib.error, time, datetime
 home_name = "lucasfagan"
 # ^ CHANGE THAT
 
-
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+weekdays = days[0:5]
 
 last = 0
 
-for i in range(len(days) + 1):
+for i in range(len(days)):
     q = (datetime.datetime.today().weekday() + i) % len(days)
     if (days[q] in weekdays):
         unformatted = datetime.date.today() + datetime.timedelta(days=i)
