@@ -214,7 +214,7 @@
 
 	<br>
 	<div class="footer">
-       This file is hosted on GitHub. <a href="https://github.com/gdyer/MBS-Now">View our repository there</a> for more information.
+       This file is hosted on GitHub. Permalink to this page: campus.mbs.net/mbsnow/home/meta
     </div>
   </body>
 </html>

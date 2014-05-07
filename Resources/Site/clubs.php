@@ -47,20 +47,17 @@
 		<iframe width='600' height='300' frameborder='0' src='https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=html&widget=true'></iframe>
 
 		<h3>Registration</h3>
-		<p>Only clubs/groups that appear on the list below will be able to create meetings in MBS Now.</p>
-
 		<ul>
 			<li>Please contact the faculty advisor to clubs with the required (see next bullet) documents to get approved.</li>
-			<iframe id='iframe' src = 'http://campus.mbs.net/mbsnow/scripts/clubNames.txt' onload='readfile()'> </iframe>
 			<li>If you're running a continuing club, <a href="http://campus.mbs.net/mbsnow/home/forms/Continuingclubs.pdf">fill this out</a>. Otherwise, <a href="http://campus.mbs.net/mbsnow/home/forms/Newclubs.pdf">new clubs</a>.</li>
 			<ul>
-				<li>If you're using Chrome, you can fill out the form in-browser, and simply email it.</li>
+				<li>Protip: tf you're using Chrome, you can fill out the form in-browser, and simply email it.</li>
 			</ul>
 			<li>You'll then be able to create meetings through the app.</li>
 		</ul>
 
       <div class="footer">
-        <?php $last_modified = filemtime("clubs.php"); print("Last modified "); print(date("m/j/y", $last_modified)); ?>
+        This file is hosted on GitHub. Permalink to this page: campus.mbs.net/mbsnow/home/clubs.php
     </div>
   </body>
 </html>
