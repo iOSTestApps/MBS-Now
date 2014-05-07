@@ -1,13 +1,14 @@
 # works with Python 3 and above
-# run this on a Saturday or Sunday
-import urllib.request, urllib.parse, urllib.error, time, datetime
+import urllib.request, urllib.parse, urllib.error, datetime, os
 
+# run this on a SATURDAY OR SUNDAY if you only want to do it once per week.
 # CHANGE THIS:
-home_name = "lucasfagan"
+home_name = "gdyer"
 # ^ CHANGE THAT
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekdays = days[0:5]
+dir = "/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/"
 
 last = 0
 
@@ -21,22 +22,39 @@ for i in range(len(days)):
         print(url)
         f = urllib.request.urlopen(url)
         data = f.read()
-        with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + days[q] + ".pdf", "wb") as code:
+        with open(dir + days[q] + ".pdf", "wb") as code:
             code.write(data)
 
 # now do the monthly menu
 if (last.month != datetime.datetime.today().month):
-    print("Conflicting months detected. Storing next month as 'Month2.pdf'.")
+    print("Conflicting months detected. Storing next month (" + last.month + ") as 'Month2.pdf'.")
     url = 'http://myschooldining.com/mbs/createPDFMenuMonthAct.cfm?currDT=' + last.strftime('%m/%d/%y')
     print(url)
     f = urllib.request.urlopen(url)
     data = f.read()
-    with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + "Month2.pdf", "wb") as code:
+    with open(dir + "Month2.pdf", "wb") as code:
         code.write(data)
 
 url = 'http://myschooldining.com/mbs/createPDFMenuMonthAct.cfm?currDT=' + datetime.datetime.today().strftime('%m/%d/%y')
 print(url)
 f = urllib.request.urlopen(url)
 data = f.read()
-with open("/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/" + "Month.pdf", "wb") as code:
+with open(dir + "Month.pdf", "wb") as code:
     code.write(data)
+
+print('Download successful. Files saved in ' + dir)
+auto_commit = input('Files saved. Push to GitHub automatically? (y/n) ')
+if auto_commit is 'y':
+    confirm = input('All that has been changed are the lunch menus, right? You did NOT edit code, the project, etc., right? (y/n) ')
+    if confirm is 'y':
+        to_cd = "/Users/" + home_name + "/Dropbox/MBS-Now/"
+        os.chdir(to_cd)
+        os.system("git add -A Resources/")
+        os.system("git commit -m 'lunch menus for this week'")
+        os.system("git remote rm origin")
+        os.system("git remote add origin https://github.com/gdyer/MBS-Now.git")
+        os.system("git push origin master")
+    else:
+        print('Sorry, but please do a manual commit.')
+else:
+    print('Leaving the updating to you.')
