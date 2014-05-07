@@ -51,7 +51,7 @@
 			<li>Please contact the faculty advisor to clubs with the required (see next bullet) documents to get approved.</li>
 			<li>If you're running a continuing club, <a href="http://campus.mbs.net/mbsnow/home/forms/Continuingclubs.pdf">fill this out</a>. Otherwise, <a href="http://campus.mbs.net/mbsnow/home/forms/Newclubs.pdf">new clubs</a>.</li>
 			<ul>
-				<li>Protip: tf you're using Chrome, you can fill out the form in-browser, and simply email it.</li>
+				<li>Protip: if you're using Chrome, you can fill out the form in-browser, and simply email it.</li>
 			</ul>
 			<li>You'll then be able to create meetings through the app.</li>
 		</ul>
