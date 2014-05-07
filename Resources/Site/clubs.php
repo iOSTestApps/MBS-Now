@@ -11,7 +11,7 @@
     <title>MBS Now, clubs</title>
     <link href="http://campus.mbs.net/mbsnow/home/dist/css/bootstrap.css" rel="stylesheet">
 
-    <link href="http://campus.mbs.net/mbsnow/home/dist/jumbotron-narrow.css" rel="stylesheet">
+    <link href="http://campus.mbs.net/mbsnow/home/jumbotron-narrow.css" rel="stylesheet">
 	<meta name="apple-itunes-app" content="app-id=617180145, affiliate-data=myAffiliateData">
 
   </head>
