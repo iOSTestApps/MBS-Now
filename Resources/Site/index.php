@@ -24,13 +24,13 @@
           <li><a href="http://campus.mbs.net/mbsnow/home/forms">Forms</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/clubs.php">Clubs</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/code">Code</a></li>
-          <li><a href="http://htmlpreview.github.io/?https://github.com/gdyer/MBS-Now/blob/master/Resources/meta.html">More</a></li>
+          <li><a href="http://campus.mbs.net/mbsnow/home/meta">More</a></li>
         </ul>
         <h3 class="text-muted">MBS Now</h3>
       </div>
       <div class="jumbotron">
         <h1>MBS Now</h1>
-        <p class="lead">...a free, student-founded and run iOS application made for the Morristown-Beard School. <a href="http://htmlpreview.github.io/?https://github.com/gdyer/MBS-Now/blob/master/Resources/meta.html/#credits">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
+        <p class="lead">...a free, student-founded and run iOS application made for the Morristown-Beard School. <a href="http://campus.mbs.net/mbsnow/home/meta/#credits">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
         <a class="btn btn-lg btn-success" href="http://gdyer.de/appstore" target="_blank" role="button">Download »</a>
       </div>
 
@@ -43,7 +43,7 @@
       <div class="row marketing">
         <div class="col-lg-6">
           <h4>Clubs</h4>
-          <p>A lot of data for clubs lives here. If your club is registered, you can <a href="meeting.html"><strong>create meetings</strong></a> immediately. If not, <a href="http://campus.mbs.net/mbsnow/home/clubs.html">start registration here</a>.</p>
+          <p>A lot of data for clubs lives here. If your club is registered, you can <a href="http://campus.mbs.net/mbsnow/home/meeting.html"><strong>create meetings</strong></a> immediately. If not, <a href="http://campus.mbs.net/mbsnow/home/clubs.html">start registration here</a>.</p>
 
 		<h4>Source Code</h4>
           <p>All of the code that powers MBS Now is accessible to everyone <a href="https://github.com/gdyer/MBS-Now">on GitHub</a>. <a href="mailto:team@gdyer.de">Email us</a> with commentary and thanks!</p>
@@ -53,11 +53,10 @@
           <h4>Forms</h4>
           <p>All forms that are accessible in MBS Now <a href="http://campus.mbs.net/mbsnow/home/forms/#view">are here</a>. You can <a href="http://campus.mbs.net/mbsnow/home/forms/#upload">add your own forms</a> as well. Uploads are now published automatically.</p>
 
-          <h4>More/Meta</h4>
-          <p><a href="http://htmlpreview.github.io/?https://github.com/gdyer/MBS-Now/blob/master/Resources/meta.html/#about">Learn about us</a>, <a href="http://campus.mbs.net/mbsnow/home/report.html"><strong>report a bug</strong></a>, view <a href="http://campus.mbs.net/mbsnow/home/meta/privacy.php">privacy information</a>, or access <a href="http://htmlpreview.github.io/?https://github.com/gdyer/MBS-Now/blob/master/Resources/meta.html/#versions">the app's version history</a>.</p>
+          <h4>More</h4>
+          <p><a href="http://campus.mbs.net/mbsnow/home/meta/#about">Learn about us</a>, <a href="http://campus.mbs.net/mbsnow/home/report.html"><strong>report a bug</strong></a>, view <a href="http://campus.mbs.net/mbsnow/home/meta/privacy.php">privacy information</a>, or access <a href="http://campus.mbs.net/mbsnow/home/meta/#versions">the app's version history</a>.</p>
         </div>
       </div>
-	<div class="fb-like" data-href="https://www.facebook.com/mobeardlabs" data-width="500" data-height="500" data-colorscheme="light" data-layout="standard" data-action="like" data-show-faces="false" data-send="false"></div>
 	<div class="footer">
         This file is hosted on GitHub. Permalink to this page: campus.mbs.net/mbsnow/home
     </div>
