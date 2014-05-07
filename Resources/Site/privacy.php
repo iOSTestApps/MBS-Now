@@ -43,7 +43,7 @@
 	<p>Just to be clear, here's what you'll see in the app:</p>
 	<img border="0" src="http://campus.mbs.net/mbsnow/home/code/screenshots/data.png" alt="data.png" width="320" height="480">
       <div class="footer">
-        <?php $last_modified = filemtime("index.php"); print("Last modified "); print(date("m/j/y", $last_modified)); ?>
+        This file is hosted on GitHub. Permalink to this page: campus.mbs.net/mbsnow/home/meta/privacy.php
     </div>
   </body>
 </html>
