@@ -167,7 +167,7 @@
                                 @"04/11/2014",
                                 @"04/25/2014",
                                 @"05/01/2014",
-                                @"05/08/2014",
+                                @"05/07/2014",
                                 @"05/20/2014", nil];
 
     NSMutableArray *dateStrings = [[NSMutableArray alloc] init];
