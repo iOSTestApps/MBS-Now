@@ -30,15 +30,15 @@
       </div>
       <div class="jumbotron">
         <h1>MBS Now</h1>
-        <p class="lead">...a free, student-founded and run iOS application made for the Morristown-Beard School. <a href="http://campus.mbs.net/mbsnow/home/meta/#credits">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
-        <a class="btn btn-lg btn-success" href="http://gdyer.de/appstore" target="_blank" role="button">Download »</a>
+        <p class="lead">...a free, student-founded and run iOS and web app made for the Morristown-Beard School. <a href="http://campus.mbs.net/mbsnow/home/meta/#credits">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
+        <a class="btn btn-lg btn-primary" href="http://gdyer.de/appstore" target="_blank" role="button">Download for iOS</a>
       </div>
 
 	<h2></h3>
 
       <h3>Announcements</h3>
       <div class="alert alert-success">
-        Welcome to our new server, campus.mbs.net/mbsnow! <span class="label label-primary">1</span> Version 3.7.1 will be available by May 10 <span class="label label-primary">2</span> Support for versions 3.5.1 and earlier will be discontinued then.
+        Welcome to our new server, campus.mbs.net/mbsnow (jointly hosted with GitHub)! <span class="label label-primary">1</span> Version 3.7.1 is available! <a href="http://gdyer.de/appstore">Update today!</a><span class="label label-primary">2</span> Support for versions 3.5.1 and earlier will be discontinued on <b>June 1</b>.
       </div>
       <div class="row marketing">
         <div class="col-lg-6">

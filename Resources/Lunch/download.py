@@ -1,7 +1,9 @@
 # works with Python 3 and above
 import urllib.request, urllib.parse, urllib.error, datetime, os
-
-# run this on a SATURDAY OR SUNDAY if you only want to do it once per week.
+from os.path import expanduser
+home = expanduser("~")
+print(home)
+# run this on a SATURDAY, SUNDAY, or MONDAY if you only want to do it once per week.
 # CHANGE THIS:
 home_name = "gdyer"
 # ^ CHANGE THAT
