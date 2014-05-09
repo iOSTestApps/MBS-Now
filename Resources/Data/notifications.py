@@ -6,7 +6,7 @@ home_name = 'gdyer'
 events = []
 with open('/Users/' + home_name + '/Downloads/calendar.csv', 'r') as f:
     reader = csv.reader(f)
-    for line in reader:
+    for line in reader:®
       events.append(line)
 
 dress_dates = "NSArray *dressUpDates = @["

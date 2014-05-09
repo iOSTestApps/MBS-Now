@@ -5,7 +5,7 @@ home = expanduser("~")
 print(home)
 # run this on a SATURDAY, SUNDAY, or MONDAY if you only want to do it once per week.
 # CHANGE THIS:
-home_name = "lucasfagan"
+home_name = "gdyer"
 # ^ CHANGE THAT
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -45,7 +45,7 @@ with open(dir + "Month.pdf", "wb") as code:
     code.write(data)
 
 print('Download successful. Files saved in ' + dir)
-auto_commit = input('Push to GitHub automatically? (y/n) ')
+auto_commit = input('Files saved. Push to GitHub automatically? (y/n) ')
 if auto_commit is 'y':
     confirm = input('All that has been changed are the lunch menus, right? You did NOT edit code, the project, etc., right? (y/n) ')
     if confirm is 'y':
