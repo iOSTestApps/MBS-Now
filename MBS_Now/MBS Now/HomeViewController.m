@@ -72,13 +72,9 @@
         meetingsConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     }
 
-    if ((q % 5 == 0) && q != 0) {
-        NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/MBS%20Now/MBS%20Now-Info.plist"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                             timeoutInterval:15];
-        versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    }
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
+    versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (void)viewDidLoad {
@@ -270,19 +266,20 @@
             [[NSUserDefaults standardUserDefaults] setObject:csv forKey:@"meetingLog"];
         }
     } else if (connection == versionConnection) {
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connection.currentRequest.URL];
-        NSInteger v = [[[dict objectForKey:@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue];
+        NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
-        if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"There's an update available—for real this time!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
+        NSLog(@"%d, %d", remoteVersion , [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
+        if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
             NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-            [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-
+            if ((q % 5 == 0) && q != 0) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"There's an update available—for real this time!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
+                [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                alert.tag = 13;
+                [alert show];
+            }
             versionLabel.text = @"An update is available";
-            alert.tag = 13;
-            [alert show];
         }
     }
 }
@@ -336,9 +333,8 @@
         NSString *foo = (buttonIndex == 1) ? @"us" : @"ms";
 
         [self scheduleFromDate:dateString andDivison:foo];
-    } else if (alertView.tag == 13 && buttonIndex == 1) {
+    } else if (alertView.tag == 13 && buttonIndex == 1)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
-    }
 }
 
 #pragma mark - Rotation

@@ -135,15 +135,13 @@ BOOL unique = YES;
 
 #pragma mark Alert view
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 2 && buttonIndex == 1) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
+    if (alertView.tag == 2) {
+        if (buttonIndex == 1) [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
+        else [self dismissViewControllerAnimated:YES completion:nil];
     } else { // asking to refresh
         if (buttonIndex == 1) {
-            if (alertView.tag == 2) {
-                [self pushedAdd:nil];
-            } else {
-                [self pushedDownload];
-            }
+            if (alertView.tag == 2) [self pushedAdd:nil];
+            else [self pushedDownload];
         }
     }
 }
