@@ -1,7 +1,7 @@
 import csv
 
 # URL for 14-15 year: http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2014 << Click on CSV
-home_name = 'lucasfagan'
+home_name = 'gdyer'
 
 events = []
 with open('/Users/' + home_name + '/Downloads/calendar.csv', 'r') as f:
