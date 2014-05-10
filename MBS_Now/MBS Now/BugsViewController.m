@@ -78,7 +78,7 @@ BOOL unique = YES;
     [SVProgressHUD dismiss];
     if (connection == versionConnection) {
         NSLog(@"%@", [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil]);
-        NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
+        NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
         NSLog(@"%d, %d", remoteVersion, [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
@@ -113,7 +113,7 @@ BOOL unique = YES;
     [SVProgressHUD showWithStatus:@"Updating"];
     self.description = self.bug = nil;
 
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/MBS_Now/Resources/app-store-version.txt"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
                                          timeoutInterval:15];

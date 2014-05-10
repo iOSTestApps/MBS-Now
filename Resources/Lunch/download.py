@@ -43,7 +43,7 @@ with open(dir + "Month.pdf", "wb") as code:
 print('Download successful. Files saved in ' + dir)
 auto_commit = input('Push to GitHub automatically? (y/n) ')
 if auto_commit is 'y':
-	to_cd = "/Users/" + home_name + "/Dropbox/MBS-Now/"
+	to_cd = home + "/Dropbox/MBS-Now/"
 	os.chdir(to_cd)
 	os.system("git add -A Resources/")
 	os.system("git commit -m 'lunch menus for this week'")
