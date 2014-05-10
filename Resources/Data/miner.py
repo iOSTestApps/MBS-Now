@@ -42,6 +42,7 @@ for foo in data:
             msgrade.append(re.findall('\d+', ret[12]))
             avglaunches.append(re.findall('\d+', ret[9]))
             offlinetappedavg.append(re.findall('\d+', ret[6]))
+
 print('iOS version average: > '+ avg(osversion))
 print('MBS Now version average: ' + avg(version))
 print('Menus tapped average: ' + avg(lunchavg))
@@ -53,3 +54,4 @@ print('Average screen dimensions: (' + avg(screenwidthavg) + ',' + avg(screenhei
 print('Average MS grade: ' + avg(msgrade))
 print('Average number of launches: ' + avg(avglaunches))
 print('Average number of offline schedules tapped: ' + avg(offlinetappedavg))
+print('Total number of uploads: ' + str(len(osversion)))
