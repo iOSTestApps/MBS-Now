@@ -1873,7 +1873,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GTe-CJ-Nm2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3669" y="211"/>
+            <point key="canvasLocation" x="3272" y="188"/>
         </scene>
         <!--Full Purpose View Controller-->
         <scene sceneID="eny-3X-soT">
@@ -1924,7 +1924,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrW-M7-B1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3897" y="819"/>
+            <point key="canvasLocation" x="3731" y="447"/>
         </scene>
         <!--Navigation Controller - Clubs-->
         <scene sceneID="CcL-0j-Vdz">
@@ -2193,7 +2193,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
     <inferredMetricsTieBreakers>
         <segue reference="jIq-k3-RSJ"/>
         <segue reference="YN7-qv-aKn"/>
-        <segue reference="P1X-p3-2sm"/>
         <segue reference="e0v-VB-lZl"/>
+        <segue reference="P1X-p3-2sm"/>
     </inferredMetricsTieBreakers>
 </document>

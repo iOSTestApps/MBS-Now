@@ -119,7 +119,7 @@
 
 - (void)countdown {
     NSString *startSchool = @"2014-09-03";
-    NSString *endSchool = @"2014-05-31";
+    NSString *endSchool = @"2014-06-05";
     NSDate *current = [NSDate date];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
