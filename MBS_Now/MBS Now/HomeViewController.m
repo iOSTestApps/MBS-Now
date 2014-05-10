@@ -48,6 +48,7 @@
     }
 
     if (q % AUTO == 0 && q != 0) {
+        NSLog(@"sending");
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/save.php?text_box=%@", escapedDataString];
@@ -274,7 +275,7 @@
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
         if (v > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An update is available" message:@"MBS Now just got better. Please update!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"There's an update available—for real this time!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
             NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
             [[NSUserDefaults standardUserDefaults] synchronize];

@@ -1,19 +1,29 @@
 import csv
+from datetime import datetime
+from os.path import expanduser
 
-# URL for 14-15 year: http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2014 << Click on CSV
-home_name = 'lucasfagan'
+# URL for notifications for 14-15 year: http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2014 << Click on CSV
 
+def hasNumbers(inputString):
+    return any(char.isdigit() for char in inputString)
+
+home = expanduser("~")
 events = []
-with open('/Users/' + home_name + '/Downloads/calendar.csv', 'r') as f:
+with open(home + '/Downloads/calendar.csv', 'r') as f:
     reader = csv.reader(f)
     for line in reader:
       events.append(line)
+
+
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+weekdays = days[0:5]
 
 dress_dates = "NSArray *dressUpDates = @["
 a_weeks = "NSArray *aWeekDates = @["
 b_weeks = "NSArray *bWeekDates = @["
 accepted = []
 rejected = []
+weekdays = [] # yes, the calendar is likely all weekdays already, but it's good to be absolutely positive
 l = len(a_weeks)
 for foo in events:
     ret = foo[0].lower()
@@ -28,6 +38,10 @@ for foo in events:
         a_weeks += '@"' + foo[1] + '", '
     if "b week" in ret:
         b_weeks += '@"' + foo[1] + '", '
+    if 'end of second semester' in foo[0].lower() or 'end of 2nd semester' in foo[0].lower():
+        print('school ends on ' + foo[1])
+    if 'classes begin' in foo[0].lower() or 'classes start' in foo[0].lower():
+        print('school starts on' + foo[1])
 
 print("Rejected dress-up days (don't contain 'up'): ", rejected)
 print("Accepted dress-up days: ", accepted)

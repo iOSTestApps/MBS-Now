@@ -56,7 +56,7 @@
 #pragma mark Actions
 - (IBAction)pushedDownload:(id)sender {
     [SVProgressHUD showWithStatus:@"Generating distinctions"];
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/distinctions.txt"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/Data/distinctions.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     firstConnection = [NSURLConnection connectionWithRequest:request delegate:self];
     if (firstConnection) {

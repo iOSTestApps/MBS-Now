@@ -11,7 +11,6 @@
 @implementation DataViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
     q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
 
@@ -22,7 +21,6 @@
 }
 
 - (void)setUpButtons:(NSString *)name andButton:(UIButton *)button {
-
     UIImage *buttonImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@Button.png", name]]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlight = [[UIImage imageNamed:[NSString stringWithFormat:@"%@ButtonHighlight.png", name]]
@@ -33,7 +31,6 @@
 
 #pragma mark Generate data
 - (NSString *)generateData {
-
     NSString *systemName = [[UIDevice currentDevice] systemName];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     NSString *model = [[UIDevice currentDevice] model];
@@ -57,13 +54,15 @@
     BOOL abNs = [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"];
     BOOL generalNs = [[NSUserDefaults standardUserDefaults] boolForKey:@"general"];
 
+    NSInteger autoCheckClubs = [[NSUserDefaults standardUserDefaults] integerForKey:@"autoCheck"];
+
     BOOL logsSaved = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
 
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
 
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, %ld, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, [NSDate date]];
     
     return string;
 }

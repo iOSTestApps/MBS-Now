@@ -2,18 +2,14 @@
 import urllib.request, urllib.parse, urllib.error, datetime, os
 from os.path import expanduser
 home = expanduser("~")
-print(home)
+
 # run this on a SATURDAY, SUNDAY, or MONDAY if you only want to do it once per week.
-# CHANGE THIS:
-home_name = "lucasfagan"
-# ^ CHANGE THAT
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekdays = days[0:5]
-dir = "/Users/" + home_name + "/Dropbox/MBS-Now/Resources/Lunch/"
+dir = home + "/Dropbox/MBS-Now/Resources/Lunch/"
 
 last = 0
-
 for i in range(len(days)):
     q = (datetime.datetime.today().weekday() + i) % len(days)
     if (days[q] in weekdays):
@@ -47,16 +43,12 @@ with open(dir + "Month.pdf", "wb") as code:
 print('Download successful. Files saved in ' + dir)
 auto_commit = input('Push to GitHub automatically? (y/n) ')
 if auto_commit is 'y':
-    confirm = input('All that has been changed are the lunch menus, right? You did NOT edit code, the project, etc., right? (y/n) ')
-    if confirm is 'y':
-        to_cd = "/Users/" + home_name + "/Dropbox/MBS-Now/"
-        os.chdir(to_cd)
-        os.system("git add -A Resources/")
-        os.system("git commit -m 'lunch menus for this week'")
-        os.system("git remote rm origin")
-        os.system("git remote add origin https://github.com/gdyer/MBS-Now.git")
-        os.system("git push origin master")
-    else:
-        print('Sorry, but please do a manual commit.')
+	to_cd = "/Users/" + home_name + "/Dropbox/MBS-Now/"
+	os.chdir(to_cd)
+	os.system("git add -A Resources/")
+	os.system("git commit -m 'lunch menus for this week'")
+	os.system("git remote rm origin")
+	os.system("git remote add origin https://github.com/gdyer/MBS-Now.git")
+	os.system("git push origin master")
 else:
     print('Leaving the updating to you.')
