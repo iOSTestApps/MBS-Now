@@ -63,9 +63,14 @@
 		<th>Supported OS's</th>
 	</tr>
 	<tr>
-	  <td>3.7.1</td>
-	  <td>Some data moved to GitHub, bug fixes.</td>
+	  <td>3.8.1</td>
+	  <td>More data to GitHub, bug fixes.</td>
 	  <td>TBD</td>
+	<tr>
+	<tr>
+	  <td>3.7.1</td>
+	  <td>Some data moved to GitHub, no passwords for database credentials and club creation, bug fixes.</td>
+	  <td>May 7, 2014</td>
 	<tr>
 	<tr>
 	  <td>3.6.1</td>
@@ -181,7 +186,7 @@
 		<th>Contribution</th>
 	</tr>
 	<tr>
-		<td><a href="mailto:lfagan@mbs.net">Lucas Fagan</a></td>
+		<td><a href="mailto:lucasfagan@verizon.net">Lucas Fagan</a></td>
 		<td><span class="label label-default">Future</span> Programming, design, and content of MBS Now. HTML, PHP, and content of this site.</td>
 	</tr>
 	<tr>

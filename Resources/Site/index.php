@@ -38,7 +38,7 @@
 
       <h3>Announcements</h3>
       <div class="alert alert-success">
-        Welcome to our new server, campus.mbs.net/mbsnow (jointly hosted with GitHub)! <span class="label label-primary">1</span> Version 3.7.1 is available! <a href="http://gdyer.de/appstore">Update today!</a><span class="label label-primary">2</span> Support for versions 3.5.1 and earlier will be discontinued on <b>June 1</b>.
+        Welcome to our new server, campus.mbs.net (jointly hosted with GitHub)! <span class="label label-primary">1</span> Version 3.8.1 is available! <a href="http://gdyer.de/appstore">Update today!</a> <span class="label label-primary">2</span> Support for versions 3.6.1 and earlier has been discontinued.
       </div>
       <div class="row marketing">
         <div class="col-lg-6">

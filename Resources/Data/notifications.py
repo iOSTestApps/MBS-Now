@@ -43,6 +43,9 @@ for foo in events:
     if 'classes begin' in foo[0].lower() or 'classes start' in foo[0].lower():
         print('school starts on' + foo[1])
 
+text_file = open("../../MBS_Now/MBS Now/SettingsViewController.m", "r")
+lines = text_file.readlines()
+
 print("Rejected dress-up days (don't contain 'up'): ", rejected)
 print("Accepted dress-up days: ", accepted)
 print("\n")
