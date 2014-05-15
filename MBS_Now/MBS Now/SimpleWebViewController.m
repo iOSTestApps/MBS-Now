@@ -31,32 +31,16 @@ BOOL edit;
 }
 
 - (id)initWithURL:(NSURL *)url {
-
     urlToLoad = url;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"SimpleWebViewController_6"  bundle:nil];
-    }
+    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil] : [super initWithNibName:@"SimpleWebViewController_6"  bundle:nil];
 }
 
 - (id)init {
-    urlToLoad = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/"];
-    NSLog(@"Call initWithURL:, not init. MBS Now home will display by default");
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"SimpleWebViewController_6"  bundle:nil];
-    }
+    return [self initWithURL:[NSURL URLWithString:@"http://mbs.net"]];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
 
 #pragma mark Connections
-
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD showWithStatus:@"Loading"];
@@ -80,9 +64,8 @@ BOOL edit;
         // bug has been reported
         [self dismissViewControllerAnimated:YES completion:nil];
         [SVProgressHUD showSuccessWithStatus:@"Bug reported. Thanks for supporting MBS Now!"];
-    } else {
+    } else
         [SVProgressHUD dismiss];
-    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -114,20 +97,16 @@ BOOL edit;
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }
 
 - (BOOL)shouldAutorotate {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -136,10 +115,8 @@ BOOL edit;
             [SVProgressHUD showImage:[UIImage imageNamed:@"finger-touch.png"] status:@"Tap 'Edit your response' on this page (zoom in if necessary)."];
             edit = YES;
             self.specifier = nil;
-        } else {
-            // don't want to save for editing
+        } else
             [self dismissViewControllerAnimated:YES completion:nil];
-        }
 
     } else if (alertView.tag == 3) {
         edit = NO;
@@ -170,9 +147,8 @@ BOOL edit;
             [_webView stopLoading];
             [self dismissViewControllerAnimated:YES completion:nil];
         }
-    } else if (buttonIndex == 1 && alertView.tag == 4) {
+    } else if (buttonIndex == 1 && alertView.tag == 4)
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
-    }
 }
 
 #pragma mark Mail
@@ -191,6 +167,5 @@ BOOL edit;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end

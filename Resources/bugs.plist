@@ -4,7 +4,7 @@
 <dict>
 	<key>Connection required</key>
 	<string>Tap to refresh</string>
-	<key>Use manual emails instead of automatic RSVPs.</key>
-	<string>RSVPing to meetings</string>
+	<key>This will be fixed by Friday, May 16</key>
+	<string>Forms will not refresh</string>
 </dict>
 </plist>

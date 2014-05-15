@@ -10,7 +10,6 @@
 #import "SimpleWebViewController.h"
 
 @interface SettingsViewController () {
-
     NSArray *colorsArray;
     NSArray *timesArray;
     NSArray *abbreviatedTimes;
@@ -25,7 +24,7 @@
     NSString *foo = ([[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"]) ? [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"] : @"Not set — default";
 
     [colorButton setTitle:foo forState:UIControlStateNormal];
-    abbreviatedTimes = [NSArray arrayWithObjects:@" 04 00", @" 05 00", @" 05 30", @" 06 00", @" 06 30", @" 06 45", @" 07 00", nil];
+    abbreviatedTimes = @[@" 04 00", @" 05 00", @" 05 30", @" 06 00", @" 06 30", @" 06 45", @" 07 00"];
 
     nSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"];
     nSwitch2.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"];
@@ -40,20 +39,12 @@
 }
 
 - (void)setUpButtonWithImageName:(NSString *)iName andButton:(UIButton *)button {
-
     UIImage *buttonImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@Button.png", iName]]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlight = [[UIImage imageNamed:[NSString stringWithFormat:@"%@ButtonHighlight.png", iName]]
                                      resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [button setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark Actions
@@ -73,19 +64,13 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"msGrade"];
         [SVProgressHUD showSuccessWithStatus:@"Grade cleared"];
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"No grade has been saved"];
-    }
+    } else [SVProgressHUD showErrorWithStatus:@"No grade has been saved"];
 }
 
 - (IBAction)pushedChangeGrade:(id)sender {
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
-    NSString *foo;
-    if (q == 0) {
-        foo = @"No MS grade has been saved";
-    } else {
-        foo = [NSString stringWithFormat:@"Currently in %ldth grade", (long)q];
-    }
+    NSString *foo = (q == 0) ? @"No MS grade has been saved" : [NSString stringWithFormat:@"Currently in %ldth grade", (long)q];
+
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change MS Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
@@ -107,27 +92,19 @@
         sheet = [[UIActionSheet alloc] initWithTitle:@"Tap away for 7 AM" delegate:self cancelButtonTitle:@"7 AM" destructiveButtonTitle:nil otherButtonTitles:@"4 AM", @"5 AM", @"5:30 AM", @"6 AM", @"6:30 AM", @"6:45 AM", nil];
         sheet.tag = 2;
         [sheet showInView:self.view];
-    } else {
-        [self turnOff];
-    }
+    } else [self turnOff];
 }
 
 - (IBAction)switch2ValueChanged:(id)sender {
     // A/B weeks
-    if (nSwitch2.on == YES) {
-        [self setUpAB_Notifications:0];
-    } else {
-        [self turnOff];
-    }
+    if (nSwitch2.on == YES) [self setUpAB_Notifications:0];
+    else [self turnOff];
 }
 
 - (IBAction)switch3ValueChanged:(id)sender {
     // General notifications
-    if (nSwitch3.on == YES) {
-        [self setUpGeneralNotifications:0];
-    } else {
-        [self turnOff];
-    }
+    if (nSwitch3.on == YES) [self setUpGeneralNotifications:0];
+    else [self turnOff];
 }
 
 - (IBAction)changeColor:(id)sender {
@@ -183,9 +160,8 @@
 
     NSMutableArray *datesArray = [NSMutableArray arrayWithObjects: nil];
 
-    for (int x = 0; x < dateStrings.count; x++) {
+    for (int x = 0; x < dateStrings.count; x++)
         [datesArray addObject:[dateFormat dateFromString:[dateStrings objectAtIndex:x]]];
-    }
 
     for (int y = 0; y < datesArray.count; y++) {
         NSComparisonResult result = [[NSDate date] compare:datesArray[y]];
@@ -205,15 +181,13 @@
 
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"dressUps"];
 
-    if (q == 0) {
+    if (q == 0)
         [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
-    }
 }
 
 - (void)setUpAB_Notifications:(int)q {
-
     // A weeks
-    NSArray *aWeeks = [NSArray arrayWithObjects:
+    NSArray *aWeeks = @[
                        @"02/03/2014 08",
                        @"02/19/2014 08",
                        @"03/03/2014 08",
@@ -221,35 +195,33 @@
                        @"04/14/2014 08",
                        @"04/28/2014 08",
                        @"05/12/2014 08",
-                       @"05/27/2014 08", nil];
+                       @"05/27/2014 08"];
 
     // B weeks
-    NSArray *bWeeks = [NSArray arrayWithObjects:
+    NSArray *bWeeks = @[
                        @"02/10/2014 08",
                        @"02/24/2014 08",
                        @"03/24/2014 08",
                        @"04/08/2014 08",
                        @"04/21/2014 09",
                        @"05/05/2014 08",
-                       @"05/19/2014 08", nil];
+                       @"05/19/2014 08"];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd/yyyy hh"];
     [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
 
-    NSMutableArray *aArray = [NSMutableArray arrayWithObjects: nil];
-    NSMutableArray *bArray = [NSMutableArray arrayWithObjects: nil];
+    NSMutableArray *aArray = [NSMutableArray array];
+    NSMutableArray *bArray = [NSMutableArray array];
 
-    for (int x = 0; x < aWeeks.count; x++) {
+    for (int x = 0; x < aWeeks.count; x++)
         [aArray addObject:[dateFormat dateFromString:[aWeeks objectAtIndex:x]]];
-    }
 
-    for (int x = 0; x < bWeeks.count; x++) {
+    for (int x = 0; x < bWeeks.count; x++)
         [bArray addObject:[dateFormat dateFromString:[bWeeks objectAtIndex:x]]];
-    }
 
     // B WEEKS
-    NSMutableArray *bNotificiations = [[NSMutableArray alloc] init];
+    NSMutableArray *bNotificiations = [NSMutableArray array];
     for (int y = 0; y < bArray.count; y++) {
         NSComparisonResult result = [[NSDate date] compare:bArray[y]];
         if (result == NSOrderedAscending || result == NSOrderedSame) {
@@ -286,36 +258,33 @@
 
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
 
-    if (q == 0) {
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%d alerts created", (aWeeks.count + bWeeks.count)]];
-    }
+    if (q == 0) [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%u alerts created", (aWeeks.count + bWeeks.count)]];
 }
 
 - (void)setUpGeneralNotifications:(int)q {
     // BE SURE TO CHANGE DESCRIPTIONS
-    NSArray *dateStrings = [NSArray arrayWithObjects:
+    NSArray *dateStrings = @[
                             @"03/28/2014 08",
                             @"05/30/2014 08",
                             @"02/19/2014 08",
                             @"05/08/2014 08",
-                            @"05/05/2014 08", nil];
+                            @"05/05/2014 08"];
     // BE SURE TO CHANGE dateString ARRAY
-    NSArray *descriptions = [NSArray arrayWithObjects:
+    NSArray *descriptions = @[
                              @"Today: end of 3/4",
                              @"See you in September!",
                              @"Monday, A schedule",
                              @"Tomorrow: service hours due",
-                             @"Best of luck on APs!", nil];
+                             @"Best of luck on APs!"];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM/dd/yyyy hh"];
     [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
 
-    NSMutableArray *datesArray = [NSMutableArray arrayWithObjects: nil];
+    NSMutableArray *datesArray = [NSMutableArray array];
 
-    for (int x = 0; x < dateStrings.count; x++) {
+    for (int x = 0; x < dateStrings.count; x++)
         [datesArray addObject:[dateFormat dateFromString:[dateStrings objectAtIndex:x]]];
-    }
 
     if (descriptions.count == datesArray.count) {
         for (int y = 0; y < datesArray.count; y++) {
@@ -333,9 +302,7 @@
                 [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
             }
         }
-        if (q == 0) {
-            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
-        }
+        if (q == 0) [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"General alerts are not available. Please report this bug ASAP." delegate:self cancelButtonTitle:@"Report" otherButtonTitles:@"Dismiss", nil];
         alert.tag = 2;
@@ -353,15 +320,13 @@
             // save grade
             NSInteger q = [alertView textFieldAtIndex:0].text.integerValue;
             NSNumber *grade = [NSNumber numberWithInteger:q];
-            NSArray *grades = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8], nil];
+            NSArray *grades = @[[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8]];
             if ([grades containsObject:grade]) {
                 [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self setUpButtonWithImageName:@"grey" andButton:msClear];
                 [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %ldth grade!", (long)q]];
-            } else {
-                [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"];
-            }
+            } else [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"];
         }
     } else if (alertView.tag == 2) {
         if (buttonIndex == 0) {
@@ -395,12 +360,11 @@
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+    else {
+        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }

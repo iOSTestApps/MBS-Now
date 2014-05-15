@@ -12,15 +12,10 @@
 
 - (id)initWithIndexOfWelcome:(int)_iow {
     iow = _iow;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"WelcomesViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"WelcomesViewController_6"  bundle:nil];
-    }
+    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WelcomesViewController_7"  bundle:nil] : [super initWithNibName:@"WelcomesViewController_6"  bundle:nil];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     switch (iow) {
@@ -44,33 +39,22 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }
 
 - (BOOL)shouldAutorotate {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
 
 @end

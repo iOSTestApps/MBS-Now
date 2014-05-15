@@ -98,7 +98,7 @@
 
         [composerView setMessageBody:body isHTML:YES];
 
-        [composerView setToRecipients:[NSArray arrayWithObject:self.label]];
+        [composerView setToRecipients:@[self.label]];
         [self presentViewController:composerView animated:YES completion:nil];
     } else {
         // can't send mail

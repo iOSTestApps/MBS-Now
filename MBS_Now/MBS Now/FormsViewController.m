@@ -8,7 +8,7 @@
 
 #import "FormsViewController.h"
 #import "FormsViewerViewController.h"
-
+#import "SimpleWebViewController.h"
 @implementation FormsViewController
 @synthesize receivedData;
 
@@ -19,7 +19,7 @@
     tblView.tableFooterView = footer;
 
     _searchBar.showsCancelButton = NO;
-    self.dataArray = [NSArray arrayWithObjects:@"Tap the refresh button", @"Wireless connection required", nil];
+    self.dataArray = @[@"Tap the refresh button", @"Wireless connection required"];
     tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
 
@@ -31,19 +31,13 @@
     [tblView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)refresh {
     [SVProgressHUD showWithStatus:@"Updating"];
     NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/formTitles.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLConnection *connect = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (connect) {
+    if (connect)
         [SVProgressHUD showWithStatus:@"Fetching forms"];
-    }
 }
 
 #pragma mark Table View
@@ -69,18 +63,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *simpleTableIdentifier = @"ReuseCell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-
+	static NSString *iden = @"ReuseCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     cell.textLabel.text = (tableView == self.searchDisplayController.searchResultsTableView) ? self.searchResults[indexPath.row] : self.dataArray[indexPath.row];
-
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    
 	return cell;
 }
 
@@ -102,11 +90,10 @@
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
     [tblView reloadData];
 }
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
         [SVProgressHUD dismiss];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Form titles cannot update. They're probably being modified. Please standby" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dagnabbit!" message:@"Form titles can't update. Try again in a minute, then let us know." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Tell us", nil];
         [alert show];
     } else {
         [SVProgressHUD dismiss];
@@ -115,7 +102,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch forms. %@", [error localizedDescription]]];
-    self.dataArray = [NSArray arrayWithObjects:@"Connection failed", @"Tap refresh to try again", nil];
+    self.dataArray = @[@"Connection failed", @"Tap refresh to try again"];
     [tblView reloadData];
 }
 
@@ -135,19 +122,26 @@
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-    
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     return YES;
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
+    }
+}
+
+#pragma mark Alert
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
+        swvc.specifier = @"bug";
+        [self presentViewController:swvc animated:YES completion:nil];
     }
 }
 

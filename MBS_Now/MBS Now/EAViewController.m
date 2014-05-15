@@ -13,7 +13,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     __searchBar.showsCancelButton = NO;
-    distinctions = [NSArray arrayWithObjects:@"Tap the download button", nil];
+    distinctions = @[@"Tap the download button"];
     string = nil;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -23,28 +23,20 @@
 
 #pragma mark Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *identifier = @"ReuseCell";
+	static NSString *iden = @"iden";
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
 
     cell.detailTextLabel.text = string;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
-    } else
-        cell.textLabel.text = [distinctions objectAtIndex:indexPath.row];
-	return cell;
+    cell.textLabel.text = (tableView == self.searchDisplayController.searchResultsTableView) ? searchResults[indexPath.row] : distinctions[indexPath.row];
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return searchResults.count;
-    } else {
-        return distinctions.count;
-    }
+    return (tableView == self.searchDisplayController.searchResultsTableView) ? searchResults.count : distinctions.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -59,9 +51,7 @@
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/Data/distinctions.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     firstConnection = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (firstConnection) {
-        [SVProgressHUD showWithStatus:@"Generating distinctions"];
-    }
+    if (firstConnection) [SVProgressHUD showWithStatus:@"Generating distinctions"];
 }
 
 - (IBAction)done:(id)sender {
@@ -94,7 +84,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch distinctions. %@",[error localizedDescription]]];
-    distinctions = [NSArray arrayWithObject:@"Connection failed"];
+    distinctions = @[@"Connection failed"];
     string = error.localizedDescription;
     string=nil;
     [_tblView reloadData];
@@ -122,6 +112,5 @@
         [self presentViewController:swvc animated:YES completion:nil];
     }
 }
-
 
 @end

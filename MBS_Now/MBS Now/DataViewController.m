@@ -72,7 +72,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)pushedSend:(id)sender {
-
     if ([MFMailComposeViewController canSendMail] == YES) {
         MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
         composerView.mailComposeDelegate = self;
@@ -104,9 +103,8 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd, HH:mm"];
         string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
-    } else {
+    } else
         string = [NSString stringWithFormat:@"Never collected before. First collection in %d launch(es)", AUTO - (q % AUTO)];
-    }
     [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];
 }
 
@@ -123,9 +121,9 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

@@ -15,8 +15,8 @@ BOOL unique = YES;
     [super viewDidLoad];
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     navBar.topItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
-    self.bug = [NSArray arrayWithObject:@"Tap here to refresh"];
-    self.description = [NSArray arrayWithObject:@"Connection is required"];
+    self.bug = @[@"Tap here to refresh"];
+    self.description = @[@"Connection is required"];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
@@ -34,17 +34,15 @@ BOOL unique = YES;
 
 #pragma mark Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *iden = @"iden";
 
-	static NSString *identifier = @"ReuseCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
 
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
-    }
-
-    cell.detailTextLabel.text = [self.description objectAtIndex:indexPath.row];
-    cell.textLabel.text = [self.bug objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = _description[indexPath.row];
+    cell.textLabel.text = _bug[indexPath.row];
 
 	return cell;
 }
@@ -57,10 +55,8 @@ BOOL unique = YES;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[tableView cellForRowAtIndexPath:indexPath].textLabel.text rangeOfString:@"Tap"].location != NSNotFound) {
-        // text label contains 'Tap'
+    if ([[tableView cellForRowAtIndexPath:indexPath].textLabel.text rangeOfString:@"Tap"].location != NSNotFound)
         [self pushedDownload];
-    }
 }
 
 #pragma mark Connection
@@ -68,8 +64,8 @@ BOOL unique = YES;
     if (([(NSHTTPURLResponse *)response statusCode] == 404) && connection == connect) {
         [SVProgressHUD dismiss];
         [connect cancel];
-        self.bug = [NSArray arrayWithObjects:@"Tap to check again", @"No confirmed bugs", nil];
-        self.description = [NSArray arrayWithObjects:@"Connection required", @"New reports are checked very frequently", nil];
+        self.bug = @[@"Tap to check again", @"No confirmed bugs"];
+        self.description = @[@"Connection required", @"New reports are checked very frequently"];
         [self.tableView reloadData];
     }
 }
@@ -80,7 +76,7 @@ BOOL unique = YES;
         NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
-        NSLog(@"%d, %d", remoteVersion, [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
+        NSLog(@"%ld, %ld", (long)remoteVersion, (long)[[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Update MBS Now" message:@"You're not running the current version. Bugs have likely been fixed already." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Update", nil];
             alert.tag = 2;
@@ -102,8 +98,8 @@ BOOL unique = YES;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
-    self.bug = [NSArray arrayWithObject:@"Connection failed"];
-    self.description = [NSArray arrayWithObject:@"Tap here to try again"];
+    self.bug = @[@"Connection failed"];
+    self.description = @[@"Tap here to try again"];
     [self.tableView reloadData];
 }
 
@@ -145,6 +141,5 @@ BOOL unique = YES;
         }
     }
 }
-
 
 @end

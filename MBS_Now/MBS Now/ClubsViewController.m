@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.csv = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"Please tap refresh", @"Please tap refresh", @"...? Data must be updated", nil], nil];
-    self.descriptions = [NSArray arrayWithObjects:@"Please refresh meetings", @"Return to previous screen", nil];
+    self.descriptions = @[@"Please refresh meetings", @"Return to previous screen"];
     self.tblView.userInteractionEnabled = NO;
     firstTime = YES;
 
@@ -109,19 +109,16 @@
 
 #pragma mark Table view
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *iden = @"ReuseCell";
 
-	static NSString *simpleTableIdentifier = @"ReuseCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
-    }
-
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
+    
     cell.textLabel.text = [[self.csv objectAtIndex:indexPath.row] objectAtIndex:1];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Meeting on %@", [[self.csv objectAtIndex:indexPath.row] objectAtIndex:2]];
 
-    // show the arrow at the end of a cell
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
 	return cell;
@@ -132,7 +129,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.csv count];
+    return self.csv.count;
 }
 
 #pragma mark Segues
@@ -150,10 +147,10 @@
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+    else {
+        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }

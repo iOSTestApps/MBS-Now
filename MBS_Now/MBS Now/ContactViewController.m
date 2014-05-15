@@ -12,42 +12,29 @@
 
 @implementation ContactViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    main = [NSArray arrayWithObjects:@"Main Phone", @"Fax", @"Absences", @"Nurse", @"Head of US", @"Head of MS", @"Twitter feed", @"Facebook wall", @"Address", nil];
-    detail = [NSArray arrayWithObjects:@"(973) 539-3032", @"(973) 539-1590", @"Denise Elliot, x542", @"Joyce Kramer, x530", @"Darren Burns, x535", @"Boni Luna, x527", @"View", @"View", @"70 Whippany Road, 07960", nil];
+    main = @[@"Main Phone", @"Fax", @"Absences", @"Nurse", @"Head of US", @"Head of MS", @"Twitter feed", @"Facebook wall", @"Address"];
+    detail = @[@"(973) 539-3032", @"(973) 539-1590", @"Denise Elliot, x542", @"Joyce Kramer, x530", @"Darren Burns, x535", @"Boni Luna, x527", @"View", @"View", @"70 Whippany Road, 07960"];
 }
 
 - (IBAction)done:(id)sender {
-
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString *iden = @"iden";
 
-	static NSString *identifier = @"ReuseCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
-    }
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
 
     cell.textLabel.text = [main objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [detail objectAtIndex:indexPath.row];
 
-    if (indexPath.row == 6 || indexPath.row == 7) {
-        // show the arrow at the end of a cell
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    }
+    if (indexPath.row == 6 || indexPath.row == 7) [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
 	return cell;
 }
@@ -55,7 +42,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"contactsTapped"]) {
-        // first time accessing a form
+        // first time accessing copying a contact
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"contactsTapped"];
     } else {
         NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
@@ -131,11 +118,10 @@
 
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

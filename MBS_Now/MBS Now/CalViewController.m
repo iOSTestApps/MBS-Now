@@ -13,21 +13,14 @@
 @synthesize _webView;
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-    [_webView setDelegate:self];
+    _webView.delegate = self;
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
-        // defaults
-        [self loadWithDefaults];
-    } else {
-        // no defaults
-        [self controlChange:self];
-    }
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) [self loadWithDefaults];
+    else [self controlChange:self];
 }
 
 - (void)loadWithDefaults {
-
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
     NSString *foo = [NSString stringWithFormat:@"http://mbshomework.wikispaces.com/%ldth+Grade", (long)q];
     urlToLoad = [NSURL URLWithString:foo];
@@ -39,14 +32,7 @@
 
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
 
-    if (connection) {
-        self.receivedData = [NSMutableData data];
-    }
-}
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
+    if (connection) self.receivedData = [NSMutableData data];
 }
 
 #pragma mark Connection
@@ -56,7 +42,6 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-
     [SVProgressHUD dismiss];
 }
 
@@ -73,18 +58,15 @@
 }
 
 - (IBAction)pushedReload:(id)sender {
-
     [_webView reload];
 }
 
 - (IBAction)pushedStop:(id)sender {
-
     [SVProgressHUD dismiss];
     [_webView stopLoading];
 }
 
 - (IBAction)controlChange:(id)sender {
-
     [_webView stopLoading];
     switch (control.selectedSegmentIndex) {
         case 0:
@@ -105,10 +87,9 @@
 
     if (control.selectedSegmentIndex == 1) {
         // MS HW
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
-            // defaults
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"])
             [self loadWithDefaults];
-        } else {
+        else {
             // no defaults. Ask for grade integer.
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Middle school student?" message:@"We'll load your homework by default" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Save my grade", nil];
             alert.alertViewStyle = UIAlertViewStylePlainTextInput;
@@ -125,17 +106,14 @@
 
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
 
-    if (connection) {
-        self.receivedData = [NSMutableData data];
-    }
+    if (connection) self.receivedData = [NSMutableData data];
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
@@ -151,7 +129,7 @@
                 // save grade
                 NSInteger q = [alertView textFieldAtIndex:0].text.integerValue;
                 NSNumber *grade = [NSNumber numberWithInteger:q];
-                NSArray *grades = [[NSArray alloc] initWithObjects:[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8], nil];
+                NSArray *grades = @[[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8]];
                 if ([grades containsObject:grade]) {
                     [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
                     [self loadWithDefaults];

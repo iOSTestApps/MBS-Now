@@ -156,7 +156,7 @@
         NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"<i>Request to delete: %@ meeting on %@, created on %@.</i></font></div></body></html>", [self.details objectAtIndex:0], [self.details objectAtIndex:1], [self.details objectAtIndex:7]]];
 
         [composerView setMessageBody:body isHTML:YES];
-        [composerView setToRecipients:[NSArray arrayWithObjects:@"lucasfagan@verizon.net", nil]];
+        [composerView setToRecipients:@[@"lucasfagan@verizon.net"]];
         [self presentViewController:composerView animated:YES completion:nil];
 
     } else {
@@ -195,10 +195,8 @@
         [SVProgressHUD showSuccessWithStatus:@"We'll remind you 5 minutes before."];
 
         [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-    } else {
-        // meeting is old
+    } else
         [SVProgressHUD showErrorWithStatus:@"Oops! This meeting already happened or has an unrecognizable date."];
-    }
 }
 
 - (void)emailMeeting {
@@ -219,9 +217,9 @@
 
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showHelp"]) {
+    if ([segue.identifier isEqualToString:@"showHelp"])
         [segue.destinationViewController setSegueIndex:2];
-    } else if ([segue.identifier isEqualToString:@"showRSVP"]) {
+    else if ([segue.identifier isEqualToString:@"showRSVP"]) {
         NSString *labelText = [self.details objectAtIndex:[self.tableView indexPathForSelectedRow].row];
         [segue.destinationViewController setLabel:labelText];
         [segue.destinationViewController setDetails:self.details];
@@ -239,12 +237,11 @@
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+    else {
+        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }

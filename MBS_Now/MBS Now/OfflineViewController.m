@@ -11,20 +11,13 @@
 
 @implementation OfflineViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    divisions = [NSArray arrayWithObjects:@"Upper School", @"Middle School", @"Listing", nil];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+    divisions = @[@"Upper School", @"Middle School", @"Listing"];
 }
 
 #pragma mark TableView
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"schedulesTapped"]) {
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"schedulesTapped"];
@@ -41,41 +34,27 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
     return divisions.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    if (section == 2) {
-        return 1;
-    } else {
-        return 3;
-    }
+    return (section == 2) ? 1 : 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-
-    return [divisions objectAtIndex:section];
+    return divisions[section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-
-    if (section == 0 || section == 1) {
-        return @"Static schedules are subject to change";
-    } else {
-        return nil;
-    }
+    return (section == 0 || section == 1) ? @"Static schedules are subject to change" : nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *iden = @"iden";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
-    NSString *CellIdentifier1 = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier1];
-    }
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
 
     if (indexPath.section == 0 || indexPath.section == 1) {
         switch (indexPath.row) {
@@ -103,22 +82,17 @@
 
 #pragma mark Actions
 - (IBAction)done:(id)sender {
-
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }
-
-#pragma mark Segue
-
 
 @end

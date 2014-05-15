@@ -13,12 +13,10 @@
 @synthesize directionsView;
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
 	CLLocationCoordinate2D mbs;
     mbs.latitude = 40.804085;
     mbs.longitude = -74.448408;
@@ -34,19 +32,12 @@
     [self.directionsView addAnnotation:point];
 }
 
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark Actions
 - (IBAction)done:(id)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)openInMaps:(id)sender {
-    
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
         CLLocationCoordinate2D mbs = CLLocationCoordinate2DMake(40.804085, -74.448408);
@@ -61,7 +52,6 @@
 }
 
 - (IBAction)pushedOrient:(id)sender {
-    
     CLLocationCoordinate2D mbs;
     mbs.latitude = 40.80;
     mbs.longitude = -74.44;
@@ -76,12 +66,11 @@
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+    else {
+        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }

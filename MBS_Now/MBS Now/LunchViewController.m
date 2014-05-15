@@ -12,7 +12,6 @@
 @synthesize _webView, receivedData;
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
 
     [_webView setDelegate:self];
@@ -37,11 +36,11 @@
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         NSString *datePart = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-        days = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@ - %@", weekDay, datePart], nextWeekDay, @"Month", nil];
+        days = @[[NSString stringWithFormat:@"%@ - %@", weekDay, datePart], nextWeekDay, @"Month"];
         lunchURL = [NSURL URLWithString:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/Month.pdf"];
     } else {
         // iPhone
-        days = [NSArray arrayWithObjects:weekDay, nextWeekDay, nil];
+        days = @[weekDay, nextWeekDay];
         // create a URL for today's menu
         lunchURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/%@.pdf", weekDay]];
     }
@@ -72,11 +71,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark Actions
 - (IBAction)pushedStop:(id)sender {
     [SVProgressHUD dismiss];
@@ -102,11 +96,8 @@
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         NSString *datePart = [NSDateFormatter localizedStringFromDate:[NSDate date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-        days = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@ — %@", weekDay, datePart], nextWeekDay, @"Month", nil];
-    } else {
-        // iPhone
-        days = [NSArray arrayWithObjects:weekDay, nextWeekDay, nil];
-    }
+        days = @[[NSString stringWithFormat:@"%@ — %@", weekDay, datePart], nextWeekDay, @"Month"];
+    } else days = @[weekDay, nextWeekDay];
 
     [tblView reloadData];
 }
@@ -165,8 +156,7 @@
     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
         [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"Menu not found. Please standby" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
@@ -176,29 +166,21 @@
 
 #pragma mark Table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	
 	return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-	return [days count];
+	return days.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	static NSString *MyIdentifier = @"MyIdentifier";
-	
-	// Try to retrieve from the table view a now-unused cell with the given identifier.
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	
-	// If no cell is available, create a new one using the given identifier.
-	if (cell == nil) {
-		// Use the default cell style.
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
-	}
+	static NSString *iden = @"iden";
+
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+
+	if (cell == nil)
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
     cell.textLabel.textColor = [UIColor darkGrayColor];
-	// Set up the cell.
 	NSString *daysCell = [days objectAtIndex:indexPath.row];
 	cell.textLabel.text = daysCell;
     
@@ -206,26 +188,22 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     return indexPath;
 }
 
 - (void)loadFromTable:(NSURL *)urlToLoad {
-
     NSURLRequest *requestFromTable = [NSURLRequest requestWithURL:urlToLoad];
     [_webView loadRequest:requestFromTable];
 
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:requestFromTable delegate:self startImmediately:TRUE];
 
-    if (connection) {
+    if (connection)
         receivedData = [NSMutableData data];
-    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"menusTapped"]) {
-        // first time accessing a form
+        // first time accessing a menu
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"menusTapped"];
     } else {
         NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
@@ -257,9 +235,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

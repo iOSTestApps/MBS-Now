@@ -13,8 +13,7 @@
 
 UIAlertView *defaultAlert;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     imageView.image = [UIImage imageNamed:imageName];
@@ -29,9 +28,7 @@ UIAlertView *defaultAlert;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([imageName isEqualToString:@"02.png"]) {
-        [SVProgressHUD showErrorWithStatus:@"Monday schedule here is not correct. A replacement has yet to be made available."];
-    }
+    if ([imageName isEqualToString:@"02.png"]) [SVProgressHUD showErrorWithStatus:@"Monday schedule here is not correct. A replacement has yet to be made available."];
 }
 
 - (id)initWithImageName:(NSString *)iName {

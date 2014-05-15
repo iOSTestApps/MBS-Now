@@ -62,17 +62,15 @@
     [SVProgressHUD showWithStatus:@"Loading"];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     specialConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
-    if (specialConnection) {
-        receivedData = [NSMutableData data];
-    }
+    if (specialConnection) receivedData = [NSMutableData data];
 }
 
 #pragma mark Connection
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (connection == specialConnection) {
-        if ([(NSHTTPURLResponse *)response statusCode] == 404) {
+        if ([(NSHTTPURLResponse *)response statusCode] == 404)
             [SVProgressHUD showImage:[UIImage imageNamed:@"clock@2x.png"] status:@"No special schedules this week"];
-        } else {
+        else {
             FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithStringForURL:@"Special"];
             fvvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:fvvc animated:YES completion:nil];
@@ -140,9 +138,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

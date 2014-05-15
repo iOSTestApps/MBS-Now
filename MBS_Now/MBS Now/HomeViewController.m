@@ -90,7 +90,7 @@
 
     NSString *foo;
     NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
-    NSArray *array = [NSArray arrayWithObjects:@"black", @"grey", @"tan", nil];
+    NSArray *array = @[@"black", @"grey", @"tan"];
     // This is set in SettingsVC
     foo = ([array containsObject:defaultColor]) ? defaultColor : @"grey";
     [self setUpButtonsWithColor:foo andButtons:buttons];
@@ -269,7 +269,7 @@
         NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
-        NSLog(@"%d, %d", remoteVersion , [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
+        NSLog(@"%ld, %ld", (long)remoteVersion , (long)[[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
             NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
             if ((q % 5 == 0) && q != 0) {
@@ -364,9 +364,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

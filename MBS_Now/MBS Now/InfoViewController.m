@@ -14,7 +14,6 @@
 @implementation InfoViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
 
     UIImage *buttonImage = [[UIImage imageNamed:@"greyButton.png"]
@@ -44,7 +43,7 @@
         MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
         composerView.mailComposeDelegate = self;
         [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
-        [composerView setToRecipients:[NSArray arrayWithObjects:foo, nil]];
+        [composerView setToRecipients:@[foo]];
         [composerView setSubject:bar];
 
         NSString *iOSVersion = [[UIDevice currentDevice] systemVersion];
@@ -105,31 +104,25 @@
                                                                                       ofType:@"txt"]encoding:NSUTF8StringEncoding error:nil];
             break;
         }
-        default: {
-            [SVProgressHUD showErrorWithStatus:@"We messed up. Please report this bug."];
-        }
     }
-
     [textView setText:path];
-    ;
 }
 
 #pragma mark Mail
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-
     // dismiss MFMailVC (cancelled or saved)
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"I'll reply soon"];
-    else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Failed to send"];
+    if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"Thanks!"];
+    else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Failed to send!"];
 }
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

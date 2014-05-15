@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FormsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate> {
+@interface FormsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {
 
     NSString *urlString;
     

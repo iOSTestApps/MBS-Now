@@ -10,18 +10,11 @@
 
 @implementation CredentialsViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     names = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"databases" ofType:@"plist"]];
     ids = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ids" ofType:@"plist"]];
     keys = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"keys" ofType:@"plist"]];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark Table view
@@ -30,52 +23,32 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-
     return [names objectAtIndex:section];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    
-    if (section % 3 == 0) {
-        return @"Tap to copy";
-    } else {
-        return nil;
-    }
+    if (section % 3 == 0) return @"Tap to copy";
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *iden = @"iden";
 
-    NSString *CellIdentifier1 = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:iden];
 
-    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier1];
+    NSInteger incrementor = (indexPath.section == 0) ? 0 : indexPath.section;
+    cell.textLabel.text = (indexPath.row == 0) ? [ids objectAtIndex:indexPath.row + incrementor] : [keys objectAtIndex:indexPath.row + (incrementor - 1)];
+    cell.detailTextLabel.text = (indexPath.row == 0) ? @"Username" : @"Password";
 
-    NSInteger incrementor;
-    if (indexPath.section == 0) {
-        incrementor = 0;
-    } else {
-        incrementor = indexPath.section;
-    }
-
-    if (indexPath.row == 0) {
-        cell.textLabel.text = [ids objectAtIndex:indexPath.row + incrementor];
-    } else {
-        cell.textLabel.text = [keys objectAtIndex:indexPath.row + (incrementor - 1)];
-    }
-
-    if (indexPath.row == 0) cell.detailTextLabel.text = @"Username";
-    else cell.detailTextLabel.text = @"Password";
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     NSString *cellText = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 
     UIPasteboard *pb = [UIPasteboard generalPasteboard];
@@ -83,7 +56,7 @@
     [SVProgressHUD showSuccessWithStatus:@"Copied"];
 
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"loginsTapped"]) {
-        // first time accessing a form
+        // first time accessing copying credentials
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"loginsTapped"];
     } else {
         NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
@@ -98,11 +71,10 @@
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

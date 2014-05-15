@@ -13,74 +13,53 @@
 @implementation AboutViewController
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-         [self setUpButtonsWithColor:@"grey" andButtons:[NSArray arrayWithObjects:_1, _2, nil]];
-    } else {
-        // iPad
-        [self setUpButtonsWithColor:@"grey" andButtons:[NSArray arrayWithObjects:_1, _2, _3, _4, nil]];
-    }
-    UIImage *toLoad = [UIImage imageNamed:@"P0.png"];
-    imageView.image = toLoad;
+    [self setUpButtonsWithColor:@"grey" andButtons:([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? @[_1, _2] : @[_1, _2, _3, _4]];
+    imageView.image = [UIImage imageNamed:@"P0.png"];
 }
 
 - (void)setUpButtonsWithColor:(NSString *)name andButtons:(NSArray *)buttons {
-
     UIImage *buttonImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@Button.png", name]]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlight = [[UIImage imageNamed:[NSString stringWithFormat:@"%@ButtonHighlight.png", name]]
                                      resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
 
-    for (int x = 0; x < buttons.count; x++) {
-        [[buttons objectAtIndex:x] setBackgroundImage:buttonImage forState:UIControlStateNormal];
-        [[buttons objectAtIndex:x] setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
+    for (UIButton *foo in buttons) {
+        [foo setBackgroundImage:buttonImage forState:UIControlStateNormal];
+        [foo setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark Actions
-
 - (IBAction)pushedHeadmaster:(id)sender {
-    
     WelcomesViewController *wvc = [[WelcomesViewController alloc] initWithIndexOfWelcome:0];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedAdmission:(id)sender {
-
     WelcomesViewController *wvc = [[WelcomesViewController alloc] initWithIndexOfWelcome:1];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedUSCurriculum:(id)sender {
-    
     WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=529"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedMSCurriculum:(id)sender {
-
     WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=1412"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)done:(id)sender {
-    
     [self dismissViewControllerAnimated:TRUE completion:nil];
 }
 
 #pragma mark Rotation
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }

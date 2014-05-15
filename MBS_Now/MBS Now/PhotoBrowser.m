@@ -37,15 +37,14 @@
     [self.view addGestureRecognizer:lrecognizer];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
 
 - (id)init {
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
-    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:[NSArray arrayWithObjects:@"lucas.png", @"campus.png", @"github.png", nil] showDismiss:NO description:[NSArray arrayWithObjects:@"We're happy to announce Lucas Fagan will be running the app from now on! Graham is leaving for college!", @"All of our data is now stored on campus.mbs.net/mbsnow, making connections much faster (and more secure).", @"The app is now entirely open sourced on GitHub. Tell your friends! ow.ly/wlnSW.", nil] title:[NSString stringWithFormat:@"What's new in %@", version]];
+    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:@[@"lucas.png", @"campus.png", @"github.png"] showDismiss:NO description:@[@"We're happy to announce Lucas Fagan will be running the app from now on! Graham is leaving for college!", @"All of our data is now stored on campus.mbs.net/mbsnow, making connections much faster (and more secure).", @"The app is now entirely open sourced on GitHub. Tell your friends! ow.ly/wlnSW."] title:[NSString stringWithFormat:@"What's new in %@", version]];
     return pb;
 }
 

@@ -187,11 +187,11 @@
 	</tr>
 	<tr>
 		<td><a href="mailto:lucasfagan@verizon.net">Lucas Fagan</a></td>
-		<td><span class="label label-default">Future</span> Programming, design, and content of MBS Now. HTML, PHP, and content of this site.</td>
+		<td><span class="label label-default">Current</span> Programming, design, and content of MBS Now. HTML, PHP, and content of this site.</td>
 	</tr>
 	<tr>
 		<td><a href="http://gdyer.de/g">Graham Dyer</a></td>
-		<td><span class="label label-default">Original</span> Programming, design, and content of MBS Now. HTML, PHP, and content of this site.</td>
+		<td><span class="label label-default">Past</span> Programming, design, and content of MBS Now. HTML, PHP, and content of this site.</td>
 	</tr>
 	<tr>
 		<td>Mrs. Barbara Napholtz</td>

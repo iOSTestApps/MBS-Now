@@ -18,12 +18,9 @@
 
     NSURLRequest *request = [NSURLRequest requestWithURL:urlToLoad  cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
     [_webView loadRequest:request];
-    
-    // create a connection from the request to get data asynchronously
+
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
-    if (connection) {
-        receivedData = [NSMutableData data];
-    }
+    if (connection) receivedData = [NSMutableData data];
 }
 
 - (id)initWithURL:(NSURL *)url {
@@ -138,20 +135,11 @@
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
 
 - (BOOL)shouldAutorotate {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
 
 @end

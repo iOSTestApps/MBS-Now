@@ -13,33 +13,19 @@
 @synthesize _webView, receivedData;
 
 - (id)initWithStringForURL:(NSString *)stringForURL {
-
     extensionName = stringForURL;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"FormsViewerViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"FormsViewerViewController_6"  bundle:nil];
-    }
-
+    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"FormsViewerViewController_7"  bundle:nil] : [super initWithNibName:@"FormsViewerViewController_6"  bundle:nil];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [_webView setDelegate:self];
 
     finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
-    if (connection) {
-        receivedData = [NSMutableData data];
-    }
+    if (connection) receivedData = [NSMutableData data];
     
     [_webView loadRequest:[NSURLRequest requestWithURL:finalURL]];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark Connection
@@ -58,8 +44,7 @@
     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
         [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"We couldn't find the doc you selected. Please report this bug." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Report", nil];
@@ -68,7 +53,6 @@
 }
 
 #pragma mark - Actions
-
 - (IBAction)done:(id)sender {
     [_webView stopLoading];
     [SVProgressHUD dismiss];
@@ -79,7 +63,6 @@
 
 #pragma mark Action button
 - (IBAction)pushedOpenIn:(id)sender {
-
     if (sheet) {
         [sheet dismissWithClickedButtonIndex:-1 animated:YES];
         sheet = nil;
@@ -88,23 +71,18 @@
     
     sheet = [[UIActionSheet alloc] initWithTitle:@"Output options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Copy link to doc", @"New email with link", @"Print", nil];
 
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [sheet showFromBarButtonItem:output animated:YES];
-    } else {
-        [sheet showInView:_webView];
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) [sheet showFromBarButtonItem:output animated:YES];
+    else [sheet showInView:_webView];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-
     NSURL *currentURL = [[_webView request] URL];
 
     switch (buttonIndex) {
-        case 0: {
+        case 0:
             [_webView stopLoading];
             [[UIApplication sharedApplication] openURL:currentURL];
             break;
-        }
         case 1: {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             [pasteboard setString:[finalURL absoluteString]];
@@ -112,21 +90,14 @@
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
             break;
         }
-        case 2: {
+        case 2:
             [self mailLink];
             break;
-        }
-
-        case 3: {
-            [self printWebPage:self];
-        }
-        default:
-            break;
+        case 3: [self printWebPage:self];
     }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
     sheet = nil;
 }
 
@@ -142,13 +113,10 @@
         [composerView setMessageBody:[NSString stringWithFormat:@"Here's a link to a document concerning Morristown-Beard School:\n%@", finalURL] isHTML:NO];
         [self presentViewController:composerView animated:YES completion:nil];
 
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Device cannot send mail"];
-    }
+    } else [SVProgressHUD showErrorWithStatus:@"Device cannot send mail"];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-
     if (result == MFMailComposeResultSent)
         [SVProgressHUD showSuccessWithStatus:@"Queued for sending"];
     else if (result == MFMailComposeResultFailed)
@@ -176,34 +144,26 @@
     viewFormatter.startPage = 0;
     controller.printFormatter = viewFormatter;
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [controller presentFromBarButtonItem:output animated:YES completionHandler:completionHandler];
-    } else
-        [controller presentAnimated:YES completionHandler:completionHandler];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) [controller presentFromBarButtonItem:output animated:YES completionHandler:completionHandler];
+    else [controller presentAnimated:YES completionHandler:completionHandler];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
-    }
+    if (buttonIndex == 1) [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
 }
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         return YES;
-    } else {
+    else {
         if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
         return NO;
     }
 }
 
 - (BOOL)shouldAutorotate {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
              
 @end
