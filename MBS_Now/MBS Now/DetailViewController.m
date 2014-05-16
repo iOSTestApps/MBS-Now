@@ -43,8 +43,7 @@
 
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    else self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 #pragma mark Table view

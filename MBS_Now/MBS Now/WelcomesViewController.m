@@ -12,7 +12,7 @@
 
 - (id)initWithIndexOfWelcome:(int)_iow {
     iow = _iow;
-    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WelcomesViewController_7"  bundle:nil] : [super initWithNibName:@"WelcomesViewController_6"  bundle:nil];
+    return [super initWithNibName:@"WelcomesViewController_7" bundle:nil];
 }
 
 - (void)viewDidLoad {

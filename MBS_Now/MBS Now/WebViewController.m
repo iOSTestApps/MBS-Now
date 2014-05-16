@@ -25,14 +25,14 @@
 
 - (id)initWithURL:(NSURL *)url {
     urlToLoad = url;
-    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WebViewController_7"  bundle:nil] : [super initWithNibName:@"WebViewController_6"  bundle:nil];
+    return [super initWithNibName:@"WebViewController_7"  bundle:nil];
 }
 
 - (id)init {
     NSURL *standard = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/"];
     urlToLoad = standard;
     NSLog(@"Call initWithURL:, not init. MBS Now home will display by default");
-    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"WebViewController_7"  bundle:nil] : [super initWithNibName:@"WebViewController_6"  bundle:nil];
+    return [super initWithNibName:@"WebViewController_7" bundle:nil];
 }
 
 #pragma mark Connections

@@ -48,7 +48,6 @@
     }
 
     if (q % AUTO == 0 && q != 0) {
-        NSLog(@"sending");
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/save.php?text_box=%@", escapedDataString];

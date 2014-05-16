@@ -53,12 +53,7 @@
     self.showDismiss = show;
     self.descriptions = subtitles;
     self.navTitle = title;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"PhotoBrowser_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"PhotoBrowser_6"  bundle:nil];
-    }
-    return self;
+    return [super initWithNibName:@"PhotoBrowser_7"  bundle:nil];
 }
 
 - (void)rightSwipeHandle {

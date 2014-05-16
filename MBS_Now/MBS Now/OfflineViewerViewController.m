@@ -33,11 +33,7 @@ UIAlertView *defaultAlert;
 
 - (id)initWithImageName:(NSString *)iName {
     imageName = iName;
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        return [super initWithNibName:@"OfflineViewerViewController_7"  bundle:nil];
-    } else {
-        return [super initWithNibName:@"OfflineViewerViewController_6"  bundle:nil];
-    }
+    return [super initWithNibName:@"OfflineViewerViewController_7"  bundle:nil];
 }
 
 - (IBAction)done:(id)sender {

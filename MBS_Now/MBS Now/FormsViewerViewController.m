@@ -14,7 +14,7 @@
 
 - (id)initWithStringForURL:(NSString *)stringForURL {
     extensionName = stringForURL;
-    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"FormsViewerViewController_7"  bundle:nil] : [super initWithNibName:@"FormsViewerViewController_6"  bundle:nil];
+    return [super initWithNibName:@"FormsViewerViewController_7"  bundle:nil];
 }
 
 - (void)viewDidLoad {

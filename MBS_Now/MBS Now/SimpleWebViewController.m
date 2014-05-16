@@ -32,7 +32,7 @@ BOOL edit;
 
 - (id)initWithURL:(NSURL *)url {
     urlToLoad = url;
-    return (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) ? [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil] : [super initWithNibName:@"SimpleWebViewController_6"  bundle:nil];
+    return [super initWithNibName:@"SimpleWebViewController_7"  bundle:nil];
 }
 
 - (id)init {

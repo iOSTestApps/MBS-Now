@@ -12,40 +12,29 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        UIStoryboard *mainStoryboard = nil;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-            mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
-        } else {
-            mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_6" bundle:nil];
-        }
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
         [self.window makeKeyAndVisible];
     } else {
         // iPad
-        UIStoryboard *mainStoryboard = nil;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-            mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPad_7" bundle:nil];
-        } else {
-            mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPad_6" bundle:nil];
-        }
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPad_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
         [self.window makeKeyAndVisible];
-
     }
 
-    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"]) {
+    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"])
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dfl"];
-    } else {
+    else {
         NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
         x++;
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"])
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
-    } else {
+    else {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
     }
 

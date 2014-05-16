@@ -117,15 +117,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        self.mapView.hidden = NO;
-        self.listings.hidden = YES;
-        self.home.hidden = NO;
-        [self.swap  setTitle:@"View listings" forState:UIControlStateNormal];
+    self.mapView.hidden = NO;
+    self.listings.hidden = YES;
+    self.home.hidden = NO;
+    [self.swap  setTitle:@"View listings" forState:UIControlStateNormal];
 
-        [self.mapView selectAnnotation:[annotations objectAtIndex:indexPath.row] animated:YES];
-    } else
-        [SVProgressHUD showErrorWithStatus:@"Sorry, cross referencing locations is an iOS 7 feature only."];
+    [self.mapView selectAnnotation:[annotations objectAtIndex:indexPath.row] animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
