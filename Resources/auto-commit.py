@@ -2,7 +2,9 @@ import os
 from os.path import expanduser
 home = expanduser("~")
 
-auto_commit = input('Commit message: ').strip("'")
+auto_commit = input('Commit message (type "q" to quit): ').strip("'")
+if auto_commit is 'q':
+	raise SystemExit
 to_cd = home + "/Dropbox/MBS-Now/"
 os.chdir(to_cd)
 os.system("git add -A Resources/")
