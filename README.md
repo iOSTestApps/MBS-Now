@@ -9,7 +9,7 @@
 
 
 
-Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/gdyer/MBS-Now/wiki).
+Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school).
 
 ## VCs
 ### General
