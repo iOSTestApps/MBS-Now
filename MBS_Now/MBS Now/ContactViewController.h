@@ -16,6 +16,4 @@
     NSString *final;
 }
 
-- (IBAction)done:(id)sender;
-
 @end

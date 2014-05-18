@@ -18,10 +18,6 @@
     detail = @[@"(973) 539-3032", @"(973) 539-1590", @"Denise Elliot, x542", @"Joyce Kramer, x530", @"Darren Burns, x535", @"Boni Luna, x527", @"View", @"View", @"70 Whippany Road, 07960"];
 }
 
-- (IBAction)done:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *iden = @"iden";

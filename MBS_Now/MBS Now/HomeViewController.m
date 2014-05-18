@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "DataViewController.h"
 #import "SettingsViewController.h"
-#import "SVModalWebViewController.h"
+#import "SVWebViewController.h"
 #import "FormsViewerViewController.h"
 #import "PhotoBrowser.h"
 #import <AudioToolbox/AudioServices.h>
@@ -71,9 +71,16 @@
         meetingsConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     }
 
+
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
-    versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    versionData = [NSMutableData data];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [versionConnection cancel];
 }
 
 - (void)viewDidLoad {
@@ -155,8 +162,8 @@
 }
 
 - (IBAction)pushedLibrary:(id)sender {
-    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://morristown-beard.mlasolutions.com/oasis/catalog/%28S%28xrjcvnndg0iq4k3du5xzob2c%29%29/Default.aspx?installation=Default"]];
-    [self presentViewController:wvc animated:YES completion:nil];
+    SVWebViewController *wvc = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://morristown-beard.mlasolutions.com/oasis/catalog/%28S%28xrjcvnndg0iq4k3du5xzob2c%29%29/Default.aspx?installation=Default"]];
+    [self.navigationController pushViewController:wvc animated:YES];
 }
 
 - (IBAction)pushedSpecial:(id)sender {
@@ -184,6 +191,8 @@
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastSend"];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
+    } else if (connection == versionConnection) {
+        [versionData appendData:data];
     }
 }
 
@@ -201,9 +210,8 @@
             fvvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             [self presentViewController:fvvc animated:YES completion:nil];
         }
-    } else if (connection != meetingsConnection && connection != versionConnection) {
+    } else if (connection != meetingsConnection && connection != versionConnection)
         [SVProgressHUD showSuccessWithStatus:@"Connected"];
-    }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -265,20 +273,20 @@
             [[NSUserDefaults standardUserDefaults] setObject:csv forKey:@"meetingLog"];
         }
     } else if (connection == versionConnection) {
-        NSInteger remoteVersion = [[[[[NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSUTF8StringEncoding error:nil] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
+        NSInteger remoteVersion = [[[[[[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
         NSLog(@"%ld, %ld", (long)remoteVersion , (long)[[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
-            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-            if ((q % 5 == 0) && q != 0) {
+                NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+                if ((q % 6 == 0) && q != 0) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"There's an update available—for real this time!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
                 [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 alert.tag = 13;
                 [alert show];
             }
-            versionLabel.text = @"An update is available";
+            versionLabel.text = @"An update's available";
         }
     }
 }

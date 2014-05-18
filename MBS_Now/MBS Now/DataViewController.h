@@ -19,7 +19,6 @@
 
 - (IBAction)pushedSend:(id)sender;
 - (IBAction)pushedQuestion:(id)sender;
-- (IBAction)pushedHistory:(id)sender;
 - (IBAction)done:(id)sender;
 
 - (NSString *)generateData;

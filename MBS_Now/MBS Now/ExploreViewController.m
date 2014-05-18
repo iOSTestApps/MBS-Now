@@ -14,6 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(orient)];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
@@ -65,11 +66,7 @@
 }
 
 #pragma mark Actions
-- (IBAction)done:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)pushedOrient:(id)sender {
+- (void)orient {
     CLLocationCoordinate2D mbs;
     mbs.latitude = 40.804085;
     mbs.longitude = -74.44892;
@@ -89,13 +86,13 @@
         // going back to the map
         self.mapView.hidden = NO;
         self.listings.hidden = YES;
-        self.home.hidden = NO;
+        self.navigationItem.rightBarButtonItem.enabled = YES;
         [self.swap  setTitle:@"View listings" forState:UIControlStateNormal];
     } else {
         // to table view
         self.mapView.hidden = YES;
         self.listings.hidden = NO;
-        self.home.hidden = YES;
+        self.navigationItem.rightBarButtonItem.enabled = NO;
         [self.swap setTitle:@"Back to map" forState:UIControlStateNormal];
     }
 }
@@ -119,7 +116,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.mapView.hidden = NO;
     self.listings.hidden = YES;
-    self.home.hidden = NO;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
     [self.swap  setTitle:@"View listings" forState:UIControlStateNormal];
 
     [self.mapView selectAnnotation:[annotations objectAtIndex:indexPath.row] animated:YES];
@@ -162,7 +159,7 @@
     [mapView deselectAnnotation:view.annotation animated:YES];
     self.mapView.hidden = YES;
     self.listings.hidden = NO;
-    self.home.hidden = YES;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     [self.swap  setTitle:@"Back to map" forState:UIControlStateNormal];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[annotations indexOfObject:view.annotation] inSection:0];
     [self.listings selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];

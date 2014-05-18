@@ -7,7 +7,7 @@
 //
 
 #import "DataViewController.h"
-#import "SVModalWebViewController.h"
+#import "SVWebViewController.h"
 @implementation DataViewController
 
 - (void)viewDidLoad {
@@ -18,6 +18,8 @@
     [textView setText:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]];
 
     [self setUpButtons:@"grey" andButton:_1];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"book-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(history:)];
 }
 
 - (void)setUpButtons:(NSString *)name andButton:(UIButton *)button {
@@ -68,6 +70,17 @@
 }
 
 #pragma mark Actions
+- (IBAction)history:(id)sender {
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSend"];
+    NSString *string;
+    if (date) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM/dd, HH:mm"];
+        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
+    } else
+        string = [NSString stringWithFormat:@"Never collected before. First collection in %d launch(es)", AUTO - (q % AUTO)];
+    [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];
+}
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -86,26 +99,13 @@
         [composerView setMessageBody:@"You'll be able to view the attachment on any computer. Devices with iOS 7 and later can natively view it. We only see the attachment data upon automatic uploads — nothing else." isHTML:NO];
 
         [self presentViewController:composerView animated:YES completion:nil];
-    } else {
-        [SVProgressHUD showErrorWithStatus:@"Device cannot send mail"];
-    }
+    } else
+        [SVProgressHUD showErrorWithStatus:@"This device can't send mail!"];
 }
 
 - (IBAction)pushedQuestion:(id)sender {
-    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"]];
-    [self presentViewController:wvc animated:YES completion:nil];
-}
-
-- (IBAction)pushedHistory:(id)sender {
-    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"lastSend"];
-    NSString *string;
-    if (date) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"MM/dd, HH:mm"];
-        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %ld launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
-    } else
-        string = [NSString stringWithFormat:@"Never collected before. First collection in %ld launch(es)", AUTO - (q % AUTO)];
-    [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];
+    SVWebViewController *wvc = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"]];
+    [self.navigationController pushViewController:wvc animated:YES];
 }
 
 #pragma mark Mail

@@ -9,15 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BugsViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIAlertViewDelegate> {
-
     NSURLConnection *versionConnection;
-
     NSURLConnection *connect;
-
-    IBOutlet UINavigationBar *navBar;
 }
-
-- (IBAction)pushedAdd:(id)sender;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *bug;

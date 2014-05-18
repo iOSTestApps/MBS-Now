@@ -21,6 +21,7 @@
     NSURLConnection *connection2;
     NSURLConnection *meetingsConnection;
     NSURLConnection *versionConnection;
+    NSMutableData *versionData;
     NSURLConnection *sendingData;
 
     // countdown

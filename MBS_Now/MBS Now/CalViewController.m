@@ -18,6 +18,8 @@
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) [self loadWithDefaults];
     else [self controlChange:self];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(stop)];
 }
 
 - (void)loadWithDefaults {
@@ -33,6 +35,12 @@
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
 
     if (connection) self.receivedData = [NSMutableData data];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+    [_webView stopLoading];
 }
 
 #pragma mark Connection
@@ -51,17 +59,11 @@
 }
 
 #pragma mark Actions
-- (IBAction)done:(id)sender {
-    [_webView stopLoading];
-    [SVProgressHUD dismiss];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)pushedReload:(id)sender {
     [_webView reload];
 }
 
-- (IBAction)pushedStop:(id)sender {
+- (void)stop {
     [SVProgressHUD dismiss];
     [_webView stopLoading];
 }

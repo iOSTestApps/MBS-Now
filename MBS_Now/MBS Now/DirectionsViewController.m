@@ -30,13 +30,11 @@
     point.title = @"Morristown-Beard School";
     point.subtitle = @"70 Whippany Road, 07960";
     [self.directionsView addAnnotation:point];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(orient)];
 }
 
 #pragma mark Actions
-- (IBAction)done:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (IBAction)openInMaps:(id)sender {
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
@@ -51,7 +49,7 @@
     }
 }
 
-- (IBAction)pushedOrient:(id)sender {
+- (void)orient {
     CLLocationCoordinate2D mbs;
     mbs.latitude = 40.80;
     mbs.longitude = -74.44;

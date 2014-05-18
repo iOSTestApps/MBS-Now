@@ -23,5 +23,6 @@
 - (IBAction)pushedUSCurriculum:(id)sender;
 - (IBAction)pushedMSCurriculum:(id)sender;
 - (IBAction)pushedAdmission:(id)sender;
+- (IBAction)done:(id)sender;
 
 @end

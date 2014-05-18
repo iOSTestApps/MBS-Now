@@ -1250,10 +1250,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/gdyer/Documents/MBS_Now/MBS_Now,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MBS Now/MBS Now-Prefix.pch";
 				INFOPLIST_FILE = "MBS Now/MBS Now-Info.plist";
@@ -1275,10 +1272,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/gdyer/Documents/MBS_Now/MBS_Now,
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MBS Now/MBS Now-Prefix.pch";
 				INFOPLIST_FILE = "MBS Now/MBS Now-Info.plist";

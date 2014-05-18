@@ -13,8 +13,6 @@
     NSURLConnection *meetingsConnection;
 }
 
-
-
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;
 @property (nonatomic, assign) NSMutableData *receivedData;
 @property (assign) BOOL unique;

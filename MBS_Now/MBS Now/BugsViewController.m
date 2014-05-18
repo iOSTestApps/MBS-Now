@@ -14,7 +14,7 @@ BOOL unique = YES;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-    navBar.topItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
+    self.navigationItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
     self.bug = @[@"Tap here to refresh"];
     self.description = @[@"Connection is required"];
 
@@ -22,6 +22,8 @@ BOOL unique = YES;
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -115,17 +117,11 @@ BOOL unique = YES;
 }
 
 #pragma mark Actions
-- (IBAction)pushedAdd:(id)sender {
+- (void)add {
     unique = NO;
     SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
     swvc.specifier = @"bug";
     [self presentViewController:swvc animated:YES completion:nil];
-}
-
-- (IBAction)done:(id)sender {
-    [SVProgressHUD dismiss];
-    unique = YES;
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Alert view
@@ -135,7 +131,7 @@ BOOL unique = YES;
         else [self dismissViewControllerAnimated:YES completion:nil];
     } else { // asking to refresh
         if (buttonIndex == 1) {
-            if (alertView.tag == 2) [self pushedAdd:nil];
+            if (alertView.tag == 2) [self add];
             else [self pushedDownload];
         }
     }

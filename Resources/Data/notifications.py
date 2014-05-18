@@ -6,7 +6,9 @@ divs = []
 # http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2014
 # ^ Click on CSV
 
-# TODO: general notifications; i.e. end of marking periods, community service deadlines, AP exam start date, more?
+# find new general alert possibilities here: http://www.mbs.net/page.cfm?do=calsearch&p=1424&keywords=service&eventsorting=past
+
+# TODO: possibly more general notifications
 
 def hasNumbers(inputString):
     return any(char.isdigit() for char in inputString)
@@ -25,6 +27,12 @@ def weeksInArray(array):
         if return_week(foo) not in divs:
             divs.append(return_week(foo))
 
+def list_contains(list, needle):
+    for foo in list:
+        if needle in foo:
+            return True
+    return False
+
 def gen(dict, data):
     for week in divs:
         dict[str(week)] = []
@@ -36,7 +44,6 @@ def week_str(dict, name):
     str = 'NSArray *' + name + ' = @['
     for week in dict.keys():
         str += '@"' + dict[week][0] + '", '
-
     print(str[:len(str)-2] + "];")
 
 events = []
@@ -54,6 +61,8 @@ accepted = []
 rejected = []
 a_weeks = []
 b_weeks = []
+general = []
+gen_dates = []
 for foo in events:
     ret = foo[0].lower()
     if "dress" in ret and "middle school" not in ret and " ms " not in ret:
@@ -68,11 +77,29 @@ for foo in events:
     if "b week" in ret:
         b_weeks.append(foo[1])
     if 'end of second semester' in ret or 'end of 2nd semester' in ret:
-        print('school ends on ' + foo[1])
+        general.append('The second semester ends today. Have a great summer!')
+        gen_dates.append(foo[1])
+        print('school ends on ' + foo[1] + '\n')
     if 'classes begin' in ret or 'classes start' in ret:
-        print('school starts on' + foo[1])
+        print('COUNTDOWN\nschool starts on ' + foo[1])
+    if 'end of first semester' in ret or 'end of 1st semester' in ret:
+        general.append('The first semester ends today.')
+        gen_dates.append(foo[1])
+    if 'ap exams' in ret and list_contains(general , 'APs') is False:
+        general.append('Best of luck on APs!')
+        gen_dates.append(foo[1])
 
-print('A/B WEEKS')
+if len(general) > 0:
+    print('GENERAL ALERTS')
+    date_strings = "NSArray *datesStrings = @["
+    desc = "NSArray *descriptions = @["
+    for x in range(0, len(general)):
+        date_strings += '"' + gen_dates[x] + '", '
+        desc += '"' + general[x] + '", '
+    print(date_strings[:len(date_strings)-2] + "];")
+    print(desc[:len(desc)-2] + "];")
+
+print('\nA/B WEEKS')
 weeksInArray(a_weeks)
 a = {}
 b = {}

@@ -10,16 +10,13 @@
 
 @interface EAViewController : UIViewController <UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource, NSURLConnectionDataDelegate, NSURLConnectionDelegate> {
     NSArray *distinctions;
-    NSArray *searchResults;
 
     NSString *string;
 
     NSURLConnection *firstConnection;
 }
 
-
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (weak, nonatomic) IBOutlet UISearchBar *_searchBar;
-
 
 @end

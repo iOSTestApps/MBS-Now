@@ -19,6 +19,14 @@
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
     self.tblView.tableFooterView = footer;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(download)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+    [firstConnection cancel];
 }
 
 #pragma mark Table View
@@ -31,22 +39,22 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
 
     cell.detailTextLabel.text = string;
-    cell.textLabel.text = (tableView == self.searchDisplayController.searchResultsTableView) ? searchResults[indexPath.row] : distinctions[indexPath.row];
+    cell.textLabel.text = distinctions[indexPath.row];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (tableView == self.searchDisplayController.searchResultsTableView) ? searchResults.count : distinctions.count;
+    return distinctions.count;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  (string) ? @"Lunch first if class not here" : nil;
+    return  (string) ? @"Go to lunch FIRST if your class is NOT here" : nil;
 }
 
 #pragma mark Actions
-- (IBAction)pushedDownload:(id)sender {
+- (void)download {
     [SVProgressHUD showWithStatus:@"Generating distinctions"];
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/Data/distinctions.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -54,23 +62,18 @@
     if (firstConnection) [SVProgressHUD showWithStatus:@"Generating distinctions"];
 }
 
-- (IBAction)done:(id)sender {
-    [SVProgressHUD dismiss];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark Connection
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [SVProgressHUD dismiss];
     NSString *separation = @"\n";
     if (connection == firstConnection) {
-        [SVProgressHUD showImage:[UIImage imageNamed:@"info-7-active.png"] status:@"Go to lunch first if your class is NOT here"];
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
         distinctions = [[NSArray alloc] initWithArray:[fileText componentsSeparatedByString:separation]];
         if (distinctions.count == 0) {
             [self connection:connection didFailWithError:[NSError errorWithDomain:@"Connection has failed" code:nil userInfo:nil]];
         }
         string = @"Go to class first";
-    } else [SVProgressHUD dismiss];
+    }
     [_tblView reloadData];
 }
 
@@ -88,21 +91,6 @@
     string = error.localizedDescription;
     string=nil;
     [_tblView reloadData];
-}
-
-#pragma mark Search
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
-                                    searchText];
-
-    searchResults = [distinctions filteredArrayUsingPredicate:resultPredicate];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    return YES;
 }
 
 #pragma mark Alert

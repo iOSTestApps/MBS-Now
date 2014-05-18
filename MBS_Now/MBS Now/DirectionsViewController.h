@@ -15,8 +15,6 @@
 }
 
 - (IBAction)openInMaps:(id)sender;
-- (IBAction)done:(id)sender;
-- (IBAction)pushedOrient:(id)sender;
 
 @property (weak, nonatomic) IBOutlet MKMapView *directionsView;
 

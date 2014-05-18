@@ -18,8 +18,6 @@
 @property (nonatomic, assign) NSMutableData *receivedData;
 
 - (IBAction)controlChange:(id)sender;
-- (IBAction)pushedStop:(id)sender;
 - (IBAction)pushedReload:(id)sender;
-- (IBAction)done:(id)sender;
 
 @end

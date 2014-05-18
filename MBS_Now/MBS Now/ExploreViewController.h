@@ -19,15 +19,11 @@
     NSMutableArray *annotations;
 }
 
-- (IBAction)done:(id)sender;
-- (IBAction)pushedOrient:(id)sender;
 - (IBAction)pushedTable:(id)sender;
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *listings;
 @property (weak, nonatomic) IBOutlet UIButton *swap;
-@property (weak, nonatomic) IBOutlet UIButton *home;
 
 @property (assign) int *accessoryIndex;
-
 @end
