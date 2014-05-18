@@ -7,7 +7,7 @@
 //
 
 #import "ContactViewController.h"
-#import "WebViewController.h"
+#import "SVModalWebViewController.h"
 #import <AudioToolbox/AudioServices.h>
 
 @implementation ContactViewController
@@ -76,14 +76,14 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Call or Copy?" message:string delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Call", @"Copy", nil];
         [alert show];
     } else {
-        WebViewController *wvc;
+        SVModalWebViewController *wvc;
         switch (indexPath.row) {
             case 6:
-                wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"https://twitter.com/MorristownBeard"]];
+                wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://twitter.com/MorristownBeard"]];
                 [self presentViewController:wvc animated:YES completion:nil];
                 break;
             case 7:
-                wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.facebook.com/morristown.beard"]];
+                wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://www.facebook.com/morristown.beard"]];
                 [self presentViewController:wvc animated:YES completion:nil];
                 break;
             case 8:

@@ -9,7 +9,7 @@
 #import "HomeViewController.h"
 #import "DataViewController.h"
 #import "SettingsViewController.h"
-#import "WebViewController.h"
+#import "SVModalWebViewController.h"
 #import "FormsViewerViewController.h"
 #import "PhotoBrowser.h"
 #import <AudioToolbox/AudioServices.h>
@@ -155,7 +155,7 @@
 }
 
 - (IBAction)pushedLibrary:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://morristown-beard.mlasolutions.com/oasis/catalog/%28S%28xrjcvnndg0iq4k3du5xzob2c%29%29/Default.aspx?installation=Default"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://morristown-beard.mlasolutions.com/oasis/catalog/%28S%28xrjcvnndg0iq4k3du5xzob2c%29%29/Default.aspx?installation=Default"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 

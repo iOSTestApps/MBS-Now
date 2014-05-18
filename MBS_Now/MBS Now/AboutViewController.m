@@ -7,7 +7,7 @@
 //
 
 #import "AboutViewController.h"
-#import "WebViewController.h"
+#import "SVModalWebViewController.h"
 #import "WelcomesViewController.h"
 
 @implementation AboutViewController
@@ -42,12 +42,12 @@
 }
 
 - (IBAction)pushedUSCurriculum:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=529"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=529"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
 - (IBAction)pushedMSCurriculum:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=1412"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://www.mbs.net/page.cfm?p=1412"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 

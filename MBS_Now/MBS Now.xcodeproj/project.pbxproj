@@ -16,6 +16,18 @@
 		153EFD4F17FCC3A900C3205C /* StoryboardPhone_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153EFD4E17FCC3A900C3205C /* StoryboardPhone_7.storyboard */; };
 		15454A6E18578DC00064A610 /* PhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454A6D18578DC00064A610 /* PhotoBrowser.m */; };
 		15454A70185791E50064A610 /* PhotoBrowser_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15454A6F185791E50064A610 /* PhotoBrowser_7.xib */; };
+		1547B585192848DA00330A94 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1547B572192848DA00330A94 /* SVModalWebViewController.m */; };
+		1547B586192848DA00330A94 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1547B573192848DA00330A94 /* SVWebViewController.bundle */; };
+		1547B587192848DA00330A94 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1547B575192848DA00330A94 /* SVWebViewController.m */; };
+		1547B588192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B578192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad.png */; };
+		1547B589192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B579192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png */; };
+		1547B58A192848DA00330A94 /* SVWebViewControllerActivityChrome.m in Sources */ = {isa = PBXBuildFile; fileRef = 1547B57B192848DA00330A94 /* SVWebViewControllerActivityChrome.m */; };
+		1547B58B192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B57C192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png */; };
+		1547B58C192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B57E192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png */; };
+		1547B58D192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B57F192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png */; };
+		1547B58E192848DA00330A94 /* SVWebViewControllerActivitySafari.m in Sources */ = {isa = PBXBuildFile; fileRef = 1547B581192848DA00330A94 /* SVWebViewControllerActivitySafari.m */; };
+		1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1547B582192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png */; };
+		1547B590192848DA00330A94 /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 1547B584192848DA00330A94 /* SVWebViewControllerActivity.m */; };
 		154B06F8179A5D0200E95689 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 154B06F7179A5D0100E95689 /* QuartzCore.framework */; };
 		154EC1F517BF1A2100C7BC96 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154EC1F417BF1A2100C7BC96 /* SettingsViewController.m */; };
 		15529358169F7840006A8B99 /* LunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15529357169F7840006A8B99 /* LunchViewController.m */; };
@@ -57,7 +69,6 @@
 		15CC3883182327C000B3502A /* SimpleWebViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15CC3882182327C000B3502A /* SimpleWebViewController_7.xib */; };
 		15CC388C1824165000B3502A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC388B1824165000B3502A /* DetailViewController.m */; };
 		15CC38911825B4AB00B3502A /* delete.html in Resources */ = {isa = PBXBuildFile; fileRef = 15CC38901825B4AB00B3502A /* delete.html */; };
-		15EB37F317FCEDA1008C4556 /* WelcomesViewController_6.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15EB37EF17FCEDA1008C4556 /* WelcomesViewController_6.xib */; };
 		15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */; };
 		15F2E815176972FF00FA1073 /* WelcomesViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */; };
 		15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E8161769738B00FA1073 /* FormsViewerViewController_7.xib */; };
@@ -206,8 +217,6 @@
 		15FFD9DD18C69CCE0049FD02 /* OfflineViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD9DB18C69CCE0049FD02 /* OfflineViewerViewController.m */; };
 		15FFD9EB18C69CFE0049FD02 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD9E418C69CFE0049FD02 /* SVProgressHUD.bundle */; };
 		15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD9E618C69CFE0049FD02 /* SVProgressHUD.m */; };
-		15FFD9F118C69D180049FD02 /* WebViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD9EE18C69D180049FD02 /* WebViewController_7.xib */; };
-		15FFD9F518C69D5A0049FD02 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD9F418C69D5A0049FD02 /* WebViewController.m */; };
 		15FFD9F718C69D900049FD02 /* Data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD9F618C69D900049FD02 /* Data.txt */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +233,23 @@
 		15454A6C18578DC00064A610 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoBrowser.h; path = "MBS Now/PhotoBrowser.h"; sourceTree = "<group>"; };
 		15454A6D18578DC00064A610 /* PhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoBrowser.m; path = "MBS Now/PhotoBrowser.m"; sourceTree = "<group>"; };
 		15454A6F185791E50064A610 /* PhotoBrowser_7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoBrowser_7.xib; sourceTree = "<group>"; };
+		1547B571192848DA00330A94 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		1547B572192848DA00330A94 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		1547B573192848DA00330A94 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		1547B574192848DA00330A94 /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		1547B575192848DA00330A94 /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		1547B578192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome-iPad.png"; sourceTree = "<group>"; };
+		1547B579192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome-iPad@2x.png"; sourceTree = "<group>"; };
+		1547B57A192848DA00330A94 /* SVWebViewControllerActivityChrome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivityChrome.h; sourceTree = "<group>"; };
+		1547B57B192848DA00330A94 /* SVWebViewControllerActivityChrome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivityChrome.m; sourceTree = "<group>"; };
+		1547B57C192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivityChrome@2x.png"; sourceTree = "<group>"; };
+		1547B57E192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari-iPad.png"; sourceTree = "<group>"; };
+		1547B57F192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari-iPad@2x.png"; sourceTree = "<group>"; };
+		1547B580192848DA00330A94 /* SVWebViewControllerActivitySafari.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivitySafari.h; sourceTree = "<group>"; };
+		1547B581192848DA00330A94 /* SVWebViewControllerActivitySafari.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivitySafari.m; sourceTree = "<group>"; };
+		1547B582192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SVWebViewControllerActivitySafari@2x.png"; sourceTree = "<group>"; };
+		1547B583192848DA00330A94 /* SVWebViewControllerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewControllerActivity.h; sourceTree = "<group>"; };
+		1547B584192848DA00330A94 /* SVWebViewControllerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewControllerActivity.m; sourceTree = "<group>"; };
 		154B06F7179A5D0100E95689 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		154EC1F317BF1A2100C7BC96 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		154EC1F417BF1A2100C7BC96 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -289,7 +315,6 @@
 		15CC388A1824165000B3502A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		15CC388B1824165000B3502A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		15CC38901825B4AB00B3502A /* delete.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = delete.html; sourceTree = "<group>"; };
-		15EB37EF17FCEDA1008C4556 /* WelcomesViewController_6.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomesViewController_6.xib; sourceTree = "<group>"; };
 		15EF3F6918D25D9500FE928D /* UITableViewCell+Width.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Width.h"; sourceTree = "<group>"; };
 		15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Width.m"; sourceTree = "<group>"; };
 		15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomesViewController_7.xib; sourceTree = "<group>"; };
@@ -444,9 +469,6 @@
 		15FFD9E418C69CFE0049FD02 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		15FFD9E518C69CFE0049FD02 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		15FFD9E618C69CFE0049FD02 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		15FFD9EE18C69D180049FD02 /* WebViewController_7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController_7.xib; sourceTree = "<group>"; };
-		15FFD9EF18C69D180049FD02 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = "MBS Now/WebViewController.h"; sourceTree = "<group>"; };
-		15FFD9F418C69D5A0049FD02 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = "MBS Now/WebViewController.m"; sourceTree = "<group>"; };
 		15FFD9F618C69D900049FD02 /* Data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Data.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -500,6 +522,53 @@
 			name = "Other VCs";
 			sourceTree = "<group>";
 		};
+		1547B576192848DA00330A94 /* UIActivities */ = {
+			isa = PBXGroup;
+			children = (
+				1547B577192848DA00330A94 /* Chrome */,
+				1547B57D192848DA00330A94 /* Safari */,
+				1547B583192848DA00330A94 /* SVWebViewControllerActivity.h */,
+				1547B584192848DA00330A94 /* SVWebViewControllerActivity.m */,
+			);
+			path = UIActivities;
+			sourceTree = "<group>";
+		};
+		1547B577192848DA00330A94 /* Chrome */ = {
+			isa = PBXGroup;
+			children = (
+				1547B578192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad.png */,
+				1547B579192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png */,
+				1547B57A192848DA00330A94 /* SVWebViewControllerActivityChrome.h */,
+				1547B57B192848DA00330A94 /* SVWebViewControllerActivityChrome.m */,
+				1547B57C192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png */,
+			);
+			path = Chrome;
+			sourceTree = "<group>";
+		};
+		1547B57D192848DA00330A94 /* Safari */ = {
+			isa = PBXGroup;
+			children = (
+				1547B57E192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png */,
+				1547B57F192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png */,
+				1547B580192848DA00330A94 /* SVWebViewControllerActivitySafari.h */,
+				1547B581192848DA00330A94 /* SVWebViewControllerActivitySafari.m */,
+				1547B582192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png */,
+			);
+			path = Safari;
+			sourceTree = "<group>";
+		};
+		1547B591192848E200330A94 /* SVWeb */ = {
+			isa = PBXGroup;
+			children = (
+				1547B571192848DA00330A94 /* SVModalWebViewController.h */,
+				1547B572192848DA00330A94 /* SVModalWebViewController.m */,
+				1547B573192848DA00330A94 /* SVWebViewController.bundle */,
+				1547B574192848DA00330A94 /* SVWebViewController.h */,
+				1547B575192848DA00330A94 /* SVWebViewController.m */,
+			);
+			name = SVWeb;
+			sourceTree = "<group>";
+		};
 		15529361169F7D25006A8B99 /* Tabbed VCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +588,8 @@
 		1557D1FD169F0D3E00F27AE4 = {
 			isa = PBXGroup;
 			children = (
+				1547B591192848E200330A94 /* SVWeb */,
+				1547B576192848DA00330A94 /* UIActivities */,
 				15FFD9DE18C69CFE0049FD02 /* SVProgressHUD */,
 				1557D212169F0D3E00F27AE4 /* MBS Now */,
 				1557D209169F0D3E00F27AE4 /* Products */,
@@ -621,8 +692,6 @@
 				15CC38801823273D00B3502A /* SimpleWebViewController.m */,
 				15AC1E61170A4F6D00908EA9 /* WelcomesViewController.h */,
 				15AC1E62170A4F6E00908EA9 /* WelcomesViewController.m */,
-				15FFD9EF18C69D180049FD02 /* WebViewController.h */,
-				15FFD9F418C69D5A0049FD02 /* WebViewController.m */,
 			);
 			name = "Content Viewers";
 			path = ..;
@@ -802,12 +871,10 @@
 		15EE4EB516FC3DF50051DBE8 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
-				15FFD9EE18C69D180049FD02 /* WebViewController_7.xib */,
 				15FFD9D918C69CCE0049FD02 /* OfflineViewerViewController_7.xib */,
 				15CC3882182327C000B3502A /* SimpleWebViewController_7.xib */,
 				15F2E8161769738B00FA1073 /* FormsViewerViewController_7.xib */,
 				15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */,
-				15EB37EF17FCEDA1008C4556 /* WelcomesViewController_6.xib */,
 				15454A6F185791E50064A610 /* PhotoBrowser_7.xib */,
 			);
 			name = Reusable;
@@ -898,18 +965,20 @@
 				15FFD91B18C69B040049FD02 /* 03.png in Resources */,
 				15FFD91A18C69B040049FD02 /* 02.png in Resources */,
 				15FFD94E18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png in Resources */,
+				1547B58B192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				15FFD99118C69B040049FD02 /* rank@2x.png in Resources */,
 				1557D217169F0D3E00F27AE4 /* InfoPlist.strings in Resources */,
 				15FFD95918C69B040049FD02 /* Default~ipad.png in Resources */,
 				153EFD4F17FCC3A900C3205C /* StoryboardPhone_7.storyboard in Resources */,
-				15FFD9F118C69D180049FD02 /* WebViewController_7.xib in Resources */,
 				15FFD94018C69B040049FD02 /* book-7-active.png in Resources */,
 				15FFD94D18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png in Resources */,
+				1547B586192848DA00330A94 /* SVWebViewController.bundle in Resources */,
 				15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */,
 				15FFD94618C69B040049FD02 /* clock.png in Resources */,
 				15FFD98018C69B040049FD02 /* notifications-board.png in Resources */,
 				15FFD9A818C69B040049FD02 /* write-7-active@2x.png in Resources */,
 				15FFD94218C69B040049FD02 /* bookmark-7-active.png in Resources */,
+				1547B588192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad.png in Resources */,
 				15FFD96418C69B040049FD02 /* food-sign@2x.png in Resources */,
 				15FFD95418C69B040049FD02 /* Default-568h@2x.png in Resources */,
 				15FFD99618C69B040049FD02 /* school.png in Resources */,
@@ -939,6 +1008,7 @@
 				15FFD91D18C69B040049FD02 /* 3DCulpolaIcon72.png in Resources */,
 				15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */,
 				15FFD93018C69B040049FD02 /* arrow-forward@2x.png in Resources */,
+				1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
 				15FFD9A118C69B040049FD02 /* tanButtonHighlight@2x.png in Resources */,
 				15FFD9DC18C69CCE0049FD02 /* OfflineViewerViewController_7.xib in Resources */,
@@ -977,6 +1047,7 @@
 				15CC38911825B4AB00B3502A /* delete.html in Resources */,
 				15FFD91E18C69B040049FD02 /* 3DCulpolaIcon114.png in Resources */,
 				15FFD92A18C69B040049FD02 /* arrow-circle-01g.png in Resources */,
+				1547B58D192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				15FFD95018C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png in Resources */,
 				15FFD98D18C69B040049FD02 /* question@2x.png in Resources */,
 				15FFD94518C69B040049FD02 /* bug@2x.png in Resources */,
@@ -998,7 +1069,6 @@
 				15FFD96A18C69B040049FD02 /* greyButton@2x.png in Resources */,
 				157649071911785B008405B5 /* github.png in Resources */,
 				15FFD95A18C69B040049FD02 /* Default~iphone.png in Resources */,
-				15EB37F317FCEDA1008C4556 /* WelcomesViewController_6.xib in Resources */,
 				15FFD93918C69B040049FD02 /* bank@2x.png in Resources */,
 				15FFD95618C69B040049FD02 /* Default-Landscape~ipad.png in Resources */,
 				15FFD95D18C69B040049FD02 /* download-7-active.png in Resources */,
@@ -1033,6 +1103,7 @@
 				15FFD98618C69B040049FD02 /* paperwork@2x.png in Resources */,
 				15FFD93718C69B040049FD02 /* backward-7-active@2x.png in Resources */,
 				15FFD93318C69B040049FD02 /* arrow-right-out.png in Resources */,
+				1547B58C192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				15FFD96218C69B040049FD02 /* finger-touch@2x.png in Resources */,
 				15FFD92018C69B040049FD02 /* 10.png in Resources */,
 				15FFD92E18C69B040049FD02 /* arrow-circle-03.png in Resources */,
@@ -1053,6 +1124,7 @@
 				15FFD98E18C69B040049FD02 /* quote.png in Resources */,
 				15FFD93618C69B040049FD02 /* backward-7-active.png in Resources */,
 				1573821317F2436E00956F6F /* keys.plist in Resources */,
+				1547B589192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
 				15FFD96518C69B040049FD02 /* forward-7-active.png in Resources */,
 				15FFD91818C69B040049FD02 /* 00.png in Resources */,
 				157649061911785B008405B5 /* campus.png in Resources */,
@@ -1068,13 +1140,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1557D219169F0D3E00F27AE4 /* main.m in Sources */,
-				15FFD9F518C69D5A0049FD02 /* WebViewController.m in Sources */,
 				1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */,
+				1547B58A192848DA00330A94 /* SVWebViewControllerActivityChrome.m in Sources */,
 				15CC388C1824165000B3502A /* DetailViewController.m in Sources */,
 				1557D22C169F0D3E00F27AE4 /* WidgetViewController.m in Sources */,
 				1557D233169F0D3E00F27AE4 /* CalViewController.m in Sources */,
 				15A5565718270B100033CADA /* RSVPViewController.m in Sources */,
 				15454A6E18578DC00064A610 /* PhotoBrowser.m in Sources */,
+				1547B585192848DA00330A94 /* SVModalWebViewController.m in Sources */,
 				15529358169F7840006A8B99 /* LunchViewController.m in Sources */,
 				1552938B169FBD90006A8B99 /* HomeViewController.m in Sources */,
 				15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */,
@@ -1082,8 +1155,10 @@
 				15FFD9D318C69C9A0049FD02 /* FormsViewerViewController.m in Sources */,
 				15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */,
 				152FB66716B8C71300D0CB91 /* DirectionsViewController.m in Sources */,
+				1547B587192848DA00330A94 /* SVWebViewController.m in Sources */,
 				15FFD9DD18C69CCE0049FD02 /* OfflineViewerViewController.m in Sources */,
 				15A5565D182720440033CADA /* FullPurposeViewController.m in Sources */,
+				1547B58E192848DA00330A94 /* SVWebViewControllerActivitySafari.m in Sources */,
 				155A54CD16C40E37000FDAC5 /* AboutViewController.m in Sources */,
 				15727F0F16FA21E900586848 /* FormsViewController.m in Sources */,
 				15A5566718272A640033CADA /* ClubsViewController.m in Sources */,
@@ -1098,6 +1173,7 @@
 				15FFD9D018C69C780049FD02 /* BugsViewController.m in Sources */,
 				154EC1F517BF1A2100C7BC96 /* SettingsViewController.m in Sources */,
 				15A016CB17F0F737008311AB /* EAViewController.m in Sources */,
+				1547B590192848DA00330A94 /* SVWebViewControllerActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

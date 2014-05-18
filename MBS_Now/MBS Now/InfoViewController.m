@@ -7,7 +7,7 @@
 //
 
 #import "InfoViewController.h"
-#import "WebViewController.h"
+#import "SVModalWebViewController.h"
 #import "PhotoBrowser.h"
 #import <MessageUI/MessageUI.h>
 
@@ -68,7 +68,7 @@
 }
 
 - (IBAction)pushedVisitSite:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 

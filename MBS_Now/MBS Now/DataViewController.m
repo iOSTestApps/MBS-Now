@@ -7,7 +7,7 @@
 //
 
 #import "DataViewController.h"
-#import "WebViewController.h"
+#import "SVModalWebViewController.h"
 @implementation DataViewController
 
 - (void)viewDidLoad {
@@ -92,7 +92,7 @@
 }
 
 - (IBAction)pushedQuestion:(id)sender {
-    WebViewController *wvc = [[WebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 
@@ -102,9 +102,9 @@
     if (date) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd, HH:mm"];
-        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
+        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %ld launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
     } else
-        string = [NSString stringWithFormat:@"Never collected before. First collection in %d launch(es)", AUTO - (q % AUTO)];
+        string = [NSString stringWithFormat:@"Never collected before. First collection in %ld launch(es)", AUTO - (q % AUTO)];
     [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];
 }
 

@@ -16,15 +16,15 @@
 
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         // iOS 7.x
-        [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor darkGrayColor]}
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor]}
                                                  forState:UIControlStateNormal];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor clearColor]}
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor clearColor]}
                                                  forState:UIControlStateSelected];
     } else {
         [[UITabBar appearance] setTintColor:[UIColor colorWithWhite:40 alpha:.7]];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}
                                                  forState:UIControlStateNormal];
-        [[UITabBarItem appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor clearColor]}
+        [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor clearColor]}
                                                  forState:UIControlStateSelected];
     }
 }
