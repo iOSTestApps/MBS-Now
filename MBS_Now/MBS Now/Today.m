@@ -102,9 +102,9 @@
 }
 
 - (void)saveFeedsWithObject:(id)object andKey:(NSString *)key{
-    NSMutableArray *cur = ([_feeds[key] length] > 0) ? _feeds[key] : [NSMutableArray array];
+    if (!object) {[SVProgressHUD showErrorWithStatus:@"Report a bug: 'null' object in Today"]; return;}
+    NSMutableArray *cur = ([_feeds[key] count] > 0) ? _feeds[key] : [NSMutableArray array];
     [cur addObject:object];
-    NSLog(@"%@, %@", cur, key);
     [_feeds setObject:cur forKey:key];
 }
 

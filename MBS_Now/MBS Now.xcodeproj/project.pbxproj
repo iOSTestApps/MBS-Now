@@ -77,6 +77,8 @@
 		15AAF68218D28E4A001AC330 /* clubInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15AAF68118D28E4A001AC330 /* clubInfo.txt */; };
 		15AC1E64170A4F6E00908EA9 /* WelcomesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AC1E62170A4F6E00908EA9 /* WelcomesViewController.m */; };
 		15B9B27416B8DFAF00F29BC8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B9B26F16B8DEEE00F29BC8 /* CoreLocation.framework */; };
+		15BAFDA11935126700780C96 /* clock-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAFD9F1935126700780C96 /* clock-7.png */; };
+		15BAFDA21935126700780C96 /* clock-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAFDA01935126700780C96 /* clock-7@2x.png */; };
 		15C151CD1799F70600060CAB /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C151CB1799F70600060CAB /* DataViewController.m */; };
 		15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CBDA0F16ADAB1F00DC020B /* InfoViewController.m */; };
 		15CC38811823273D00B3502A /* SimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC38801823273D00B3502A /* SimpleWebViewController.m */; };
@@ -325,6 +327,8 @@
 		15AC1E61170A4F6D00908EA9 /* WelcomesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomesViewController.h; path = "MBS Now/WelcomesViewController.h"; sourceTree = "<group>"; };
 		15AC1E62170A4F6E00908EA9 /* WelcomesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomesViewController.m; path = "MBS Now/WelcomesViewController.m"; sourceTree = "<group>"; };
 		15B9B26F16B8DEEE00F29BC8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		15BAFD9F1935126700780C96 /* clock-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7.png"; sourceTree = "<group>"; };
+		15BAFDA01935126700780C96 /* clock-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7@2x.png"; sourceTree = "<group>"; };
 		15C151CA1799F70600060CAB /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		15C151CB1799F70600060CAB /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
 		15CBDA0E16ADAB1F00DC020B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
@@ -752,6 +756,7 @@
 		15AC1E68170A509000908EA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				157649031911745B008405B5 /* What's new */,
 				156AEAC8192D426A006239BA /* circle-down-7@2x.png */,
 				157C549B1929692D00D6B224 /* star-7.png */,
 				157C549C1929692D00D6B224 /* star-7@2x.png */,
@@ -763,7 +768,6 @@
 				157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */,
 				156AEAC4192D3DE9006239BA /* caution-7.png */,
 				156AEAC5192D3DE9006239BA /* caution-7@2x.png */,
-				157649031911745B008405B5 /* What's new */,
 				15FFD88718C69B040049FD02 /* 00.png */,
 				15FFD88818C69B040049FD02 /* 01.png */,
 				15FFD88918C69B040049FD02 /* 02.png */,
@@ -806,6 +810,8 @@
 				15FFD8B018C69B040049FD02 /* book-7-active@2x.png */,
 				15FFD8B118C69B040049FD02 /* bookmark-7-active.png */,
 				15FFD8B218C69B040049FD02 /* bookmark-7-active@2x.png */,
+				15BAFD9F1935126700780C96 /* clock-7.png */,
+				15BAFDA01935126700780C96 /* clock-7@2x.png */,
 				15FFD8B318C69B040049FD02 /* bug.png */,
 				15FFD8B418C69B040049FD02 /* bug@2x.png */,
 				15FFD8B518C69B040049FD02 /* clock.png */,
@@ -1036,6 +1042,7 @@
 				15FFD91D18C69B040049FD02 /* 3DCulpolaIcon72.png in Resources */,
 				15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */,
 				15FFD93018C69B040049FD02 /* arrow-forward@2x.png in Resources */,
+				15BAFDA11935126700780C96 /* clock-7.png in Resources */,
 				1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
 				15FFD9A118C69B040049FD02 /* tanButtonHighlight@2x.png in Resources */,
@@ -1056,6 +1063,7 @@
 				15FFD99318C69B040049FD02 /* RedOnWhiteInsignia(1004x768).png in Resources */,
 				15FFD97B18C69B040049FD02 /* map-pin-area-multiple@2x.png in Resources */,
 				15FFD96318C69B040049FD02 /* food-sign.png in Resources */,
+				15BAFDA21935126700780C96 /* clock-7@2x.png in Resources */,
 				15FFD93A18C69B040049FD02 /* big-tick.png in Resources */,
 				157C54A819296D3900D6B224 /* purchased-arrow-7.png in Resources */,
 				15FFD94718C69B040049FD02 /* clock@2x.png in Resources */,
