@@ -63,23 +63,32 @@
 		<th>Supported OS's</th>
 	</tr>
 	<tr>
+	  <td>4.0.9</td>
+	  <td>New 'Today' tab accumulates all news articles, schedules, lunch menus, notifications, meetings, events and more in one place. Also: design facelift, faster navigation, bug fixes, and exclusive iOS 7 support.</td>
+	  <td>Haven't submitted yet.</td>
+	  <td><b>iOS 7.0 and <i>later</i></b></td>
+	<tr>
+	<tr>
 	  <td>3.8.1</td>
 	  <td>More data to GitHub, bug fixes.</td>
-	  <td>TBD</td>
+	  <td>May 11, 2014</td>
+	  <td>iOS 7.1 and earlier</td>
 	<tr>
 	<tr>
 	  <td>3.7.1</td>
-	  <td>Some data moved to GitHub, no passwords for database credentials and club creation, bug fixes.</td>
+	  <td>Some data moved to GitHub, no passwords for database credentials and club creation, bug fixes. This version had some problems.</td>
 	  <td>May 7, 2014</td>
+	  <td>iOS 7.1 and earlier</td>
 	<tr>
 	<tr>
 	  <td>3.6.1</td>
 	  <td>Migration to campus.mbs.net, adding Lucas as the admin.</td>
-	  <td>March 27, 2014</td>
+	  <td>May 2, 2014</td>
+	  <td>iOS 7.1 and earlier</td>
 	<tr>
 		<td>3.5.1</td>
 		<td>Support for iOS 7.1, bug fixes.</td>
-		<td></td>
+		<td>March 27, 2014</td>
 		<td>iOS 7.1 and earlier</td>
 	</tr>
 	<tr>

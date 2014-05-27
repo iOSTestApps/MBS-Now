@@ -11,6 +11,6 @@
 @interface TodayCellTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *img;
-@property (weak, nonatomic) IBOutlet UILabel *dateTage;
+@property (weak, nonatomic) IBOutlet UILabel *dateTag;
 @property (weak, nonatomic) IBOutlet UITextView *messageBody;
 @end

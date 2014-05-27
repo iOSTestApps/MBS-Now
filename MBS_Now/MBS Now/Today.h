@@ -26,12 +26,17 @@
 
     NSURLConnection *scheduleConnection;
     NSMutableData *scheduleData;
+
+    NSURLConnection *todayScheduleConnection;
+    NSMutableData *todayScheduleData;
+    NSURLConnection *tomorrowScheduleConnection;
+    NSMutableData *tomorrowScheduleData;
 }
 
 @property (strong, nonatomic) NSMutableDictionary *feeds;
 // feeds[@"strings"] will be an array of text labels.text
-// feeds[@"heights"] will be an array of NSNumbers
 // feeds[@"images"] will be an array of UIImages
-// feeds[@"class"] will be a boolean indicating the UITableViewCell class (or subclass) ————— YES will be if it's standard, otherwise NO
+// feeds[@"class"] class name strings
+// feeds[@"urls"] will be the webpage loaded when a Standard cell is tapped.
 
 @end

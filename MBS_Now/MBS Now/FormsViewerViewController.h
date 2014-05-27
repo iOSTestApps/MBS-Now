@@ -18,6 +18,7 @@
 }
 
 - (id)initWithStringForURL:(NSString *)stringForURL; // default initializer
+- (id)initWithFullURL:(NSString *)full;
 - (void)mailLink;
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;

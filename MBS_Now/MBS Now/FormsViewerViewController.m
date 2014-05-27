@@ -17,13 +17,19 @@
     return [super initWithNibName:@"FormsViewerViewController_7"  bundle:nil];
 }
 
+- (id)initWithFullURL:(NSString *)full {
+    finalURL = [NSURL URLWithString:full];
+    return [super initWithNibName:@"FormsViewerViewController_7" bundle:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_webView setDelegate:self];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
 
-    finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
+    finalURL = (finalURL) ? finalURL : [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
+    NSLog(@"%@", finalURL);
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
 
     if (connection) receivedData = [NSMutableData data];
