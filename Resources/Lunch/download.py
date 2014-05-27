@@ -48,7 +48,7 @@ if auto_commit is 'y':
 	os.system("git add -A Resources/")
 	os.system("git commit -m 'lunch menus for this week'")
 	os.system("git remote rm origin")
-	os.system("git remote add origin https://github.com/gdyer/MBS-Now.git")
+	os.system("git remote add origin https://github.com/mbsdev/MBS-Now.git")
 	os.system("git push origin master")
 else:
     print('Leaving the updating to you.')
