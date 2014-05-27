@@ -38,10 +38,12 @@
 		1557D217169F0D3E00F27AE4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1557D215169F0D3E00F27AE4 /* InfoPlist.strings */; };
 		1557D219169F0D3E00F27AE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1557D218169F0D3E00F27AE4 /* main.m */; };
 		1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1557D21C169F0D3E00F27AE4 /* AppDelegate.m */; };
-		1557D22C169F0D3E00F27AE4 /* WidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1557D22B169F0D3E00F27AE4 /* WidgetViewController.m */; };
 		1557D233169F0D3E00F27AE4 /* CalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1557D232169F0D3E00F27AE4 /* CalViewController.m */; };
 		15592B8C179F4DB4003FE956 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15592B8B179F4DB4003FE956 /* TabViewController.m */; };
 		155A54CD16C40E37000FDAC5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 155A54CC16C40E36000FDAC5 /* AboutViewController.m */; };
+		156AEAC6192D3DE9006239BA /* caution-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 156AEAC4192D3DE9006239BA /* caution-7.png */; };
+		156AEAC7192D3DE9006239BA /* caution-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156AEAC5192D3DE9006239BA /* caution-7@2x.png */; };
+		156AEAC9192D426A006239BA /* circle-down-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156AEAC8192D426A006239BA /* circle-down-7@2x.png */; };
 		156CAA6916DC10990057A2C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156CAA6116DC10810057A2C1 /* MessageUI.framework */; };
 		15727F0F16FA21E900586848 /* FormsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15727F0E16FA21E900586848 /* FormsViewController.m */; };
 		1573821117F2436E00956F6F /* databases.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1573820E17F2436E00956F6F /* databases.plist */; };
@@ -50,6 +52,18 @@
 		157649061911785B008405B5 /* campus.png in Resources */ = {isa = PBXBuildFile; fileRef = 157649041911785B008405B5 /* campus.png */; };
 		157649071911785B008405B5 /* github.png in Resources */ = {isa = PBXBuildFile; fileRef = 157649051911785B008405B5 /* github.png */; };
 		1576490919117A2F008405B5 /* lucas.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576490819117A2F008405B5 /* lucas.png */; };
+		157C54881929499F00D6B224 /* list-star-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54861929499F00D6B224 /* list-star-7.png */; };
+		157C54891929499F00D6B224 /* list-star-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54871929499F00D6B224 /* list-star-7@2x.png */; };
+		157C548C19294E7500D6B224 /* TodayCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */; };
+		157C548F1929503100D6B224 /* calendar-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C548D1929503100D6B224 /* calendar-7.png */; };
+		157C54901929503100D6B224 /* calendar-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C548E1929503100D6B224 /* calendar-7@2x.png */; };
+		157C54931929514F00D6B224 /* Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C54921929514F00D6B224 /* Today.m */; };
+		157C549619295E4500D6B224 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C549519295E4500D6B224 /* XMLDictionary.m */; };
+		157C549D1929692D00D6B224 /* star-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C549B1929692D00D6B224 /* star-7.png */; };
+		157C549E1929692D00D6B224 /* star-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C549C1929692D00D6B224 /* star-7@2x.png */; };
+		157C54A819296D3900D6B224 /* purchased-arrow-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54A619296D3900D6B224 /* purchased-arrow-7.png */; };
+		157C54A919296D3900D6B224 /* purchased-arrow-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */; };
+		157C54AC19296E5B00D6B224 /* StandardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */; };
 		15891B6E16FCEB550092BEEF /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15891B6D16FCEB540092BEEF /* ExploreViewController.m */; };
 		159773DC17606AB200D9AEB3 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773DB17606AB100D9AEB3 /* ContactViewController.m */; };
 		159773E1176116D100D9AEB3 /* OfflineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773E0176116D100D9AEB3 /* OfflineViewController.m */; };
@@ -118,15 +132,6 @@
 		15FFD94518C69B040049FD02 /* bug@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8B418C69B040049FD02 /* bug@2x.png */; };
 		15FFD94618C69B040049FD02 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8B518C69B040049FD02 /* clock.png */; };
 		15FFD94718C69B040049FD02 /* clock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8B618C69B040049FD02 /* clock@2x.png */; };
-		15FFD94A18C69B040049FD02 /* CupolaImageTest(RedOnWhite)29.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8B918C69B040049FD02 /* CupolaImageTest(RedOnWhite)29.png */; };
-		15FFD94B18C69B040049FD02 /* CupolaImageTest(RedOnWhite)40.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BA18C69B040049FD02 /* CupolaImageTest(RedOnWhite)40.png */; };
-		15FFD94C18C69B040049FD02 /* CupolaImageTest(RedOnWhite)50.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BB18C69B040049FD02 /* CupolaImageTest(RedOnWhite)50.png */; };
-		15FFD94D18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BC18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png */; };
-		15FFD94E18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BD18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png */; };
-		15FFD94F18C69B040049FD02 /* CupolaImageTest(RedOnWhite)80.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BE18C69B040049FD02 /* CupolaImageTest(RedOnWhite)80.png */; };
-		15FFD95018C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8BF18C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png */; };
-		15FFD95118C69B040049FD02 /* CupolaImageTest(RedOnWhite)120.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8C018C69B040049FD02 /* CupolaImageTest(RedOnWhite)120.png */; };
-		15FFD95218C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8C118C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png */; };
 		15FFD95418C69B040049FD02 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8C318C69B040049FD02 /* Default-568h@2x.png */; };
 		15FFD95518C69B040049FD02 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8C418C69B040049FD02 /* Default-Landscape@2x~ipad.png */; };
 		15FFD95618C69B040049FD02 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8C518C69B040049FD02 /* Default-Landscape~ipad.png */; };
@@ -267,14 +272,15 @@
 		1557D21A169F0D3E00F27AE4 /* MBS Now-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBS Now-Prefix.pch"; sourceTree = "<group>"; };
 		1557D21B169F0D3E00F27AE4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1557D21C169F0D3E00F27AE4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1557D22A169F0D3E00F27AE4 /* WidgetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WidgetViewController.h; sourceTree = "<group>"; };
-		1557D22B169F0D3E00F27AE4 /* WidgetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WidgetViewController.m; sourceTree = "<group>"; };
 		1557D231169F0D3E00F27AE4 /* CalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalViewController.h; sourceTree = "<group>"; };
 		1557D232169F0D3E00F27AE4 /* CalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalViewController.m; sourceTree = "<group>"; };
 		15592B8A179F4DB3003FE956 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		15592B8B179F4DB4003FE956 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		155A54CB16C40E36000FDAC5 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		155A54CC16C40E36000FDAC5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		156AEAC4192D3DE9006239BA /* caution-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caution-7.png"; sourceTree = "<group>"; };
+		156AEAC5192D3DE9006239BA /* caution-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caution-7@2x.png"; sourceTree = "<group>"; };
+		156AEAC8192D426A006239BA /* circle-down-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "circle-down-7@2x.png"; sourceTree = "<group>"; };
 		156CAA6116DC10810057A2C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		15727F0D16FA21E900586848 /* FormsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormsViewController.h; sourceTree = "<group>"; };
 		15727F0E16FA21E900586848 /* FormsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormsViewController.m; sourceTree = "<group>"; };
@@ -284,6 +290,22 @@
 		157649041911785B008405B5 /* campus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = campus.png; sourceTree = "<group>"; };
 		157649051911785B008405B5 /* github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github.png; sourceTree = "<group>"; };
 		1576490819117A2F008405B5 /* lucas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucas.png; sourceTree = "<group>"; };
+		157C54861929499F00D6B224 /* list-star-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-star-7.png"; sourceTree = "<group>"; };
+		157C54871929499F00D6B224 /* list-star-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-star-7@2x.png"; sourceTree = "<group>"; };
+		157C548A19294E7500D6B224 /* TodayCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayCellTableViewCell.h; sourceTree = "<group>"; };
+		157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayCellTableViewCell.m; sourceTree = "<group>"; };
+		157C548D1929503100D6B224 /* calendar-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7.png"; sourceTree = "<group>"; };
+		157C548E1929503100D6B224 /* calendar-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7@2x.png"; sourceTree = "<group>"; };
+		157C54911929514F00D6B224 /* Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Today.h; sourceTree = "<group>"; };
+		157C54921929514F00D6B224 /* Today.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Today.m; sourceTree = "<group>"; };
+		157C549419295E4500D6B224 /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = ../XMLDictionary.h; sourceTree = "<group>"; };
+		157C549519295E4500D6B224 /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = ../XMLDictionary.m; sourceTree = "<group>"; };
+		157C549B1929692D00D6B224 /* star-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-7.png"; sourceTree = "<group>"; };
+		157C549C1929692D00D6B224 /* star-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-7@2x.png"; sourceTree = "<group>"; };
+		157C54A619296D3900D6B224 /* purchased-arrow-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purchased-arrow-7.png"; sourceTree = "<group>"; };
+		157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "purchased-arrow-7@2x.png"; sourceTree = "<group>"; };
+		157C54AA19296E5B00D6B224 /* StandardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandardTableViewCell.h; path = ../StandardTableViewCell.h; sourceTree = "<group>"; };
+		157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandardTableViewCell.m; path = ../StandardTableViewCell.m; sourceTree = "<group>"; };
 		15891B6C16FCEB540092BEEF /* ExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
 		15891B6D16FCEB540092BEEF /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
 		159773DA17606AB000D9AEB3 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
@@ -365,15 +387,6 @@
 		15FFD8B418C69B040049FD02 /* bug@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bug@2x.png"; path = "Images/bug@2x.png"; sourceTree = "<group>"; };
 		15FFD8B518C69B040049FD02 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = clock.png; path = Images/clock.png; sourceTree = "<group>"; };
 		15FFD8B618C69B040049FD02 /* clock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "clock@2x.png"; path = "Images/clock@2x.png"; sourceTree = "<group>"; };
-		15FFD8B918C69B040049FD02 /* CupolaImageTest(RedOnWhite)29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)29.png"; path = "Images/CupolaImageTest(RedOnWhite)29.png"; sourceTree = "<group>"; };
-		15FFD8BA18C69B040049FD02 /* CupolaImageTest(RedOnWhite)40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)40.png"; path = "Images/CupolaImageTest(RedOnWhite)40.png"; sourceTree = "<group>"; };
-		15FFD8BB18C69B040049FD02 /* CupolaImageTest(RedOnWhite)50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)50.png"; path = "Images/CupolaImageTest(RedOnWhite)50.png"; sourceTree = "<group>"; };
-		15FFD8BC18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)58.png"; path = "Images/CupolaImageTest(RedOnWhite)58.png"; sourceTree = "<group>"; };
-		15FFD8BD18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)76.png"; path = "Images/CupolaImageTest(RedOnWhite)76.png"; sourceTree = "<group>"; };
-		15FFD8BE18C69B040049FD02 /* CupolaImageTest(RedOnWhite)80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)80.png"; path = "Images/CupolaImageTest(RedOnWhite)80.png"; sourceTree = "<group>"; };
-		15FFD8BF18C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)100.png"; path = "Images/CupolaImageTest(RedOnWhite)100.png"; sourceTree = "<group>"; };
-		15FFD8C018C69B040049FD02 /* CupolaImageTest(RedOnWhite)120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)120.png"; path = "Images/CupolaImageTest(RedOnWhite)120.png"; sourceTree = "<group>"; };
-		15FFD8C118C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CupolaImageTest(RedOnWhite)152.png"; path = "Images/CupolaImageTest(RedOnWhite)152.png"; sourceTree = "<group>"; };
 		15FFD8C318C69B040049FD02 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		15FFD8C418C69B040049FD02 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "Images/Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		15FFD8C518C69B040049FD02 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Images/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
@@ -560,6 +573,7 @@
 		1547B591192848E200330A94 /* SVWeb */ = {
 			isa = PBXGroup;
 			children = (
+				1547B576192848DA00330A94 /* UIActivities */,
 				1547B571192848DA00330A94 /* SVModalWebViewController.h */,
 				1547B572192848DA00330A94 /* SVModalWebViewController.m */,
 				1547B573192848DA00330A94 /* SVWebViewController.bundle */,
@@ -574,8 +588,7 @@
 			children = (
 				15529389169FBD90006A8B99 /* HomeViewController.h */,
 				1552938A169FBD90006A8B99 /* HomeViewController.m */,
-				1557D22A169F0D3E00F27AE4 /* WidgetViewController.h */,
-				1557D22B169F0D3E00F27AE4 /* WidgetViewController.m */,
+				157C549A1929688900D6B224 /* Today */,
 				15727F0D16FA21E900586848 /* FormsViewController.h */,
 				15727F0E16FA21E900586848 /* FormsViewController.m */,
 				15529356169F7840006A8B99 /* LunchViewController.h */,
@@ -589,7 +602,6 @@
 			isa = PBXGroup;
 			children = (
 				1547B591192848E200330A94 /* SVWeb */,
-				1547B576192848DA00330A94 /* UIActivities */,
 				15FFD9DE18C69CFE0049FD02 /* SVProgressHUD */,
 				1557D212169F0D3E00F27AE4 /* MBS Now */,
 				1557D209169F0D3E00F27AE4 /* Products */,
@@ -707,6 +719,21 @@
 			name = "What's new";
 			sourceTree = "<group>";
 		};
+		157C549A1929688900D6B224 /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				157C54911929514F00D6B224 /* Today.h */,
+				157C54921929514F00D6B224 /* Today.m */,
+				157C549419295E4500D6B224 /* XMLDictionary.h */,
+				157C549519295E4500D6B224 /* XMLDictionary.m */,
+				157C548A19294E7500D6B224 /* TodayCellTableViewCell.h */,
+				157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */,
+				157C54AA19296E5B00D6B224 /* StandardTableViewCell.h */,
+				157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */,
+			);
+			name = Today;
+			sourceTree = "<group>";
+		};
 		159390CF182EDBA600E4AFA7 /* Clubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +752,17 @@
 		15AC1E68170A509000908EA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				156AEAC8192D426A006239BA /* circle-down-7@2x.png */,
+				157C549B1929692D00D6B224 /* star-7.png */,
+				157C549C1929692D00D6B224 /* star-7@2x.png */,
+				157C548D1929503100D6B224 /* calendar-7.png */,
+				157C548E1929503100D6B224 /* calendar-7@2x.png */,
+				157C54861929499F00D6B224 /* list-star-7.png */,
+				157C54871929499F00D6B224 /* list-star-7@2x.png */,
+				157C54A619296D3900D6B224 /* purchased-arrow-7.png */,
+				157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */,
+				156AEAC4192D3DE9006239BA /* caution-7.png */,
+				156AEAC5192D3DE9006239BA /* caution-7@2x.png */,
 				157649031911745B008405B5 /* What's new */,
 				15FFD88718C69B040049FD02 /* 00.png */,
 				15FFD88818C69B040049FD02 /* 01.png */,
@@ -772,15 +810,6 @@
 				15FFD8B418C69B040049FD02 /* bug@2x.png */,
 				15FFD8B518C69B040049FD02 /* clock.png */,
 				15FFD8B618C69B040049FD02 /* clock@2x.png */,
-				15FFD8B918C69B040049FD02 /* CupolaImageTest(RedOnWhite)29.png */,
-				15FFD8BA18C69B040049FD02 /* CupolaImageTest(RedOnWhite)40.png */,
-				15FFD8BB18C69B040049FD02 /* CupolaImageTest(RedOnWhite)50.png */,
-				15FFD8BC18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png */,
-				15FFD8BD18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png */,
-				15FFD8BE18C69B040049FD02 /* CupolaImageTest(RedOnWhite)80.png */,
-				15FFD8BF18C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png */,
-				15FFD8C018C69B040049FD02 /* CupolaImageTest(RedOnWhite)120.png */,
-				15FFD8C118C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png */,
 				15FFD8C318C69B040049FD02 /* Default-568h@2x.png */,
 				15FFD8C418C69B040049FD02 /* Default-Landscape@2x~ipad.png */,
 				15FFD8C518C69B040049FD02 /* Default-Landscape~ipad.png */,
@@ -964,14 +993,13 @@
 				15FFD97618C69B040049FD02 /* key.png in Resources */,
 				15FFD91B18C69B040049FD02 /* 03.png in Resources */,
 				15FFD91A18C69B040049FD02 /* 02.png in Resources */,
-				15FFD94E18C69B040049FD02 /* CupolaImageTest(RedOnWhite)76.png in Resources */,
 				1547B58B192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				15FFD99118C69B040049FD02 /* rank@2x.png in Resources */,
 				1557D217169F0D3E00F27AE4 /* InfoPlist.strings in Resources */,
 				15FFD95918C69B040049FD02 /* Default~ipad.png in Resources */,
+				157C549E1929692D00D6B224 /* star-7@2x.png in Resources */,
 				153EFD4F17FCC3A900C3205C /* StoryboardPhone_7.storyboard in Resources */,
 				15FFD94018C69B040049FD02 /* book-7-active.png in Resources */,
-				15FFD94D18C69B040049FD02 /* CupolaImageTest(RedOnWhite)58.png in Resources */,
 				1547B586192848DA00330A94 /* SVWebViewController.bundle in Resources */,
 				15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */,
 				15FFD94618C69B040049FD02 /* clock.png in Resources */,
@@ -986,7 +1014,6 @@
 				15FFD95C18C69B040049FD02 /* direction-sign-multiple-7-active@2x.png in Resources */,
 				15FFD99D18C69B040049FD02 /* sun@2x.png in Resources */,
 				15FFD99518C69B040049FD02 /* RMitchellWebPic.jpg in Resources */,
-				15FFD94C18C69B040049FD02 /* CupolaImageTest(RedOnWhite)50.png in Resources */,
 				15FFD92B18C69B040049FD02 /* arrow-circle-01g@2x.png in Resources */,
 				15FFD96918C69B040049FD02 /* greyButton.png in Resources */,
 				15FFD93D18C69B040049FD02 /* blackButton@2x.png in Resources */,
@@ -1002,6 +1029,7 @@
 				15FFD92D18C69B040049FD02 /* arrow-circle-02@2x.png in Resources */,
 				15F2E815176972FF00FA1073 /* WelcomesViewController_7.xib in Resources */,
 				15FFD98218C69B040049FD02 /* P0.png in Resources */,
+				157C54881929499F00D6B224 /* list-star-7.png in Resources */,
 				15AAF68218D28E4A001AC330 /* clubInfo.txt in Resources */,
 				15FFD96618C69B040049FD02 /* forward-7-active@2x.png in Resources */,
 				15FFD96718C69B040049FD02 /* gear-7-active.png in Resources */,
@@ -1012,6 +1040,7 @@
 				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
 				15FFD9A118C69B040049FD02 /* tanButtonHighlight@2x.png in Resources */,
 				15FFD9DC18C69CCE0049FD02 /* OfflineViewerViewController_7.xib in Resources */,
+				156AEAC7192D3DE9006239BA /* caution-7@2x.png in Resources */,
 				15FFD92618C69B040049FD02 /* arrow-back.png in Resources */,
 				15FFD99818C69B040049FD02 /* server-network-setting-white.png in Resources */,
 				15FFD98418C69B040049FD02 /* paper-clip@2x.png in Resources */,
@@ -1019,16 +1048,16 @@
 				15FFD92918C69B040049FD02 /* arrow-circle-01@2x.png in Resources */,
 				15FFD93218C69B040049FD02 /* arrow-reload-7-active@2x.png in Resources */,
 				153E7490186A55C7004A9B5A /* contactme.html in Resources */,
-				15FFD94A18C69B040049FD02 /* CupolaImageTest(RedOnWhite)29.png in Resources */,
 				15FFD9A418C69B040049FD02 /* timer-7-active.png in Resources */,
 				15FFD99018C69B040049FD02 /* rank.png in Resources */,
+				157C54891929499F00D6B224 /* list-star-7@2x.png in Resources */,
 				15FFD95818C69B040049FD02 /* Default.png in Resources */,
 				15FFD9A018C69B040049FD02 /* tanButtonHighlight.png in Resources */,
 				15FFD99318C69B040049FD02 /* RedOnWhiteInsignia(1004x768).png in Resources */,
 				15FFD97B18C69B040049FD02 /* map-pin-area-multiple@2x.png in Resources */,
 				15FFD96318C69B040049FD02 /* food-sign.png in Resources */,
-				15FFD95118C69B040049FD02 /* CupolaImageTest(RedOnWhite)120.png in Resources */,
 				15FFD93A18C69B040049FD02 /* big-tick.png in Resources */,
+				157C54A819296D3900D6B224 /* purchased-arrow-7.png in Resources */,
 				15FFD94718C69B040049FD02 /* clock@2x.png in Resources */,
 				15FFD97718C69B040049FD02 /* key@2x.png in Resources */,
 				15FFD96D18C69B040049FD02 /* greyButtonHighlight@2x.png in Resources */,
@@ -1041,14 +1070,13 @@
 				15FFD95B18C69B040049FD02 /* direction-sign-multiple-7-active.png in Resources */,
 				15FFD91F18C69B040049FD02 /* 3DCulpolaIcon144.png in Resources */,
 				15A878B91808A9B4009A0C21 /* Images.xcassets in Resources */,
+				157C54A919296D3900D6B224 /* purchased-arrow-7@2x.png in Resources */,
 				152AE16418D7CFEA00D8BC44 /* HeadmasterWelcome.txt in Resources */,
-				15FFD95218C69B040049FD02 /* CupolaImageTest(RedOnWhite)152.png in Resources */,
 				15FFD93418C69B040049FD02 /* arrow-right-out@2x.png in Resources */,
 				15CC38911825B4AB00B3502A /* delete.html in Resources */,
 				15FFD91E18C69B040049FD02 /* 3DCulpolaIcon114.png in Resources */,
 				15FFD92A18C69B040049FD02 /* arrow-circle-01g.png in Resources */,
 				1547B58D192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
-				15FFD95018C69B040049FD02 /* CupolaImageTest(RedOnWhite)100.png in Resources */,
 				15FFD98D18C69B040049FD02 /* question@2x.png in Resources */,
 				15FFD94518C69B040049FD02 /* bug@2x.png in Resources */,
 				15FFD99B18C69B040049FD02 /* star-7-active.png in Resources */,
@@ -1060,7 +1088,6 @@
 				15FFD99418C69B040049FD02 /* RedOnWhiteInsignia(1536x2048).png in Resources */,
 				15FFD98B18C69B040049FD02 /* plus-7-active.png in Resources */,
 				153B638618195A7400726215 /* StoryboardPad_7.storyboard in Resources */,
-				15FFD94F18C69B040049FD02 /* CupolaImageTest(RedOnWhite)80.png in Resources */,
 				15FFD92C18C69B040049FD02 /* arrow-circle-02.png in Resources */,
 				15FFD99718C69B040049FD02 /* school@2x.png in Resources */,
 				15FFD9A718C69B040049FD02 /* upload-7-active@2x.png in Resources */,
@@ -1078,9 +1105,11 @@
 				15FFD93B18C69B040049FD02 /* big-tick@2x.png in Resources */,
 				15FFD95F18C69B040049FD02 /* downward-arrow-7-active.png in Resources */,
 				15FFD95718C69B040049FD02 /* Default-Portrait@2x.png in Resources */,
+				157C549D1929692D00D6B224 /* star-7.png in Resources */,
 				15FFD97018C69B040049FD02 /* home-7-active.png in Resources */,
 				15FFD93518C69B040049FD02 /* backpack@2x.png in Resources */,
 				15FFD99218C69B040049FD02 /* RedOnWhiteInsignia(768x1024).png in Resources */,
+				157C54901929503100D6B224 /* calendar-7@2x.png in Resources */,
 				15FFD95E18C69B040049FD02 /* download-7-active@2x.png in Resources */,
 				15FFD91918C69B040049FD02 /* 01.png in Resources */,
 				1573821117F2436E00956F6F /* databases.plist in Resources */,
@@ -1089,6 +1118,7 @@
 				15FFD98C18C69B040049FD02 /* plus-7-active@2x.png in Resources */,
 				15FFD92818C69B040049FD02 /* arrow-circle-01.png in Resources */,
 				15FFD99E18C69B040049FD02 /* tanButton.png in Resources */,
+				156AEAC6192D3DE9006239BA /* caution-7.png in Resources */,
 				15FFD98918C69B040049FD02 /* phone-book.png in Resources */,
 				15FFD97F18C69B040049FD02 /* noodle@2x.png in Resources */,
 				15FFD96118C69B040049FD02 /* finger-touch.png in Resources */,
@@ -1102,7 +1132,9 @@
 				15FFD97218C69B040049FD02 /* image@2x.png in Resources */,
 				15FFD98618C69B040049FD02 /* paperwork@2x.png in Resources */,
 				15FFD93718C69B040049FD02 /* backward-7-active@2x.png in Resources */,
+				157C548F1929503100D6B224 /* calendar-7.png in Resources */,
 				15FFD93318C69B040049FD02 /* arrow-right-out.png in Resources */,
+				156AEAC9192D426A006239BA /* circle-down-7@2x.png in Resources */,
 				1547B58C192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				15FFD96218C69B040049FD02 /* finger-touch@2x.png in Resources */,
 				15FFD92018C69B040049FD02 /* 10.png in Resources */,
@@ -1128,7 +1160,6 @@
 				15FFD96518C69B040049FD02 /* forward-7-active.png in Resources */,
 				15FFD91818C69B040049FD02 /* 00.png in Resources */,
 				157649061911785B008405B5 /* campus.png in Resources */,
-				15FFD94B18C69B040049FD02 /* CupolaImageTest(RedOnWhite)40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1140,16 +1171,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				1557D219169F0D3E00F27AE4 /* main.m in Sources */,
+				157C54AC19296E5B00D6B224 /* StandardTableViewCell.m in Sources */,
 				1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */,
 				1547B58A192848DA00330A94 /* SVWebViewControllerActivityChrome.m in Sources */,
 				15CC388C1824165000B3502A /* DetailViewController.m in Sources */,
-				1557D22C169F0D3E00F27AE4 /* WidgetViewController.m in Sources */,
+				157C549619295E4500D6B224 /* XMLDictionary.m in Sources */,
 				1557D233169F0D3E00F27AE4 /* CalViewController.m in Sources */,
 				15A5565718270B100033CADA /* RSVPViewController.m in Sources */,
 				15454A6E18578DC00064A610 /* PhotoBrowser.m in Sources */,
 				1547B585192848DA00330A94 /* SVModalWebViewController.m in Sources */,
 				15529358169F7840006A8B99 /* LunchViewController.m in Sources */,
 				1552938B169FBD90006A8B99 /* HomeViewController.m in Sources */,
+				157C548C19294E7500D6B224 /* TodayCellTableViewCell.m in Sources */,
 				15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */,
 				15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */,
 				15FFD9D318C69C9A0049FD02 /* FormsViewerViewController.m in Sources */,
@@ -1166,6 +1199,7 @@
 				15CC38811823273D00B3502A /* SimpleWebViewController.m in Sources */,
 				15AC1E64170A4F6E00908EA9 /* WelcomesViewController.m in Sources */,
 				159773DC17606AB200D9AEB3 /* ContactViewController.m in Sources */,
+				157C54931929514F00D6B224 /* Today.m in Sources */,
 				159773E1176116D100D9AEB3 /* OfflineViewController.m in Sources */,
 				15C151CD1799F70600060CAB /* DataViewController.m in Sources */,
 				15592B8C179F4DB4003FE956 /* TabViewController.m in Sources */,

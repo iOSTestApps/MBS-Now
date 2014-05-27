@@ -21,8 +21,11 @@
     [super viewDidLoad];
     [_webView setDelegate:self];
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+
     finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
+
     if (connection) receivedData = [NSMutableData data];
     
     [_webView loadRequest:[NSURLRequest requestWithURL:finalURL]];
@@ -31,7 +34,7 @@
 #pragma mark Connection
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showWithStatus:@"Loading"];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -52,26 +55,17 @@
     }
 }
 
-#pragma mark - Actions
-- (IBAction)done:(id)sender {
-    [_webView stopLoading];
-    [SVProgressHUD dismiss];
-    finalURL = nil;
-    extensionName = nil;
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark Action button
-- (IBAction)pushedOpenIn:(id)sender {
+- (void)share {
     if (sheet) {
         [sheet dismissWithClickedButtonIndex:-1 animated:YES];
         sheet = nil;
         return;
     }
     
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Output options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Copy link to doc", @"New email with link", @"Print", nil];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Share this form" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Copy link to doc", @"New email with link", @"Print", nil];
 
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) [sheet showFromBarButtonItem:output animated:YES];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     else [sheet showInView:_webView];
 }
 
@@ -130,7 +124,7 @@
     void (^completionHandler)(UIPrintInteractionController *, BOOL, NSError *) =
     ^(UIPrintInteractionController *printController, BOOL completed, NSError *error) {
         if(!completed && error){
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Failed! due to error in domain %@ with error code %ld", error.domain, (long)error.code]];
+            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Error in domain %@ with error code %ld", error.domain, (long)error.code]];
         }
     };
     UIPrintInfo *printInfo = [UIPrintInfo printInfo];
@@ -144,7 +138,7 @@
     viewFormatter.startPage = 0;
     controller.printFormatter = viewFormatter;
 
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) [controller presentFromBarButtonItem:output animated:YES completionHandler:completionHandler];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) [controller presentFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES completionHandler:completionHandler];
     else [controller presentAnimated:YES completionHandler:completionHandler];
 }
 

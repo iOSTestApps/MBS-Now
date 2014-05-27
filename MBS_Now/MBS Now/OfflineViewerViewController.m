@@ -15,7 +15,7 @@ UIAlertView *defaultAlert;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.title = @"Offline Schedules";
     imageView.image = [UIImage imageNamed:imageName];
     
     scrollView.contentSize = CGSizeMake(imageView.frame.size.width , imageView.frame.size.height);

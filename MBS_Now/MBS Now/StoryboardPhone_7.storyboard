@@ -23,160 +23,99 @@
             </objects>
             <point key="canvasLocation" x="-1370" y="-400"/>
         </scene>
-        <!--Widget View Controller - First-->
-        <scene sceneID="11">
+        <!--Today - Today-->
+        <scene sceneID="ET1-k9-Yei">
             <objects>
-                <viewController title="First" id="2" customClass="WidgetViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="16">
+                <tableViewController id="7rY-Ro-EPc" customClass="Today" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="mAP-Bx-f67">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" id="s0A-gX-9Pv">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.85005132299999997" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Daily Schedule" id="sLI-uc-KCh">
-                                        <barButtonItem key="leftBarButtonItem" title="Special" id="7Xx-gt-atm">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G7M-WV-8To">
-                                                <rect key="frame" x="16" y="7" width="41" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="star-7-active.png">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="pushedSpecial:" destination="2" eventType="touchUpInside" id="OWD-5f-TFw"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" id="3mV-P4-PIP">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uta-1I-Kux">
-                                                <rect key="frame" x="263" y="7" width="41" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="arrow-reload-7-active.png">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="pushedReload:" destination="2" eventType="touchUpInside" id="h0D-Nz-kLe"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="w94-47-e8Q">
-                                <rect key="frame" x="0.0" y="66" width="320" height="363"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <dataDetectorType key="dataDetectorTypes"/>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" image="clock.png" id="7"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="_webView" destination="w94-47-e8Q" id="7vb-0f-KP3"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1379" y="830"/>
-        </scene>
-        <!--Lunch View Controller - Lunch-->
-        <scene sceneID="zvF-Rc-CBY">
-            <objects>
-                <viewController id="MGl-qa-C7B" customClass="LunchViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QGt-oS-aS2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" id="18e-en-pea">
-                                <rect key="frame" x="0.0" y="64" width="320" height="278"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                            </webView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" id="lvF-OM-dMQ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.85005132299999997" alpha="0.59999999999999998" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <navigationItem title="Lunch Menu" id="icU-Cx-dlt">
-                                        <barButtonItem key="leftBarButtonItem" id="mv4-nB-YIr">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ylc-Kv-hxt">
-                                                <rect key="frame" x="16" y="7" width="41" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="arrow-reload-7-active.png">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="pushedRefresh:" destination="MGl-qa-C7B" eventType="touchUpInside" id="VxD-IS-fG0"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" id="gag-36-9ht">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="i26-0b-nTG">
-                                                <rect key="frame" x="263" y="7" width="41" height="29"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" image="mutiply-sign.png">
-                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <state key="highlighted">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="pushedStop:" destination="MGl-qa-C7B" eventType="touchUpInside" id="K9A-K7-bvy"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="JPF-8t-4w0">
-                                <rect key="frame" x="0.0" y="343" width="320" height="87"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <color key="sectionIndexColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="today" rowHeight="80" id="LPq-jJ-MVA" customClass="TodayCellTableViewCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LPq-jJ-MVA" id="OcZ-jl-xri">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/18/2014, 3:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Qw-Gg-yFl">
+                                            <rect key="frame" x="51" y="3" width="249" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar-7.png" id="df9-op-qok">
+                                            <rect key="frame" x="6" y="0.0" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is an event (or story) from the mbs.net. Locations will appear here too." id="buF-cp-b3U">
+                                            <rect key="frame" x="6" y="32" width="294" height="55"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dataSource" destination="MGl-qa-C7B" id="Dwd-1g-AbW"/>
-                                    <outlet property="delegate" destination="MGl-qa-C7B" id="kbF-bC-z0K"/>
+                                    <outlet property="dateTage" destination="1Qw-Gg-yFl" id="Wuw-nk-ZCm"/>
+                                    <outlet property="img" destination="df9-op-qok" id="6Xa-wS-oXT"/>
+                                    <outlet property="messageBody" destination="buF-cp-b3U" id="7wW-LV-eWb"/>
                                 </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Lunch" image="noodle.png" id="Ogx-5X-VNh"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="_webView" destination="18e-en-pea" id="hXV-mx-7pl"/>
-                        <outlet property="tblView" destination="JPF-8t-4w0" id="sfp-Ud-AgG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7x9-rr-1yb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="standard" rowHeight="46" id="wA7-jc-bfP" customClass="StandardTableViewCell">
+                                <rect key="frame" x="0.0" y="166" width="320" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wA7-jc-bfP" id="oXo-a0-dVG">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="45"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-7.png" id="Qrg-hL-S2I">
+                                            <rect key="frame" x="6" y="5" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's a special schedule available." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LVw-rU-VEF">
+                                            <rect key="frame" x="46" y="13" width="231" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="img" destination="Qrg-hL-S2I" id="evK-HA-rOU"/>
+                                    <outlet property="label" destination="LVw-rU-VEF" id="3un-eI-Lod"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7rY-Ro-EPc" id="1vD-U6-wLY"/>
+                            <outlet property="delegate" destination="7rY-Ro-EPc" id="W5u-Qu-LL1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Today" id="9t9-r3-BQz"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eJ8-q2-Kwh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1379" y="194"/>
+            <point key="canvasLocation" x="-1107" y="518"/>
+        </scene>
+        <!--Navigation Controller - Today-->
+        <scene sceneID="jWa-CZ-4V8">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="FpI-w6-GDL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Today" image="list-star-7.png" id="gQ6-r4-S0h"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cXZ-Q5-Ppz">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7rY-Ro-EPc" kind="relationship" relationship="rootViewController" id="Zdl-5u-mLT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zl8-7f-DZB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1487" y="516"/>
         </scene>
         <!--Home View Controller - MBS Now-->
         <scene sceneID="2YJ-wb-IFm">
@@ -519,10 +458,10 @@
                                     <outlet property="delegate" destination="BLi-Tv-e8g" id="Hsu-xL-bUd"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" id="iYB-Np-FrP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="3"/>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" id="er1-QB-bIU">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="4"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="0.51000000000000001" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -672,6 +611,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Offline Schedules" id="bei-4r-5RN"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sO4-Vl-E0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -698,6 +638,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Contact MBS" id="bGW-FD-AWG"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1m-hJ-3zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -750,6 +691,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Directions" id="i8k-7U-sqo"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="directionsView" destination="pWp-3k-5JA" id="8nI-Sh-J1G"/>
@@ -768,7 +710,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Vki-g9-u80">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="310"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oTp-dO-uPR">
@@ -827,6 +769,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="About MBS" id="AnB-Wl-fHL"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="_1" destination="VcH-uC-fwd" id="QKR-Ok-yel"/>
@@ -859,6 +802,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Credentials" id="NZk-wn-vKq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Um-bQ-ztN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1041,6 +985,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Data Uploads" id="Hgf-NV-4ro"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="_1" destination="8g9-ii-itU" id="dNh-Pj-tU1"/>
@@ -1051,7 +996,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-10" y="324"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - Lunch Blocks-->
         <scene sceneID="HKf-x7-9Xw">
             <objects>
                 <viewController id="AE8-cS-jSB" customClass="EAViewController" sceneMemberID="viewController">
@@ -1071,6 +1016,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Lunch Blocks" id="wYL-ET-NT6"/>
                     <connections>
                         <outlet property="tblView" destination="xE0-6y-z2o" id="fkb-Wh-UPN"/>
                     </connections>
@@ -1336,6 +1282,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="MQy-mZ-57b"/>
                     <connections>
                         <outlet property="tableView" destination="kEd-yD-7d4" id="9nR-0X-fWn"/>
                     </connections>
@@ -1589,7 +1536,25 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrW-M7-B1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-537" y="3337"/>
+            <point key="canvasLocation" x="-525" y="3271"/>
+        </scene>
+        <!--Navigation Controller - Docs-->
+        <scene sceneID="k7K-VP-LTE">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Eoh-E1-tt3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Docs" image="paperwork.png" id="a3v-0u-acB"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="XbO-oP-hti">
+                        <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="1v9-Zk-SUN" kind="relationship" relationship="rootViewController" id="rq4-8t-WiX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="451-9p-Psa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1587" y="1189"/>
         </scene>
         <!--Navigation Controller - Clubs-->
         <scene sceneID="CcL-0j-Vdz">
@@ -1654,6 +1619,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Listings" id="jay-vM-ZAD"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="_webView" destination="fJv-Gf-mJP" id="00F-oj-Xpm"/>
@@ -1678,26 +1644,25 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     </tabBar>
                     <connections>
                         <segue destination="MiR-vS-817" kind="relationship" relationship="viewControllers" id="0tn-G3-SGF"/>
-                        <segue destination="1v9-Zk-SUN" kind="relationship" relationship="viewControllers" id="PJ8-9Y-PcQ"/>
+                        <segue destination="FpI-w6-GDL" kind="relationship" relationship="viewControllers" id="h8S-fa-530"/>
                         <segue destination="izH-dB-iRb" kind="relationship" relationship="viewControllers" id="DUb-6h-uke"/>
-                        <segue destination="2" kind="relationship" relationship="viewControllers" id="F2j-zD-4vX"/>
-                        <segue destination="MGl-qa-C7B" kind="relationship" relationship="viewControllers" id="8rY-79-A92"/>
+                        <segue destination="Eoh-E1-tt3" kind="relationship" relationship="viewControllers" id="QAQ-Ie-Sv9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1851" y="516"/>
+            <point key="canvasLocation" x="-2226" y="742"/>
         </scene>
         <!--Forms View Controller - Docs-->
         <scene sceneID="G22-Lt-bhZ">
             <objects>
-                <viewController id="1v9-Zk-SUN" customClass="FormsViewController" sceneMemberID="viewController">
+                <viewController title="Docs" id="1v9-Zk-SUN" customClass="FormsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Og-P4-XcJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YlC-9g-8HC">
-                                <rect key="frame" x="0.0" y="131" width="320" height="299"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YlC-9g-8HC">
+                                <rect key="frame" x="0.0" y="133" width="320" height="297"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -1706,7 +1671,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" prompt="Search for documents" placeholder="Name string matching" showsCancelButton="YES" id="eit-Uv-NwM">
-                                <rect key="frame" x="0.0" y="18" width="320" height="75"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="75"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.85005132299999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
@@ -1715,7 +1680,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqX-ef-ykQ">
-                                <rect key="frame" x="168" y="93" width="132" height="30"/>
+                                <rect key="frame" x="168" y="95" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add your form">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1725,7 +1690,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D64-5M-yAW">
-                                <rect key="frame" x="20" y="93" width="132" height="30"/>
+                                <rect key="frame" x="20" y="95" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Refresh">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1738,6 +1703,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Docs" image="paperwork.png" id="oJ5-ud-cSL"/>
+                    <navigationItem key="navigationItem" id="G3a-3Z-Dzb"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="_searchBar" destination="eit-Uv-NwM" id="Ccf-Y9-3X1"/>
                         <outlet property="searchDisplayController" destination="2qj-YU-1t2" id="g4k-0c-a3Z"/>
@@ -1755,24 +1722,23 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1370" y="1405"/>
+            <point key="canvasLocation" x="-1180" y="1403"/>
         </scene>
     </scenes>
     <resources>
         <image name="P0.png" width="1700" height="2460"/>
-        <image name="arrow-reload-7-active.png" width="30" height="30"/>
         <image name="backward-7-active.png" width="30" height="30"/>
         <image name="bank.png" width="30" height="30"/>
         <image name="bookmark-7-active.png" width="30" height="30"/>
         <image name="bug.png" width="29" height="30"/>
+        <image name="calendar-7.png" width="30" height="30"/>
         <image name="clock.png" width="29" height="30"/>
         <image name="direction-sign-multiple-7-active.png" width="30" height="30"/>
         <image name="gear-7-active.png" width="30" height="30"/>
         <image name="info-7-active.png" width="30" height="30"/>
         <image name="key.png" width="30" height="30"/>
+        <image name="list-star-7.png" width="30" height="30"/>
         <image name="mailbox.png" width="30" height="30"/>
-        <image name="mutiply-sign.png" width="29" height="30"/>
-        <image name="noodle.png" width="30" height="30"/>
         <image name="notifications-board.png" width="30" height="30"/>
         <image name="paperwork.png" width="30" height="30"/>
         <image name="people-communicate-mini.png" width="20" height="20"/>
@@ -1782,6 +1748,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="rank.png" width="30" height="30"/>
         <image name="school.png" width="29" height="30"/>
         <image name="star-7-active.png" width="30" height="30"/>
+        <image name="star-7.png" width="30" height="30"/>
         <image name="text-list-mini.png" width="20" height="20"/>
         <image name="timer-7-active.png" width="29" height="30"/>
         <image name="upload-7-active.png" width="29" height="30"/>

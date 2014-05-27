@@ -19,7 +19,7 @@
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
     self.tblView.tableFooterView = footer;
-
+    self.searchDisplayController.searchBar.userInteractionEnabled = NO;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(download)];
 }
 
@@ -74,6 +74,7 @@
         }
         string = @"Go to class first";
     }
+    self.searchDisplayController.searchBar.userInteractionEnabled = YES;
     [_tblView reloadData];
 }
 

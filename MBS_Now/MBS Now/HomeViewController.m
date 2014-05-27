@@ -103,7 +103,6 @@
 }
 
 - (void)setUpButtonsWithColor:(NSString *)name andButtons:(NSArray *)buttonArray {
-    
     UIImage *buttonImage = [[UIImage imageNamed:[NSString stringWithFormat:@"%@Button.png", name]]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlight = [[UIImage imageNamed:[NSString stringWithFormat:@"%@ButtonHighlight.png", name]]
@@ -113,11 +112,6 @@
         [[buttonArray objectAtIndex:x] setBackgroundImage:buttonImage forState:UIControlStateNormal];
         [[buttonArray objectAtIndex:x] setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
     }
-}
-
-- (void)didReceiveMemoryWarning {
-
-    [super didReceiveMemoryWarning];
 }
 
 - (void)countdown {
@@ -207,8 +201,7 @@
             [SVProgressHUD showImage:[UIImage imageNamed:@"clock@2x.png"] status:@"No special shedules this week"];
         } else {
             FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithStringForURL:@"Special"];
-            fvvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [self presentViewController:fvvc animated:YES completion:nil];
+            [self.navigationController pushViewController:fvvc animated:YES];
         }
     } else if (connection != meetingsConnection && connection != versionConnection)
         [SVProgressHUD showSuccessWithStatus:@"Connected"];
@@ -276,7 +269,6 @@
         NSInteger remoteVersion = [[[[[[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"." withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"" withString:@""] integerValue];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
-        NSLog(@"%ld, %ld", (long)remoteVersion , (long)[[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]);
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
                 NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
                 if ((q % 6 == 0) && q != 0) {

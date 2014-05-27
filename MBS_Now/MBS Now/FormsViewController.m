@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 0)];
     footer.backgroundColor = [UIColor clearColor];
     tblView.tableFooterView = footer;
 
@@ -22,8 +22,16 @@
     self.dataArray = @[@"Tap the refresh button", @"Wireless connection required"];
     tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
+}
 
-    [tblView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+- (void)viewWillAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,8 +66,7 @@
     urlString = [bar stringByReplacingOccurrencesOfString:@" " withString:@""];
     // domain name will be added in FormsViewerVC
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithStringForURL:urlString];
-    fvvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:fvvc animated:YES completion:nil];
+    [self.navigationController pushViewController:fvvc animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

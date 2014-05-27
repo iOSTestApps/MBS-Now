@@ -15,16 +15,10 @@
     NSURL *finalURL;
 
     UIActionSheet *sheet;
-    IBOutlet UIBarButtonItem *output;
 }
 
 - (id)initWithStringForURL:(NSString *)stringForURL; // default initializer
-
-- (IBAction)done:(id)sender;
-
-- (IBAction)pushedOpenIn:(id)sender;
 - (void)mailLink;
-
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;
 @property (assign, nonatomic) NSMutableData *receivedData;
