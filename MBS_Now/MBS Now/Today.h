@@ -12,11 +12,11 @@
     NSURLConnection *specialConnection;
     NSMutableData *specialData;
 
-    NSURLConnection *meetingsConnection;
-    NSMutableData *meetingsData;
-
-    NSURLConnection *versionConnection;
-    NSMutableData *versionData;
+//    NSURLConnection *meetingsConnection;
+//    NSMutableData *meetingsData;
+//
+//    NSURLConnection *versionConnection;
+//    NSMutableData *versionData;
 
     NSURLConnection *rssConnection;
     NSMutableData *rssData;
@@ -34,6 +34,7 @@
 }
 
 @property (strong, nonatomic) NSMutableDictionary *feeds;
+@property (strong, nonatomic) NSDate *tomorrow;
 // feeds[@"strings"] will be an array of text labels.text
 // feeds[@"images"] will be an array of UIImages
 // feeds[@"class"] class name strings

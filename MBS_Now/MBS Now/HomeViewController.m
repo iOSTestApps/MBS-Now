@@ -148,7 +148,7 @@
 #pragma mark - Actions
 - (IBAction)pushedCountdown:(id)sender {
     [self countdown];
-    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %ld days", messagePart, (long)days]];
+    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %d %@", messagePart, days == 1, ((days == 1) ? @"day" : @"days")]];
 }
 
 - (IBAction)pushedCredentials:(id)sender {

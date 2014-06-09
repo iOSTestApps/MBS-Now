@@ -13,6 +13,7 @@
 #import "TodayCellTableViewCell.h"
 #import "ScheduleTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "XMLDictionary.h"
 @implementation Today
 
 - (void)viewDidLoad {
@@ -28,6 +29,8 @@
     self.refreshControl = refresh;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(update)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"clock-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(schedule)];
+    self.navigationItem.backBarButtonItem.title = @"Today";
 }
 
 - (void)noSavedGrade:(NSString *)append {
@@ -47,6 +50,11 @@
     }
 
     [self update];
+}
+
+- (void)schedule {
+    SVWebViewController *wvc = [[SVWebViewController alloc] initWithAddress:@"http://campus.mbs.net/mbs/widget/daySched.php"];
+    [self.navigationController pushViewController:wvc animated:YES];
 }
 
 - (void)update {
@@ -76,38 +84,31 @@
     todayScheduleData = [NSMutableData data];
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar]
-                                            components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
-                                            fromDate:[NSDate date]];
-
-    NSDate *compDate = [[NSCalendar currentCalendar]
-                        dateFromComponents:tomorrowComponents];
-
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
     offsetComponents.day = 1;
-    NSDate *tomorrow = [[NSCalendar currentCalendar]
-                        dateByAddingComponents:offsetComponents toDate:compDate options:0];
-
-    NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [form stringFromDate:tomorrow]]]];
+    _tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
+    NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [form stringFromDate:_tomorrow]]]];
     tomorrowScheduleData = [NSMutableData data];
     tomorrowScheduleConnection = [[NSURLConnection alloc] initWithRequest:tomorrowSchedule delegate:self startImmediately:YES];
 
-    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"]];
+    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/calendar/page_1424.rss"]];
     rssData = [NSMutableData data];
-    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
+    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:NO];
 
     NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
     rssNewsData = [NSMutableData data];
-    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
+    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:NO];
 
-    NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
-    meetingsData = [NSMutableData data];
-    meetingsConnection = [[NSURLConnection alloc] initWithRequest:docRequest delegate:self];
+//    NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+//    meetingsData = [NSMutableData data];
+//    meetingsConnection = [[NSURLConnection alloc] initWithRequest:docRequest delegate:self];
 
-    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
-    versionData = [NSMutableData data];
-    versionConnection = [[NSURLConnection alloc] initWithRequest:version delegate:self startImmediately:YES];
-
+//    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
+//    versionData = [NSMutableData data];
+//    versionConnection = [[NSURLConnection alloc] initWithRequest:version delegate:self startImmediately:YES];
+//
     NSURLRequest *special = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/ACTdates.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
     specialData = [NSMutableData data];
     specialConnection = [[NSURLConnection alloc] initWithRequest:special delegate:self startImmediately:YES];
@@ -115,8 +116,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
-    [versionConnection cancel];
-    [meetingsConnection cancel];
+//    [versionConnection cancel];
+//    [meetingsConnection cancel];
     [rssConnection cancel];
     [specialConnection cancel];
     [rssNewsConnection cancel];
@@ -132,8 +133,8 @@
 #pragma mark Connection
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (connection == rssConnection) [rssData appendData:data];
-    else if (connection == meetingsConnection) [meetingsData appendData:data];
-    else if (connection == versionConnection) [versionData appendData:data];
+//    else if (connection == meetingsConnection) [meetingsData appendData:data];
+//    else if (connection == versionConnection) [versionData appendData:data];
     else if (connection == rssNewsConnection) [rssNewsData appendData:data];
     else if (connection == scheduleConnection) [scheduleData appendData:data];
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
@@ -146,30 +147,31 @@
         [self saveFeedsWithObject:[UIImage imageNamed:@"star-7.png"] andKey:@"images"];
         [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
         [self saveFeedsWithObject:@"ACTDates" andKey:@"urls"];
-        NSLog(@"%@", _feeds);
         [self.tableView reloadData];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self.refreshControl endRefreshing];
-    _feeds = [NSMutableDictionary dictionaryWithObjects:@[@"Oops! The connection failed.", [UIImage imageNamed:@"caution-7.png"], [NSNumber numberWithBool:YES], @""] forKeys:@[@"strings", @"images", @"class", @"urls"]];
+    _feeds = [NSMutableDictionary dictionaryWithObjects:@[@"Oops! The connection failed.", [UIImage imageNamed:@"caution-7.png"], [StandardTableViewCell class], @""] forKeys:@[@"strings", @"images", @"class", @"urls"]];
+    [self.tableView reloadData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    if (connection == meetingsConnection) {
-        NSString *separation = @"\n";
-        NSString *fileText = [[NSString alloc] initWithData:meetingsData encoding:NSUTF8StringEncoding];
-        NSArray *raw = [fileText componentsSeparatedByString:separation];
-        NSMutableArray *csv = [NSMutableArray array];
-        for (NSString *foo in raw) {
-            NSArray *dummy = [foo componentsSeparatedByString:@","];
-            [csv addObject:dummy];
-        }
-        [csv removeObjectAtIndex:0];
-    }
+//    if (connection == meetingsConnection) {
+//        NSString *separation = @"\n";
+//        NSString *fileText = [[NSString alloc] initWithData:meetingsData encoding:NSUTF8StringEncoding];
+//        NSArray *raw = [fileText componentsSeparatedByString:separation];
+//        NSMutableArray *csv = [NSMutableArray array];
+//        for (NSString *foo in raw) {
+//            NSArray *dummy = [foo componentsSeparatedByString:@","];
+//            [csv addObject:dummy];
+//        }
+//        [csv removeObjectAtIndex:0];
+//    }
 
     if (connection == scheduleConnection) {
+        [rssConnection start];
         NSString *schedule = [[NSString alloc] initWithData:scheduleData encoding:NSUTF8StringEncoding];
         if (schedule) {
             NSString *sched = [NSString stringWithFormat:@"Today: %@", [[[schedule stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
@@ -186,21 +188,46 @@
         if ([object isKindOfClass:[NSDictionary class]]) {
             NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
             [self saveFeedsWithObject:object[savedDivision] andKey:@"dayScheds"];
-            if (![_feeds[@"class"] containsObject:[ScheduleTableViewCell class]]) {
-                [self saveFeedsWithObject:[ScheduleTableViewCell class] andKey:@"class"];
-                [self saveFeedsWithObject:@" " andKey:@"strings"];
-                [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];
-                [self saveFeedsWithObject:@" " andKey:@"urls"];
+            if ([_feeds[@"class"] isKindOfClass:[NSMutableArray class]]) {
+                if (![_feeds[@"class"] containsObject:[ScheduleTableViewCell class]]) {
+                    [self saveFeedsWithObject:[ScheduleTableViewCell class] andKey:@"class"];
+                    [self saveFeedsWithObject:@" " andKey:@"strings"];
+                    [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];
+                    [self saveFeedsWithObject:@" " andKey:@"urls"];
+                    [self.tableView reloadData];
+                }
             }
         }
     }
 
+    if (connection == rssConnection) {
+        [rssNewsConnection start];
+        NSDictionary *events = [NSDictionary dictionaryWithXMLData:rssData];
+        NSMutableDictionary *cleanEvents = [NSMutableDictionary dictionary];
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setTimeZone:[NSTimeZone localTimeZone]];
+        [format setDateFormat:@"EE, dd MMMM yyyy'"];
+        NSLog(@"%@", [format stringFromDate:[NSDate date]]);
+        for (NSDictionary *f in events[@"channel"][@"item"]) {
+            NSMutableArray *e = (cleanEvents[@"titles"]) ? cleanEvents[@"titles"] : [NSMutableArray array];
+            NSString *dateStr = [NSString stringWithFormat:@"%@", [[f[@"description"] componentsSeparatedByString:@": "][1] componentsSeparatedByString:@"<br />"][0]];
+            NSLog(@"%@", [format stringFromDate:_tomorrow]);
+            if ([dateStr isEqualToString:[format stringFromDate:[NSDate date]]] || [dateStr isEqualToString:[format stringFromDate:_tomorrow]]) {
+                [e addObject:dateStr];
+                [cleanEvents setObject:e forKey:@"titles"];
+            }
+//            else break;
+        }
+
+        NSLog(@"%@", cleanEvents[@"titles"]);
+    }
+    [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
 
 #pragma mark Table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_feeds[@"class"] count];
+    return ([_feeds[@"class"] isKindOfClass:[NSMutableArray class]]) ? [_feeds[@"class"] count] : 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -208,8 +235,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cl = _feeds[@"class"][indexPath.row];
-    if (cl == [StandardTableViewCell class]) {
+    static NSString *iden = @"loading";
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+    cell.textLabel.text = @"Loading...";
+    id cl = ([_feeds[@"class"] isKindOfClass:[NSMutableArray class]]) ? [_feeds[@"class"][indexPath.row] class]  : [UITableViewCell class];
+    if ([cl isSubclassOfClass:[StandardTableViewCell class]]) {
         static NSString *iden = @"standard";
         StandardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         cell.label.text = _feeds[@"strings"][indexPath.row];
@@ -218,30 +248,33 @@
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
         return cell;
-    } else if (cl == [TodayCellTableViewCell class]) {
+    } else if ([cl isSubclassOfClass:[TodayCellTableViewCell class]]) {
         static NSString *iden = @"today";
         TodayCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"MMM d, h:mm:ss a";
-        cell.dateTag.text = [formatter stringFromDate:[NSDate date]];
+        cell.dateTag.text = self.refreshControl.attributedTitle.string;
         cell.messageBody.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         return cell;
-    } else if (cl == [ScheduleTableViewCell class]) {
+    } else if ([cl isSubclassOfClass:[ScheduleTableViewCell class] ]) {
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-        [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
-        [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        if ([_feeds[@"dayScheds"] isKindOfClass:[NSMutableArray class]]) {
+            if ([_feeds[@"dayScheds"] count] == 2) {
+                [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+                [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+            }
+        }
         return cell;
     }
-    return nil;
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id cl = _feeds[@"class"][indexPath.row];
-    if (cl == [StandardTableViewCell class]) return 46.0f;
-    else if (cl == [TodayCellTableViewCell class]) return 106.0f;
-    else return 444.0f;
+    id cl = ([_feeds[@"class"] isKindOfClass:[NSMutableArray class]]) ? [_feeds[@"class"][indexPath.row] class] : [UITableViewCell class];
+    if ([cl isSubclassOfClass:[StandardTableViewCell class]]) return 46.0f;
+    else if ([cl isSubclassOfClass:[TodayCellTableViewCell class]]) return 106.0f;
+    else if ([cl isSubclassOfClass:[ScheduleTableViewCell class]]) return 444.0f;
+    else return 46.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
