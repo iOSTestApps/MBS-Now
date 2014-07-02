@@ -34,6 +34,7 @@
     [self.webView loadRequest:request];
     self.webView.delegate = self;
     self.savedEditingLink = NO;
+    [SVProgressHUD showWithStatus:@"Loading"];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -43,6 +44,9 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Sorry, there's a problem with the page. Please check internet connection and try again" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
     [alert show];
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [SVProgressHUD dismiss];
 }
 - (IBAction)donePressed:(id)sender {
     NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
@@ -89,5 +93,13 @@
         [self presentViewController:controller animated:YES completion:nil];
     }
     
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return YES;
+    else {
+        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
+        return NO;
+    }
 }
 @end

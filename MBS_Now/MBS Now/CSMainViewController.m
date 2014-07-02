@@ -20,8 +20,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self reloadData];
-  
-
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
     
@@ -127,9 +125,9 @@
 #pragma mark- Sort By Methods
 -(void)sortByDate{
     _array = [_array sortedArrayUsingComparator:^(id a, id b) {
-        if ([a[2] isEqualToString:@""]) {
+        if ([a[2] isEqualToString:@""] || [a[7] isEqualToString:@"Ongoing"]) {
             return NSOrderedDescending;
-        } else if ([b[2] isEqualToString:@""]) {
+        } else if ([b[2] isEqualToString:@""] || [b[7] isEqualToString:@"Ongoing"]) {
             return NSOrderedAscending;
         }
         NSString *string1 = a[2];

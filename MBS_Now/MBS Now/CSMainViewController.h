@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//things to do: SVProgressHUDs, iPhone 3.5 inch
+//things to do: SVProgressHUDs, iPhone 3.5 inch, iPad
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate>
 @property (nonatomic, strong) NSMutableArray *array;
