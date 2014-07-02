@@ -244,6 +244,11 @@
 		15FFD9EB18C69CFE0049FD02 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD9E418C69CFE0049FD02 /* SVProgressHUD.bundle */; };
 		15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FFD9E618C69CFE0049FD02 /* SVProgressHUD.m */; };
 		15FFD9F718C69D900049FD02 /* Data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD9F618C69D900049FD02 /* Data.txt */; };
+		3B49C10A19648FC40083DA33 /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B49C10219648FC40083DA33 /* hand.png */; };
+		3B49C10B19648FC40083DA33 /* hand@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B49C10319648FC40083DA33 /* hand@2x.png */; };
+		3B49C10C19648FC40083DA33 /* CSAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49C10519648FC40083DA33 /* CSAddItemViewController.m */; };
+		3B49C10D19648FC40083DA33 /* CSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49C10719648FC40083DA33 /* CSMainViewController.m */; };
+		3B49C10E19648FC40083DA33 /* CSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49C10919648FC40083DA33 /* CSDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -543,6 +548,14 @@
 		15FFD9E518C69CFE0049FD02 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		15FFD9E618C69CFE0049FD02 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		15FFD9F618C69D900049FD02 /* Data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Data.txt; sourceTree = "<group>"; };
+		3B49C10219648FC40083DA33 /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
+		3B49C10319648FC40083DA33 /* hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand@2x.png"; sourceTree = "<group>"; };
+		3B49C10419648FC40083DA33 /* CSAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAddItemViewController.h; sourceTree = "<group>"; };
+		3B49C10519648FC40083DA33 /* CSAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAddItemViewController.m; sourceTree = "<group>"; };
+		3B49C10619648FC40083DA33 /* CSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMainViewController.h; sourceTree = "<group>"; };
+		3B49C10719648FC40083DA33 /* CSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMainViewController.m; sourceTree = "<group>"; };
+		3B49C10819648FC40083DA33 /* CSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDetailViewController.h; sourceTree = "<group>"; };
+		3B49C10919648FC40083DA33 /* CSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -649,6 +662,7 @@
 			children = (
 				15529389169FBD90006A8B99 /* HomeViewController.h */,
 				1552938A169FBD90006A8B99 /* HomeViewController.m */,
+				3B49C10F1964929E0083DA33 /* Community Service */,
 				157C549A1929688900D6B224 /* Today */,
 				15727F0D16FA21E900586848 /* FormsViewController.h */,
 				15727F0E16FA21E900586848 /* FormsViewController.m */,
@@ -818,6 +832,8 @@
 			isa = PBXGroup;
 			children = (
 				157649031911745B008405B5 /* What's new */,
+				3B49C10219648FC40083DA33 /* hand.png */,
+				3B49C10319648FC40083DA33 /* hand@2x.png */,
 				155AFA2F193E3F5E00DFF572 /* clock-7-active.png */,
 				155AFA30193E3F5E00DFF572 /* clock-7-active@2x.png */,
 				15BAFDA6193533FD00780C96 /* loading-schedule.png */,
@@ -1029,6 +1045,19 @@
 			path = "MBS Now/SVProgressHUD";
 			sourceTree = "<group>";
 		};
+		3B49C10F1964929E0083DA33 /* Community Service */ = {
+			isa = PBXGroup;
+			children = (
+				3B49C10419648FC40083DA33 /* CSAddItemViewController.h */,
+				3B49C10519648FC40083DA33 /* CSAddItemViewController.m */,
+				3B49C10619648FC40083DA33 /* CSMainViewController.h */,
+				3B49C10719648FC40083DA33 /* CSMainViewController.m */,
+				3B49C10819648FC40083DA33 /* CSDetailViewController.h */,
+				3B49C10919648FC40083DA33 /* CSDetailViewController.m */,
+			);
+			name = "Community Service";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1101,6 +1130,7 @@
 				15FFD97618C69B040049FD02 /* key.png in Resources */,
 				15FFD91B18C69B040049FD02 /* 03.png in Resources */,
 				15FFD91A18C69B040049FD02 /* 02.png in Resources */,
+				3B49C10B19648FC40083DA33 /* hand@2x.png in Resources */,
 				1547B58B192848DA00330A94 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				15FFD99118C69B040049FD02 /* rank@2x.png in Resources */,
 				1557D217169F0D3E00F27AE4 /* InfoPlist.strings in Resources */,
@@ -1214,6 +1244,7 @@
 				15FFD94118C69B040049FD02 /* book-7-active@2x.png in Resources */,
 				15FFD93B18C69B040049FD02 /* big-tick@2x.png in Resources */,
 				15FFD95F18C69B040049FD02 /* downward-arrow-7-active.png in Resources */,
+				3B49C10A19648FC40083DA33 /* hand.png in Resources */,
 				15FFD95718C69B040049FD02 /* Default-Portrait@2x.png in Resources */,
 				157C549D1929692D00D6B224 /* star-7.png in Resources */,
 				15FFD97018C69B040049FD02 /* home-7-active.png in Resources */,
@@ -1285,9 +1316,11 @@
 				15BAFDFC1935383200780C96 /* SDWebImageDownloader.m in Sources */,
 				15BAFE011935383200780C96 /* UIButton+WebCache.m in Sources */,
 				15BAFDF71935383200780C96 /* SDWebImageDecoder.m in Sources */,
+				3B49C10D19648FC40083DA33 /* CSMainViewController.m in Sources */,
 				1557D219169F0D3E00F27AE4 /* main.m in Sources */,
 				15BAFDF61935383200780C96 /* SDWebImagePrefetcher.m in Sources */,
 				157C54AC19296E5B00D6B224 /* StandardTableViewCell.m in Sources */,
+				3B49C10C19648FC40083DA33 /* CSAddItemViewController.m in Sources */,
 				1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */,
 				1547B58A192848DA00330A94 /* SVWebViewControllerActivityChrome.m in Sources */,
 				15BAFDFB1935383200780C96 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1325,6 +1358,7 @@
 				159773DC17606AB200D9AEB3 /* ContactViewController.m in Sources */,
 				15BAFE001935383200780C96 /* UIImage+GIF.m in Sources */,
 				157C54931929514F00D6B224 /* Today.m in Sources */,
+				3B49C10E19648FC40083DA33 /* CSDetailViewController.m in Sources */,
 				159773E1176116D100D9AEB3 /* OfflineViewController.m in Sources */,
 				15BAFE031935383200780C96 /* UIImageView+WebCache.m in Sources */,
 				15C151CD1799F70600060CAB /* DataViewController.m in Sources */,

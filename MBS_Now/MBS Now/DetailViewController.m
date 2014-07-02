@@ -183,19 +183,20 @@
     NSDate *bar = [dateFormat dateFromString:dateString];
 
     NSComparisonResult result = [[NSDate date] compare:bar];
-    if (result == -1) {
+   if (result == -1) {
         lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
         lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", [self.details objectAtIndex:0], [self.details objectAtIndex:4]];
         lcl.soundName = UILocalNotificationDefaultSoundName;
         lcl.alertAction = @"View";
         lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
         lcl.timeZone = [NSTimeZone defaultTimeZone];
+        NSLog(@"%@",lcl);
 
         [SVProgressHUD showSuccessWithStatus:@"We'll remind you 5 minutes before."];
 
         [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-    } else
-        [SVProgressHUD showErrorWithStatus:@"Oops! This meeting already happened or has an unrecognizable date."];
+   } else
+    [SVProgressHUD showErrorWithStatus:@"Oops! This meeting already happened or has an unrecognizable date."];
 }
 
 - (void)emailMeeting {
