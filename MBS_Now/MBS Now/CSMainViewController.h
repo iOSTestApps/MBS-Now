@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//things to do: SVProgressHUDs, iPhone 3.5 inch
+// TODO: iPhone 3.5 inch, iPad, DetailVC here should mirror the DetailVC for clubs (i.e. a table view)
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate>
 @property (nonatomic, strong) NSMutableArray *array;

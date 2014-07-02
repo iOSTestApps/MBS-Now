@@ -4,7 +4,7 @@ home = expanduser("~")
 to_cd = home + "/Dropbox/MBS-Now/"
 os.chdir(to_cd)
 
-auto_pull = input('Auto-pull now (y/anything): ')
+auto_pull = input('Auto-pull now? (y/anything): ')
 if auto_pull is 'y':
 	os.system("python Resources/pull.py")
 

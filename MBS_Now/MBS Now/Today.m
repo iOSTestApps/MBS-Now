@@ -152,9 +152,9 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [self.refreshControl endRefreshing];
     _feeds = [NSMutableDictionary dictionaryWithObjects:@[@"Oops! The connection failed.", [UIImage imageNamed:@"caution-7.png"], [StandardTableViewCell class], @""] forKeys:@[@"strings", @"images", @"class", @"urls"]];
     [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -173,7 +173,7 @@
     if (connection == scheduleConnection) {
         [rssConnection start];
         NSString *schedule = [[NSString alloc] initWithData:scheduleData encoding:NSUTF8StringEncoding];
-        if (schedule) {
+        if (![schedule isEqualToString:@""]) {
             NSString *sched = [NSString stringWithFormat:@"Today: %@", [[[schedule stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
             [self saveFeedsWithObject:sched andKey:@"strings"];
             [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];

@@ -1974,10 +1974,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                                 <color key="barTintColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Add An Item" id="avj-qT-KWy">
-                                        <barButtonItem key="leftBarButtonItem" title="Done" id="KCf-q1-5Is">
+                                    <navigationItem title="Add an opportunity" id="avj-qT-KWy">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kdK-aI-IEh">
                                             <connections>
-                                                <action selector="donePressed:" destination="32e-UB-Zfu" id="qXR-dj-jxT"/>
+                                                <action selector="done:" destination="32e-UB-Zfu" id="CUp-Et-GHu"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2055,8 +2055,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jIq-k3-RSJ"/>
         <segue reference="P1X-p3-2sm"/>
-        <segue reference="e0v-VB-lZl"/>
+        <segue reference="jIq-k3-RSJ"/>
+        <segue reference="18p-mB-R41"/>
     </inferredMetricsTieBreakers>
 </document>

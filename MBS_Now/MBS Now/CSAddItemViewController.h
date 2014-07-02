@@ -10,6 +10,5 @@
 
 @interface AddItemViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-- (IBAction)donePressed:(id)sender;
-
+- (IBAction)done:(id)sender;
 @end

@@ -662,7 +662,7 @@
 			children = (
 				15529389169FBD90006A8B99 /* HomeViewController.h */,
 				1552938A169FBD90006A8B99 /* HomeViewController.m */,
-				3B49C10F1964929E0083DA33 /* Community Service */,
+				3B49C10F1964929E0083DA33 /* Service */,
 				157C549A1929688900D6B224 /* Today */,
 				15727F0D16FA21E900586848 /* FormsViewController.h */,
 				15727F0E16FA21E900586848 /* FormsViewController.m */,
@@ -1045,7 +1045,7 @@
 			path = "MBS Now/SVProgressHUD";
 			sourceTree = "<group>";
 		};
-		3B49C10F1964929E0083DA33 /* Community Service */ = {
+		3B49C10F1964929E0083DA33 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				3B49C10419648FC40083DA33 /* CSAddItemViewController.h */,
@@ -1055,7 +1055,7 @@
 				3B49C10819648FC40083DA33 /* CSDetailViewController.h */,
 				3B49C10919648FC40083DA33 /* CSDetailViewController.m */,
 			);
-			name = "Community Service";
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
