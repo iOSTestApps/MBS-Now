@@ -4,7 +4,9 @@
 <dict>
 	<key>Connection required</key>
 	<string>Tap to refresh</string>
-	<key>This will be fixed by Friday, May 16</key>
-	<string>Forms will not refresh</string>
+	<key>DO NOT CHANGE THE KEY AND STRING ABOVE. Begin editing here. This is a subtitle.</key>
+	<string>This is a main title</string>
+	<key>This is a subtitle.</key>
+	<string>This is a main title</string>
 </dict>
 </plist>
