@@ -2,14 +2,13 @@
 //  WelcomesViewController.m
 //  MBS Now
 //
-//  Created by Graham Dyer on 4/1/13.
-//  Copyright (c) 2013 MBS Now. All rights reserved.
+//  Created by gdyer on 4/1/13.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import "WelcomesViewController.h"
 
 @implementation WelcomesViewController
-
 - (id)initWithIndexOfWelcome:(int)_iow {
     iow = _iow;
     return [super initWithNibName:@"WelcomesViewController_7" bundle:nil];
@@ -45,12 +44,8 @@
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return YES;
-    else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
-        return NO;
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
+    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
 }
 
 - (BOOL)shouldAutorotate {

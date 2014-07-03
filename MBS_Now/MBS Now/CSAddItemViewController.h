@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AddItemViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate>
+#import <MessageUI/MessageUI.h>
+@interface AddItemViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)done:(id)sender;
 @end

@@ -2,8 +2,8 @@
 //  Today.h
 //  MBS Now
 //
-//  Created by Graham Dyer on 5/18/14.
-//  Copyright (c) 2014 MBS Now. All rights reserved.
+//  Created by gdyer on 5/18/14.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import <UIKit/UIKit.h>

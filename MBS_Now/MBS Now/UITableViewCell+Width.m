@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 3/8/14.
-//  Copyright (c) 2014 MBS Now. All rights reserved.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import "UITableViewCell+Width.h"

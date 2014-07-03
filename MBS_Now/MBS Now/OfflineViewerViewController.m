@@ -2,8 +2,8 @@
 //  OfflineViewerViewController.m
 //  MBS Now
 //
-//  Created by Graham Dyer on 3/11/13.
-//  Copyright (c) 2013 MBS Now. All rights reserved.
+//  Created by gdyer on 3/11/13.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import "OfflineViewerViewController.h"
@@ -48,7 +48,6 @@ UIAlertView *defaultAlert;
 }
 
 - (IBAction)output:(id)sender {
-    
     if (sheet) {
         [sheet dismissWithClickedButtonIndex:-1 animated:YES];
         sheet = nil;
@@ -57,11 +56,10 @@ UIAlertView *defaultAlert;
     
     sheet = [[UIActionSheet alloc] initWithTitle:@"Output options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Save to camera roll", nil];
 
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         [sheet showFromBarButtonItem:output animated:YES];
-    } else {
+    else
         [sheet showInView:self.view];
-    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -79,29 +77,15 @@ UIAlertView *defaultAlert;
     sheet = nil;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 #pragma mark Rotation
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        if(toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
-        return NO;
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
+    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
 }
+
 
 - (BOOL)shouldAutorotate {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : NO;
 }
 
 @end

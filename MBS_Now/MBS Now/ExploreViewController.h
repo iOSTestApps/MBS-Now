@@ -2,8 +2,8 @@
 //  ExploreViewController.h
 //  MBS Now
 //
-//  Created by Graham Dyer on 3/22/13.
-//  Copyright (c) 2013 MBS Now. All rights reserved.
+//  Created by gdyer on 3/22/13.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import <UIKit/UIKit.h>

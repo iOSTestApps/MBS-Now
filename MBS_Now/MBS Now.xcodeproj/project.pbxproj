@@ -72,6 +72,8 @@
 		159CF8E91964EF5000BD7433 /* CSAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E61964EF5000BD7433 /* CSAddItemViewController.m */; };
 		159CF8EA1964EF5000BD7433 /* CSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E81964EF5000BD7433 /* CSMainViewController.m */; };
 		159CF8EE1964EFB500BD7433 /* StoryboardPhone_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8ED1964EFB500BD7433 /* StoryboardPhone_7.storyboard */; };
+		159CF8F11965DD2B00BD7433 /* paperwork-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8EF1965DD2B00BD7433 /* paperwork-7.png */; };
+		159CF8F21965DD2B00BD7433 /* paperwork-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8F01965DD2B00BD7433 /* paperwork-7@2x.png */; };
 		15A016CB17F0F737008311AB /* EAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A016CA17F0F737008311AB /* EAViewController.m */; };
 		15A5565718270B100033CADA /* RSVPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A5565618270B100033CADA /* RSVPViewController.m */; };
 		15A5565D182720440033CADA /* FullPurposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A5565C182720440033CADA /* FullPurposeViewController.m */; };
@@ -344,6 +346,8 @@
 		159CF8E71964EF5000BD7433 /* CSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMainViewController.h; sourceTree = "<group>"; };
 		159CF8E81964EF5000BD7433 /* CSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMainViewController.m; sourceTree = "<group>"; };
 		159CF8ED1964EFB500BD7433 /* StoryboardPhone_7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardPhone_7.storyboard; sourceTree = "<group>"; };
+		159CF8EF1965DD2B00BD7433 /* paperwork-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paperwork-7.png"; sourceTree = "<group>"; };
+		159CF8F01965DD2B00BD7433 /* paperwork-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paperwork-7@2x.png"; sourceTree = "<group>"; };
 		15A016C917F0F737008311AB /* EAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAViewController.h; sourceTree = "<group>"; };
 		15A016CA17F0F737008311AB /* EAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAViewController.m; sourceTree = "<group>"; };
 		15A5565518270B100033CADA /* RSVPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSVPViewController.h; sourceTree = "<group>"; };
@@ -832,6 +836,8 @@
 			isa = PBXGroup;
 			children = (
 				157649031911745B008405B5 /* What's new */,
+				159CF8EF1965DD2B00BD7433 /* paperwork-7.png */,
+				159CF8F01965DD2B00BD7433 /* paperwork-7@2x.png */,
 				3B49C10219648FC40083DA33 /* hand.png */,
 				3B49C10319648FC40083DA33 /* hand@2x.png */,
 				155AFA2F193E3F5E00DFF572 /* clock-7-active.png */,
@@ -1159,6 +1165,7 @@
 				15FFD96E18C69B040049FD02 /* Headmaster_Caldwell_Oct.jpg in Resources */,
 				15FFD97118C69B040049FD02 /* home-7-active@2x.png in Resources */,
 				15FFD9A218C69B040049FD02 /* text-list-mini.png in Resources */,
+				159CF8F21965DD2B00BD7433 /* paperwork-7@2x.png in Resources */,
 				15FFD97418C69B040049FD02 /* info-7-active@2x.png in Resources */,
 				15FFD9CD18C69C5C0049FD02 /* AdmissionWelcome.txt in Resources */,
 				15FFD93F18C69B040049FD02 /* blackButtonHighlight@2x.png in Resources */,
@@ -1175,6 +1182,7 @@
 				15FFD93018C69B040049FD02 /* arrow-forward@2x.png in Resources */,
 				15BAFDA11935126700780C96 /* clock-7.png in Resources */,
 				1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				159CF8F11965DD2B00BD7433 /* paperwork-7.png in Resources */,
 				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
 				15FFD9A118C69B040049FD02 /* tanButtonHighlight@2x.png in Resources */,
 				15FFD9DC18C69CCE0049FD02 /* OfflineViewerViewController_7.xib in Resources */,

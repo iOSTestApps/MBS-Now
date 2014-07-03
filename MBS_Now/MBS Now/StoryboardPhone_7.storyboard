@@ -590,18 +590,18 @@
             <objects>
                 <viewController id="WUa-dV-KHc" customClass="ExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mem-ob-f3F">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="f4K-TX-Or5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="WUa-dV-KHc" id="Svm-D8-Hao"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IF3-L3-ySZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -610,7 +610,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aV0-QH-OY4">
-                                <rect key="frame" x="20" y="419" width="280" height="30"/>
+                                <rect key="frame" x="20" y="483" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <state key="normal" title="View listings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1404,7 +1404,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-15" y="2637"/>
+            <point key="canvasLocation" x="3" y="2540"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Xpt-d1-J2j">
@@ -1777,34 +1777,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="RZn-Uv-glR">
-                                <rect key="frame" x="0.0" y="469" width="320" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i9Y-U3-JRe">
-                                        <rect key="frame" x="20" y="14" width="58" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" id="JyF-5Y-D6I">
-                                        <rect key="frame" x="86" y="11" width="214" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="Title"/>
-                                            <segment title="Date"/>
-                                            <segment title="Creation"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="sortByChanged:" destination="x6O-mg-rUi" eventType="valueChanged" id="wIM-xO-dRQ"/>
-                                        </connections>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yfn-8F-mcB">
-                                <rect key="frame" x="0.0" y="65" width="320" height="404"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="451"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="an6-xQ-wS1" detailTextLabel="J3E-M6-I4S" style="IBUITableViewCellStyleSubtitle" id="SyI-m9-l25">
@@ -1841,7 +1815,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Community Service" id="nx7-79-KYF">
@@ -1853,7 +1827,6 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="JyF-5Y-D6I" id="Lsc-6u-DYE"/>
                         <outlet property="tableView" destination="yfn-8F-mcB" id="bj7-eC-dKQ"/>
                     </connections>
                 </viewController>
@@ -1973,10 +1946,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                                 <color key="barTintColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Add Item" id="avj-qT-KWy">
+                                    <navigationItem title="Add an opportunity" id="avj-qT-KWy">
                                         <barButtonItem key="leftBarButtonItem" title="Done" id="KCf-q1-5Is">
                                             <connections>
-                                                <action selector="donePressed:" destination="32e-UB-Zfu" id="qXR-dj-jxT"/>
+                                                <action selector="done:" destination="32e-UB-Zfu" id="DVQ-Po-lHN"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2054,8 +2027,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="P1X-p3-2sm"/>
+        <segue reference="jIq-k3-RSJ"/>
         <segue reference="e0v-VB-lZl"/>
-        <segue reference="LMc-Mf-m1x"/>
-        <segue reference="3MT-6i-bVb"/>
     </inferredMetricsTieBreakers>
 </document>

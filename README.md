@@ -11,7 +11,7 @@
 
 Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school).
 
-## VCs
+## Explore our UI
 ### General
 Name (w/out "ViewController") | Screenshot
 --- | --- | ---
@@ -54,9 +54,11 @@ This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) 
 
 For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://campus.mbs.net/mbsnow/home/images).
 
-MBS Now does not support iOS versions less than `5.1.1`
+MBS Now does not support iOS versions less than `7.0`
 
 [Contact us](mailto:team@gdyer.de).
 
 [Some rights reserved](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 ![Some rights reserved](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)
+[Kopimi](http://www.kopimi.com/kopimi/)
+![Kopimi](http://grahamd.net/i/kopimi-block.gif)

@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-//things to do: SVProgressHUDs, iPhone 3.5 inch, iPad
+// TODO: iPhone 4(S), iPad, details VC design here should mirror details VC for clubs
 
-@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, NSURLConnectionDelegate> {
+    UIActionSheet *sheet;
+}
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-- (IBAction)sortByChanged:(id)sender;
--(void)reloadData;
+@property (strong, nonatomic) NSString *footer;
+- (void)reloadData;
+
 @end

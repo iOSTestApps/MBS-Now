@@ -85,22 +85,9 @@
     if ([MFMailComposeViewController canSendMail] == YES) {
         MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
         picker.mailComposeDelegate = self;
-        
         [picker setSubject:@"I'm Interested"];
-        
-        // Set up the recipients.
-        NSArray *toRecipients = [NSArray arrayWithObjects:self.emailButton.titleLabel.text,
-                                 nil];
-        
+        NSArray *toRecipients = @[self.emailButton.titleLabel.text];
         [picker setToRecipients:toRecipients];
-        
-        
-        // Fill out the email body text.
-        
-        //NSString *emailBody = @"It is raining in sunny California!";
-        //[picker setMessageBody:emailBody isHTML:NO];
-        
-        // Present the mail composition interface.
         [self presentViewController:picker animated:YES completion:nil];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail" message:@"This device cannot send mail. Make sure you have an internet connection and an email account set up in settings." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
@@ -110,7 +97,6 @@
 }
 
 - (IBAction)exportButton:(id)sender {
-    
     UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Set up alert", nil];
     as.tag = 44;
     [as showFromBarButtonItem:_exportButton animated:YES];
@@ -166,8 +152,7 @@
         return;
     } else if (actionSheet.tag == 44 && buttonIndex == 1) {
         if ([self.array[2] isEqualToString:@"No Date Specified"]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Date" message:@"Cannot set up alert because there is no date associated with the opportunity" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-            [alert show];
+            [SVProgressHUD showErrorWithStatus:@"Sorry, but there's no date associated with this event!"];
         } else {
             NSDateFormatter *format = [[NSDateFormatter alloc] init];
             [format setDateFormat:@"h:mm a MM/dd/yy"];

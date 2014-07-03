@@ -2,8 +2,8 @@
 //  DirectionsViewController.m
 //  MBS Now
 //
-//  Created by Graham Dyer on 1/29/13.
-//  Copyright (c) 2013 MBS Now. All rights reserved.
+//  Created by gdyer on 1/29/13.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import "DirectionsViewController.h"
@@ -65,12 +65,8 @@
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return YES;
-    else {
-        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
-        return NO;
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
+    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
 }
 
 @end

@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 5/27/14.
-//  Copyright (c) 2014 DevelopMBS. All rights reserved.
+//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
 //
 
 #import "ScheduleTableViewCell.h"
