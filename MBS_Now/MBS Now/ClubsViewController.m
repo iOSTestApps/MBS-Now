@@ -14,26 +14,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.csv = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"Please tap refresh", @"Please tap refresh", @"...? Data must be updated", nil], nil];
+    self.csv = [NSMutableArray arrayWithObject:@[@"Hang tight... updating", @"You can pull to refresh", @"...? Fetching"]];
     self.descriptions = @[@"Please refresh meetings", @"Return to previous screen"];
-    self.tblView.userInteractionEnabled = NO;
-    firstTime = YES;
+    self.tableView.userInteractionEnabled = NO;
+
+    [self refreshData];
+
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching... just for you ;)"];
+    [refresh addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    [self.tableView addSubview:self.refreshControl];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
 
-    [self.tblView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    if (firstTime == YES) {
-        [SVProgressHUD showImage:[UIImage imageNamed:@"finger-touch.png"] status:@"Please tap refresh"];
-        firstTime = NO;
-    }
 }
 
 - (void)moveAlongWithCreation {
@@ -54,7 +53,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
-    self.tblView.userInteractionEnabled = YES;
+    [self.refreshControl endRefreshing];
+    self.tableView.userInteractionEnabled = YES;
 
     NSString *separation = @"\n";
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
@@ -67,26 +67,30 @@
 
     self.descriptions = [self.csv objectAtIndex:0];
     [self.csv removeObjectAtIndex:0];
-    [self.tblView reloadData];
+    [self.tableView reloadData];
 
     [[NSUserDefaults standardUserDefaults] setObject:self.csv forKey:@"meetingLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch meetings. %@",[error localizedDescription]]];
     self.csv = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"Connection failed", @"Connection failed", @"...? Tap refresh to try again", nil], nil];
-    [self.tblView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)refreshData {
-    [SVProgressHUD showWithStatus:@"Fetching meetings"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d, h:mm:ss a";
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+
     NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLConnection * connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (connection) {
-        [SVProgressHUD showWithStatus:@"Fetching meetings"];
-    }
+    if (connection && !self.refreshControl.refreshing)
+        [SVProgressHUD showWithStatus:@"Updating..."];
 }
 
 #pragma mark Actions

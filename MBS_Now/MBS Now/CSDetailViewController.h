@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *exportButton;
 @property (weak, nonatomic) IBOutlet UITextView *detailsView;
 @property (weak, nonatomic) IBOutlet UILabel *detailsTitle;
+
 - (IBAction)emailButtonPushed:(id)sender;
 - (IBAction)exportButton:(id)sender;
 @end

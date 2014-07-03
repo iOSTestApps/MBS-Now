@@ -1391,7 +1391,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="jur-ce-KPQ" id="OkQ-R3-YGf"/>
-                        <outlet property="tblView" destination="sWF-he-nhv" id="RXl-My-oih"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5v-jw-p6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1497,14 +1496,14 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" id="FY5-hu-AFo">
-                                <rect key="frame" x="0.0" y="349" width="320" height="121"/>
+                                <rect key="frame" x="0.0" y="349" width="320" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">How does this work?
 
-It's really simple: you enter your information and attendance status, and tap "Send." An email will automatically be sent from a mail robot at gdyer.de to the host of this meeting. 
+It's really simple: you enter your information and attendance status, and tap "Send." An email will automatically be sent to the host of this meeting. 
 
-You're only allowed to RSVP once. If you need to make changes after sending, tap the "Contact creator directly" button below. We'll prepopulate the message with details concerning this meeting just to ensure everyone is talking about the same event (and to make it easier for you)!</string>
+You're only allowed to RSVP once. If you need to make changes after sending, tap the "Contact creator directly" button below.</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1725,23 +1724,13 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqX-ef-ykQ">
-                                <rect key="frame" x="168" y="95" width="132" height="30"/>
+                                <rect key="frame" x="20" y="95" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add your form">
+                                <state key="normal" title="Have a form to add?">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="howto:" destination="1v9-Zk-SUN" eventType="touchUpInside" id="Rue-bt-BJf"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="D64-5M-yAW">
-                                <rect key="frame" x="20" y="95" width="132" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Refresh">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="refresh:" destination="1v9-Zk-SUN" eventType="touchUpInside" id="F2Y-ie-daw"/>
                                 </connections>
                             </button>
                         </subviews>

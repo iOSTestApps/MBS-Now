@@ -10,12 +10,14 @@
 #import "SimpleWebViewController.h"
 
 @implementation BugsViewController
-BOOL unique = YES;
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self pushedDownload];
+
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     self.navigationItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
-    self.bug = @[@"Tap here to refresh"];
+    self.bug = @[@"Tap to refresh"];
     self.description = @[@"Connection is required"];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -24,14 +26,6 @@ BOOL unique = YES;
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:YES];
-    if (unique == YES) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Refresh Needed" message:@"Bugs must be refreshed." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Go", nil];
-        [alert show];
-    }
 }
 
 #pragma mark Table View
@@ -67,7 +61,7 @@ BOOL unique = YES;
         [SVProgressHUD dismiss];
         [connect cancel];
         self.bug = @[@"Tap to check again", @"No confirmed bugs"];
-        self.description = @[@"Connection required", @"New reports are checked very frequently"];
+        self.description = @[@"Connection required", @"New reports are checked immediately"];
         [self.tableView reloadData];
     }
 }
@@ -106,7 +100,7 @@ BOOL unique = YES;
 
 #pragma mark -
 - (void)pushedDownload {
-    [SVProgressHUD showWithStatus:@"Updating"];
+    [SVProgressHUD showWithStatus:@"Updating..."];
     self.description = self.bug = nil;
 
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
@@ -118,7 +112,6 @@ BOOL unique = YES;
 
 #pragma mark Actions
 - (void)add {
-    unique = NO;
     SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
     swvc.specifier = @"bug";
     [self presentViewController:swvc animated:YES completion:nil];

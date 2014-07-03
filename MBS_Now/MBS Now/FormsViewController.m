@@ -18,10 +18,17 @@
     footer.backgroundColor = [UIColor clearColor];
     tblView.tableFooterView = footer;
 
+    [self refresh];
     _searchBar.showsCancelButton = NO;
-    self.dataArray = @[@"Tap the refresh button", @"Wireless connection required"];
+    self.dataArray = @[@"Hang tight... updating"];
     tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
+
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing... just for you ;)"];
+    [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    [tblView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,17 +47,22 @@
 }
 
 - (void)refresh {
-    [SVProgressHUD showWithStatus:@"Updating"];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d, h:mm:ss a";
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+
+    if (!_refreshControl.refreshing) [SVProgressHUD showWithStatus:@"Updating..."];
+
     NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/formTitles.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLConnection *connect = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (connect)
-        [SVProgressHUD showWithStatus:@"Fetching forms"];
+    if (connect && !_refreshControl.refreshing)
+        [SVProgressHUD showWithStatus:@"Fetching..."];
 }
 
 #pragma mark Table View
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"formsTapped"]) {
         // first time accessing a form
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"formsTapped"];
@@ -90,6 +102,8 @@
 #pragma mark Connection
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
+    [self.refreshControl endRefreshing];
+
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
     self.dataArray = [[NSArray alloc] initWithArray:[fileText componentsSeparatedByString:@"\n"]];
     self.dataArray = [self.dataArray sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
@@ -114,9 +128,6 @@
 }
 
 #pragma mark Actions
-- (IBAction)refresh:(id)sender {
-    [self refresh];
-}
 - (IBAction)howto:(id)sender {
     [SVProgressHUD showImage:[UIImage imageNamed:@"paper-clip@2x.png"] status:@"Visit campus.mbs.net/mbsnow, and upload your PDF"];
 }

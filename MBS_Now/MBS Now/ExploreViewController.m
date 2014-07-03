@@ -71,11 +71,7 @@
     mbs.latitude = 40.804085;
     mbs.longitude = -74.44892;
 
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        viewRegion = MKCoordinateRegionMakeWithDistance(mbs, .3 * METERSTOMILE, .3 * METERSTOMILE);
-    } else {
-        viewRegion = MKCoordinateRegionMakeWithDistance(mbs, .22 * METERSTOMILE, .22 * METERSTOMILE);
-    }
+    viewRegion = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? MKCoordinateRegionMakeWithDistance(mbs, .3 * METERSTOMILE, .3 * METERSTOMILE) : MKCoordinateRegionMakeWithDistance(mbs, .22 * METERSTOMILE, .22 * METERSTOMILE);
 
     [self.mapView setRegion:viewRegion animated:YES];
 }
@@ -174,9 +170,8 @@
         pinView.canShowCallout = YES;
 
         pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    } else {
+    } else
         pinView.annotation = annotation;
-    }
     return pinView;
 }
 - (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {

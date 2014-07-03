@@ -25,7 +25,6 @@
     NSURLConnection *sendingData;
 
     // countdown
-    NSInteger days;
     UIImage *bImage;
     NSDateComponents *components;
     NSString *messagePart;
@@ -47,5 +46,5 @@
 - (IBAction)pushedNotify:(id)sender;
 
 @property (nonatomic, assign) NSMutableData *receivedData;
-
+@property (nonatomic, assign) NSInteger days;
 @end

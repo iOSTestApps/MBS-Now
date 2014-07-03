@@ -15,5 +15,6 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
+@property (nonatomic) UIRefreshControl *refreshControl;
 
 @end

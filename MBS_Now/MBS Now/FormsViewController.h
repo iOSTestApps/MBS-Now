@@ -16,11 +16,11 @@
     IBOutlet UITableView *tblView;
 }
 
+@property (nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, assign) NSMutableData *receivedData;
 @property (strong, nonatomic) NSArray *dataArray;
 @property (strong, nonatomic) NSArray *searchResults;
 
-- (IBAction)refresh:(id)sender;
 - (IBAction)howto:(id)sender;
 
 @end

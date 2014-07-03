@@ -12,7 +12,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    distinctions = @[@"Tap the download button"];
+    [self download];
+    distinctions = @[@"Hang tight... refreshing"];
     string = nil;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -20,6 +21,12 @@
     self.tblView.tableFooterView = footer;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(download)];
+
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching... just for you ;)"];
+    [refresh addTarget:self action:@selector(download) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    [self.tblView addSubview:self.refreshControl];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -45,24 +52,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return distinctions.count;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return  (string) ? @"Go to lunch FIRST if your class is NOT here" : nil;
 }
 
 #pragma mark Actions
 - (void)download {
-    [SVProgressHUD showWithStatus:@"Generating distinctions"];
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/Data/distinctions.txt"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d, h:mm:ss a";
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+
+    if (!_refreshControl.refreshing) [SVProgressHUD showWithStatus:@"Updating..."];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/Data/distinctions.txt"]];
     firstConnection = [NSURLConnection connectionWithRequest:request delegate:self];
-    if (firstConnection) [SVProgressHUD showWithStatus:@"Generating distinctions"];
 }
 
 #pragma mark Connection
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    [self.refreshControl endRefreshing];
     [SVProgressHUD dismiss];
     NSString *separation = @"\n";
     if (connection == firstConnection) {
@@ -86,6 +100,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch distinctions. %@",[error localizedDescription]]];
     distinctions = @[@"Connection failed"];
     string = error.localizedDescription;

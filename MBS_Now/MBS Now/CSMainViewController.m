@@ -37,10 +37,6 @@
     return 1;
 }
 
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (!self.array) self.array = [[NSMutableArray alloc] init];
     return self.array.count;
@@ -54,7 +50,7 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
 
-    cell.textLabel.text = [[self.array objectAtIndex:indexPath.row] objectAtIndex:1];
+    cell.textLabel.text = self.array[indexPath.row][1];
     cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
 
     NSLog(@"%@",self.array);
@@ -64,7 +60,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    return _footer;
+    return (_array.count > 1) ? _footer : nil;
 }
 
 #pragma mark- Actions
@@ -127,6 +123,7 @@
     formatter.dateFormat = @"MMM d, h:mm:ss a";
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
+    
     NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -148,6 +145,7 @@
     }
 
     [self.array removeObjectAtIndex:0];
+    if (_array.count < 2) self.navigationItem.leftBarButtonItem.enabled = NO;
     [self sortByCreationDate];
 
     // self.descriptions = [self.csv objectAtIndex:0];
@@ -159,7 +157,7 @@
      [[NSUserDefaults standardUserDefaults] synchronize];*/
 }
 
-#pragma mark- Sort By Methods
+#pragma mark- Sorting methods
 - (void)sortByDate{
     _array = [_array sortedArrayUsingComparator:^(id a, id b) {
         if ([a[2] isEqualToString:@""] || [a[7] isEqualToString:@"Ongoing"])

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-@interface AddItemViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface AddItemViewController : UIViewController <UIWebViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate> {NSString *edit;}
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 - (IBAction)done:(id)sender;
 @end

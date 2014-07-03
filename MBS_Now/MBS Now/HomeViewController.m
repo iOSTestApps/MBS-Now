@@ -140,15 +140,14 @@
         messagePart = @"ends";
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
     }
-
-    days = [components day];
+    _days = [components day];
     bImage = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun@2x.png"] : [UIImage imageNamed:@"backpack@2x.png"];
 }
 
 #pragma mark - Actions
 - (IBAction)pushedCountdown:(id)sender {
     [self countdown];
-    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %d %@", messagePart, days == 1, ((days == 1) ? @"day" : @"days")]];
+    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %d %@", messagePart, _days, ((_days == 1) ? @"day" : @"days")]];
 }
 
 - (IBAction)pushedCredentials:(id)sender {

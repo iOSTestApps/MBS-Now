@@ -7,12 +7,8 @@
 //
 
 #import "CSAddItemViewController.h"
-
-@interface AddItemViewController ()
-//@property (nonatomic) NSString *editingLink;
-@end
-
 @implementation AddItemViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/service.html"];
@@ -37,9 +33,9 @@
     NSString *h = webView.request.URL.host;
     if ([h isEqualToString:@"docs.google.com"]) {
         NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
-        NSString *edit = [[html componentsSeparatedByString:@"<a class=\"ss-bottom-link\" href=\""][1] componentsSeparatedByString:@"\" title=\"Save this link to edit your response later.\""][0];
+        edit = [[html componentsSeparatedByString:@"<a class=\"ss-bottom-link\" href=\""][1] componentsSeparatedByString:@"\" title=\"Save this link to edit your response later.\""][0];
         [[UIPasteboard generalPasteboard] setString:edit];
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://grahamd.net/service_success.php?e=%@", edit]]]];
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/service_success.php?e=%@", edit]]]];
         return;
     }
 }
@@ -87,23 +83,53 @@
 
 #pragma mark - Motion
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (motion == UIEventSubtypeMotionShake && [_webView.request.URL.host isEqualToString:@"grahamd.net"]) {
-        MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
-        composerView.mailComposeDelegate = self;
-        [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
-        [composerView setSubject:@"Service opportunity editing link"];
-        [composerView setMessageBody:[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"] isHTML:YES];
-        [self presentViewController:composerView animated:YES completion:nil];
+    if (motion == UIEventSubtypeMotionShake && [_webView.request.URL.host isEqualToString:@"campus.mbs.net"]) {
+        if ([MFMessageComposeViewController canSendText] && ![MFMailComposeViewController canSendMail]) [self sendText];
+        else if (![MFMessageComposeViewController canSendText] && [MFMailComposeViewController canSendMail]) [self sendEmail];
+        else if (![MFMessageComposeViewController canSendText] && ![MFMailComposeViewController canSendMail]) [SVProgressHUD showErrorWithStatus:@"Your device can neither text nor email. Bummer!"];
+        else {
+            UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Text or email?" message:@"How would you like to share the URL?" delegate:self cancelButtonTitle:@"Neither" otherButtonTitles:@"SMS", @"Email", nil];
+            [a show];
+        }
     }
 }
 
-#pragma mark - Mail
+#pragma mark - Messaging
+- (void)sendEmail {
+    MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
+    composerView.mailComposeDelegate = self;
+    [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
+    [composerView setSubject:@"Service opportunity editing link"];
+    [composerView setMessageBody:[self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"] isHTML:YES];
+    [self presentViewController:composerView animated:YES completion:nil];
+}
+
+- (void)sendText {
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    messageController.navigationBar.tintColor = [UIColor orangeColor];
+    [messageController setBody:[NSString stringWithFormat:@"Friend: you're free to modify the service opportunity I just posted to MBS Now: %@", edit]];
+    [self presentViewController:messageController animated:YES completion:nil];
+}
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     // dismiss MFMailVC (cancelled or saved)
     [self dismissViewControllerAnimated:YES completion:nil];
 
     if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"Sent!"];
     else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Nuts; failed to send!"];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult) result {
+    if (result == MessageComposeResultFailed)
+        [SVProgressHUD showErrorWithStatus:@"Failed to send SMS!"];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Alert
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) [self sendText];
+    else if (buttonIndex == 2) [self sendEmail];
 }
 
 @end
