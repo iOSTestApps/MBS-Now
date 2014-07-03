@@ -123,6 +123,10 @@
 
 #pragma mark- Connection
 -(void)reloadData {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d, h:mm:ss a";
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
     NSURL *url = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -131,9 +135,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy hh:mma"];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:[dateFormat stringFromDate:[NSDate date]]];
     [self.refreshControl endRefreshing];
 
     NSString *separation = @"\n";
