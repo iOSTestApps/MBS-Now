@@ -13,11 +13,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5 ? 20 : 40))];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 40),0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 60),0,0,0)];
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
