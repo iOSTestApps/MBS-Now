@@ -108,7 +108,7 @@
     MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
     messageController.messageComposeDelegate = self;
     messageController.navigationBar.tintColor = [UIColor orangeColor];
-    [messageController setBody:[NSString stringWithFormat:@"Friend: you're free to modify the service opportunity I just posted to MBS Now: %@", edit]];
+    [messageController setBody:[NSString stringWithFormat:@"You're free to modify the service opportunity I just posted to MBS Now: %@", edit]];
     [self presentViewController:messageController animated:YES completion:nil];
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
