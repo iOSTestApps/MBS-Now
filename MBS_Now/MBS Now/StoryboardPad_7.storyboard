@@ -1481,7 +1481,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="pSl-9h-fa6" kind="push" id="baQ-Yl-D95"/>
+                                            <segue destination="pSl-9h-fa6" kind="push" identifier="showDetails" id="baQ-Yl-D95"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

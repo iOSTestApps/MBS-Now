@@ -207,8 +207,9 @@
 
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showDetails"])
+    if ([segue.identifier isEqualToString:@"showDetails"]) {
         ((CSDetailViewController *)segue.destinationViewController).array = self.array[_tableView.indexPathForSelectedRow.row];
+    }
 }
 
 @end

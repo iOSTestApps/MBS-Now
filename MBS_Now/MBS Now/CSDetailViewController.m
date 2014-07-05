@@ -44,7 +44,6 @@
     self.detailsView.text = self.array[5];
     NSString *lowerCase = [self.array[6] lowercaseString];
     [self.emailButton setTitle:lowerCase forState:UIControlStateNormal];
-    NSLog(@"%@",self.array);
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
