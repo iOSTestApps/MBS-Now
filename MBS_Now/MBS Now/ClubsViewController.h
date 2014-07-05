@@ -11,9 +11,7 @@
 @interface ClubsViewController : UITableViewController <UIAlertViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
 
 - (IBAction)pushedAdd:(id)sender;
-- (IBAction)pushedRefresh:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *csv;
 @property (strong, nonatomic) NSArray *descriptions; // includes descriptions of data
-
 @end

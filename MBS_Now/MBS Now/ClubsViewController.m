@@ -33,6 +33,8 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
 }
 
 - (void)moveAlongWithCreation {
@@ -93,11 +95,7 @@
         [SVProgressHUD showWithStatus:@"Updating..."];
 }
 
-#pragma mark Actions
-- (IBAction)pushedRefresh:(id)sender {
-    [self refreshData];
-}
-
+#pragma mark Action
 - (IBAction)pushedAdd:(id)sender {
     [self moveAlongWithCreation];
 }
@@ -132,7 +130,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.csv.count;
+    return _csv.count;
 }
 
 #pragma mark Segues

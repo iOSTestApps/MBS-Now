@@ -10,12 +10,8 @@
 #import <MapKit/MapKit.h>
 
 @interface DirectionsViewController : UIViewController {
-    
     MKCoordinateRegion viewRegion;
 }
-
-- (IBAction)openInMaps:(id)sender;
-
+- (IBAction)openAction:(id)sender;
 @property (weak, nonatomic) IBOutlet MKMapView *directionsView;
-
 @end

@@ -590,18 +590,18 @@
             <objects>
                 <viewController id="WUa-dV-KHc" customClass="ExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mem-ob-f3F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="f4K-TX-Or5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="WUa-dV-KHc" id="Svm-D8-Hao"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IF3-L3-ySZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -610,7 +610,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aV0-QH-OY4">
-                                <rect key="frame" x="20" y="483" width="280" height="30"/>
+                                <rect key="frame" x="20" y="419" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <state key="normal" title="View listings">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -718,7 +718,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="openInMaps:" destination="Ujp-dq-y6O" eventType="touchUpInside" id="V5K-yp-rtP"/>
+                                                <action selector="openAction:" destination="Ujp-dq-y6O" eventType="touchUpInside" id="0fN-xT-6gM"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
@@ -743,7 +743,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7yA-cB-8Ox" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-10" y="897"/>
+            <point key="canvasLocation" x="-20" y="932"/>
         </scene>
         <!--About View Controller - About MBS-->
         <scene sceneID="bZm-Kg-vDp">
@@ -824,7 +824,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ATc-5M-1xr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-15" y="1465"/>
+            <point key="canvasLocation" x="-20" y="1574"/>
         </scene>
         <!--Credentials View Controller - Credentials-->
         <scene sceneID="gz1-zs-poW">
@@ -1007,7 +1007,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Btx-ka-Tlx">
-                                        <rect key="frame" x="146" y="101" width="29" height="29"/>
+                                        <rect key="frame" x="146" y="86" width="29" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="question.png">
@@ -1300,6 +1300,10 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <outlet property="nSwitch" destination="dRg-Il-S9g" id="r3p-eg-tEY"/>
                         <outlet property="nSwitch2" destination="YRd-wJ-Ix4" id="GYo-Kd-4Xa"/>
                         <outlet property="nSwitch3" destination="NHO-7Y-fZr" id="YTs-bL-Jc1"/>
+                        <outletCollection property="cells" destination="Dnx-xb-Tac" id="dMG-yu-TzB"/>
+                        <outletCollection property="cells" destination="qyP-e3-al9" id="08O-Q7-540"/>
+                        <outletCollection property="cells" destination="RMq-8c-3pV" id="c3j-Yq-6QH"/>
+                        <outletCollection property="cells" destination="1Dq-Ws-kIL" id="twi-pX-7ie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jrq-b8-d0a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1378,11 +1382,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Clubs" id="F18-WH-gTJ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="7A8-6t-DFN">
-                            <connections>
-                                <action selector="pushedRefresh:" destination="qLy-T0-qo1" id="ojA-Hn-h8a"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q5q-aR-o3n">
                             <connections>
                                 <action selector="pushedAdd:" destination="qLy-T0-qo1" id="IaW-Yc-AqW"/>
@@ -2016,8 +2015,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P1X-p3-2sm"/>
-        <segue reference="jIq-k3-RSJ"/>
-        <segue reference="e0v-VB-lZl"/>
+        <segue reference="CP7-J2-2T1"/>
+        <segue reference="3MT-6i-bVb"/>
+        <segue reference="LMc-Mf-m1x"/>
     </inferredMetricsTieBreakers>
 </document>

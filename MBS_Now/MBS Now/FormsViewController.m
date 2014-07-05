@@ -52,8 +52,6 @@
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 
-    if (!_refreshControl.refreshing) [SVProgressHUD showWithStatus:@"Updating..."];
-
     NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/scripts/formTitles.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLConnection *connect = [NSURLConnection connectionWithRequest:request delegate:self];
@@ -156,6 +154,7 @@
         SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
         swvc.specifier = @"bug";
         [self presentViewController:swvc animated:YES completion:nil];
+        return;
     }
 }
 

@@ -2,13 +2,15 @@ You're running version %@.
 
 Credits:
 • Programming and design: Lucas Fagan
-• Past programming and design: Graham Dyer
-• App icons and launch screens: Lena Rajan
 • SVProgressHUD: Sam Vermette
-• Meeting creation powered by Google
+• Clubs and service powered by Google
 • Offline schedules by Ms. Jaimi Belfi
 • Special thanks to Mrs. Barbara Napholtz
 
-Visit us at campus.mbs.net/mbsnow. There, you can register clubs, view most of the source code, and much more.
+Past credits:
+• Programming and design: Graham Dyer
+• App icon and splash: Lena Rajan
+
+Visit us at campus.mbs.net/mbsnow. There, you can register clubs, view our source code, and much more.
 
 Copyright (c) MBS Now. All rights reserved.

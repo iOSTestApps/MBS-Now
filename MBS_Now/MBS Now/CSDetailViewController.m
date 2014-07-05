@@ -47,50 +47,13 @@
     NSLog(@"%@",self.array);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)emailButtonPushed:(id)sender {
-    if ([MFMailComposeViewController canSendMail] == YES) {
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = self;
-        [picker setSubject:@"I'm Interested"];
-        NSArray *toRecipients = @[self.emailButton.titleLabel.text];
-        [picker setToRecipients:toRecipients];
-        [self presentViewController:picker animated:YES completion:nil];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail" message:@"This device cannot send mail. Make sure you have an internet connection and an email account set up in settings." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    }
-    
-}
-
-- (IBAction)exportButton:(id)sender {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Set up alert", nil];
-    as.tag = 44;
-    [as showFromBarButtonItem:_exportButton animated:YES];
-}
-
-- (void)mailComposeController:(MFMailComposeViewController *)controller
-          didFinishWithResult:(MFMailComposeResult)result
-                        error:(NSError *)error
-{
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     [self dismissViewControllerAnimated:YES completion:nil];
+
+    if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"Sent!"];
+    else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Failed to send!"];
 }
+
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == 44 && buttonIndex == 0) {
         NSArray *objectsToShare = @[];
@@ -221,12 +184,31 @@
         lnf.alertBody = [NSString stringWithFormat:@"%@ is tomorrow",self.navigationItem.title];
         lnf.timeZone = [NSTimeZone defaultTimeZone];
     }
-    //add 1 to application badge icon
 
     [[UIApplication sharedApplication] scheduleLocalNotification:lnf];
     NSLog(@"%@",lnf);
+}
 
-    
+
+#pragma mark Actions
+- (IBAction)emailButtonPushed:(id)sender {
+    if ([MFMailComposeViewController canSendMail] == YES) {
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = self;
+        [picker setSubject:@"I'm Interested"];
+        NSArray *toRecipients = @[self.emailButton.titleLabel.text];
+        [picker setToRecipients:toRecipients];
+        [self presentViewController:picker animated:YES completion:nil];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail" message:@"This device cannot send mail. Make sure you have an internet connection and an email account set up in settings." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+- (IBAction)exportButton:(id)sender {
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Set up alert", nil];
+    as.tag = 44;
+    [as showFromBarButtonItem:_exportButton animated:YES];
 }
 /* - (IBAction)exportButton:(id)sender {
  

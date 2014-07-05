@@ -31,6 +31,7 @@
 		154EC1F517BF1A2100C7BC96 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 154EC1F417BF1A2100C7BC96 /* SettingsViewController.m */; };
 		15529358169F7840006A8B99 /* LunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15529357169F7840006A8B99 /* LunchViewController.m */; };
 		1552938B169FBD90006A8B99 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1552938A169FBD90006A8B99 /* HomeViewController.m */; };
+		155588091967B18C003F8A3B /* WidgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 155588081967B18C003F8A3B /* WidgetViewController.m */; };
 		1557D20D169F0D3E00F27AE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1557D20C169F0D3E00F27AE4 /* UIKit.framework */; };
 		1557D20F169F0D3E00F27AE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1557D20E169F0D3E00F27AE4 /* Foundation.framework */; };
 		1557D211169F0D3E00F27AE4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1557D210169F0D3E00F27AE4 /* CoreGraphics.framework */; };
@@ -289,6 +290,8 @@
 		15529357169F7840006A8B99 /* LunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunchViewController.m; sourceTree = "<group>"; };
 		15529389169FBD90006A8B99 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		1552938A169FBD90006A8B99 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 1; };
+		155588071967B18C003F8A3B /* WidgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetViewController.h; sourceTree = "<group>"; };
+		155588081967B18C003F8A3B /* WidgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WidgetViewController.m; sourceTree = "<group>"; };
 		1557D208169F0D3E00F27AE4 /* MBS Now.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MBS Now.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1557D20C169F0D3E00F27AE4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1557D20E169F0D3E00F27AE4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -609,6 +612,8 @@
 				15A016CA17F0F737008311AB /* EAViewController.m */,
 				15FFD9CE18C69C780049FD02 /* BugsViewController.h */,
 				15FFD9CF18C69C780049FD02 /* BugsViewController.m */,
+				155588071967B18C003F8A3B /* WidgetViewController.h */,
+				155588081967B18C003F8A3B /* WidgetViewController.m */,
 			);
 			name = "Other VCs";
 			sourceTree = "<group>";
@@ -1323,6 +1328,7 @@
 			files = (
 				15BAFDFC1935383200780C96 /* SDWebImageDownloader.m in Sources */,
 				15BAFE011935383200780C96 /* UIButton+WebCache.m in Sources */,
+				155588091967B18C003F8A3B /* WidgetViewController.m in Sources */,
 				15BAFDF71935383200780C96 /* SDWebImageDecoder.m in Sources */,
 				1557D219169F0D3E00F27AE4 /* main.m in Sources */,
 				15BAFDF61935383200780C96 /* SDWebImagePrefetcher.m in Sources */,

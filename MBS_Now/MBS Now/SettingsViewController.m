@@ -21,6 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    for (UITableViewCell *cell in cells) {
+        cell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:.8f];
+        cell.layer.shadowOffset = CGSizeMake(1, 0);
+        cell.layer.shadowColor = [[UIColor blackColor] CGColor];
+        cell.layer.shadowRadius = 1;
+        cell.layer.shadowOpacity = .25;
+        CGRect shadowFrame = cell.layer.bounds;
+        CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+        cell.layer.shadowPath = shadowPath;
+        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, cell.bounds.size.width);
+    }
+
     NSString *foo = ([[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"]) ? [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"] : @"Not set — default";
 
     [colorButton setTitle:foo forState:UIControlStateNormal];
@@ -326,7 +339,7 @@
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 [self setUpButtonWithImageName:@"grey" andButton:msClear];
                 [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %ldth grade!", (long)q]];
-            } else [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"];
+            } else {[SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"]; [alertView resignFirstResponder];}
         }
     } else if (alertView.tag == 2) {
         if (buttonIndex == 0) {

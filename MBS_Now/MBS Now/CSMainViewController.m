@@ -9,15 +9,16 @@
 #import "CSMainViewController.h"
 #import "CSDetailViewController.h"
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+#define IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5 ? 20 : 40))];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5) ? 20 : 40)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 60),0,0,0)];
+    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 60),0,0,0)];
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -26,13 +27,13 @@
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)];
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]];
+    self.navigationItem.leftBarButtonItem.enabled = NO;
 
     NSLog(@"%@",self.array);
 }
 
-#pragma mark- Table View
+#pragma mark Table View
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -63,7 +64,7 @@
     return (_array.count > 1) ? _footer : nil;
 }
 
-#pragma mark- Actions
+#pragma mark Actions
 - (void)showSortOptions {
     if (sheet) {
         [sheet dismissWithClickedButtonIndex:-1 animated:YES];
@@ -99,7 +100,6 @@
     sheet = nil;
 }
 
-
 - (void)sort:(int)i {
     switch (i) {
         case 0:
@@ -117,7 +117,7 @@
 
 }
 
-#pragma mark- Connection
+#pragma mark Connection
 -(void)reloadData {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d, h:mm:ss a";
@@ -128,6 +128,11 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (!_refreshControl.refreshing) [SVProgressHUD showWithStatus:@"Working..."];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    [_refreshControl endRefreshing];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -145,7 +150,7 @@
     }
 
     [self.array removeObjectAtIndex:0];
-    if (_array.count < 2) self.navigationItem.leftBarButtonItem.enabled = NO;
+    if (_array.count > 1) ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = YES;
     [self sortByCreationDate];
 
     // self.descriptions = [self.csv objectAtIndex:0];
@@ -157,7 +162,7 @@
      [[NSUserDefaults standardUserDefaults] synchronize];*/
 }
 
-#pragma mark- Sorting methods
+#pragma mark Sorting methods
 - (void)sortByDate{
     _array = [_array sortedArrayUsingComparator:^(id a, id b) {
         if ([a[2] isEqualToString:@""] || [a[7] isEqualToString:@"Ongoing"])
@@ -200,7 +205,7 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - Segues
+#pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showDetails"])
         ((CSDetailViewController *)segue.destinationViewController).array = self.array[_tableView.indexPathForSelectedRow.row];

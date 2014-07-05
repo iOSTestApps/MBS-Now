@@ -18,7 +18,7 @@
     [SVProgressHUD showWithStatus:@"Loading"];
 }
 
-#pragma mark - WebView delegate
+#pragma mark WebView delegate
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dagnabbit!" message:error.localizedDescription delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
     [alert show];
@@ -69,19 +69,20 @@
 //    }
 //}
 
-#pragma mark - Actions
+#pragma mark Actions
 - (IBAction)done:(id)sender {
     [SVProgressHUD dismiss];
+    [_webView stopLoading];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Rotation
+#pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
     return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
 }
 
-#pragma mark - Motion
+#pragma mark Motion
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
     if (motion == UIEventSubtypeMotionShake && [_webView.request.URL.host isEqualToString:@"campus.mbs.net"]) {
         if ([MFMessageComposeViewController canSendText] && ![MFMailComposeViewController canSendMail]) [self sendText];
@@ -94,7 +95,7 @@
     }
 }
 
-#pragma mark - Messaging
+#pragma mark Messaging
 - (void)sendEmail {
     MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
     composerView.mailComposeDelegate = self;
@@ -126,7 +127,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - Alert
+#pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) [self sendText];
     else if (buttonIndex == 2) [self sendEmail];

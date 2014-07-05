@@ -52,8 +52,11 @@
     [SVProgressHUD dismiss];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [SVProgressHUD dismiss];
+}
 
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD dismiss];
     [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
 }
@@ -155,6 +158,7 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
+    else [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark Rotation

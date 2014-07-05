@@ -13,10 +13,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.boolLabel.text = @"yes";
-    self.label = [[self.label componentsSeparatedByString:@" "] objectAtIndex:1]; // removes the "RSVP: " text
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"yourName"]) {
+    self.label = [self.label componentsSeparatedByString:@" "][1]; // removes the "RSVP: " text
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"yourName"])
         self.nameField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"yourName"];
-    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -27,6 +26,15 @@
 
 #pragma mark Actions
 - (IBAction)go:(id)sender {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"rsvps"]) {
+        // first time RSVPing
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"rsvps"];
+    } else {
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"rsvps"];
+        q++;
+        [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"rsvps"];
+    }
+
     [self.nameField resignFirstResponder];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:self.details[7]] == YES) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Heads up!" message:@"You've already RSVPed to this meeting." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Contact creator", nil];
@@ -34,7 +42,7 @@
         return;
     }
     if (self.nameField.text.length < 4 || ([self.nameField.text rangeOfString:@" "].location == NSNotFound)) {
-        [SVProgressHUD showErrorWithStatus:@"Please enter your full name"];
+        [SVProgressHUD showErrorWithStatus:@"Full name, please!"];
         return;
     }
     [[NSUserDefaults standardUserDefaults] setObject:self.nameField.text forKey:@"yourName"];
@@ -68,13 +76,13 @@
 
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
-        NSString *dateString = [NSString stringWithFormat:@"%@ %@", [self.details objectAtIndex:1], [self.details objectAtIndex:2]];
+        NSString *dateString = [NSString stringWithFormat:@"%@ %@", self.details[1], self.details[2]];
         NSDate *bar = [dateFormat dateFromString:dateString];
 
         NSComparisonResult result = [[NSDate date] compare:bar];
         if (result == NSOrderedAscending) {
             lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
-            lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", [self.details objectAtIndex:0], [self.details objectAtIndex:4]];
+            lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", self.details[0], self.details[4]];
             lcl.soundName = UILocalNotificationDefaultSoundName;
             lcl.alertAction = @"View";
             lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
@@ -109,14 +117,12 @@
 
 #pragma mark Connection
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    [SVProgressHUD dismiss];
     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [SVProgressHUD dismiss];
     NSString *echo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([echo isEqualToString:@"sent"]) {
-
         if ([self notify] == YES)
             [SVProgressHUD showSuccessWithStatus:@"RSVPed successfully. We'll also remind you 5 minutes before the meeting starts."];
         else [SVProgressHUD showSuccessWithStatus:@"RSVPed successfully"];

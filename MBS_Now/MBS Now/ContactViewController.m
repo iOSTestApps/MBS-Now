@@ -36,7 +36,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"contactsTapped"]) {
         // first time accessing copying a contact
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"contactsTapped"];
@@ -111,7 +110,6 @@
         [SVProgressHUD showSuccessWithStatus:@"Copied"];
     }
 }
-
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {

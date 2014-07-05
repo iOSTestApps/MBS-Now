@@ -21,6 +21,8 @@
     mbs.latitude = 40.804085;
     mbs.longitude = -74.448408;
 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Maps" style:UIBarButtonItemStyleBordered target:self action:@selector(openMaps)];
+
     viewRegion = MKCoordinateRegionMakeWithDistance(mbs, .3 * METERSTOMILE, .3 * METERSTOMILE);
     
     [directionsView setRegion:viewRegion animated:YES];
@@ -35,7 +37,10 @@
 }
 
 #pragma mark Actions
-- (IBAction)openInMaps:(id)sender {
+- (IBAction)openAction:(id)sender {
+    [self openMaps];
+}
+- (void)openMaps {
     Class mapItemClass = [MKMapItem class];
     if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)]) {
         CLLocationCoordinate2D mbs = CLLocationCoordinate2DMake(40.804085, -74.448408);

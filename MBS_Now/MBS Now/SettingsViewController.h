@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingsViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
-    
+
+    IBOutletCollection(UITableViewCell) NSArray *cells;
+
     IBOutlet UIButton *colorButton;
 
     IBOutlet UISwitch *nSwitch;

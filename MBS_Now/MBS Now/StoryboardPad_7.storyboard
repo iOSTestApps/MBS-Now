@@ -207,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXH-eb-jqY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="-247"/>
+            <point key="canvasLocation" x="2197" y="-1015"/>
         </scene>
         <!--Navigation Controller - Home-->
         <scene sceneID="WKa-AM-LEc">
@@ -634,7 +634,7 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="6pG-3h-VrD">
                                 <rect key="frame" x="3" y="64" width="768" height="858"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="g7o-UX-QJ2" id="jzN-oR-Yv4"/>
                                 </connections>
@@ -859,7 +859,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uIz-aO-RsD">
-                                <rect key="frame" x="253" y="152" width="34" height="34"/>
+                                <rect key="frame" x="253" y="129" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="question.png">
@@ -1117,6 +1117,10 @@
                         <outlet property="nSwitch" destination="VhC-fL-7be" id="EXn-lK-kAD"/>
                         <outlet property="nSwitch2" destination="nCH-qG-zRS" id="NGo-E6-pXT"/>
                         <outlet property="nSwitch3" destination="Fjl-Di-ojb" id="Lnn-Pj-KcY"/>
+                        <outletCollection property="cells" destination="hpe-Ih-1BJ" id="EC6-Zz-6jS"/>
+                        <outletCollection property="cells" destination="1jl-6J-zAl" id="3IQ-IU-wqk"/>
+                        <outletCollection property="cells" destination="hVM-CI-AGj" id="kIn-FO-Qdj"/>
+                        <outletCollection property="cells" destination="QRT-hH-cBJ" id="5eq-Q3-pOa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKs-n0-UQq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1196,43 +1200,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="dV1-Xz-UnB">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="867"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="915"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="SHl-f5-ik2">
-                                <rect key="frame" x="0.0" y="865" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <items>
-                                    <barButtonItem style="plain" id="itQ-md-qDs">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nPq-iM-29m">
-                                            <rect key="frame" x="16" y="4" width="29" height="36"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" image="direction-sign-multiple-7-active.png">
-                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="openInMaps:" destination="EsW-fk-ChG" eventType="touchUpInside" id="AM3-yG-WPa"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Get directions in Maps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="q9H-4J-osH">
-                                <rect key="frame" x="68" y="875" width="214" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="directionsView" destination="dV1-Xz-UnB" id="Yq6-Ur-61y"/>
@@ -1668,7 +1643,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seq-zq-Np9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="403" y="5339"/>
+            <point key="canvasLocation" x="415" y="5434"/>
         </scene>
         <!--Cal View Controller - Listings-->
         <scene sceneID="13">
@@ -1730,9 +1705,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Listings" image="text-list-mini.png" id="6"/>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="11Q-SG-fLm"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
@@ -1811,11 +1784,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Clubs" id="fRc-wR-18S">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="8uQ-km-Iwn">
-                            <connections>
-                                <action selector="pushedRefresh:" destination="nD7-0x-BHH" id="ktY-Kk-NTi"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lrn-k5-uyS">
                             <connections>
                                 <action selector="pushedAdd:" destination="nD7-0x-BHH" id="RJa-rc-OBN"/>
@@ -1824,7 +1792,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="wOe-E8-gIl" id="SLV-LW-RWB"/>
-                        <outlet property="tblView" destination="aWY-mu-P4T" id="feT-aR-Cu3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EI9-hx-0gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2123,8 +2090,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ese-uN-3RG"/>
-        <segue reference="ICH-Gy-RpE"/>
         <segue reference="P0c-K7-di6"/>
+        <segue reference="ICH-Gy-RpE"/>
+        <segue reference="okE-ih-MY8"/>
     </inferredMetricsTieBreakers>
 </document>

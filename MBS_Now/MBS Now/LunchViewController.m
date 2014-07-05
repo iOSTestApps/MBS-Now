@@ -159,7 +159,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
         [SVProgressHUD dismiss];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"Menu not found. Please standby" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"Menu not found. Please standby!" delegate:self cancelButtonTitle:@"Got it" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
