@@ -194,7 +194,6 @@
     _array = [_array sortedArrayUsingComparator:^(id a, id b) {
         NSString *string1 = a[1];
         NSString *string2 = b[1];
-        NSLog(@"STRING 1: %@",a[1]);
         return [string1 caseInsensitiveCompare:string2];
     }].mutableCopy;
     _footer = @"Sorted alphabetically by name";
