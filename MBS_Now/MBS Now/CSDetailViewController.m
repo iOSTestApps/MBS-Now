@@ -111,7 +111,6 @@
                     [format setTimeZone:[NSTimeZone localTimeZone]];
                     NSString *dateString = [NSString stringWithFormat:@"08:00 %@",self.array[2]];
                     NSDate *date = [format dateFromString:dateString];
-                    NSLog(@"%@",date);
                     UILocalNotification *lnf = [[UILocalNotification alloc] init];
                     lnf.fireDate = date;
                     lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
@@ -123,7 +122,6 @@
                     
                 } else {
         
-                    NSLog(@"%@",datee);
                     UILocalNotification *lnf = [[UILocalNotification alloc] init];
                     lnf.fireDate = [datee dateByAddingTimeInterval:-60*30]; //30 min before
                     lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
@@ -165,15 +163,12 @@
         [self scheduleNotificationAtTime:self.array[3] isToday:YES];
     } */
 }
--(void)scheduleNotificationAtTime:(NSString *)time isToday:(BOOL)today {
+/*-(void)scheduleNotificationAtTime:(NSString *)time isToday:(BOOL)today {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.dateFormat = @"HH:mm a MM/dd/yy";
     NSString *dateString = [NSString stringWithFormat:@"%@ %@",time,self.array[2]];
-    NSLog(@"%@",dateString); //logging "08:00 AM 3/5/15"
     NSDate *date = [format dateFromString:dateString];
-    NSLog(@"%@",date); //logs 2015-03-05 05:00:00 +0000
     UILocalNotification *lnf = [[UILocalNotification alloc] init];
-    NSLog(@"Time zone %@",[NSTimeZone systemTimeZone]);
     lnf.fireDate = date;
     if (today == YES) {
         lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
@@ -185,8 +180,7 @@
     }
 
     [[UIApplication sharedApplication] scheduleLocalNotification:lnf];
-    NSLog(@"%@",lnf);
-}
+}*/
 
 
 #pragma mark Actions

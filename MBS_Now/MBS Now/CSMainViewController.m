@@ -14,6 +14,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Community Service";
+    
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5) ? 20 : 40)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
@@ -27,7 +30,7 @@
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]];
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], /*[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]*/];
     self.navigationItem.leftBarButtonItem.enabled = NO;
 
     NSLog(@"%@",self.array);
@@ -50,9 +53,14 @@
 
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
-
-    cell.textLabel.text = self.array[indexPath.row][1];
-    cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
+    if ([self.array[0] isKindOfClass:[NSString class]]) {
+        cell.textLabel.text = self.array[indexPath.row];
+        cell.detailTextLabel.text = @"";
+    }
+    else {
+        cell.textLabel.text = self.array[indexPath.row][1];
+        cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
+    }
 
     NSLog(@"%@",self.array);
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -133,6 +141,12 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     [_refreshControl endRefreshing];
+    [self.array removeAllObjects];
+    self.array = [[NSMutableArray alloc] init];
+    [self.array addObject:@"Cannot load opportunites"];
+    [self.array addObject:@"Make sure you have a connection"];
+    [self.array addObject:@"Refresh to try again"];
+    [self.tableView reloadData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -148,8 +162,9 @@
         NSArray *dummy = [foo componentsSeparatedByString:@","];
         [self.array addObject:dummy];
     }
-
-    [self.array removeObjectAtIndex:0];
+    if (self.array.count != 0) {
+        [self.array removeObjectAtIndex:0];
+    }
     if (_array.count > 1) ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = YES;
     [self sortByCreationDate];
 
