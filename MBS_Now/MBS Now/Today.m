@@ -34,10 +34,10 @@
 }
 
 - (void)noSavedGrade:(NSString *)append {
-    UIAlertView *d = [[UIAlertView alloc] initWithTitle:@"What grade are you in?" message:[append stringByAppendingString:@"Faculty memebers: enter any grade within your division (MS or US)."] delegate:self cancelButtonTitle:@"Go" otherButtonTitles:nil, nil];
+    UIAlertView *d = [[UIAlertView alloc] initWithTitle:@"What grade are you in?" message:@"Faculty memebers: enter any grade within your division (MS or US)." delegate:self cancelButtonTitle:@"Go" otherButtonTitles:nil, nil];
     d.alertViewStyle = UIAlertViewStylePlainTextInput;
     [d textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-    [d textFieldAtIndex:0].placeholder = @"From 6 to 12";
+    [d textFieldAtIndex:0].placeholder = append;
     [d show];
 }
 
@@ -45,7 +45,7 @@
     [super viewWillAppear:YES];
     NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
     if (!savedDivision) {
-        [self noSavedGrade:nil];
+        [self noSavedGrade:@"Enter between 6 and 12"];
         return;
     }
 
@@ -58,6 +58,9 @@
 }
 
 - (void)update {
+    _loadingMessage = @"Refreshing... just for you :)";
+    [self.tableView reloadData];
+
     _feeds = [NSMutableDictionary dictionary];
 
     NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
@@ -93,13 +96,13 @@
     tomorrowScheduleData = [NSMutableData data];
     tomorrowScheduleConnection = [[NSURLConnection alloc] initWithRequest:tomorrowSchedule delegate:self startImmediately:YES];
 
-    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/calendar/page_1424.rss"]];
-    rssData = [NSMutableData data];
-    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:NO];
-
-    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
-    rssNewsData = [NSMutableData data];
-    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:NO];
+//    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/calendar/page_1424.rss"]];
+//    rssData = [NSMutableData data];
+//    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:NO];
+//
+//    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
+//    rssNewsData = [NSMutableData data];
+//    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:NO];
 
 //    NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
 //    meetingsData = [NSMutableData data];
@@ -135,8 +138,8 @@
     if (connection == rssConnection) [rssData appendData:data];
 //    else if (connection == meetingsConnection) [meetingsData appendData:data];
 //    else if (connection == versionConnection) [versionData appendData:data];
-    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
-    else if (connection == scheduleConnection) [scheduleData appendData:data];
+//    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
+//    else if (connection == scheduleConnection) [scheduleData appendData:data];
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
     else if (connection == tomorrowScheduleConnection) [tomorrowScheduleData appendData:data];
 }
@@ -194,33 +197,33 @@
                     [self saveFeedsWithObject:@" " andKey:@"strings"];
                     [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];
                     [self saveFeedsWithObject:@" " andKey:@"urls"];
-                    [self.tableView reloadData];
                 }
             }
         }
     }
 
-    if (connection == rssConnection) {
-        [rssNewsConnection start];
-        NSDictionary *events = [NSDictionary dictionaryWithXMLData:rssData];
-        NSMutableDictionary *cleanEvents = [NSMutableDictionary dictionary];
-        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        [format setTimeZone:[NSTimeZone localTimeZone]];
-        [format setDateFormat:@"EE, dd MMMM yyyy'"];
-        NSLog(@"%@", [format stringFromDate:[NSDate date]]);
-        for (NSDictionary *f in events[@"channel"][@"item"]) {
-            NSMutableArray *e = (cleanEvents[@"titles"]) ? cleanEvents[@"titles"] : [NSMutableArray array];
-            NSString *dateStr = [NSString stringWithFormat:@"%@", [[f[@"description"] componentsSeparatedByString:@": "][1] componentsSeparatedByString:@"<br />"][0]];
-            NSLog(@"%@", [format stringFromDate:_tomorrow]);
-            if ([dateStr isEqualToString:[format stringFromDate:[NSDate date]]] || [dateStr isEqualToString:[format stringFromDate:_tomorrow]]) {
-                [e addObject:dateStr];
-                [cleanEvents setObject:e forKey:@"titles"];
-            }
-//            else break;
-        }
-
-        NSLog(@"%@", cleanEvents[@"titles"]);
-    }
+    _loadingMessage = (_feeds.allKeys.count == 0) ? @"No new messages here..." : nil;
+//    if (connection == rssConnection) {
+//        [rssNewsConnection start];
+//        NSDictionary *events = [NSDictionary dictionaryWithXMLData:rssData];
+//        NSMutableDictionary *cleanEvents = [NSMutableDictionary dictionary];
+//        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+//        [format setTimeZone:[NSTimeZone localTimeZone]];
+//        [format setDateFormat:@"EE, dd MMMM yyyy'"];
+//        NSLog(@"%@", [format stringFromDate:[NSDate date]]);
+//        for (NSDictionary *f in events[@"channel"][@"item"]) {
+//            NSMutableArray *e = (cleanEvents[@"titles"]) ? cleanEvents[@"titles"] : [NSMutableArray array];
+//            NSString *dateStr = [NSString stringWithFormat:@"%@", [[f[@"description"] componentsSeparatedByString:@": "][1] componentsSeparatedByString:@"<br />"][0]];
+//            NSLog(@"%@", [format stringFromDate:_tomorrow]);
+//            if ([dateStr isEqualToString:[format stringFromDate:[NSDate date]]] || [dateStr isEqualToString:[format stringFromDate:_tomorrow]]) {
+//                [e addObject:dateStr];
+//                [cleanEvents setObject:e forKey:@"titles"];
+//            }
+////            else break;
+//        }
+//
+//        NSLog(@"%@", cleanEvents[@"titles"]);
+//    }
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
 }
@@ -235,10 +238,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%@", _feeds);
     static NSString *iden = @"loading";
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
-    cell.textLabel.text = @"Loading...";
+    cell.textLabel.text = _loadingMessage;
     id cl = ([_feeds[@"class"] isKindOfClass:[NSMutableArray class]]) ? [_feeds[@"class"][indexPath.row] class]  : [UITableViewCell class];
+    NSLog(@"%@", cl);
     if ([cl isSubclassOfClass:[StandardTableViewCell class]]) {
         static NSString *iden = @"standard";
         StandardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
@@ -256,6 +261,7 @@
         cell.img.image = _feeds[@"images"][indexPath.row];
         return cell;
     } else if ([cl isSubclassOfClass:[ScheduleTableViewCell class] ]) {
+
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         if ([_feeds[@"dayScheds"] isKindOfClass:[NSMutableArray class]]) {
@@ -266,7 +272,9 @@
         }
         return cell;
     }
-    return cell;
+
+    if (cell.textLabel.text) return cell;
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -309,12 +317,12 @@
     NSString *grade = [alertView textFieldAtIndex:0].text;
     if ([poss containsObject:grade]) {
         [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
-        [SVProgressHUD showSuccessWithStatus:@"Thanks. That's editable in Settings."];
+        [SVProgressHUD showSuccessWithStatus:@"Great! Now you'll get customized content :)"];
         [self update];
         return;
     }
 
-    [self noSavedGrade:@"Try again. "];
+    [self noSavedGrade:@"Whoops! Please try again."];
 }
 
 @end

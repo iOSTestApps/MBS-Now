@@ -54,8 +54,6 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [SVProgressHUD dismiss];
-    [self.refreshControl endRefreshing];
     self.tableView.userInteractionEnabled = YES;
 
     NSString *separation = @"\n";
@@ -73,6 +71,9 @@
 
     [[NSUserDefaults standardUserDefaults] setObject:self.csv forKey:@"meetingLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [SVProgressHUD dismiss];
+    [self.refreshControl endRefreshing];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

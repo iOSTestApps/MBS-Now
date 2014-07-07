@@ -1723,14 +1723,21 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqX-ef-ykQ">
-                                <rect key="frame" x="20" y="95" width="280" height="30"/>
+                                <rect key="frame" x="20" y="95" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Have a form to add?">
+                                <state key="normal" title="Add you form">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="howto:" destination="1v9-Zk-SUN" eventType="touchUpInside" id="Rue-bt-BJf"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tr4-uE-EVy">
+                                <rect key="frame" x="168" y="95" width="132" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1739,7 +1746,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     <navigationItem key="navigationItem" id="G3a-3Z-Dzb"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="_searchBar" destination="eit-Uv-NwM" id="Ccf-Y9-3X1"/>
+                        <outlet property="reloadButton" destination="Tr4-uE-EVy" id="naZ-SE-amM"/>
+                        <outlet property="searchBar" destination="eit-Uv-NwM" id="hD1-2g-xP1"/>
                         <outlet property="searchDisplayController" destination="2qj-YU-1t2" id="g4k-0c-a3Z"/>
                         <outlet property="tblView" destination="YlC-9g-8HC" id="j6d-0n-Ppo"/>
                     </connections>

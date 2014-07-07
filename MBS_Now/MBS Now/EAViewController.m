@@ -61,6 +61,10 @@
     return  (string) ? @"Go to lunch FIRST if your class is NOT here" : nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark Actions
 - (void)download {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

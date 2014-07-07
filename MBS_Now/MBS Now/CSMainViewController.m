@@ -25,12 +25,12 @@
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing...just for you"];
     [refresh addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], /*[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]*/];
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]];
     self.navigationItem.leftBarButtonItem.enabled = NO;
 
     NSLog(@"%@",self.array);
@@ -141,18 +141,16 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     [_refreshControl endRefreshing];
+    ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = NO;
     [self.array removeAllObjects];
     self.array = [[NSMutableArray alloc] init];
-    [self.array addObject:@"Cannot load opportunites"];
-    [self.array addObject:@"Make sure you have a connection"];
-    [self.array addObject:@"Refresh to try again"];
+    [self.array addObject:@"Connection failure! "];
+    self.tableView.userInteractionEnabled = NO;
     [self.tableView reloadData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [SVProgressHUD dismiss];
-    [self.refreshControl endRefreshing];
-
+    _tableView.userInteractionEnabled = YES;
     NSString *separation = @"\n";
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
 
@@ -162,11 +160,11 @@
         NSArray *dummy = [foo componentsSeparatedByString:@","];
         [self.array addObject:dummy];
     }
-    if (self.array.count != 0) {
-        [self.array removeObjectAtIndex:0];
-    }
+    if (self.array.count != 0) [self.array removeObjectAtIndex:0];
     if (_array.count > 1) ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = YES;
     [self sortByCreationDate];
+    [SVProgressHUD dismiss];
+    [self.refreshControl endRefreshing];
 
     // self.descriptions = [self.csv objectAtIndex:0];
     //[self.csv removeObjectAtIndex:0];

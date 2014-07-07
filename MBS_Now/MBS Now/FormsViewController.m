@@ -16,19 +16,21 @@
     [super viewDidLoad];
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 0)];
     footer.backgroundColor = [UIColor clearColor];
-    tblView.tableFooterView = footer;
+    _tblView.tableFooterView = footer;
 
     [self refresh];
     _searchBar.showsCancelButton = NO;
     self.dataArray = @[@"Hang tight... updating"];
-    tblView.userInteractionEnabled = NO;
+    _tblView.userInteractionEnabled = NO;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing... just for you ;)"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing... just for you :)"];
     [refresh addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
-    [tblView addSubview:self.refreshControl];
+    [_tblView addSubview:self.refreshControl];
+
+    [_reloadButton addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,7 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    [tblView reloadData];
+    [_tblView reloadData];
 }
 
 - (void)refresh {
@@ -100,14 +102,15 @@
 #pragma mark Connection
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
+    _reloadButton.titleLabel.text = @"Refresh";
     [self.refreshControl endRefreshing];
 
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
     self.dataArray = [[NSArray alloc] initWithArray:[fileText componentsSeparatedByString:@"\n"]];
     self.dataArray = [self.dataArray sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
-    tblView.userInteractionEnabled = YES;
+    _tblView.userInteractionEnabled = YES;
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
-    [tblView reloadData];
+    [_tblView reloadData];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
@@ -122,7 +125,8 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch forms. %@", [error localizedDescription]]];
     self.dataArray = @[@"Connection failed", @"Tap refresh to try again"];
-    [tblView reloadData];
+    _reloadButton.titleLabel.text = @"Refresh <!>";
+    [_tblView reloadData];
 }
 
 #pragma mark Actions

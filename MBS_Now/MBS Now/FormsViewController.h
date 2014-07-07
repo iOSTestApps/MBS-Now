@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface FormsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {
-
     NSString *urlString;
-    
-    IBOutlet UISearchBar *_searchBar;
-    IBOutlet UITableView *tblView;
 }
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UITableView *tblView;
+@property (weak, nonatomic) IBOutlet UIButton *reloadButton;
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (nonatomic, assign) NSMutableData *receivedData;
 @property (strong, nonatomic) NSArray *dataArray;

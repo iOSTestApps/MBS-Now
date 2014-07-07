@@ -33,6 +33,8 @@
     NSMutableData *tomorrowScheduleData;
 }
 
+@property (strong, nonatomic) NSString *loadingMessage;
+
 @property (strong, nonatomic) NSMutableDictionary *feeds;
 @property (strong, nonatomic) NSDate *tomorrow;
 // feeds[@"strings"] will be an array of text labels.text
