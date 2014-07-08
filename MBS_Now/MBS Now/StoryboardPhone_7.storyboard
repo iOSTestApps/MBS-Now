@@ -66,8 +66,25 @@
                                     <outlet property="messageBody" destination="buF-cp-b3U" id="7wW-LV-eWb"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="retCell" textLabel="9UK-vF-hym" rowHeight="40" style="IBUITableViewCellStyleDefault" id="6HE-xb-j5J">
+                                <rect key="frame" x="0.0" y="128" width="320" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HE-xb-j5J" id="vny-pT-f23">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9UK-vF-hym">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="39"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="standard" rowHeight="46" id="wA7-jc-bfP" customClass="StandardTableViewCell">
-                                <rect key="frame" x="0.0" y="128" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="168" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wA7-jc-bfP" id="oXo-a0-dVG">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="45"/>
@@ -91,7 +108,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="schedule" rowHeight="444" id="3F2-f7-qVy" customClass="ScheduleTableViewCell">
-                                <rect key="frame" x="0.0" y="174" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="214" width="320" height="444"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3F2-f7-qVy" id="HRI-Oy-ttF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="443"/>
@@ -147,7 +164,7 @@
         <scene sceneID="jWa-CZ-4V8">
             <objects>
                 <navigationController definesPresentationContext="YES" id="FpI-w6-GDL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Today" image="list-star-7.png" id="gQ6-r4-S0h"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="newspaper-7.png" id="gQ6-r4-S0h"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="cXZ-Q5-Ppz">
                         <rect key="frame" x="0.0" y="-44" width="0.0" height="44"/>
@@ -1688,8 +1705,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <segue destination="MiR-vS-817" kind="relationship" relationship="viewControllers" id="0tn-G3-SGF"/>
                         <segue destination="FpI-w6-GDL" kind="relationship" relationship="viewControllers" id="h8S-fa-530"/>
                         <segue destination="izH-dB-iRb" kind="relationship" relationship="viewControllers" id="DUb-6h-uke"/>
-                        <segue destination="Eoh-E1-tt3" kind="relationship" relationship="viewControllers" id="QAQ-Ie-Sv9"/>
                         <segue destination="AZL-Np-2w2" kind="relationship" relationship="viewControllers" id="I6u-H8-iLs"/>
+                        <segue destination="Eoh-E1-tt3" kind="relationship" relationship="viewControllers" id="QAQ-Ie-Sv9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
@@ -2001,8 +2018,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="hand.png" width="30" height="30"/>
         <image name="info-7-active.png" width="30" height="30"/>
         <image name="key.png" width="30" height="30"/>
-        <image name="list-star-7.png" width="30" height="30"/>
         <image name="mailbox.png" width="30" height="30"/>
+        <image name="newspaper-7.png" width="30" height="30"/>
         <image name="notifications-board.png" width="30" height="30"/>
         <image name="paperwork.png" width="30" height="30"/>
         <image name="people-communicate-mini.png" width="20" height="20"/>

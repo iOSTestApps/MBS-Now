@@ -54,8 +54,6 @@
 		157649061911785B008405B5 /* campus.png in Resources */ = {isa = PBXBuildFile; fileRef = 157649041911785B008405B5 /* campus.png */; };
 		157649071911785B008405B5 /* github.png in Resources */ = {isa = PBXBuildFile; fileRef = 157649051911785B008405B5 /* github.png */; };
 		1576490919117A2F008405B5 /* lucas.png in Resources */ = {isa = PBXBuildFile; fileRef = 1576490819117A2F008405B5 /* lucas.png */; };
-		157C54881929499F00D6B224 /* list-star-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54861929499F00D6B224 /* list-star-7.png */; };
-		157C54891929499F00D6B224 /* list-star-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54871929499F00D6B224 /* list-star-7@2x.png */; };
 		157C548C19294E7500D6B224 /* TodayCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */; };
 		157C548F1929503100D6B224 /* calendar-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C548D1929503100D6B224 /* calendar-7.png */; };
 		157C54901929503100D6B224 /* calendar-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C548E1929503100D6B224 /* calendar-7@2x.png */; };
@@ -67,6 +65,14 @@
 		157C54A919296D3900D6B224 /* purchased-arrow-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */; };
 		157C54AC19296E5B00D6B224 /* StandardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */; };
 		15891B6E16FCEB550092BEEF /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15891B6D16FCEB540092BEEF /* ExploreViewController.m */; };
+		1590CFC8196C78DB00BE0284 /* cloud-download-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFC6196C78DB00BE0284 /* cloud-download-7.png */; };
+		1590CFC9196C78DB00BE0284 /* cloud-download-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */; };
+		1590CFCC196C7CE300BE0284 /* newspaper-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFCA196C7CE300BE0284 /* newspaper-7.png */; };
+		1590CFCD196C7CE300BE0284 /* newspaper-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFCB196C7CE300BE0284 /* newspaper-7@2x.png */; };
+		1590CFD0196C7D8200BE0284 /* download-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFCE196C7D8200BE0284 /* download-7.png */; };
+		1590CFD1196C7D8200BE0284 /* download-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFCF196C7D8200BE0284 /* download-7@2x.png */; };
+		1590CFD4196C821E00BE0284 /* man-three-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFD2196C821E00BE0284 /* man-three-7.png */; };
+		1590CFD5196C821E00BE0284 /* man-three-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1590CFD3196C821E00BE0284 /* man-three-7@2x.png */; };
 		159773DC17606AB200D9AEB3 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773DB17606AB100D9AEB3 /* ContactViewController.m */; };
 		159773E1176116D100D9AEB3 /* OfflineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773E0176116D100D9AEB3 /* OfflineViewController.m */; };
 		159A3D9C177B65D60085010C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159A3D9A177B65BF0085010C /* AudioToolbox.framework */; };
@@ -322,8 +328,6 @@
 		157649041911785B008405B5 /* campus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = campus.png; sourceTree = "<group>"; };
 		157649051911785B008405B5 /* github.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = github.png; sourceTree = "<group>"; };
 		1576490819117A2F008405B5 /* lucas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lucas.png; sourceTree = "<group>"; };
-		157C54861929499F00D6B224 /* list-star-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-star-7.png"; sourceTree = "<group>"; };
-		157C54871929499F00D6B224 /* list-star-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-star-7@2x.png"; sourceTree = "<group>"; };
 		157C548A19294E7500D6B224 /* TodayCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayCellTableViewCell.h; sourceTree = "<group>"; };
 		157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayCellTableViewCell.m; sourceTree = "<group>"; };
 		157C548D1929503100D6B224 /* calendar-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar-7.png"; sourceTree = "<group>"; };
@@ -340,6 +344,14 @@
 		157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandardTableViewCell.m; path = ../StandardTableViewCell.m; sourceTree = "<group>"; };
 		15891B6C16FCEB540092BEEF /* ExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
 		15891B6D16FCEB540092BEEF /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		1590CFC6196C78DB00BE0284 /* cloud-download-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-download-7.png"; sourceTree = "<group>"; };
+		1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-download-7@2x.png"; sourceTree = "<group>"; };
+		1590CFCA196C7CE300BE0284 /* newspaper-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newspaper-7.png"; sourceTree = "<group>"; };
+		1590CFCB196C7CE300BE0284 /* newspaper-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newspaper-7@2x.png"; sourceTree = "<group>"; };
+		1590CFCE196C7D8200BE0284 /* download-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-7.png"; sourceTree = "<group>"; };
+		1590CFCF196C7D8200BE0284 /* download-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download-7@2x.png"; sourceTree = "<group>"; };
+		1590CFD2196C821E00BE0284 /* man-three-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-three-7.png"; sourceTree = "<group>"; };
+		1590CFD3196C821E00BE0284 /* man-three-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "man-three-7@2x.png"; sourceTree = "<group>"; };
 		159773DA17606AB000D9AEB3 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
 		159773DB17606AB100D9AEB3 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		159773DF176116D000D9AEB3 /* OfflineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineViewController.h; sourceTree = "<group>"; };
@@ -841,8 +853,14 @@
 			isa = PBXGroup;
 			children = (
 				157649031911745B008405B5 /* What's new */,
+				1590CFC6196C78DB00BE0284 /* cloud-download-7.png */,
+				1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */,
+				1590CFCE196C7D8200BE0284 /* download-7.png */,
+				1590CFCF196C7D8200BE0284 /* download-7@2x.png */,
 				159CF8EF1965DD2B00BD7433 /* paperwork-7.png */,
 				159CF8F01965DD2B00BD7433 /* paperwork-7@2x.png */,
+				1590CFCA196C7CE300BE0284 /* newspaper-7.png */,
+				1590CFCB196C7CE300BE0284 /* newspaper-7@2x.png */,
 				3B49C10219648FC40083DA33 /* hand.png */,
 				3B49C10319648FC40083DA33 /* hand@2x.png */,
 				155AFA2F193E3F5E00DFF572 /* clock-7-active.png */,
@@ -853,8 +871,6 @@
 				157C549C1929692D00D6B224 /* star-7@2x.png */,
 				157C548D1929503100D6B224 /* calendar-7.png */,
 				157C548E1929503100D6B224 /* calendar-7@2x.png */,
-				157C54861929499F00D6B224 /* list-star-7.png */,
-				157C54871929499F00D6B224 /* list-star-7@2x.png */,
 				157C54A619296D3900D6B224 /* purchased-arrow-7.png */,
 				157C54A719296D3900D6B224 /* purchased-arrow-7@2x.png */,
 				156AEAC4192D3DE9006239BA /* caution-7.png */,
@@ -938,6 +954,8 @@
 				15FFD8E118C69B040049FD02 /* image@2x.png */,
 				15FFD8E218C69B040049FD02 /* info-7-active.png */,
 				15FFD8E318C69B040049FD02 /* info-7-active@2x.png */,
+				1590CFD2196C821E00BE0284 /* man-three-7.png */,
+				1590CFD3196C821E00BE0284 /* man-three-7@2x.png */,
 				15FFD8E518C69B040049FD02 /* key.png */,
 				15FFD8E618C69B040049FD02 /* key@2x.png */,
 				15FFD8E718C69B040049FD02 /* mailbox.png */,
@@ -1178,7 +1196,6 @@
 				15FFD92D18C69B040049FD02 /* arrow-circle-02@2x.png in Resources */,
 				15F2E815176972FF00FA1073 /* WelcomesViewController_7.xib in Resources */,
 				15FFD98218C69B040049FD02 /* P0.png in Resources */,
-				157C54881929499F00D6B224 /* list-star-7.png in Resources */,
 				15AAF68218D28E4A001AC330 /* clubInfo.txt in Resources */,
 				15FFD96618C69B040049FD02 /* forward-7-active@2x.png in Resources */,
 				15FFD96718C69B040049FD02 /* gear-7-active.png in Resources */,
@@ -1201,7 +1218,6 @@
 				153E7490186A55C7004A9B5A /* contactme.html in Resources */,
 				15FFD9A418C69B040049FD02 /* timer-7-active.png in Resources */,
 				15FFD99018C69B040049FD02 /* rank.png in Resources */,
-				157C54891929499F00D6B224 /* list-star-7@2x.png in Resources */,
 				15FFD95818C69B040049FD02 /* Default.png in Resources */,
 				15FFD9A018C69B040049FD02 /* tanButtonHighlight.png in Resources */,
 				15FFD99318C69B040049FD02 /* RedOnWhiteInsignia(1004x768).png in Resources */,
@@ -1220,8 +1236,11 @@
 				15FFD96818C69B040049FD02 /* gear-7-active@2x.png in Resources */,
 				1576490919117A2F008405B5 /* lucas.png in Resources */,
 				15FFD95B18C69B040049FD02 /* direction-sign-multiple-7-active.png in Resources */,
+				1590CFC8196C78DB00BE0284 /* cloud-download-7.png in Resources */,
 				15FFD91F18C69B040049FD02 /* 3DCulpolaIcon144.png in Resources */,
+				1590CFC9196C78DB00BE0284 /* cloud-download-7@2x.png in Resources */,
 				15A878B91808A9B4009A0C21 /* Images.xcassets in Resources */,
+				1590CFCC196C7CE300BE0284 /* newspaper-7.png in Resources */,
 				157C54A919296D3900D6B224 /* purchased-arrow-7@2x.png in Resources */,
 				152AE16418D7CFEA00D8BC44 /* HeadmasterWelcome.txt in Resources */,
 				15FFD93418C69B040049FD02 /* arrow-right-out@2x.png in Resources */,
@@ -1283,10 +1302,12 @@
 				155AFA32193E3F5E00DFF572 /* clock-7-active@2x.png in Resources */,
 				1573821217F2436E00956F6F /* ids.plist in Resources */,
 				15FFD98F18C69B040049FD02 /* quote@2x.png in Resources */,
+				1590CFCD196C7CE300BE0284 /* newspaper-7@2x.png in Resources */,
 				15FFD97218C69B040049FD02 /* image@2x.png in Resources */,
 				15FFD98618C69B040049FD02 /* paperwork@2x.png in Resources */,
 				15FFD93718C69B040049FD02 /* backward-7-active@2x.png in Resources */,
 				155AFA31193E3F5E00DFF572 /* clock-7-active.png in Resources */,
+				1590CFD0196C7D8200BE0284 /* download-7.png in Resources */,
 				157C548F1929503100D6B224 /* calendar-7.png in Resources */,
 				15FFD93318C69B040049FD02 /* arrow-right-out.png in Resources */,
 				156AEAC9192D426A006239BA /* circle-down-7@2x.png in Resources */,
@@ -1301,10 +1322,12 @@
 				15FFD99A18C69B040049FD02 /* speaker@2x.png in Resources */,
 				15FFD9F718C69D900049FD02 /* Data.txt in Resources */,
 				15FFD99C18C69B040049FD02 /* star-7-active@2x.png in Resources */,
+				1590CFD4196C821E00BE0284 /* man-three-7.png in Resources */,
 				15FFD98718C69B040049FD02 /* people-communicate-mini.png in Resources */,
 				15FFD93E18C69B040049FD02 /* blackButtonHighlight.png in Resources */,
 				15FFD92718C69B040049FD02 /* arrow-back@2x.png in Resources */,
 				15FFD9A318C69B040049FD02 /* text-list-mini@2x.png in Resources */,
+				1590CFD1196C7D8200BE0284 /* download-7@2x.png in Resources */,
 				15AAF68018D28E3F001AC330 /* Info.txt in Resources */,
 				15FFD93818C69B040049FD02 /* bank.png in Resources */,
 				15FFD97818C69B040049FD02 /* mailbox.png in Resources */,
@@ -1313,6 +1336,7 @@
 				1573821317F2436E00956F6F /* keys.plist in Resources */,
 				1547B589192848DA00330A94 /* SVWebViewControllerActivityChrome-iPad@2x.png in Resources */,
 				159CF8EE1964EFB500BD7433 /* StoryboardPhone_7.storyboard in Resources */,
+				1590CFD5196C821E00BE0284 /* man-three-7@2x.png in Resources */,
 				15FFD96518C69B040049FD02 /* forward-7-active.png in Resources */,
 				15FFD91818C69B040049FD02 /* 00.png in Resources */,
 				157649061911785B008405B5 /* campus.png in Resources */,

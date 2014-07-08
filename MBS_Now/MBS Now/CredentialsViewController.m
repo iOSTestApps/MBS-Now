@@ -63,6 +63,8 @@
         q++;
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"loginsTapped"];
     }
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark Rotation

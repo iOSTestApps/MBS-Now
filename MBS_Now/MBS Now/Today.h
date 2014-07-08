@@ -2,8 +2,8 @@
 //  Today.h
 //  MBS Now
 //
-//  Created by gdyer on 5/18/14.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Created by Graham Dyer on 5/18/14.
+//  Copyright (c) 2014 MBS Now. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,17 +12,17 @@
     NSURLConnection *specialConnection;
     NSMutableData *specialData;
 
-//    NSURLConnection *meetingsConnection;
-//    NSMutableData *meetingsData;
+    NSURLConnection *meetingsConnection;
+    NSMutableData *meetingsData;
+
+    NSURLConnection *versionConnection;
+    NSMutableData *versionData;
+
+//    NSURLConnection *rssConnection;
+//    NSMutableData *rssData;
 //
-//    NSURLConnection *versionConnection;
-//    NSMutableData *versionData;
-
-    NSURLConnection *rssConnection;
-    NSMutableData *rssData;
-
-    NSURLConnection *rssNewsConnection;
-    NSMutableData *rssNewsData;
+//    NSURLConnection *rssNewsConnection;
+//    NSMutableData *rssNewsData;
 
     NSURLConnection *scheduleConnection;
     NSMutableData *scheduleData;
@@ -33,10 +33,8 @@
     NSMutableData *tomorrowScheduleData;
 }
 
-@property (strong, nonatomic) NSString *loadingMessage;
-
+@property (assign, nonatomic) NSInteger ret;
 @property (strong, nonatomic) NSMutableDictionary *feeds;
-@property (strong, nonatomic) NSDate *tomorrow;
 // feeds[@"strings"] will be an array of text labels.text
 // feeds[@"images"] will be an array of UIImages
 // feeds[@"class"] class name strings
