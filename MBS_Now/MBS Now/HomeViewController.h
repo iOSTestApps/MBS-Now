@@ -43,7 +43,6 @@
 - (IBAction)pushedCountdown:(id)sender;
 - (IBAction)pushedCredentials:(id)sender;
 - (IBAction)pushedLibrary:(id)sender;
-- (IBAction)pushedNotify:(id)sender;
 
 @property (nonatomic, assign) NSMutableData *receivedData;
 @property (nonatomic, assign) NSInteger days;

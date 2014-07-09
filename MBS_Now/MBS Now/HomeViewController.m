@@ -168,12 +168,6 @@
     }
 }
 
-- (IBAction)pushedNotify:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Instant Alert" message:@"Would you like to fire a notification with today's schedule?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes, Upper School", @"Yes, Middle School", nil];
-    alert.tag = 12;
-    [alert show];
-}
-
 #pragma mark Connections
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (connection == sendingData) {
@@ -228,25 +222,6 @@
             [alert show];
             return;
         }
-
-        data = [data stringByReplacingOccurrencesOfString:@"|Filler|Filler|" withString:@"|"];
-        data = [data stringByReplacingOccurrencesOfString:@"Advisors|" withString:@""];
-        data = [data stringByReplacingOccurrencesOfString:@"Advisory|" withString:@""];
-        data = [data stringByReplacingOccurrencesOfString:@"Flex|" withString:@""];
-        data = [data stringByReplacingOccurrencesOfString:@"|" withString:@" | "];
-        NSDate *fireDate = [[NSDate date] dateByAddingTimeInterval:30];
-
-        UILocalNotification *lcl = [[UILocalNotification alloc] init];
-        lcl.fireDate = fireDate;
-        lcl.alertBody = data;
-        lcl.soundName = UILocalNotificationDefaultSoundName;
-        lcl.alertAction = @"Open";
-        lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-        [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Notification will fire in 30 seconds. Please lock your device and leave MBS Now to ensure it will be displayed on your lock screen." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
-        [alert show];
-
     } else if (connection == meetingsConnection) {
         NSString *separation = @"\n";
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
@@ -271,7 +246,7 @@
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
                 NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
                 if ((q % 6 == 0) && q != 0) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"There's an update available—for real this time!" delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"MBS Now just got better. Download the update now." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
                 [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 alert.tag = 13;
@@ -317,20 +292,10 @@
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"abs"];
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"general"];
 
-            [SVProgressHUD showSuccessWithStatus:@"Alright. Modify your choice in Settings"];
+            [SVProgressHUD showImage:nil status:@"Visit Settings when you change your mind ;)"];
         }
 
         [[NSUserDefaults standardUserDefaults] synchronize];
-    } else if (alertView.tag == 12 && buttonIndex != 0) {
-        [SVProgressHUD showWithStatus:@"Working"];
-        // instant schedule notification
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
-        NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-        NSString *foo = (buttonIndex == 1) ? @"us" : @"ms";
-
-        [self scheduleFromDate:dateString andDivison:foo];
     } else if (alertView.tag == 13 && buttonIndex == 1)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
 }
@@ -448,13 +413,6 @@
             for (UILabel *lbl in second) lbl.textColor = bar;
         }
     }
-}
-
-#pragma mark Schedule Notifcations
-- (void)scheduleFromDate:(NSString *)formattedDate andDivison:(NSString *)division {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=%@", formattedDate, division]]];
-    connection2 = [NSURLConnection connectionWithRequest:request delegate:self];
-    [request setHTTPMethod:@"GET"];
 }
 
 @end

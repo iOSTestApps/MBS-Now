@@ -24,16 +24,20 @@
 //    NSURLConnection *rssNewsConnection;
 //    NSMutableData *rssNewsData;
 
+    // text schedules
     NSURLConnection *scheduleConnection;
     NSMutableData *scheduleData;
+    NSURLConnection *tomorrowTextConnection;
+    NSMutableData *tomorrowTextData;
 
+    // photos
     NSURLConnection *todayScheduleConnection;
     NSMutableData *todayScheduleData;
     NSURLConnection *tomorrowScheduleConnection;
     NSMutableData *tomorrowScheduleData;
 }
 
-@property (assign, nonatomic) NSInteger ret;
+@property (assign, nonatomic) NSInteger ret; // see marcos in m for details
 @property (strong, nonatomic) NSMutableDictionary *feeds;
 // feeds[@"strings"] will be an array of text labels.text
 // feeds[@"images"] will be an array of UIImages

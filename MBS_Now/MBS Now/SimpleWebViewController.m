@@ -43,7 +43,7 @@ BOOL edit;
 #pragma mark Connections
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [SVProgressHUD showWithStatus:@"Loading"];
+    [SVProgressHUD showWithStatus:@"Loading..."];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -110,8 +110,10 @@ BOOL edit;
             [SVProgressHUD showImage:[UIImage imageNamed:@"finger-touch.png"] status:@"Tap 'Edit your response' on this page (zoom in if necessary)."];
             edit = YES;
             self.specifier = nil;
-        } else
+        } else {
+            [SVProgressHUD dismiss];
             [self dismissViewControllerAnimated:YES completion:nil];
+        }
 
     } else if (alertView.tag == 3) {
         edit = NO;

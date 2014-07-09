@@ -29,7 +29,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
 
     finalURL = (finalURL) ? finalURL : [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
-    NSLog(@"%@", finalURL);
     NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
 
     if (connection) receivedData = [NSMutableData data];
@@ -77,7 +76,7 @@
         return;
     }
     
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Share this form" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Generate link", @"Email this", @"Print this page", nil];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Share this form" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Generate link", @"Email link", @"Print this page", nil];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     else [sheet showInView:_webView];
@@ -112,7 +111,6 @@
 #pragma mark Mail
 - (void)mailLink {
     if ([MFMailComposeViewController canSendMail] == YES) {
-
         MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
         composerView.mailComposeDelegate = self;
         [composerView setModalPresentationStyle:UIModalPresentationFormSheet];

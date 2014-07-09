@@ -36,12 +36,13 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(update)];
 }
 
-- (void)noSavedGrade:(NSString *)append {
-    UIAlertView *d = [[UIAlertView alloc] initWithTitle:@"What grade are you in?" message:@"Faculty memebers: enter any grade within your division (MS or US)." delegate:self cancelButtonTitle:@"Go" otherButtonTitles:nil, nil];
-    d.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [d textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-    [d textFieldAtIndex:0].placeholder = append;
-    [d show];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:YES];
+    [versionConnection cancel];
+    [meetingsConnection cancel];
+    //    [rssConnection cancel];
+    [specialConnection cancel];
+    //    [rssNewsConnection cancel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -55,8 +56,24 @@
     [self update];
 }
 
+- (void)noSavedGrade:(NSString *)append {
+    UIAlertView *d = [[UIAlertView alloc] initWithTitle:@"What grade are you in?" message:@"Faculty memebers: enter any grade within your division (MS or US)." delegate:self cancelButtonTitle:@"Go" otherButtonTitles:nil, nil];
+    d.tag = 2;
+    d.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [d textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
+    [d textFieldAtIndex:0].placeholder = append;
+    [d show];
+}
+
+- (void)addTextScheduleFeed:(NSString *)raw withDayIndex:(BOOL)i {
+    NSString *sched = [NSString stringWithFormat:@"%@: %@", ((i == 0) ? @"Today" : @"Tomorrow"), [[[raw stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
+    [self saveFeedsWithObject:sched andKey:@"strings"];
+    [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];
+    [self saveFeedsWithObject:[TodayCellTableViewCell class] andKey:@"class"];
+    [self saveFeedsWithObject:@"" andKey:@"urls"];
+}
+
 - (BOOL)compareArrays:(NSArray *)array1 and:(NSArray *)array2 {
-    NSLog(@"ARRAY 1: %@\n\n\nARRAY 2: %@", array1, array2);
     for (NSString *name in array1) {
         if (![array2 containsObject:name]) {
             return NO;
@@ -81,46 +98,33 @@
 
     _feeds = [NSMutableDictionary dictionary];
 
-    NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
-
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d, h:mm:ss a";
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 
-    NSDateFormatter *form = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"y-M-d"];
-
-    //    NSCalendar *calendar = [NSCalendar currentCalendar];
-    //    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
-    //    NSInteger hour = [components hour];
-    //
-    //    if (hour < 16) {
-
-    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=%@", [form stringFromDate:[NSDate date]], savedDivision]]];
+    // start connection for TEXT-BASED today schedule
+    //    NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
+    //    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=%@", [form stringFromDate:[NSDate date]], savedDivision]]];
+    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-16&div=us"]];
     scheduleData = [NSMutableData data];
     scheduleConnection = [[NSURLConnection alloc] initWithRequest:schedule delegate:self startImmediately:YES];
 
-    NSURLRequest *todaySchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [form stringFromDate:[NSDate date]]]]];
+    // start connection for IMAGE-BASED today schedule
+    NSURLRequest *todaySchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [self stringFromFormatterDate:[NSDate date]]]]];
     todayScheduleData = [NSMutableData data];
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar]
-                                            components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
-                                            fromDate:[NSDate date]];
-
-    NSDate *compDate = [[NSCalendar currentCalendar]
-                        dateFromComponents:tomorrowComponents];
-
-    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-    offsetComponents.day = 1;
-    NSDate *tomorrow = [[NSCalendar currentCalendar]
-                        dateByAddingComponents:offsetComponents toDate:compDate options:0];
-
-    NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [form stringFromDate:tomorrow]]]];
-    tomorrowScheduleData = [NSMutableData data];
-    tomorrowScheduleConnection = [[NSURLConnection alloc] initWithRequest:tomorrowSchedule delegate:self startImmediately:YES];
-
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    NSInteger hour = [components hour];
+    if (hour > 16) {
+        // start connection for TEXT-BASED tomorrow schedule only if it's AFTER 8 PM
+//        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self tomorrow]]]]];
+        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-17&div=us"]];
+        tomorrowTextData = [NSMutableData data];
+        tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
+    }
 //    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"]];
 //    rssData = [NSMutableData data];
 //    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
@@ -142,13 +146,23 @@
     specialConnection = [[NSURLConnection alloc] initWithRequest:special delegate:self startImmediately:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:YES];
-    [versionConnection cancel];
-    [meetingsConnection cancel];
-//    [rssConnection cancel];
-    [specialConnection cancel];
-//    [rssNewsConnection cancel];
+- (NSString *)stringFromFormatterDate:(NSDate *)d {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"y-M-d"];
+    return [form stringFromDate:d];
+}
+
+- (NSDate *)tomorrow {
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar]
+                                            components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
+                                            fromDate:[NSDate date]];
+
+    NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
+
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    offsetComponents.day = 1;
+    return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
+
 }
 
 - (void)saveFeedsWithObject:(id)object andKey:(NSString *)key{
@@ -164,7 +178,8 @@
     if (connection == meetingsConnection) [meetingsData appendData:data];
     else if (connection == versionConnection) [versionData appendData:data];
 //    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
-//    else if (connection == scheduleConnection) [scheduleData appendData:data];
+    else if (connection == scheduleConnection) [scheduleData appendData:data];
+    else if (connection == tomorrowTextConnection) [tomorrowTextData appendData:data];
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
     else if (connection == tomorrowScheduleConnection) [tomorrowScheduleData appendData:data];
 }
@@ -206,17 +221,13 @@
         }
     }
 
-    else if (connection == scheduleConnection) {
-        NSString *schedule = [[NSString alloc] initWithData:scheduleData encoding:NSUTF8StringEncoding];
-        if (![schedule isEqualToString:@""]) {
-            NSString *sched = [NSString stringWithFormat:@"Today: %@", [[[schedule stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
-            [self saveFeedsWithObject:sched andKey:@"strings"];
-            [self saveFeedsWithObject:[UIImage imageNamed:@"clock-7.png"] andKey:@"images"];
-            [self saveFeedsWithObject:[TodayCellTableViewCell class] andKey:@"class"];
-            [self saveFeedsWithObject:@"http://campus.mbs.net/mbs/widget/daySched.php" andKey:@"urls"];
-        }
+    // TEXT-BASED schedules
+    else if (connection == scheduleConnection || connection == tomorrowTextConnection) {
+        NSString *schedule = [[NSString alloc] initWithData:((connection == tomorrowTextConnection) ? tomorrowTextData : scheduleData) encoding:NSUTF8StringEncoding];
+        if (![schedule isEqualToString:@""]) [self addTextScheduleFeed:schedule withDayIndex:((connection == tomorrowTextConnection) ? 1 : 0)];
     }
 
+    // IMAGE-BASED schedules
     else if (connection == todayScheduleConnection || connection == tomorrowScheduleConnection) {
         NSMutableData *d = (connection == todayScheduleConnection) ? todayScheduleData : tomorrowScheduleData;
         id object = [NSJSONSerialization JSONObjectWithData:d options:0 error:nil];
@@ -230,12 +241,18 @@
                 [self saveFeedsWithObject:@" " andKey:@"urls"];
             }
         }
+
+        if (connection == todayScheduleConnection) {
+            // start connection for IMAGE-BASED tomorrow schedule
+            NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [self stringFromFormatterDate:[self tomorrow]]]]];
+            tomorrowScheduleData = [NSMutableData data];
+            tomorrowScheduleConnection = [[NSURLConnection alloc] initWithRequest:tomorrowSchedule delegate:self startImmediately:YES];
+        }
     }
 
     else if (connection == versionConnection) {
         NSString *fileText = [[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-        NSLog(@"%@, %@", fileText, infoDict[@"CFBundleShortVersionString"]);
         if (![fileText isEqualToString:infoDict[@"CFBundleShortVersionString"]]) {
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:@"Update available! Tap to download." andKey:@"strings"];
@@ -288,7 +305,7 @@
         TodayCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"MMM d, h:mm:ss a";
-        cell.dateTag.text = [formatter stringFromDate:[NSDate date]];
+        cell.dateTag.text = [NSString stringWithFormat:@"Updated %@", [formatter stringFromDate:[NSDate date]]];
         cell.messageBody.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         return cell;
@@ -296,7 +313,7 @@
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
-        [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         return cell;
     }
     return nil;
@@ -306,16 +323,17 @@
     if (_ret > 0) return 46.0f;
     id cl = _feeds[@"class"][indexPath.row];
     if (cl == [StandardTableViewCell class]) return 46.0f;
-    else if (cl == [TodayCellTableViewCell class]) return 106.0f;
+    else if (cl == [TodayCellTableViewCell class]) return 154.0f;
     else return 444.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([[tableView cellForRowAtIndexPath:indexPath].reuseIdentifier isEqualToString:@"schedule"]) {
+    NSString *iden = [tableView cellForRowAtIndexPath:indexPath].reuseIdentifier;
+    if ([iden isEqualToString:@"schedule"]) {
         FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([[tableView cellForRowAtIndexPath:indexPath].reuseIdentifier isEqualToString:@"standard"]) {
+    else if ([iden isEqualToString:@"standard"]) {
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
         if (str) {
             if ([str isEqualToString:@"Clubs"]) {
@@ -323,12 +341,29 @@
                 return;
             }
             FormsViewerViewController *vc;
-            if ([str isEqualToString:UPDATE_URL])
-                vc = [[FormsViewerViewController alloc] initWithFullURL:str];
+            if ([str isEqualToString:UPDATE_URL]) {
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                return;
+            }
             else vc = [[FormsViewerViewController alloc] initWithStringForURL:str];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
+    else if (_feeds[@"class"][indexPath.row] == [TodayCellTableViewCell class]) {
+        NSString *alertTitle = [((TodayCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]) messageBody].text;
+        NSDate *fireDate = [[NSDate date] dateByAddingTimeInterval:20];
+        UILocalNotification *lcl = [[UILocalNotification alloc] init];
+        lcl.fireDate = fireDate;
+        lcl.alertBody = alertTitle;
+        lcl.soundName = UILocalNotificationDefaultSoundName;
+        lcl.alertAction = @"Open";
+        lcl.timeZone = [NSTimeZone defaultTimeZone];
+
+        [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
+        [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
+    }
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -344,6 +379,7 @@
 
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag != 2) return;
     NSMutableArray *poss = [NSMutableArray array];
     for (int x = 6; x < 13; x++)
         [poss addObject:[NSString stringWithFormat:@"%d", x]];
@@ -355,7 +391,7 @@
         return;
     }
     
-    [self noSavedGrade:@"Try again. "];
+    [self noSavedGrade:@"Whoops! Try again."];
 }
 
 @end
