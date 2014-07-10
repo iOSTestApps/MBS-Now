@@ -245,7 +245,7 @@
                                 <color key="backgroundColor" white="0.75" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" id="eon-LU-dsc">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1193"/>
+                                <rect key="frame" x="0.0" y="-2" width="768" height="1193"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Explore Campus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xpb-ag-Lab">
@@ -271,7 +271,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1GI-Dl-Wo2">
-                                        <rect key="frame" x="346" y="290" width="77" height="77"/>
+                                        <rect key="frame" x="346" y="77" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="key.png">
@@ -286,21 +286,21 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Database Logins" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YC9-4R-TcK">
-                                        <rect key="frame" x="329" y="375" width="128" height="23"/>
+                                        <rect key="frame" x="329" y="162" width="128" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contact MBS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LnN-Ry-sy1">
-                                        <rect key="frame" x="340" y="801" width="125" height="23"/>
+                                        <rect key="frame" x="340" y="588" width="125" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mdc-9t-613">
-                                        <rect key="frame" x="346" y="716" width="77" height="77"/>
+                                        <rect key="frame" x="346" y="503" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="phone-book.png">
@@ -315,14 +315,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Countdown" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HAe-eb-k2V">
-                                        <rect key="frame" x="585" y="375" width="118" height="23"/>
+                                        <rect key="frame" x="585" y="162" width="118" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XeN-EA-6JW">
-                                        <rect key="frame" x="585" y="290" width="77" height="77"/>
+                                        <rect key="frame" x="585" y="77" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="timer-7-active.png">
@@ -358,37 +358,15 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Daily Alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g03-WQ-z2L">
-                                        <rect key="frame" x="351" y="162" width="78" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7kR-ir-TBm">
-                                        <rect key="frame" x="346" y="77" width="77" height="77"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="notifications-board.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pushedNotify:" destination="GbC-Ub-Soh" eventType="touchUpInside" id="4U8-xb-UqA"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="About MBS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3D6-ow-oXe">
-                                        <rect key="frame" x="585" y="801" width="120" height="23"/>
+                                        <rect key="frame" x="585" y="588" width="120" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hBM-Ht-Ivj">
-                                        <rect key="frame" x="585" y="716" width="77" height="77"/>
+                                        <rect key="frame" x="585" y="503" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="quote.png">
@@ -403,14 +381,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Directions to Campus" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yNG-m1-SzQ">
-                                        <rect key="frame" x="554" y="588" width="166" height="23"/>
+                                        <rect key="frame" x="554" y="375" width="166" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rb8-kB-iqm">
-                                        <rect key="frame" x="585" y="503" width="77" height="77"/>
+                                        <rect key="frame" x="585" y="290" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="direction-sign-multiple-7-active.png">
@@ -425,14 +403,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Library Catalog" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jvw-pA-wRk">
-                                        <rect key="frame" x="332" y="588" width="141" height="23"/>
+                                        <rect key="frame" x="332" y="375" width="141" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V16-Ea-OjE">
-                                        <rect key="frame" x="346" y="503" width="77" height="77"/>
+                                        <rect key="frame" x="346" y="290" width="77" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="bookmark-7-active.png">
@@ -447,15 +425,15 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Data Uploads" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ats-MU-ihd">
-                                        <rect key="frame" x="99" y="1014" width="104" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                        <rect key="frame" x="340" y="801" width="104" height="23"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="j6Y-jU-Xoz">
-                                        <rect key="frame" x="105" y="929" width="77" height="77"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                        <rect key="frame" x="346" y="716" width="77" height="77"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="upload-7-active.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -475,28 +453,6 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Special Schedule" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wMP-iv-bXy">
-                                        <rect key="frame" x="564" y="162" width="155" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7tL-UW-5Kh">
-                                        <rect key="frame" x="585" y="77" width="77" height="77"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="star-7-active.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pushedSpecial:" destination="GbC-Ub-Soh" eventType="touchUpInside" id="Rfc-2N-QbO"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Upper School Lunch Blocks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WAs-7Y-gww">
                                         <rect key="frame" x="52" y="375" width="193" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
@@ -544,7 +500,7 @@
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                        <size key="value" width="750" height="1500"/>
+                                        <size key="value" width="750" height="1300"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -600,8 +556,6 @@
                         <outlet property="_l1" destination="YC9-4R-TcK" id="n9i-Ge-Pb1"/>
                         <outlet property="versionLabel" destination="m5M-a8-D1p" id="TzW-In-0Ph"/>
                         <outletCollection property="buttons" destination="PCb-iJ-8wx" id="F2w-za-wXM"/>
-                        <outletCollection property="buttons" destination="7kR-ir-TBm" id="GYv-wG-Vgm"/>
-                        <outletCollection property="buttons" destination="7tL-UW-5Kh" id="1MO-32-T6l"/>
                         <outletCollection property="buttons" destination="rx2-A6-Rph" id="Lf9-h1-wqZ"/>
                         <outletCollection property="buttons" destination="1GI-Dl-Wo2" id="Utf-cH-uMZ"/>
                         <outletCollection property="buttons" destination="XeN-EA-6JW" id="cPj-Mg-Lv5"/>
@@ -613,34 +567,33 @@
                         <outletCollection property="buttons" destination="j6Y-jU-Xoz" id="dKl-8d-9yV"/>
                         <outletCollection property="buttons" destination="V7Z-oM-UIu" id="j89-gu-xZn"/>
                         <outletCollection property="first" destination="xpb-ag-Lab" id="sTp-oP-44B"/>
-                        <outletCollection property="first" destination="Jvw-pA-wRk" id="yGm-tP-Lwz"/>
-                        <outletCollection property="first" destination="yNG-m1-SzQ" id="0pT-d7-wk4"/>
                         <outletCollection property="second" destination="S8z-Al-1rY" id="nPh-bS-SrR"/>
-                        <outletCollection property="second" destination="3D6-ow-oXe" id="jqu-nN-aE2"/>
+                        <outletCollection property="first" destination="LnN-Ry-sy1" id="Ej0-hR-ybA"/>
+                        <outletCollection property="first" destination="3D6-ow-oXe" id="pqS-vh-aiL"/>
                         <segue destination="Db7-yz-Qpj" kind="push" identifier="credentials" id="bIf-v4-ar7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ePG-jo-7jG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417" y="44"/>
+            <point key="canvasLocation" x="-53" y="622"/>
         </scene>
         <!--Explore View Controller - Explore Campus-->
         <scene sceneID="gXu-fg-DSC">
             <objects>
                 <viewController id="g7o-UX-QJ2" customClass="ExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3kE-PX-nD2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="6pG-3h-VrD">
-                                <rect key="frame" x="3" y="64" width="768" height="858"/>
+                                <rect key="frame" x="3" y="64" width="768" height="794"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="g7o-UX-QJ2" id="jzN-oR-Yv4"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OQm-YH-zNY">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="858"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -649,7 +602,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mxv-hb-yM4">
-                                <rect key="frame" x="21" y="930" width="732" height="32"/>
+                                <rect key="frame" x="21" y="866" width="732" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="View listings">
@@ -1715,7 +1668,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-368" y="1164"/>
+            <point key="canvasLocation" x="-936" y="1296"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="15">
@@ -2071,7 +2024,6 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="mailbox.png" width="30" height="30"/>
         <image name="mutiply-sign.png" width="29" height="30"/>
         <image name="noodle.png" width="30" height="30"/>
-        <image name="notifications-board.png" width="30" height="30"/>
         <image name="paperwork.png" width="30" height="30"/>
         <image name="people-communicate-mini.png" width="20" height="20"/>
         <image name="phone-book.png" width="30" height="30"/>
@@ -2090,8 +2042,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="P0c-K7-di6"/>
-        <segue reference="ICH-Gy-RpE"/>
         <segue reference="okE-ih-MY8"/>
+        <segue reference="yTd-iT-oht"/>
+        <segue reference="S15-6g-c3F"/>
     </inferredMetricsTieBreakers>
 </document>

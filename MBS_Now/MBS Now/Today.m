@@ -8,6 +8,7 @@
 
 #import "Today.h"
 #import "FormsViewerViewController.h"
+#import "HomeViewController.h"
 #import "SVWebViewController.h"
 #import "StandardTableViewCell.h"
 #import "TodayCellTableViewCell.h"
@@ -97,6 +98,18 @@
     [self.tableView reloadData];
 
     _feeds = [NSMutableDictionary dictionary];
+
+    HomeViewController *hvc = [[HomeViewController alloc] init];
+    NSArray *f = [hvc countdown];
+    int days = [f[2] intValue];
+    if ([f[1] isEqualToString:@"starts"] || days < 15) {
+        // only show countdown here if it's the summer or there are 15 days left in school
+        NSString *message = [NSString stringWithFormat:@"School %@ in %d %@.", f[1], days, ((days == 1) ? @"day" : @"days")];
+        [self saveFeedsWithObject:message andKey:@"strings"];
+        [self saveFeedsWithObject:f[0] andKey:@"images"];
+        [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+        [self saveFeedsWithObject:@"" andKey:@"urls"];
+    }
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d, h:mm:ss a";
@@ -217,7 +230,6 @@
             [self saveFeedsWithObject:[UIImage imageNamed:@"man-three-7.png"] andKey:@"images"];
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:@"Clubs" andKey:@"urls"];
-            [self.tableView reloadData];
         }
     }
 
@@ -335,7 +347,7 @@
     }
     else if ([iden isEqualToString:@"standard"]) {
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
-        if (str) {
+        if (![str isEqualToString:@""]) {
             if ([str isEqualToString:@"Clubs"]) {
                 self.tabBarController.selectedIndex = 2;
                 return;

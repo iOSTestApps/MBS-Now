@@ -12,38 +12,27 @@
 
 @interface HomeViewController : UIViewController <UIPopoverControllerDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, MFMailComposeViewControllerDelegate, UIScrollViewDelegate, NSURLConnectionDelegate, UIScrollViewDelegate> {
 
-    IBOutletCollection(UILabel) NSArray *first;
-    IBOutletCollection(UILabel) NSArray *second;
-    IBOutletCollection(UILabel) NSArray *third;
-    IBOutletCollection(UILabel) NSArray *fourth;
-
-    NSURLConnection *connection1;
-    NSURLConnection *connection2;
     NSURLConnection *meetingsConnection;
     NSURLConnection *versionConnection;
     NSMutableData *versionData;
     NSURLConnection *sendingData;
-
-    // countdown
-    UIImage *bImage;
-    NSDateComponents *components;
-    NSString *messagePart;
-
-    // for custom buttons
-    IBOutletCollection(UIButton) NSArray *buttons;
-
-    IBOutlet UILabel *_l1;
-    IBOutlet UILabel *_l2;
-    IBOutlet UILabel *_l3;
-    IBOutlet UILabel *_l4;
-
-    IBOutlet UILabel *versionLabel;
 }
+
+- (NSArray *)countdown;
 
 - (IBAction)pushedCountdown:(id)sender;
 - (IBAction)pushedCredentials:(id)sender;
 - (IBAction)pushedLibrary:(id)sender;
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *first;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *second;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *third;
+
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *l1;
+@property (weak, nonatomic) IBOutlet UILabel *l2;
+
 @property (nonatomic, assign) NSMutableData *receivedData;
-@property (nonatomic, assign) NSInteger days;
 @end

@@ -111,6 +111,11 @@
 		15BAFE041935383200780C96 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BAFDF51935383200780C96 /* UIImageView+HighlightedWebCache.m */; };
 		15BAFE071935384700780C96 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAFE061935384700780C96 /* ImageIO.framework */; };
 		15C151CD1799F70600060CAB /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C151CB1799F70600060CAB /* DataViewController.m */; };
+		15C676AD196F1E7A00DD15AE /* RMitchellWebPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AC196F1E7A00DD15AE /* RMitchellWebPic.jpg */; };
+		15C676B0196F1E9400DD15AE /* sun-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AE196F1E9400DD15AE /* sun-7.png */; };
+		15C676B1196F1E9400DD15AE /* sun-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AF196F1E9400DD15AE /* sun-7@2x.png */; };
+		15C676B4196F1EC400DD15AE /* backpack.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676B2196F1EC400DD15AE /* backpack.png */; };
+		15C676B5196F1EC400DD15AE /* backpack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676B3196F1EC400DD15AE /* backpack@2x.png */; };
 		15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CBDA0F16ADAB1F00DC020B /* InfoViewController.m */; };
 		15CC38811823273D00B3502A /* SimpleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC38801823273D00B3502A /* SimpleWebViewController.m */; };
 		15CC3883182327C000B3502A /* SimpleWebViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15CC3882182327C000B3502A /* SimpleWebViewController_7.xib */; };
@@ -146,7 +151,6 @@
 		15FFD93218C69B040049FD02 /* arrow-reload-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A118C69B040049FD02 /* arrow-reload-7-active@2x.png */; };
 		15FFD93318C69B040049FD02 /* arrow-right-out.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A218C69B040049FD02 /* arrow-right-out.png */; };
 		15FFD93418C69B040049FD02 /* arrow-right-out@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A318C69B040049FD02 /* arrow-right-out@2x.png */; };
-		15FFD93518C69B040049FD02 /* backpack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A418C69B040049FD02 /* backpack@2x.png */; };
 		15FFD93618C69B040049FD02 /* backward-7-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A518C69B040049FD02 /* backward-7-active.png */; };
 		15FFD93718C69B040049FD02 /* backward-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */; };
 		15FFD93818C69B040049FD02 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A718C69B040049FD02 /* bank.png */; };
@@ -234,7 +238,6 @@
 		15FFD99A18C69B040049FD02 /* speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90918C69B040049FD02 /* speaker@2x.png */; };
 		15FFD99B18C69B040049FD02 /* star-7-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90A18C69B040049FD02 /* star-7-active.png */; };
 		15FFD99C18C69B040049FD02 /* star-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90B18C69B040049FD02 /* star-7-active@2x.png */; };
-		15FFD99D18C69B040049FD02 /* sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90C18C69B040049FD02 /* sun@2x.png */; };
 		15FFD99E18C69B040049FD02 /* tanButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90D18C69B040049FD02 /* tanButton.png */; };
 		15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90E18C69B040049FD02 /* tanButton@2x.png */; };
 		15FFD9A018C69B040049FD02 /* tanButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD90F18C69B040049FD02 /* tanButtonHighlight.png */; };
@@ -414,6 +417,11 @@
 		15BAFE061935384700780C96 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		15C151CA1799F70600060CAB /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		15C151CB1799F70600060CAB /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		15C676AC196F1E7A00DD15AE /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RMitchellWebPic.jpg; sourceTree = "<group>"; };
+		15C676AE196F1E9400DD15AE /* sun-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-7.png"; sourceTree = "<group>"; };
+		15C676AF196F1E9400DD15AE /* sun-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-7@2x.png"; sourceTree = "<group>"; };
+		15C676B2196F1EC400DD15AE /* backpack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backpack.png; sourceTree = "<group>"; };
+		15C676B3196F1EC400DD15AE /* backpack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backpack@2x.png"; sourceTree = "<group>"; };
 		15CBDA0E16ADAB1F00DC020B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		15CBDA0F16ADAB1F00DC020B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		15CC387C182326D300B3502A /* ClubsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubsViewController.h; sourceTree = "<group>"; };
@@ -455,7 +463,6 @@
 		15FFD8A118C69B040049FD02 /* arrow-reload-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-reload-7-active@2x.png"; path = "Images/arrow-reload-7-active@2x.png"; sourceTree = "<group>"; };
 		15FFD8A218C69B040049FD02 /* arrow-right-out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-right-out.png"; path = "Images/arrow-right-out.png"; sourceTree = "<group>"; };
 		15FFD8A318C69B040049FD02 /* arrow-right-out@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow-right-out@2x.png"; path = "Images/arrow-right-out@2x.png"; sourceTree = "<group>"; };
-		15FFD8A418C69B040049FD02 /* backpack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backpack@2x.png"; path = "Images/backpack@2x.png"; sourceTree = "<group>"; };
 		15FFD8A518C69B040049FD02 /* backward-7-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backward-7-active.png"; path = "Images/backward-7-active.png"; sourceTree = "<group>"; };
 		15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backward-7-active@2x.png"; path = "Images/backward-7-active@2x.png"; sourceTree = "<group>"; };
 		15FFD8A718C69B040049FD02 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank.png; path = Images/bank.png; sourceTree = "<group>"; };
@@ -536,7 +543,6 @@
 		15FFD90118C69B040049FD02 /* RedOnWhiteInsignia(768x1024).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedOnWhiteInsignia(768x1024).png"; path = "Images/RedOnWhiteInsignia(768x1024).png"; sourceTree = "<group>"; };
 		15FFD90218C69B040049FD02 /* RedOnWhiteInsignia(1004x768).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedOnWhiteInsignia(1004x768).png"; path = "Images/RedOnWhiteInsignia(1004x768).png"; sourceTree = "<group>"; };
 		15FFD90318C69B040049FD02 /* RedOnWhiteInsignia(1536x2048).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RedOnWhiteInsignia(1536x2048).png"; path = "Images/RedOnWhiteInsignia(1536x2048).png"; sourceTree = "<group>"; };
-		15FFD90418C69B040049FD02 /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = RMitchellWebPic.jpg; path = Images/RMitchellWebPic.jpg; sourceTree = "<group>"; };
 		15FFD90518C69B040049FD02 /* school.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = school.png; path = Images/school.png; sourceTree = "<group>"; };
 		15FFD90618C69B040049FD02 /* school@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "school@2x.png"; path = "Images/school@2x.png"; sourceTree = "<group>"; };
 		15FFD90718C69B040049FD02 /* server-network-setting-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "server-network-setting-white.png"; path = "Images/server-network-setting-white.png"; sourceTree = "<group>"; };
@@ -544,7 +550,6 @@
 		15FFD90918C69B040049FD02 /* speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "speaker@2x.png"; path = "Images/speaker@2x.png"; sourceTree = "<group>"; };
 		15FFD90A18C69B040049FD02 /* star-7-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-7-active.png"; path = "Images/star-7-active.png"; sourceTree = "<group>"; };
 		15FFD90B18C69B040049FD02 /* star-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star-7-active@2x.png"; path = "Images/star-7-active@2x.png"; sourceTree = "<group>"; };
-		15FFD90C18C69B040049FD02 /* sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sun@2x.png"; path = "Images/sun@2x.png"; sourceTree = "<group>"; };
 		15FFD90D18C69B040049FD02 /* tanButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tanButton.png; path = Images/tanButton.png; sourceTree = "<group>"; };
 		15FFD90E18C69B040049FD02 /* tanButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tanButton@2x.png"; path = "Images/tanButton@2x.png"; sourceTree = "<group>"; };
 		15FFD90F18C69B040049FD02 /* tanButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tanButtonHighlight.png; path = Images/tanButtonHighlight.png; sourceTree = "<group>"; };
@@ -902,7 +907,6 @@
 				15FFD8A118C69B040049FD02 /* arrow-reload-7-active@2x.png */,
 				15FFD8A218C69B040049FD02 /* arrow-right-out.png */,
 				15FFD8A318C69B040049FD02 /* arrow-right-out@2x.png */,
-				15FFD8A418C69B040049FD02 /* backpack@2x.png */,
 				15FFD8A518C69B040049FD02 /* backward-7-active.png */,
 				15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */,
 				15FFD8A718C69B040049FD02 /* bank.png */,
@@ -932,6 +936,10 @@
 				15FFD8C918C69B040049FD02 /* Default~iphone.png */,
 				15FFD8CA18C69B040049FD02 /* direction-sign-multiple-7-active.png */,
 				15FFD8CB18C69B040049FD02 /* direction-sign-multiple-7-active@2x.png */,
+				15C676AE196F1E9400DD15AE /* sun-7.png */,
+				15C676AF196F1E9400DD15AE /* sun-7@2x.png */,
+				15C676B2196F1EC400DD15AE /* backpack.png */,
+				15C676B3196F1EC400DD15AE /* backpack@2x.png */,
 				15FFD8CC18C69B040049FD02 /* download-7-active.png */,
 				15FFD8CD18C69B040049FD02 /* download-7-active@2x.png */,
 				15FFD8CE18C69B040049FD02 /* downward-arrow-7-active.png */,
@@ -987,7 +995,7 @@
 				15FFD90118C69B040049FD02 /* RedOnWhiteInsignia(768x1024).png */,
 				15FFD90218C69B040049FD02 /* RedOnWhiteInsignia(1004x768).png */,
 				15FFD90318C69B040049FD02 /* RedOnWhiteInsignia(1536x2048).png */,
-				15FFD90418C69B040049FD02 /* RMitchellWebPic.jpg */,
+				15C676AC196F1E7A00DD15AE /* RMitchellWebPic.jpg */,
 				15FFD90518C69B040049FD02 /* school.png */,
 				15FFD90618C69B040049FD02 /* school@2x.png */,
 				15FFD90718C69B040049FD02 /* server-network-setting-white.png */,
@@ -995,7 +1003,6 @@
 				15FFD90918C69B040049FD02 /* speaker@2x.png */,
 				15FFD90A18C69B040049FD02 /* star-7-active.png */,
 				15FFD90B18C69B040049FD02 /* star-7-active@2x.png */,
-				15FFD90C18C69B040049FD02 /* sun@2x.png */,
 				15FFD90D18C69B040049FD02 /* tanButton.png */,
 				15FFD90E18C69B040049FD02 /* tanButton@2x.png */,
 				15FFD90F18C69B040049FD02 /* tanButtonHighlight.png */,
@@ -1179,7 +1186,6 @@
 				15FFD99618C69B040049FD02 /* school.png in Resources */,
 				15FFD94418C69B040049FD02 /* bug.png in Resources */,
 				15FFD95C18C69B040049FD02 /* direction-sign-multiple-7-active@2x.png in Resources */,
-				15FFD99D18C69B040049FD02 /* sun@2x.png in Resources */,
 				15FFD92B18C69B040049FD02 /* arrow-circle-01g@2x.png in Resources */,
 				15FFD96918C69B040049FD02 /* greyButton.png in Resources */,
 				15FFD93D18C69B040049FD02 /* blackButton@2x.png in Resources */,
@@ -1189,6 +1195,7 @@
 				15FFD97118C69B040049FD02 /* home-7-active@2x.png in Resources */,
 				15FFD9A218C69B040049FD02 /* text-list-mini.png in Resources */,
 				159CF8F21965DD2B00BD7433 /* paperwork-7@2x.png in Resources */,
+				15C676B5196F1EC400DD15AE /* backpack@2x.png in Resources */,
 				15FFD97418C69B040049FD02 /* info-7-active@2x.png in Resources */,
 				15FFD9CD18C69C5C0049FD02 /* AdmissionWelcome.txt in Resources */,
 				15FFD93F18C69B040049FD02 /* blackButtonHighlight@2x.png in Resources */,
@@ -1229,6 +1236,7 @@
 				15FFD94718C69B040049FD02 /* clock@2x.png in Resources */,
 				15FFD97718C69B040049FD02 /* key@2x.png in Resources */,
 				15FFD96D18C69B040049FD02 /* greyButtonHighlight@2x.png in Resources */,
+				15C676AD196F1E7A00DD15AE /* RMitchellWebPic.jpg in Resources */,
 				15FFD98518C69B040049FD02 /* paperwork.png in Resources */,
 				15FFD96C18C69B040049FD02 /* greyButtonHighlight.png in Resources */,
 				15FFD91C18C69B040049FD02 /* 3DCulpolaIcon57.png in Resources */,
@@ -1279,7 +1287,6 @@
 				15FFD95718C69B040049FD02 /* Default-Portrait@2x.png in Resources */,
 				157C549D1929692D00D6B224 /* star-7.png in Resources */,
 				15FFD97018C69B040049FD02 /* home-7-active.png in Resources */,
-				15FFD93518C69B040049FD02 /* backpack@2x.png in Resources */,
 				15FFD99218C69B040049FD02 /* RedOnWhiteInsignia(768x1024).png in Resources */,
 				157C54901929503100D6B224 /* calendar-7@2x.png in Resources */,
 				15FFD95E18C69B040049FD02 /* download-7-active@2x.png in Resources */,
@@ -1292,9 +1299,11 @@
 				15FFD99E18C69B040049FD02 /* tanButton.png in Resources */,
 				156AEAC6192D3DE9006239BA /* caution-7.png in Resources */,
 				15FFD98918C69B040049FD02 /* phone-book.png in Resources */,
+				15C676B4196F1EC400DD15AE /* backpack.png in Resources */,
 				15FFD97F18C69B040049FD02 /* noodle@2x.png in Resources */,
 				15FFD96118C69B040049FD02 /* finger-touch.png in Resources */,
 				15CC3883182327C000B3502A /* SimpleWebViewController_7.xib in Resources */,
+				15C676B1196F1E9400DD15AE /* sun-7@2x.png in Resources */,
 				15FFD93C18C69B040049FD02 /* blackButton.png in Resources */,
 				15FFD92318C69B040049FD02 /* 20.png in Resources */,
 				15FFD92118C69B040049FD02 /* 11.png in Resources */,
@@ -1315,6 +1324,7 @@
 				15FFD96218C69B040049FD02 /* finger-touch@2x.png in Resources */,
 				15FFD92018C69B040049FD02 /* 10.png in Resources */,
 				15FFD92E18C69B040049FD02 /* arrow-circle-03.png in Resources */,
+				15C676B0196F1E9400DD15AE /* sun-7.png in Resources */,
 				15FFD9EB18C69CFE0049FD02 /* SVProgressHUD.bundle in Resources */,
 				15FFD92218C69B040049FD02 /* 12.png in Resources */,
 				15FFD98A18C69B040049FD02 /* phone-book@2x.png in Resources */,

@@ -23,7 +23,7 @@
     [super viewDidAppear:YES];
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-    versionLabel.text = [NSString stringWithFormat:@"You're running %@", [infoDict objectForKey:@"CFBundleShortVersionString"]];
+    _versionLabel.text = [NSString stringWithFormat:@"You're running %@", infoDict[@"CFBundleShortVersionString"]];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         /*CHANGES WITH VERSIONS*/
@@ -90,16 +90,16 @@
         _l1.textColor = [UIColor whiteColor];
     } else  {
         if (IS_IPHONE_5) {
-            for (UILabel *chi in first)
+            for (UILabel *chi in _first)
                 chi.textColor = [UIColor darkGrayColor];
-        } else {for (UILabel *foo in first) foo.textColor = [UIColor whiteColor];}}
+        } else {for (UILabel *foo in _first) foo.textColor = [UIColor whiteColor];}}
 
     NSString *foo;
     NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
     NSArray *array = @[@"black", @"grey", @"tan"];
     // This is set in SettingsVC
     foo = ([array containsObject:defaultColor]) ? defaultColor : @"grey";
-    [self setUpButtonsWithColor:foo andButtons:buttons];
+    [self setUpButtonsWithColor:foo andButtons:_buttons];
 }
 
 - (void)setUpButtonsWithColor:(NSString *)name andButtons:(NSArray *)buttonArray {
@@ -114,7 +114,7 @@
     }
 }
 
-- (void)countdown {
+- (NSArray *)countdown {
     NSString *startSchool = @"2014-09-03";
     NSString *endSchool = @"2014-06-05";
     NSDate *current = [NSDate date];
@@ -124,6 +124,9 @@
 
     NSDate *endDate = [formatter dateFromString:endSchool];
     NSDate *startDate = [formatter dateFromString:startSchool];
+
+    NSDateComponents *components;
+    NSString *messagePart;
 
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     if ([endDate compare:current] == NSOrderedDescending && [startDate compare:current] == NSOrderedAscending) {
@@ -140,14 +143,16 @@
         messagePart = @"ends";
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
     }
-    _days = [components day];
-    bImage = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun@2x.png"] : [UIImage imageNamed:@"backpack@2x.png"];
+    NSNumber *dayCount = [NSNumber numberWithInt:[components day]];
+    UIImage *img = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun-7.png"] : [UIImage imageNamed:@"backpack.png"];
+    return @[img, messagePart, dayCount];
 }
 
 #pragma mark - Actions
 - (IBAction)pushedCountdown:(id)sender {
-    [self countdown];
-    [SVProgressHUD showImage:bImage status:[NSString stringWithFormat:@"School %@ in %d %@", messagePart, _days, ((_days == 1) ? @"day" : @"days")]];
+    NSArray *f = [self countdown];
+    int days = [f[2] intValue];
+    [SVProgressHUD showImage:f[0] status:[NSString stringWithFormat:@"School %@ in %d %@", f[1], days, ((days == 1) ? @"day" : @"days")]];
 }
 
 - (IBAction)pushedCredentials:(id)sender {
@@ -157,15 +162,6 @@
 - (IBAction)pushedLibrary:(id)sender {
     SVWebViewController *wvc = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://morristown-beard.mlasolutions.com/oasis/catalog/%28S%28xrjcvnndg0iq4k3du5xzob2c%29%29/Default.aspx?installation=Default"]];
     [self.navigationController pushViewController:wvc animated:YES];
-}
-
-- (IBAction)pushedSpecial:(id)sender {
-    [SVProgressHUD showWithStatus:@"Checking"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
-    connection1 = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:TRUE];
-    if (connection1) {
-        receivedData = [NSMutableData data];
-    }
 }
 
 #pragma mark Connections
@@ -189,40 +185,12 @@
     }
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    if (connection == connection1) {
-        if ([(NSHTTPURLResponse *)response statusCode] == 404) {
-            [SVProgressHUD showImage:[UIImage imageNamed:@"clock@2x.png"] status:@"No special shedules this week"];
-        } else {
-            FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithStringForURL:@"Special"];
-            [self.navigationController pushViewController:fvvc animated:YES];
-        }
-    } else if (connection != meetingsConnection && connection != versionConnection)
+    if (connection != meetingsConnection && connection != versionConnection)
         [SVProgressHUD showSuccessWithStatus:@"Connected"];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    if (connection == connection2) {
-        NSURLResponse *response;
-        NSError *error;
-        NSData *responseData = [NSURLConnection sendSynchronousRequest:connection.currentRequest returningResponse:&response error:&error];
-
-        NSString *data;
-        if (responseData) {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showSuccessWithStatus:@"Connected"];
-            data = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        } else {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showErrorWithStatus:@"No data available. Please report a bug"];
-            return;
-        }
-
-        if ([data isEqualToString:@""]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No schedule" message:@"There's no schedule available for today." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
-            [alert show];
-            return;
-        }
-    } else if (connection == meetingsConnection) {
+    if (connection == meetingsConnection) {
         NSString *separation = @"\n";
         NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
         NSArray *raw = [fileText componentsSeparatedByString:separation];
@@ -252,7 +220,7 @@
                 alert.tag = 13;
                 [alert show];
             }
-            versionLabel.text = @"An update's available";
+            _versionLabel.text = @"An update's available";
         }
     }
 }
@@ -311,18 +279,17 @@
             _l2.textColor = [UIColor whiteColor];
         }
         if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-            for (UILabel *label in first) {
+            for (UILabel *label in _first) {
                 label.textColor = [UIColor darkGrayColor];
             }
             _l1.textColor = [UIColor darkGrayColor];
         } else {
-            for (UILabel *label in first) {
+            for (UILabel *label in _first) {
                 label.textColor = [UIColor whiteColor];
             }
             _l1.textColor = [UIColor whiteColor];
         }
     }
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -336,81 +303,53 @@
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if (IS_IPHONE_5) {
             if (q > 75) {
-                for (UILabel *bar in second) {
+                for (UILabel *bar in _second)
                     bar.textColor = [UIColor darkGrayColor];
-                }
                 if (q > 186) {
-                    for (UILabel *chi in third) {
-                        chi.textColor = [UIColor darkGrayColor];
-                    }
-                    if (q > 314) {
-                        for (UILabel *fox in fourth) {
-                            fox.textColor = [UIColor darkGrayColor];
-                        }
-                    } else {
-                        for (UILabel *fox in fourth) {
-                            fox.textColor = [UIColor whiteColor];
-                        }
-                    }
+                    for (UILabel *fox in _third)
+                        fox.textColor = [UIColor darkGrayColor];
                 } else {
-                    for (UILabel *chi in third) {
-                        chi.textColor = [UIColor whiteColor];
-                    }
+                    for (UILabel *fox in _third)
+                        fox.textColor = [UIColor whiteColor];
                 }
             } else {
-                for (UILabel *bar in second) {
+                for (UILabel *bar in _second)
                     bar.textColor = [UIColor whiteColor];
-                }
             }
         } else {
             if (q > 11) {
-                for (UILabel *foo in first) {
+                for (UILabel *foo in _first)
                     foo.textColor = [UIColor darkGrayColor];
-                }
                 if (q > 119) {
-                    for (UILabel *bar in second) {
+                    for (UILabel *bar in _second)
                         bar.textColor = [UIColor darkGrayColor];
-                    }
                     if (q > 232) {
-                        for (UILabel *chi in third) {
-                            chi.textColor = [UIColor darkGrayColor];
-                        }
-                        if (q > 362) {
-                            for (UILabel *fox in fourth) {
-                                fox.textColor = [UIColor darkGrayColor];
-                            }
-                        } else {
-                            for (UILabel *fox in fourth) {
-                                fox.textColor = [UIColor whiteColor];
-                            }
-                        }
+                        for (UILabel *fox in _third)
+                            fox.textColor = [UIColor darkGrayColor];
                     } else {
-                        for (UILabel *chi in third) {
-                            chi.textColor = [UIColor whiteColor];
-                        }
+                        for (UILabel *fox in _third)
+                            fox.textColor = [UIColor whiteColor];
                     }
                 } else {
-                    for (UILabel *bar in second) {
+                    for (UILabel *bar in _second)
                         bar.textColor = [UIColor whiteColor];
-                    }
                 }
             } else {
-                for (UILabel *foo in first) {
+                for (UILabel *foo in _first)
                     foo.textColor = [UIColor whiteColor];
-                }
             }
         }
     } else {
         // iPad
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown || ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait)) {
             UIColor *foo = (q > 82) ? [UIColor darkGrayColor] : [UIColor whiteColor];
-            for (UILabel *lbl in first) lbl.textColor = foo;
+            for (UILabel *lbl in _first) lbl.textColor = foo;
         } else {
             _l1.textColor = (q > 52) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             UIColor *foo = (q > 170) ? [UIColor darkGrayColor] : [UIColor whiteColor];
-            for (UILabel *lbl in first) lbl.textColor = foo;
+            for (UILabel *lbl in _first) lbl.textColor = foo;
             UIColor *bar = (q > 392) ? [UIColor darkGrayColor] : [UIColor whiteColor];
-            for (UILabel *lbl in second) lbl.textColor = bar;
+            for (UILabel *lbl in _second) lbl.textColor = bar;
         }
     }
 }
