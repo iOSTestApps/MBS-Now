@@ -64,7 +64,7 @@
         self.pager.currentPage = self.counter;
         self.txtView.text = self.descriptions[self.counter];
         self.txtView.textColor = [UIColor whiteColor];
-        self.txtView.font = [UIFont systemFontOfSize:15];
+        self.txtView.font = [UIFont fontWithName:@"Avenir" size:14.0f];
     } else if (self.counter == self.imgs.count - 1) {
         // reached end
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -78,7 +78,7 @@
         self.pager.currentPage = self.counter;
         self.txtView.text = self.descriptions[self.counter];
         self.txtView.textColor = [UIColor whiteColor];
-        self.txtView.font = [UIFont systemFontOfSize:15];
+        self.txtView.font = [UIFont fontWithName:@"Avenir" size:14.0f];
         if (self.counter == 0)
             [self.left setImage:[UIImage imageNamed:@"arrow-circle-01g.png"] forState:UIControlStateNormal];
     }

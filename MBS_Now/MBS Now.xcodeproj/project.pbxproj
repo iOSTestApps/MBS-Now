@@ -111,6 +111,14 @@
 		15BAFE041935383200780C96 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BAFDF51935383200780C96 /* UIImageView+HighlightedWebCache.m */; };
 		15BAFE071935384700780C96 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAFE061935384700780C96 /* ImageIO.framework */; };
 		15C151CD1799F70600060CAB /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C151CB1799F70600060CAB /* DataViewController.m */; };
+		15C1DC72196F5DF400CF4128 /* push-pin-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC70196F5DF400CF4128 /* push-pin-7.png */; };
+		15C1DC73196F5DF400CF4128 /* push-pin-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */; };
+		15C1DC79196F657D00CF4128 /* UIButton+Avenir.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */; };
+		15C1DC7C196F673100CF4128 /* UILabel+Avenir.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */; };
+		15C1DC7F1970265D00CF4128 /* throw-rubbish.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC7D1970265D00CF4128 /* throw-rubbish.png */; };
+		15C1DC801970265D00CF4128 /* throw-rubbish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC7E1970265D00CF4128 /* throw-rubbish@2x.png */; };
+		15C1DC831970273300CF4128 /* bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC811970273300CF4128 /* bug.png */; };
+		15C1DC841970273300CF4128 /* bug@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC821970273300CF4128 /* bug@2x.png */; };
 		15C676AD196F1E7A00DD15AE /* RMitchellWebPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AC196F1E7A00DD15AE /* RMitchellWebPic.jpg */; };
 		15C676B0196F1E9400DD15AE /* sun-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AE196F1E9400DD15AE /* sun-7.png */; };
 		15C676B1196F1E9400DD15AE /* sun-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C676AF196F1E9400DD15AE /* sun-7@2x.png */; };
@@ -155,8 +163,6 @@
 		15FFD93718C69B040049FD02 /* backward-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */; };
 		15FFD93818C69B040049FD02 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A718C69B040049FD02 /* bank.png */; };
 		15FFD93918C69B040049FD02 /* bank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A818C69B040049FD02 /* bank@2x.png */; };
-		15FFD93A18C69B040049FD02 /* big-tick.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8A918C69B040049FD02 /* big-tick.png */; };
-		15FFD93B18C69B040049FD02 /* big-tick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8AA18C69B040049FD02 /* big-tick@2x.png */; };
 		15FFD93C18C69B040049FD02 /* blackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8AB18C69B040049FD02 /* blackButton.png */; };
 		15FFD93D18C69B040049FD02 /* blackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8AC18C69B040049FD02 /* blackButton@2x.png */; };
 		15FFD93E18C69B040049FD02 /* blackButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8AD18C69B040049FD02 /* blackButtonHighlight.png */; };
@@ -417,6 +423,16 @@
 		15BAFE061935384700780C96 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		15C151CA1799F70600060CAB /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		15C151CB1799F70600060CAB /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		15C1DC70196F5DF400CF4128 /* push-pin-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7.png"; sourceTree = "<group>"; };
+		15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7@2x.png"; sourceTree = "<group>"; };
+		15C1DC77196F657D00CF4128 /* UIButton+Avenir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Avenir.h"; path = "../UIButton+Avenir.h"; sourceTree = "<group>"; };
+		15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Avenir.m"; path = "../UIButton+Avenir.m"; sourceTree = "<group>"; };
+		15C1DC7A196F673100CF4128 /* UILabel+Avenir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Avenir.h"; path = "../UILabel+Avenir.h"; sourceTree = "<group>"; };
+		15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Avenir.m"; path = "../UILabel+Avenir.m"; sourceTree = "<group>"; };
+		15C1DC7D1970265D00CF4128 /* throw-rubbish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "throw-rubbish.png"; sourceTree = "<group>"; };
+		15C1DC7E1970265D00CF4128 /* throw-rubbish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "throw-rubbish@2x.png"; sourceTree = "<group>"; };
+		15C1DC811970273300CF4128 /* bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug.png; sourceTree = "<group>"; };
+		15C1DC821970273300CF4128 /* bug@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bug@2x.png"; sourceTree = "<group>"; };
 		15C676AC196F1E7A00DD15AE /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RMitchellWebPic.jpg; sourceTree = "<group>"; };
 		15C676AE196F1E9400DD15AE /* sun-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-7.png"; sourceTree = "<group>"; };
 		15C676AF196F1E9400DD15AE /* sun-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sun-7@2x.png"; sourceTree = "<group>"; };
@@ -467,8 +483,6 @@
 		15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backward-7-active@2x.png"; path = "Images/backward-7-active@2x.png"; sourceTree = "<group>"; };
 		15FFD8A718C69B040049FD02 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank.png; path = Images/bank.png; sourceTree = "<group>"; };
 		15FFD8A818C69B040049FD02 /* bank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bank@2x.png"; path = "Images/bank@2x.png"; sourceTree = "<group>"; };
-		15FFD8A918C69B040049FD02 /* big-tick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-tick.png"; path = "Images/big-tick.png"; sourceTree = "<group>"; };
-		15FFD8AA18C69B040049FD02 /* big-tick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "big-tick@2x.png"; path = "Images/big-tick@2x.png"; sourceTree = "<group>"; };
 		15FFD8AB18C69B040049FD02 /* blackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackButton.png; path = Images/blackButton.png; sourceTree = "<group>"; };
 		15FFD8AC18C69B040049FD02 /* blackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blackButton@2x.png"; path = "Images/blackButton@2x.png"; sourceTree = "<group>"; };
 		15FFD8AD18C69B040049FD02 /* blackButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackButtonHighlight.png; path = Images/blackButtonHighlight.png; sourceTree = "<group>"; };
@@ -744,6 +758,10 @@
 				15592B8B179F4DB4003FE956 /* TabViewController.m */,
 				15EF3F6918D25D9500FE928D /* UITableViewCell+Width.h */,
 				15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */,
+				15C1DC77196F657D00CF4128 /* UIButton+Avenir.h */,
+				15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */,
+				15C1DC7A196F673100CF4128 /* UILabel+Avenir.h */,
+				15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */,
 				15529361169F7D25006A8B99 /* Tabbed VCs */,
 				152FB66916B8C88200D0CB91 /* Other VCs */,
 				1575B97C16E56ABE003CAA82 /* Content Viewers */,
@@ -857,9 +875,13 @@
 		15AC1E68170A509000908EA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				15C1DC70196F5DF400CF4128 /* push-pin-7.png */,
+				15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */,
 				157649031911745B008405B5 /* What's new */,
 				1590CFC6196C78DB00BE0284 /* cloud-download-7.png */,
 				1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */,
+				15C1DC7D1970265D00CF4128 /* throw-rubbish.png */,
+				15C1DC7E1970265D00CF4128 /* throw-rubbish@2x.png */,
 				1590CFCE196C7D8200BE0284 /* download-7.png */,
 				1590CFCF196C7D8200BE0284 /* download-7@2x.png */,
 				159CF8EF1965DD2B00BD7433 /* paperwork-7.png */,
@@ -907,12 +929,12 @@
 				15FFD8A118C69B040049FD02 /* arrow-reload-7-active@2x.png */,
 				15FFD8A218C69B040049FD02 /* arrow-right-out.png */,
 				15FFD8A318C69B040049FD02 /* arrow-right-out@2x.png */,
+				15C1DC811970273300CF4128 /* bug.png */,
+				15C1DC821970273300CF4128 /* bug@2x.png */,
 				15FFD8A518C69B040049FD02 /* backward-7-active.png */,
 				15FFD8A618C69B040049FD02 /* backward-7-active@2x.png */,
 				15FFD8A718C69B040049FD02 /* bank.png */,
 				15FFD8A818C69B040049FD02 /* bank@2x.png */,
-				15FFD8A918C69B040049FD02 /* big-tick.png */,
-				15FFD8AA18C69B040049FD02 /* big-tick@2x.png */,
 				15FFD8AB18C69B040049FD02 /* blackButton.png */,
 				15FFD8AC18C69B040049FD02 /* blackButton@2x.png */,
 				15FFD8AD18C69B040049FD02 /* blackButtonHighlight.png */,
@@ -1195,6 +1217,7 @@
 				15FFD97118C69B040049FD02 /* home-7-active@2x.png in Resources */,
 				15FFD9A218C69B040049FD02 /* text-list-mini.png in Resources */,
 				159CF8F21965DD2B00BD7433 /* paperwork-7@2x.png in Resources */,
+				15C1DC831970273300CF4128 /* bug.png in Resources */,
 				15C676B5196F1EC400DD15AE /* backpack@2x.png in Resources */,
 				15FFD97418C69B040049FD02 /* info-7-active@2x.png in Resources */,
 				15FFD9CD18C69C5C0049FD02 /* AdmissionWelcome.txt in Resources */,
@@ -1207,6 +1230,7 @@
 				15FFD96618C69B040049FD02 /* forward-7-active@2x.png in Resources */,
 				15FFD96718C69B040049FD02 /* gear-7-active.png in Resources */,
 				15FFD91D18C69B040049FD02 /* 3DCulpolaIcon72.png in Resources */,
+				15C1DC73196F5DF400CF4128 /* push-pin-7@2x.png in Resources */,
 				15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */,
 				15FFD93018C69B040049FD02 /* arrow-forward@2x.png in Resources */,
 				15BAFDA11935126700780C96 /* clock-7.png in Resources */,
@@ -1231,7 +1255,6 @@
 				15FFD97B18C69B040049FD02 /* map-pin-area-multiple@2x.png in Resources */,
 				15FFD96318C69B040049FD02 /* food-sign.png in Resources */,
 				15BAFDA21935126700780C96 /* clock-7@2x.png in Resources */,
-				15FFD93A18C69B040049FD02 /* big-tick.png in Resources */,
 				157C54A819296D3900D6B224 /* purchased-arrow-7.png in Resources */,
 				15FFD94718C69B040049FD02 /* clock@2x.png in Resources */,
 				15FFD97718C69B040049FD02 /* key@2x.png in Resources */,
@@ -1273,6 +1296,7 @@
 				15454A70185791E50064A610 /* PhotoBrowser_7.xib in Resources */,
 				15FFD96018C69B040049FD02 /* downward-arrow-7-active@2x.png in Resources */,
 				15FFD96A18C69B040049FD02 /* greyButton@2x.png in Resources */,
+				15C1DC801970265D00CF4128 /* throw-rubbish@2x.png in Resources */,
 				157649071911785B008405B5 /* github.png in Resources */,
 				15FFD95A18C69B040049FD02 /* Default~iphone.png in Resources */,
 				15FFD93918C69B040049FD02 /* bank@2x.png in Resources */,
@@ -1281,7 +1305,6 @@
 				15FFD95518C69B040049FD02 /* Default-Landscape@2x~ipad.png in Resources */,
 				15FFD97C18C69B040049FD02 /* mutiply-sign.png in Resources */,
 				15FFD94118C69B040049FD02 /* book-7-active@2x.png in Resources */,
-				15FFD93B18C69B040049FD02 /* big-tick@2x.png in Resources */,
 				15FFD95F18C69B040049FD02 /* downward-arrow-7-active.png in Resources */,
 				3B49C10A19648FC40083DA33 /* hand.png in Resources */,
 				15FFD95718C69B040049FD02 /* Default-Portrait@2x.png in Resources */,
@@ -1320,6 +1343,8 @@
 				157C548F1929503100D6B224 /* calendar-7.png in Resources */,
 				15FFD93318C69B040049FD02 /* arrow-right-out.png in Resources */,
 				156AEAC9192D426A006239BA /* circle-down-7@2x.png in Resources */,
+				15C1DC7F1970265D00CF4128 /* throw-rubbish.png in Resources */,
+				15C1DC841970273300CF4128 /* bug@2x.png in Resources */,
 				1547B58C192848DA00330A94 /* SVWebViewControllerActivitySafari-iPad.png in Resources */,
 				15FFD96218C69B040049FD02 /* finger-touch@2x.png in Resources */,
 				15FFD92018C69B040049FD02 /* 10.png in Resources */,
@@ -1332,6 +1357,7 @@
 				15FFD99A18C69B040049FD02 /* speaker@2x.png in Resources */,
 				15FFD9F718C69D900049FD02 /* Data.txt in Resources */,
 				15FFD99C18C69B040049FD02 /* star-7-active@2x.png in Resources */,
+				15C1DC72196F5DF400CF4128 /* push-pin-7.png in Resources */,
 				1590CFD4196C821E00BE0284 /* man-three-7.png in Resources */,
 				15FFD98718C69B040049FD02 /* people-communicate-mini.png in Resources */,
 				15FFD93E18C69B040049FD02 /* blackButtonHighlight.png in Resources */,
@@ -1388,6 +1414,7 @@
 				15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */,
 				15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */,
 				15FFD9D318C69C9A0049FD02 /* FormsViewerViewController.m in Sources */,
+				15C1DC79196F657D00CF4128 /* UIButton+Avenir.m in Sources */,
 				15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */,
 				152FB66716B8C71300D0CB91 /* DirectionsViewController.m in Sources */,
 				1547B587192848DA00330A94 /* SVWebViewController.m in Sources */,
@@ -1396,6 +1423,7 @@
 				15A5565D182720440033CADA /* FullPurposeViewController.m in Sources */,
 				1547B58E192848DA00330A94 /* SVWebViewControllerActivitySafari.m in Sources */,
 				155A54CD16C40E37000FDAC5 /* AboutViewController.m in Sources */,
+				15C1DC7C196F673100CF4128 /* UILabel+Avenir.m in Sources */,
 				15727F0F16FA21E900586848 /* FormsViewController.m in Sources */,
 				15BAFDFF1935383200780C96 /* UIImage+MultiFormat.m in Sources */,
 				15A5566718272A640033CADA /* ClubsViewController.m in Sources */,

@@ -14,11 +14,15 @@
     NSString *extensionName;
     NSURL *finalURL;
 
+    BOOL showingTomorrow;
+    NSString *dayName;
+
     UIActionSheet *sheet;
 }
 
 - (id)initWithStringForURL:(NSString *)stringForURL; // default initializer
 - (id)initWithFullURL:(NSString *)full;
+- (id)initWithLunchDay:(NSString *)day showingTomorrow:(BOOL)late;
 - (void)mailLink;
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;

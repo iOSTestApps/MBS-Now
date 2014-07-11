@@ -49,6 +49,7 @@
 
     // consult rsvp.php locally
     NSString *string = [NSString stringWithFormat:@"%@;%@;%@;%@;%@", self.details[5], self.nameField.text, self.boolLabel.text, self.details[0], self.details[1]];
+    string = [[[string stringByReplacingOccurrencesOfString:@"?" withString:@""] stringByReplacingOccurrencesOfString:@"=" withString:@""] stringByReplacingOccurrencesOfString:@";" withString:@""];
     NSString *escapedString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/rsvp.php?query=%@", escapedString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
@@ -122,6 +123,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [SVProgressHUD dismiss];
     NSString *echo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"(%@)", echo);
     if ([echo isEqualToString:@"sent"]) {
         if ([self notify] == YES)
             [SVProgressHUD showSuccessWithStatus:@"RSVPed successfully. We'll also remind you 5 minutes before the meeting starts."];
@@ -129,7 +131,7 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.details[7]];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    else [SVProgressHUD showErrorWithStatus:@"Aw, snap! RSVPing failed; please try again."];
+    else [SVProgressHUD showErrorWithStatus:@"RSVPing failed; please try again."];
 }
     
 #pragma mark Alerts
@@ -141,7 +143,7 @@
 #pragma mark Mail
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     if (result == MFMailComposeResultSent)
-        [SVProgressHUD showSuccessWithStatus:@"Queued for sending."];
+        [SVProgressHUD showSuccessWithStatus:@"Sent!"];
     else if (result == MFMailComposeResultFailed)
         [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -20,7 +20,8 @@
     footer.backgroundColor = [UIColor clearColor];
     self.tblView.tableFooterView = footer;
     self.searchDisplayController.searchBar.userInteractionEnabled = NO;
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(download)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(download)];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching... just for you ;)"];
@@ -106,7 +107,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch distinctions. %@",[error localizedDescription]]];
-    distinctions = @[@"Connection failed"];
+    distinctions = @[@"Nuts; the connection failed!"];
     string = error.localizedDescription;
     string=nil;
     [_tblView reloadData];

@@ -30,11 +30,13 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Updating... just for you"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Happy %@. Building your day...", [self dayNameFromDate:[NSDate date]]]];
     [refresh addTarget:self action:@selector(update) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(update)];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lunch)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -94,7 +96,7 @@
 
 - (void)update {
     _ret = CONNECTION_LOADING;
-    [SVProgressHUD showWithStatus:@"Gathering feeds..."];
+    if (!self.refreshControl.refreshing) [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"Building your %@...", [self dayNameFromDate:[NSDate date]]]];
     [self.tableView reloadData];
 
     _feeds = [NSMutableDictionary dictionary];
@@ -128,11 +130,8 @@
     todayScheduleData = [NSMutableData data];
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
-    NSInteger hour = [components hour];
-    if (hour > 16) {
-        // start connection for TEXT-BASED tomorrow schedule only if it's AFTER 8 PM
+    if ([self getHourOfDay] > 18) {
+        // start connection for TEXT-BASED tomorrow schedule only if it's AFTER 6 PM
 //        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self tomorrow]]]]];
         NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-17&div=us"]];
         tomorrowTextData = [NSMutableData data];
@@ -145,6 +144,10 @@
 //    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
 //    rssNewsData = [NSMutableData data];
 //    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
+
+    NSURLRequest *serviceRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+    communityServiceData = [NSMutableData data];
+    communityServiceConnection = [[NSURLConnection alloc] initWithRequest:serviceRequest delegate:self];
 
     NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     meetingsData = [NSMutableData data];
@@ -165,17 +168,25 @@
     return [form stringFromDate:d];
 }
 
-- (NSDate *)tomorrow {
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar]
-                                            components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit
-                                            fromDate:[NSDate date]];
+- (NSString *)dayNameFromDate:(NSDate *)d {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"EEEE"];
+    return [form stringFromDate:d];
+}
 
+- (int)getHourOfDay {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    return [components hour];
+}
+
+- (NSDate *)dateByDistanceFromToday:(int)d {
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
-    offsetComponents.day = 1;
+    offsetComponents.day = d;
     return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
-
 }
 
 - (void)saveFeedsWithObject:(id)object andKey:(NSString *)key{
@@ -183,6 +194,12 @@
     NSMutableArray *cur = ([_feeds[key] count] > 0) ? _feeds[key] : [NSMutableArray array];
     [cur addObject:object];
     [_feeds setObject:cur forKey:key];
+}
+
+- (void)lunch {
+    BOOL late = ([self getHourOfDay] > 15) ? YES : NO;
+    FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithLunchDay:(late) ? [self dayNameFromDate:[self dateByDistanceFromToday:1]] : [self dayNameFromDate:[NSDate date]]  showingTomorrow:late];
+    [self.navigationController pushViewController:fvvc animated:YES];
 }
 
 #pragma mark Connection
@@ -195,6 +212,7 @@
     else if (connection == tomorrowTextConnection) [tomorrowTextData appendData:data];
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
     else if (connection == tomorrowScheduleConnection) [tomorrowScheduleData appendData:data];
+    else if (connection == communityServiceConnection) [communityServiceData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -208,8 +226,11 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"%@", connection);
     [self.refreshControl endRefreshing];
     _ret = CONNECTION_FAILTURE;
+    [SVProgressHUD dismiss];
+    [self.tableView reloadData];
 //    _feeds = [NSMutableDictionary dictionaryWithObjects:@[@"Oops! The connection failed.", [UIImage imageNamed:@"caution-7.png"], [NSNumber numberWithBool:YES], @""] forKeys:@[@"strings", @"images", @"class", @"urls"]];
 }
 
@@ -230,6 +251,24 @@
             [self saveFeedsWithObject:[UIImage imageNamed:@"man-three-7.png"] andKey:@"images"];
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:@"Clubs" andKey:@"urls"];
+        }
+    }
+
+    if (connection == communityServiceConnection) {
+        NSString *separation = @"\n";
+        NSString *fileText = [[NSString alloc] initWithData:communityServiceData encoding:NSUTF8StringEncoding];
+        NSArray *raw = [fileText componentsSeparatedByString:separation];
+        NSMutableArray *csv = [NSMutableArray array];
+        for (NSString *foo in raw) {
+            NSArray *dummy = [foo componentsSeparatedByString:@","];
+            [csv addObject:dummy];
+        }
+        [csv removeObjectAtIndex:0];
+        if (csv.count > [[[NSUserDefaults standardUserDefaults] objectForKey:@"serviceLog"] count]) {
+            [self saveFeedsWithObject:@"Service opportunity added—view it" andKey:@"strings"];
+            [self saveFeedsWithObject:[UIImage imageNamed:@"throw-rubbish.png"] andKey:@"images"];
+            [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+            [self saveFeedsWithObject:@"Service" andKey:@"urls"];
         }
     }
 
@@ -256,7 +295,7 @@
 
         if (connection == todayScheduleConnection) {
             // start connection for IMAGE-BASED tomorrow schedule
-            NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [self stringFromFormatterDate:[self tomorrow]]]]];
+            NSURLRequest *tomorrowSchedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/graphicURLForMBSNow.php?day=%@", [self stringFromFormatterDate:[self dateByDistanceFromToday:1]]]]];
             tomorrowScheduleData = [NSMutableData data];
             tomorrowScheduleConnection = [[NSURLConnection alloc] initWithRequest:tomorrowSchedule delegate:self startImmediately:YES];
         }
@@ -293,11 +332,14 @@
         switch (_ret) {
             case CONNECTION_LOADING:
                 cell.imageView.image = [UIImage imageNamed:@"cloud-download-7.png"];
-                cell.textLabel.text = @"Hang tight... refreshing";
+                cell.textLabel.text = [NSString stringWithFormat:@"Happy %@. Updating...", [self dayNameFromDate:[NSDate date]]];
+                cell.detailTextLabel.text = @"Taking a while? Swipe down to restart.";
                 break;
             case CONNECTION_FAILTURE:
                 cell.imageView.image = [UIImage imageNamed:@"caution-7.png"];
-                cell.textLabel.text = @"Aw, snap; the connection failed!";
+                cell.textLabel.text = @"Nuts; the connection failed!";
+                cell.detailTextLabel.text = @"Tap here for the offline schedule";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
         }
         return cell;
@@ -340,16 +382,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_ret == CONNECTION_FAILTURE) {
+        [self performSegueWithIdentifier:@"offline" sender:self];
+        return;
+    }
     NSString *iden = [tableView cellForRowAtIndexPath:indexPath].reuseIdentifier;
+    NSLog(@"%@", iden);
     if ([iden isEqualToString:@"schedule"]) {
         FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
         [self.navigationController pushViewController:vc animated:YES];
+        return;
     }
     else if ([iden isEqualToString:@"standard"]) {
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
         if (![str isEqualToString:@""]) {
             if ([str isEqualToString:@"Clubs"]) {
                 self.tabBarController.selectedIndex = 2;
+                return;
+            }
+            if ([str isEqualToString:@"Service"]) {
+                self.tabBarController.selectedIndex = 3;
                 return;
             }
             FormsViewerViewController *vc;

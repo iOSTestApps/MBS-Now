@@ -11,6 +11,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor blackColor], NSForegroundColorAttributeName, nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+
+    [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
+     @{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:16.0f]
+       } forState:UIControlStateNormal];
+
+
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

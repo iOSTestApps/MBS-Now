@@ -102,7 +102,6 @@
 #pragma mark Connection
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     [SVProgressHUD dismiss];
-    _reloadButton.titleLabel.text = @"Refresh";
     [self.refreshControl endRefreshing];
 
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
@@ -124,8 +123,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch forms. %@", [error localizedDescription]]];
-    self.dataArray = @[@"Connection failed", @"Tap refresh to try again"];
-    _reloadButton.titleLabel.text = @"Refresh <!>";
+    self.dataArray = @[@"Aw snap; connection failed!"];
     [_tblView reloadData];
 }
 

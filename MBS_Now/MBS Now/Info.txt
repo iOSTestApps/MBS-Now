@@ -11,6 +11,4 @@ Past credits:
 • Programming and design: Graham Dyer
 • App icon and splash: Lena Rajan
 
-Visit us at campus.mbs.net/mbsnow. There, you can register clubs, view our source code, and much more.
-
-Copyright (c) MBS Now. All rights reserved.
+Use MBS Now on your desktop computer! Visit campus.mbs.net/mbsnow to start.

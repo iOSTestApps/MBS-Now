@@ -35,6 +35,9 @@
     NSMutableData *todayScheduleData;
     NSURLConnection *tomorrowScheduleConnection;
     NSMutableData *tomorrowScheduleData;
+
+    NSURLConnection *communityServiceConnection;
+    NSMutableData *communityServiceData;
 }
 
 @property (assign, nonatomic) NSInteger ret; // see marcos in m for details

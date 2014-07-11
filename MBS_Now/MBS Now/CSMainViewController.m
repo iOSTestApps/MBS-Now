@@ -14,7 +14,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"Community Service";
     
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5) ? 20 : 40)];
@@ -25,7 +24,7 @@
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing...just for you"];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing... just for you"];
     [refresh addTarget:self action:@selector(reloadData) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
@@ -126,7 +125,7 @@
 }
 
 #pragma mark Connection
--(void)reloadData {
+- (void)reloadData {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM d, h:mm:ss a";
     NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
@@ -162,6 +161,12 @@
     }
     if (self.array.count != 0) [self.array removeObjectAtIndex:0];
     if (_array.count > 1) ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = YES;
+
+    [[NSUserDefaults standardUserDefaults] setObject:_array forKey:@"serviceLog"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [SVProgressHUD dismiss];
+    [self.refreshControl endRefreshing];
     [self sortByCreationDate];
     [SVProgressHUD dismiss];
     [self.refreshControl endRefreshing];

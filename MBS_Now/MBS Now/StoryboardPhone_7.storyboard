@@ -74,7 +74,7 @@
                                     <outlet property="messageBody" destination="buF-cp-b3U" id="7wW-LV-eWb"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="retCell" textLabel="9UK-vF-hym" rowHeight="40" style="IBUITableViewCellStyleDefault" id="6HE-xb-j5J">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="retCell" textLabel="9UK-vF-hym" detailTextLabel="gxR-nX-R8S" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="6HE-xb-j5J">
                                 <rect key="frame" x="0.0" y="176" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HE-xb-j5J" id="vny-pT-f23">
@@ -82,10 +82,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9UK-vF-hym">
-                                            <rect key="frame" x="15" y="0.0" width="290" height="39"/>
+                                            <rect key="frame" x="15" y="0.0" width="32" height="22"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gxR-nX-R8S">
+                                            <rect key="frame" x="15" y="22" width="42" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -163,10 +170,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Today" id="9t9-r3-BQz"/>
+                    <connections>
+                        <segue destination="1VH-gR-sqY" kind="push" identifier="offline" id="EnD-GY-im9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJ8-q2-Kwh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1107" y="518"/>
+            <point key="canvasLocation" x="-1077" y="516"/>
         </scene>
         <!--Navigation Controller - Today-->
         <scene sceneID="jWa-CZ-4V8">
@@ -618,7 +628,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3d4-6I-jzi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3d4-6I-jzi">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -768,7 +778,7 @@ Effective Communication • Problem Solving • Synthesizing • Organizing • 
 
 Please explore the links below or browse www.mbs.net to learn more.</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Garamond" family="Garamond" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VcH-uC-fwd">
@@ -839,7 +849,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                 <rect key="frame" x="0.0" y="64" width="320" height="417"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Yuv-Nq-moH">
@@ -1431,21 +1441,21 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Will you be attending?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="29q-Ok-Cq6">
                                 <rect key="frame" x="20" y="131" width="171" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q1c-wP-oNN">
                                 <rect key="frame" x="207" y="131" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's your full name?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5P5-Zb-R4G">
                                 <rect key="frame" x="20" y="194" width="229" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1453,15 +1463,16 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                 <rect key="frame" x="20" y="223" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                 <connections>
                                     <outlet property="delegate" destination="LHB-aw-eaU" id="7Kh-Mu-l8q"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rvB-U6-jeB">
-                                <rect key="frame" x="79" y="478" width="162" height="30"/>
+                                <rect key="frame" x="79" y="368" width="162" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Contact creator directly">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1469,17 +1480,17 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                     <action selector="directContact:" destination="LHB-aw-eaU" eventType="touchUpInside" id="Yfz-eI-Ypj"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" id="FY5-hu-AFo">
-                                <rect key="frame" x="0.0" y="349" width="320" height="184"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" id="FY5-hu-AFo">
+                                <rect key="frame" x="0.0" y="406" width="320" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">How does this work?
 
 It's really simple: you enter your information and attendance status, and tap "Send." An email will automatically be sent to the host of this meeting. 
 
-You're only allowed to RSVP once. If you need to make changes after sending, tap the "Contact creator directly" button below.</string>
+You're only allowed to RSVP once. If you need to make changes after sending, tap "Contact creator directly".</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -1517,7 +1528,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                 <connections>
@@ -1698,8 +1709,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqX-ef-ykQ">
-                                <rect key="frame" x="20" y="95" width="132" height="30"/>
+                                <rect key="frame" x="168" y="95" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Add you form">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1708,8 +1720,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tr4-uE-EVy">
-                                <rect key="frame" x="168" y="95" width="132" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="20" y="95" width="132" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Refresh">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1915,6 +1928,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" id="dGi-C7-S8a">
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <navigationItem title="Add an opportunity" id="avj-qT-KWy">
@@ -1928,6 +1942,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                             </navigationBar>
                             <webView contentMode="scaleToFill" id="eZn-Ub-LwO">
                                 <rect key="frame" x="0.0" y="63" width="320" height="505"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
@@ -1996,8 +2011,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="EnD-GY-im9"/>
         <segue reference="CP7-J2-2T1"/>
-        <segue reference="3MT-6i-bVb"/>
         <segue reference="LMc-Mf-m1x"/>
+        <segue reference="3MT-6i-bVb"/>
     </inferredMetricsTieBreakers>
 </document>

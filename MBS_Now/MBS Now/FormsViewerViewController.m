@@ -8,6 +8,7 @@
 
 #import "FormsViewerViewController.h"
 #import <AudioToolbox/AudioServices.h>
+#define LUNCH_ROOT @"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/"
 
 @implementation FormsViewerViewController
 @synthesize _webView, receivedData;
@@ -22,14 +23,28 @@
     return [super initWithNibName:@"FormsViewerViewController_7" bundle:nil];
 }
 
+- (id)initWithLunchDay:(NSString *)day showingTomorrow:(BOOL)late {
+    dayName = day;
+    showingTomorrow = late;
+    return [super initWithNibName:@"FormsViewerViewController_7" bundle:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [_webView setDelegate:self];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
 
-    finalURL = (finalURL) ? finalURL : [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
-    NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
+    NSURLConnection *connection;
+    if (!dayName) {
+        finalURL = (finalURL) ? finalURL : [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
+        connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
+    } else {
+        finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@.pdf", LUNCH_ROOT, dayName]];
+        connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
+    }
+
+    NSLog(@"%@", finalURL);
 
     if (connection) receivedData = [NSMutableData data];
     
@@ -38,8 +53,17 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    showingTomorrow = NO;
+    dayName = nil;
     [SVProgressHUD dismiss];
 }
+
+- (NSString *)dayNameFromDate:(NSDate *)d {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"EEEE"];
+    return [form stringFromDate:d];
+}
+
 
 #pragma mark Connection
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -48,7 +72,8 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [SVProgressHUD dismiss];
+    if (showingTomorrow && ![dayName isEqualToString:@""]) [SVProgressHUD showImage:nil status:@"This is tomorrow's lunch. Shake your phone for today's."];
+    else [SVProgressHUD dismiss];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -76,7 +101,7 @@
         return;
     }
     
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Share this form" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Generate link", @"Email link", @"Print this page", nil];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Share this doc" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Open in Safari", @"Generate link", @"Email link", @"Print", nil];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
     else [sheet showInView:_webView];
@@ -157,6 +182,12 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
     else [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Shake
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    if (motion == UIEventSubtypeMotionShake && showingTomorrow)
+        [self._webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@.pdf", LUNCH_ROOT, [self dayNameFromDate:[NSDate date]]]]]];
 }
 
 #pragma mark Rotation

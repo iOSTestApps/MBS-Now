@@ -9,6 +9,7 @@
 #import "HomeViewController.h"
 #import "DataViewController.h"
 #import "SettingsViewController.h"
+#import "UILabel+Avenir.h"
 #import "SVWebViewController.h"
 #import "FormsViewerViewController.h"
 #import "PhotoBrowser.h"
