@@ -29,7 +29,7 @@
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]];
+    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)]/*, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]*/];
     self.navigationItem.leftBarButtonItem.enabled = NO;
 
     NSLog(@"%@",self.array);
@@ -55,16 +55,31 @@
     if ([self.array[0] isKindOfClass:[NSString class]]) {
         cell.textLabel.text = self.array[indexPath.row];
         cell.detailTextLabel.text = @"";
+        cell.accessoryType = UITableViewCellAccessoryNone;
+
     }
     else {
         cell.textLabel.text = self.array[indexPath.row][1];
         cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
     }
 
     NSLog(@"%@",self.array);
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 	return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![self.array containsObject:@"Connection failure!"]) {
+        [self performSegueWithIdentifier:@"csshowdetails" sender:self];
+    }
+}
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.array[indexPath.row] isKindOfClass:[NSString class]]) {
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -143,13 +158,13 @@
     ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = NO;
     [self.array removeAllObjects];
     self.array = [[NSMutableArray alloc] init];
-    [self.array addObject:@"Connection failure! "];
-    self.tableView.userInteractionEnabled = NO;
+    [self.array addObject:@"Connection failure!"];
+    //self.tableView.userInteractionEnabled = NO;
     [self.tableView reloadData];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    _tableView.userInteractionEnabled = YES;
+   // _tableView.userInteractionEnabled = YES;
     NSString *separation = @"\n";
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
 
@@ -225,7 +240,7 @@
 
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showDetails"]) {
+    if ([segue.identifier isEqualToString:@"csshowdetails"]) {
         
         ((CSDetailViewController *)segue.destinationViewController).array = self.array[_tableView.indexPathForSelectedRow.row];
     }
