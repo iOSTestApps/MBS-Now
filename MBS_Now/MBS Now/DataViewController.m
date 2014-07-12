@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 7/19/13.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "DataViewController.h"
@@ -61,11 +61,17 @@
 
     BOOL logsSaved = [[NSUserDefaults standardUserDefaults] integerForKey:@"loginsTapped"];
 
+    NSInteger scheduleNotifs = [[NSUserDefaults standardUserDefaults] integerForKey:@"textScheduleNotifications"];
+    NSInteger meetingsViewed = [[NSUserDefaults standardUserDefaults] integerForKey:@"meetingsViewed"];
+    NSString *division = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
+    NSInteger selfDataExport = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfDataExport"];
+    NSInteger fullScheduleViewsFromTodayCell = [[NSUserDefaults standardUserDefaults] integerForKey:@"fullScheduleViewsFromTodayCell"];
+
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
 
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %d, recorded on %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, rsvps, [NSDate date]];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %d, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, [NSDate date]];
     return string;
 }
 
@@ -117,6 +123,15 @@
 #pragma mark Mail
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     // dismiss MFMailVC (cancelled or saved)
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"selfDataExport"]) {
+        // first time copying credentials
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"selfDataExport"];
+    } else {
+        NSInteger f = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfDataExport"];
+        f++;
+        [[NSUserDefaults standardUserDefaults] setInteger:f forKey:@"selfDataExport"];
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 
     if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"Sent"];

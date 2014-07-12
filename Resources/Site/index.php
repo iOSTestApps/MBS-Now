@@ -20,9 +20,9 @@
     <div class="container">
 	  <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="http://htmlpreview.github.io/?https://github.com/gdyer/MBS-Now/blob/master/Resources/index.html">Home</a></li>
+          <li class="active"><a href="#">Home</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/forms">Forms</a></li>
-          <li><a href="http://campus.mbs.net/mbsnow/home/clubs.php">Clubs</a></li>
+          <li><a href="http://campus.mbs.net/mbsnow/home/clubs">Clubs</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/code">Code</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/meta">More</a></li>
         </ul>
@@ -43,7 +43,7 @@
       <div class="row marketing">
         <div class="col-lg-6">
           <h4>Clubs</h4>
-          <p>A lot of data for clubs lives here. If your club is registered, you can <a href="http://campus.mbs.net/mbsnow/home/meeting.html"><strong>create meetings</strong></a> immediately. If not, <a href="http://campus.mbs.net/mbsnow/home/clubs.html">start registration here</a>.</p>
+          <p>A lot of data for clubs lives here. If your club is registered, you can <a href="http://campus.mbs.net/mbsnow/home/meeting.html"><strong>create meetings</strong></a> immediately. If not, <a href="http://campus.mbs.net/mbsnow/home/clubs">start registration here</a>.</p>
 
 		<h4>Source Code</h4>
           <p>All of the code that powers MBS Now is accessible to everyone <a href="https://github.com/gdyer/MBS-Now">on GitHub</a>. <a href="mailto:team@gdyer.de">Email us</a> with commentary and thanks!</p>
@@ -54,7 +54,7 @@
           <p>All forms that are accessible in MBS Now <a href="http://campus.mbs.net/mbsnow/home/forms/#view">are here</a>. You can <a href="http://campus.mbs.net/mbsnow/home/forms/#upload">add your own forms</a> as well. Uploads are now published automatically.</p>
 
           <h4>More</h4>
-          <p><a href="http://campus.mbs.net/mbsnow/home/meta/#about">Learn about us</a>, <a href="http://campus.mbs.net/mbsnow/home/report.html"><strong>report a bug</strong></a>, view <a href="http://campus.mbs.net/mbsnow/home/meta/privacy.php">privacy information</a>, or access <a href="http://campus.mbs.net/mbsnow/home/meta/#versions">the app's version history</a>.</p>
+          <p><a href="http://campus.mbs.net/mbsnow/home/meta">Learn about us</a>, <a href="http://campus.mbs.net/mbsnow/home/report.html"><strong>report a bug</strong></a>, view <a href="http://campus.mbs.net/mbsnow/home/meta/privacy.php">privacy information</a>, or access <a href="http://campus.mbs.net/mbsnow/home/meta">the app's version history</a>.</p>
         </div>
       </div>
 	<div class="footer">

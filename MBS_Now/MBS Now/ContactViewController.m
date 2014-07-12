@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 6/6/13.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "ContactViewController.h"
@@ -37,7 +37,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"contactsTapped"]) {
-        // first time accessing copying a contact
+        // first time copying a contact
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"contactsTapped"];
     } else {
         NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];

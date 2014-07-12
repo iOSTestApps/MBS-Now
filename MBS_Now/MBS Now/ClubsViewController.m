@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 10/31/13.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "ClubsViewController.h"
@@ -137,6 +137,14 @@
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"meetingsViewed"]) {
+            // first time viewing a meeting
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"meetingsViewed"];
+        } else {
+            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"meetingsViewed"];
+            q++;
+            [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"meetingsViewed"];
+        }
         NSMutableArray *mod = [NSMutableArray arrayWithArray:self.descriptions];
         [mod removeObjectAtIndex:0];
         [mod insertObject:@"Creation date" atIndex:0];

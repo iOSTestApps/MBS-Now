@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by Graham Dyer on 1/10/13.
-//  Copyright (c) 2013 MBS Now. All rights reserved.
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import <UIKit/UIKit.h>

@@ -50,7 +50,7 @@ SimpleWeb | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/simpleweb.
 Welcomes | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/welcomes.png)
 
 # More
-This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) by [Sam Vermette](http://samvermette.com/).
+This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVProgressWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, and [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey.
 
 For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://campus.mbs.net/mbsnow/home/images).
 
@@ -58,5 +58,5 @@ MBS Now does not support iOS versions less than `7.0`
 
 [Contact us](mailto:team@gdyer.de).
 
-[Some rights reserved](http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
-![Some rights reserved](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png) and... please [Kopimi](http://www.kopimi.com/kopimi/)
+[Some rights reserved](https://creativecommons.org/licenses/by-nc/3.0/)
+![Some rights reserved](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png). [Kopimi](http://www.kopimi.com/kopimi/)

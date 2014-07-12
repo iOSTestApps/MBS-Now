@@ -40,18 +40,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="05/18/2014, 3:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Qw-Gg-yFl">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated 05/18/2014, 3:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Qw-Gg-yFl">
                                             <rect key="frame" x="51" y="3" width="249" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar-7.png" id="df9-op-qok">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.png" id="df9-op-qok">
                                             <rect key="frame" x="6" y="0.0" width="32" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="buF-cp-b3U">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" id="buF-cp-b3U">
                                             <rect key="frame" x="13" y="32" width="294" height="93"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,8 +74,53 @@
                                     <outlet property="messageBody" destination="buF-cp-b3U" id="7wW-LV-eWb"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event" rowHeight="133" id="WUP-BJ-M2L" customClass="EventTableViewCell">
+                                <rect key="frame" x="0.0" y="176" width="320" height="133"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="WUP-BJ-M2L" id="N34-nI-0q4">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="132"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.png" id="5HE-hM-fni">
+                                            <rect key="frame" x="6" y="1" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map-pin-7.png" id="FJ7-oU-WhT">
+                                            <rect key="frame" x="291" y="105" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed, 30 Jul 2014 at 6:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fxr-Ce-Dcc">
+                                            <rect key="frame" x="46" y="7" width="254" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Opening Full Faculty/Staff MeetingsOpening Full Faculty/Staffasdfasdkhfjasdfahsdfasndflaskdnfalskdfn" id="AAr-II-n1Z">
+                                            <rect key="frame" x="20" y="36" width="280" height="61"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center for Academic Writing" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pmr-sA-Aqk">
+                                            <rect key="frame" x="14" y="102" width="267" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateTag" destination="fxr-Ce-Dcc" id="0Cn-EG-EyB"/>
+                                    <outlet property="eventBody" destination="AAr-II-n1Z" id="0VE-6G-Qay"/>
+                                    <outlet property="locIcon" destination="FJ7-oU-WhT" id="Pfn-9v-6Sg"/>
+                                    <outlet property="locTag" destination="pmr-sA-Aqk" id="qQ1-QB-jFT"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="retCell" textLabel="9UK-vF-hym" detailTextLabel="gxR-nX-R8S" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="6HE-xb-j5J">
-                                <rect key="frame" x="0.0" y="176" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="309" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HE-xb-j5J" id="vny-pT-f23">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -99,7 +144,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="standard" rowHeight="46" id="wA7-jc-bfP" customClass="StandardTableViewCell">
-                                <rect key="frame" x="0.0" y="216" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="349" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wA7-jc-bfP" id="oXo-a0-dVG">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="45"/>
@@ -123,7 +168,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="schedule" rowHeight="444" id="3F2-f7-qVy" customClass="ScheduleTableViewCell">
-                                <rect key="frame" x="0.0" y="262" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="395" width="320" height="444"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3F2-f7-qVy" id="HRI-Oy-ttF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="443"/>
@@ -1984,7 +2029,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="bank.png" width="30" height="30"/>
         <image name="bookmark-7-active.png" width="30" height="30"/>
         <image name="bug.png" width="29" height="30"/>
-        <image name="calendar-7.png" width="30" height="30"/>
+        <image name="calendar.png" width="29" height="30"/>
         <image name="clock.png" width="29" height="30"/>
         <image name="direction-sign-multiple-7-active.png" width="30" height="30"/>
         <image name="gear-7-active.png" width="30" height="30"/>
@@ -1992,6 +2037,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="info-7-active.png" width="30" height="30"/>
         <image name="key.png" width="30" height="30"/>
         <image name="mailbox.png" width="30" height="30"/>
+        <image name="map-pin-7.png" width="15" height="15"/>
         <image name="newspaper-7.png" width="30" height="30"/>
         <image name="paperwork.png" width="30" height="30"/>
         <image name="people-communicate-mini.png" width="20" height="20"/>

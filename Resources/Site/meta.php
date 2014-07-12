@@ -23,7 +23,7 @@
                     <li><a href="http://campus.mbs.net/mbsnow/home/forms">Forms</a>
 
                     </li>
-                    <li><a href="http://campus.mbs.net/mbsnow/home/clubs.php">Clubs</a>
+                    <li><a href="http://campus.mbs.net/mbsnow/home/clubs">Clubs</a>
 
                     </li>
                     <li><a href="http://campus.mbs.net/mbsnow/home/code">Code</a>
@@ -209,10 +209,6 @@
 	<tr>
 	<td>Lena Rajan</td>
 		<td>App icon and launch screen</td>
-	</tr>
-	<tr>
-		<td>S. Vermette</td>
-		<td><a href="https://github.com/samvermette/SVProgressHUD">SVProgressHUD</a>, an open source Cocoa class used by MBS Now.</td>
 	</tr>
 </table>
 

@@ -1,9 +1,9 @@
 //
 //  AddItemViewController.m
-//  Community Service
+//  MBS Now
 //
 //  Created by Lucas Fagan on 5/15/14.
-//  Copyright (c) 2014 Lucas Fagan. All rights reserved.
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "CSAddItemViewController.h"

@@ -20,7 +20,7 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a href="index.php">Home</a></li>
+          <li><a href="http://campus.mbs.net/mbsnow/home/clubs">Home</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/forms">Forms</a></li>
           <li class="active"><a href="#">Clubs</a></li>
           <li><a href="http://campus.mbs.net/mbsnow/home/code">Code</a></li>

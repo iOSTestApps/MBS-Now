@@ -1,9 +1,9 @@
 //
 //  ViewController.m
-//  Community Service
+//  MBS Now
 //
-//  Created by Lucas Fagan on 5/14/14.
-//  Copyright (c) 2014 Lucas Fagan. All rights reserved.
+//  Created by Lucas Fagan on 5/15/14.
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "CSMainViewController.h"
@@ -226,6 +226,7 @@
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showDetails"]) {
+        
         ((CSDetailViewController *)segue.destinationViewController).array = self.array[_tableView.indexPathForSelectedRow.row];
     }
 }

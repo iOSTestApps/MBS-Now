@@ -3,16 +3,18 @@
 //  MBS Now
 //
 //  Created by gdyer on 5/18/14.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "Today.h"
 #import "FormsViewerViewController.h"
+#import "XMLDictionary.h"
 #import "HomeViewController.h"
 #import "SVWebViewController.h"
 #import "StandardTableViewCell.h"
 #import "TodayCellTableViewCell.h"
 #import "ScheduleTableViewCell.h"
+#import "EventTableViewCell.h"
 #import "UIImageView+WebCache.h"
 
 #define CONNECTION_FAILTURE 2
@@ -131,15 +133,12 @@
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
     if ([self getHourOfDay] > 18) {
-        // start connection for TEXT-BASED tomorrow schedule only if it's AFTER 6 PM
+        // in production, use commented tmrwText rather than unformatted string tmrwText (currently uncommented)
 //        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self tomorrow]]]]];
         NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-17&div=us"]];
         tomorrowTextData = [NSMutableData data];
         tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
     }
-//    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"]];
-//    rssData = [NSMutableData data];
-//    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
 
 //    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
 //    rssNewsData = [NSMutableData data];
@@ -160,6 +159,10 @@
     NSURLRequest *special = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
     specialData = [NSMutableData data];
     specialConnection = [[NSURLConnection alloc] initWithRequest:special delegate:self startImmediately:YES];
+
+    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
+    rssData = [NSMutableData data];
+    rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
 }
 
 - (NSString *)stringFromFormatterDate:(NSDate *)d {
@@ -172,6 +175,12 @@
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"EEEE"];
     return [form stringFromDate:d];
+}
+
+- (NSDate *)dateFromXmlFormatter:(NSString *)s {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"EEE, dd MMM yyyy"];
+    return [form dateFromString:s];
 }
 
 - (int)getHourOfDay {
@@ -204,8 +213,8 @@
 
 #pragma mark Connection
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-//    if (connection == rssConnection) [rssData appendData:data];
-    if (connection == meetingsConnection) [meetingsData appendData:data];
+    if (connection == rssConnection) [rssData appendData:data];
+    else if (connection == meetingsConnection) [meetingsData appendData:data];
     else if (connection == versionConnection) [versionData appendData:data];
 //    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
     else if (connection == scheduleConnection) [scheduleData appendData:data];
@@ -301,9 +310,36 @@
         }
     }
 
+    else if (connection == rssConnection) {
+        NSArray *events = [NSDictionary dictionaryWithXMLData:rssData][@"channel"][@"item"];
+        int evCount = 0;
+        for (NSDictionary *foo in events) {
+            NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
+            if ([[self dateFromXmlFormatter:dateStr] compare:[NSDate date]] == NSOrderedSame) {
+                evCount++;
+                [self saveFeedsWithObject:[EventTableViewCell class] andKey:@"class"];
+                [self saveFeedsWithObject:foo[@"description"] andKey:@"strings"];
+                [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
+                [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
+            } else break;
+        }
+
+        while (evCount < 2) {
+            evCount++;
+            NSString *str = [NSString stringWithFormat:@"%@||%@", events[evCount][@"description"], events[evCount][@"pubDate"]];
+            [self saveFeedsWithObject:[EventTableViewCell class] andKey:@"class"];
+            [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
+            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
+            [self saveFeedsWithObject:str andKey:@"urls"];
+        }
+
+    }
+
     else if (connection == versionConnection) {
         NSString *fileText = [[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
+        // in production, use commented condition below instead of string comparison
+//        if ([fileText stringByReplacingOccurrencesOfString:@"." withString:@""].intValue > [infoDict[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""].intValue)
         if (![fileText isEqualToString:infoDict[@"CFBundleShortVersionString"]]) {
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:@"Update available! Tap to download." andKey:@"strings"];
@@ -369,7 +405,16 @@
         [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         return cell;
+    } else if (cl == [EventTableViewCell class]) {
+        static NSString *iden = @"event";
+        EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        cell.eventBody.text = _feeds[@"strings"][indexPath.row];
+        NSString *full = _feeds[@"urls"][indexPath.row];
+        cell.locTag.text = [full componentsSeparatedByString:@"||"][1];
+        NSLog(@"%@", cell.eventBody);
+        return cell;
     }
+
     return nil;
 }
 
@@ -378,17 +423,29 @@
     id cl = _feeds[@"class"][indexPath.row];
     if (cl == [StandardTableViewCell class]) return 46.0f;
     else if (cl == [TodayCellTableViewCell class]) return 154.0f;
+    else if (cl == [EventTableViewCell class]) return 133.0f;
     else return 444.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_ret == CONNECTION_FAILTURE) {
         [self performSegueWithIdentifier:@"offline" sender:self];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
     NSString *iden = [tableView cellForRowAtIndexPath:indexPath].reuseIdentifier;
-    NSLog(@"%@", iden);
+    if ([iden isEqualToString:@"event"]) {[tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;}
     if ([iden isEqualToString:@"schedule"]) {
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"fullScheduleViewsFromTodayCell"]) {
+            // first time scheduling a text-based schedule notification
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"fullScheduleViewsFromTodayCell"];
+        } else {
+            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"fullScheduleViewsFromTodayCell"];
+            q++;
+            [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"fullScheduleViewsFromTodayCell"];
+        }
+
         FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -426,6 +483,14 @@
 
         [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
         [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"textScheduleNotifications"]) {
+            // first time scheduling a text-based schedule notification
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"textScheduleNotifications"];
+        } else {
+            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"textScheduleNotifications"];
+            q++;
+            [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"textScheduleNotifications"];
+        }
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -433,12 +498,8 @@
 
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        return YES;
-    else {
-        if (toInterfaceOrientation == UIDeviceOrientationPortrait) return YES;
-        return NO;
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
+    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
 }
 
 #pragma mark Alert

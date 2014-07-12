@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by gdyer on 10/31/13.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import "SimpleWebViewController.h"
@@ -49,7 +49,7 @@ BOOL edit;
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if ([webView.request.URL.absoluteString isEqualToString:@"http://campus.mbs.net/mbsnow/home/report.html"]) {
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-        [SVProgressHUD showImage:[UIImage imageNamed:@"bug.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", [infoDict objectForKey:@"CFBundleShortVersionString"], [UIDevice currentDevice].systemVersion]];
+        [SVProgressHUD showImage:[UIImage imageNamed:@"bug-black.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", [infoDict objectForKey:@"CFBundleShortVersionString"], [UIDevice currentDevice].systemVersion]];
     } else if ([webView.request.URL.host isEqualToString:@"docs.google.com"] && [self.specifier isEqualToString:@"rem"]) {
         // they just came from creating a meeting; ask to edit later.
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Meeting created!" message:@"Would you like to add the ability to edit this meeting later? Note: it will take up to 5 minutes for it to go live." delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];

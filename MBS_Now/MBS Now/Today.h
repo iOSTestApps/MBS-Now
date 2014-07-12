@@ -3,7 +3,7 @@
 //  MBS Now
 //
 //  Created by Graham Dyer on 5/18/14.
-//  Copyright (c) 2014 MBS Now. All rights reserved.
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
 #import <UIKit/UIKit.h>
@@ -18,9 +18,9 @@
     NSURLConnection *versionConnection;
     NSMutableData *versionData;
 
-//    NSURLConnection *rssConnection;
-//    NSMutableData *rssData;
-//
+    NSURLConnection *rssConnection;
+    NSMutableData *rssData;
+
 //    NSURLConnection *rssNewsConnection;
 //    NSMutableData *rssNewsData;
 
@@ -45,6 +45,5 @@
 // feeds[@"strings"] will be an array of text labels.text
 // feeds[@"images"] will be an array of UIImages
 // feeds[@"class"] class name strings
-// feeds[@"urls"] will be the webpage loaded when a Standard cell is tapped.
-
+// feeds[@"urls"] will be the webpage OR more text. You must set it as "" when no URL or additional text is needed
 @end

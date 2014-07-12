@@ -1,14 +1,14 @@
 //
-//  StandardTableViewCell.m
+//  EventTableViewCell.m
 //  MBS Now
 //
-//  Created by gdyer on 5/18/14.
+//  Created by gdyer on 7/11/14.
 //  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
-#import "StandardTableViewCell.h"
+#import "EventTableViewCell.h"
 
-@implementation StandardTableViewCell
+@implementation EventTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

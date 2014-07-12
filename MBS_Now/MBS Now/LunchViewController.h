@@ -3,11 +3,12 @@
 //  MBS Now
 //
 //  Created by gdyer on 1/10/13.
-//  Copyright (c) 2014 MBS Now. Some rights reserved; (CC) BY-NC-SA
+//  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
-#import <UIKit/UIKit.h>
+// THIS VC IS IPAD ONLY
 
+#import <UIKit/UIKit.h>
 @interface LunchViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, UIAlertViewDelegate, UITableViewDataSource, UITableViewDelegate, NSURLConnectionDataDelegate> {
 
     IBOutlet UITableView *tblView;
@@ -24,7 +25,6 @@
 @property (nonatomic, assign) NSMutableData *receivedData;
 
 - (IBAction)pushedStop:(id)sender;
-
 - (void)loadFromTable:(NSURL *)urlToLoad;
 
 @end

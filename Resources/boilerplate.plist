@@ -5,8 +5,6 @@
 	<key>Connection required</key>
 	<string>Tap to refresh</string>
 	<key>DO NOT CHANGE THE KEY AND STRING ABOVE. Begin editing here. This is a subtitle.</key>
-	<string>This is a main title</string>
-	<key>This is a subtitle.</key>
-	<string>This is a main title</string>
+	<string>This is a main title. KEEP THIS BREIF (<30 chars), as there is no way to view more than what appears in the bug table view cell</string>
 </dict>
 </plist>
