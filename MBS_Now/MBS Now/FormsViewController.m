@@ -16,8 +16,8 @@
     [super viewDidLoad];
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 0)];
     footer.backgroundColor = [UIColor clearColor];
-    _tblView.tableFooterView = footer;
-
+    self.searchDisplayController.searchResultsTableView.tableFooterView = _tblView.tableFooterView = footer;
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self refresh];
     _searchBar.showsCancelButton = NO;
     self.dataArray = @[@"Hang tight... updating"];

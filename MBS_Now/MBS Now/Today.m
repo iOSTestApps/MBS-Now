@@ -324,15 +324,15 @@
             } else break;
         }
 
+        // because we always want some events to appear, even if they're not happening today
         while (evCount < 2) {
             evCount++;
-            NSString *str = [NSString stringWithFormat:@"%@||%@", events[evCount][@"description"], events[evCount][@"pubDate"]];
+            NSString *str = events[evCount][@"description"];
             [self saveFeedsWithObject:[EventTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
             [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
             [self saveFeedsWithObject:str andKey:@"urls"];
         }
-
     }
 
     else if (connection == versionConnection) {
@@ -387,6 +387,7 @@
         cell.label.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         cell.url = _feeds[@"urls"][indexPath.row];
+        if ([[cell.label.text substringToIndex:6] isEqualToString:@"School"]) cell.accessoryType = UITableViewCellAccessoryNone;
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
         return cell;
@@ -408,10 +409,24 @@
     } else if (cl == [EventTableViewCell class]) {
         static NSString *iden = @"event";
         EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        if (cell == nil)
+            cell = [[EventTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
         cell.eventBody.text = _feeds[@"strings"][indexPath.row];
-        NSString *full = _feeds[@"urls"][indexPath.row];
-        cell.locTag.text = [full componentsSeparatedByString:@"||"][1];
-        NSLog(@"%@", cell.eventBody);
+        NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
+        [full removeLastObject];
+//        for (NSString *f in full) {
+//            if ([f isEqualToString:@""]) [full removeObject:f];
+//        }
+        if (full.count > 1) { // potentially dangerous assumption here is that if an event has a time, it must have a location and vice-versa
+            cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
+            if (full.count == 3) cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
+            else {
+                cell.locTag.hidden = YES;
+                cell.locIcon.hidden = YES;
+            }
+            NSLog(@"%@", cell.locTag.text);
+
+        }
         return cell;
     }
 
@@ -423,7 +438,8 @@
     id cl = _feeds[@"class"][indexPath.row];
     if (cl == [StandardTableViewCell class]) return 46.0f;
     else if (cl == [TodayCellTableViewCell class]) return 154.0f;
-    else if (cl == [EventTableViewCell class]) return 133.0f;
+    else if (cl == [EventTableViewCell class])
+        return ([_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"].count == 3) ? 82.0f : 106.0f;
     else return 444.0f;
 }
 
