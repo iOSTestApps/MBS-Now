@@ -8,6 +8,7 @@
 
 #import "Today.h"
 #import "FormsViewerViewController.h"
+#import "UIView+Toast.h"
 #import "XMLDictionary.h"
 #import "HomeViewController.h"
 #import "SVWebViewController.h"
@@ -165,6 +166,23 @@
     rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
 }
 
+- (void)moveAlongWithNotif:(NSString *)title atTime:(NSDate *)fireDate {
+    UILocalNotification *lcl = [[UILocalNotification alloc] init];
+    lcl.fireDate = fireDate;
+    lcl.alertBody = title;
+    lcl.soundName = UILocalNotificationDefaultSoundName;
+    lcl.alertAction = @"Open";
+    lcl.timeZone = [NSTimeZone defaultTimeZone];
+    [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"textScheduleNotifications"]) {
+        // first time scheduling a text-based schedule notification
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"textScheduleNotifications"];
+    } else {
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"textScheduleNotifications"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"textScheduleNotifications"];
+    }
+}
+
 - (NSString *)stringFromFormatterDate:(NSDate *)d {
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"y-M-d"];
@@ -187,6 +205,18 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
     return [components hour];
+}
+
+- (NSDate *)getDateForTomorrowAtHour:(int)h {
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
+
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    offsetComponents.timeZone = [NSTimeZone localTimeZone];
+    offsetComponents.day = 1;
+    offsetComponents.hour = h;
+    offsetComponents.minute = 0;
+    return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
 }
 
 - (NSDate *)dateByDistanceFromToday:(int)d {
@@ -489,24 +519,16 @@
     }
     else if (_feeds[@"class"][indexPath.row] == [TodayCellTableViewCell class]) {
         NSString *alertTitle = [((TodayCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]) messageBody].text;
-        NSDate *fireDate = [[NSDate date] dateByAddingTimeInterval:20];
-        UILocalNotification *lcl = [[UILocalNotification alloc] init];
-        lcl.fireDate = fireDate;
-        lcl.alertBody = alertTitle;
-        lcl.soundName = UILocalNotificationDefaultSoundName;
-        lcl.alertAction = @"Open";
-        lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-        [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-        [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
-        if (![[NSUserDefaults standardUserDefaults] objectForKey:@"textScheduleNotifications"]) {
-            // first time scheduling a text-based schedule notification
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"textScheduleNotifications"];
-        } else {
-            NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"textScheduleNotifications"];
-            q++;
-            [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"textScheduleNotifications"];
+        if ([alertTitle rangeOfString:@"Tomorrow"].location != NSNotFound /*&& [self getHourOfDay] > 15*/) {
+            // scheduling an alert when it's the day before
+            UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Is tomorrow better?" message:@"Would you like to schedule this notification for tomorrow instead?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, at 8 AM", @"Yes, at 7 AM", @"No, now", nil];
+            a.tag = 1;
+            a.restorationIdentifier = alertTitle;
+            [a show];
+            return;
         }
+
+        [self moveAlongWithNotif:alertTitle atTime:[[NSDate date] dateByAddingTimeInterval:20]];
     }
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -520,6 +542,29 @@
 
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == 1) {
+        switch (buttonIndex) {
+            case 1:
+                // 8 AM tmrw
+                [self moveAlongWithNotif:alertView.restorationIdentifier atTime:[self getDateForTomorrowAtHour:4]];
+                [self.view makeToast:@"Schedule will appear at 8 AM" duration:2.0f position:@"bottom"];
+                NSLog(@"%@", [self getDateForTomorrowAtHour:4]);
+                break;
+            case 2:
+                // 7 AM tmrw
+                [self moveAlongWithNotif:alertView.restorationIdentifier atTime:[self getDateForTomorrowAtHour:3]];
+                [self.view makeToast:@"Schedule will appear at 7 AM" duration:2.0f position:@"bottom"];
+                NSLog(@"%@", [self getDateForTomorrowAtHour:3]);
+            case 3:
+                // in 20 seconds
+                [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
+                [self moveAlongWithNotif:alertView.restorationIdentifier atTime:[[NSDate date] dateByAddingTimeInterval:20]];
+                break;
+            default:
+                break;
+        }
+        return;
+    }
     if (alertView.tag != 2) return;
     NSMutableArray *poss = [NSMutableArray array];
     for (int x = 6; x < 13; x++)
@@ -527,7 +572,7 @@
     NSString *grade = [alertView textFieldAtIndex:0].text;
     if ([poss containsObject:grade]) {
         [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
-        [SVProgressHUD showSuccessWithStatus:@"Thanks. That's editable in Settings."];
+        [self.view makeToast:@"Thanks. That's editable in Settings." duration:3.0f position:@"bottom"];
         [self update];
         return;
     }

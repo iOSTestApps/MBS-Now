@@ -25,6 +25,11 @@ UIAlertView *defaultAlert;
     scrollView.delegate = self;
     scrollView.zoomScale = 1;
     [scrollView addSubview:imageView];
+
+    UISwipeGestureRecognizer *down = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(done:)];
+    down.direction = UISwipeGestureRecognizerDirectionDown;
+    [down setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:down];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
