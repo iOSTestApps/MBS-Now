@@ -7,11 +7,14 @@
 //
 
 #import "PhotoBrowser.h"
-
 @implementation PhotoBrowser
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+
     self.imgs = [[NSMutableArray alloc] init];
     NSMutableArray *foo = [[NSMutableArray alloc] init];
     for (NSString *name in self.imgNames)
@@ -35,6 +38,18 @@
     lrecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [lrecognizer setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:lrecognizer];
+    if (!_showDismiss) {
+        UISwipeGestureRecognizer *down = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)];
+        down.direction = UISwipeGestureRecognizerDirectionDown;
+        [down setNumberOfTouchesRequired:1];
+        [self.view addGestureRecognizer:down];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor blackColor], NSForegroundColorAttributeName, nil];
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

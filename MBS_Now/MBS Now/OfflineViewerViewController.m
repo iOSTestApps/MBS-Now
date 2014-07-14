@@ -8,7 +8,7 @@
 
 #import "OfflineViewerViewController.h"
 #import <AudioToolbox/AudioServices.h>
-
+#import "UIView+Toast.h"
 @implementation OfflineViewerViewController
 
 UIAlertView *defaultAlert;
@@ -28,7 +28,7 @@ UIAlertView *defaultAlert;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if ([imageName isEqualToString:@"02.png"]) [SVProgressHUD showErrorWithStatus:@"Monday schedule here is not correct. A replacement has yet to be made available."];
+    if ([imageName isEqualToString:@"02.png"]) [self.view makeToast:@"Monday schedule is incorrect. A replacement has yet to be made available." duration:5.0f position:@"bottom"];
 }
 
 - (id)initWithImageName:(NSString *)iName {

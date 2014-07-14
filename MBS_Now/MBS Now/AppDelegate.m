@@ -19,8 +19,6 @@
      @{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:16.0f]
        } forState:UIControlStateNormal];
 
-
-
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -42,11 +40,11 @@
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
+    // to display PhotoBrowser "what's new"
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"])
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
-    else {
+    else
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
-    }
 
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
