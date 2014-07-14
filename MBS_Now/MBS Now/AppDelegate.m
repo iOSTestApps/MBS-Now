@@ -19,8 +19,6 @@
      @{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:16.0f]
        } forState:UIControlStateNormal];
 
-
-
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

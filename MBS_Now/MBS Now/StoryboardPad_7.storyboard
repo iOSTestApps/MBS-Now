@@ -1433,9 +1433,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="pSl-9h-fa6" kind="push" identifier="showDetails" id="baQ-Yl-D95"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1455,6 +1452,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8tf-wI-Rqq" id="XXW-Ad-0fs"/>
+                        <segue destination="pSl-9h-fa6" kind="push" identifier="csshowdetails" id="pxF-YW-7cr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7z-UL-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
