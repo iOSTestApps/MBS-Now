@@ -7,9 +7,9 @@
 //
 
 #import "FormsViewerViewController.h"
+#import "UIView+Toast.h"
 #import <AudioToolbox/AudioServices.h>
 #define LUNCH_ROOT @"https://github.com/gdyer/MBS-Now/raw/master/Resources/Lunch/"
-
 @implementation FormsViewerViewController
 @synthesize _webView, receivedData;
 
@@ -44,8 +44,6 @@
         connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
     }
 
-    NSLog(@"%@", finalURL);
-
     if (connection) receivedData = [NSMutableData data];
     
     [_webView loadRequest:[NSURLRequest requestWithURL:finalURL]];
@@ -72,8 +70,9 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (showingTomorrow && ![dayName isEqualToString:@""]) [SVProgressHUD showImage:nil status:@"This is tomorrow's lunch. Shake your phone for today's."];
-    else [SVProgressHUD dismiss];
+    [SVProgressHUD dismiss];
+    if (showingTomorrow && ![dayName isEqualToString:@""])
+        [self.view makeToast:@"This is tomorrow's lunch. Shake your phone for today's." duration:3.0 position:@"bottom"];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

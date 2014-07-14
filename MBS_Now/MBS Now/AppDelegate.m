@@ -40,11 +40,11 @@
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
+    // to display PhotoBrowser "what's new"
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"])
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
-    else {
+    else
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
-    }
 
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;

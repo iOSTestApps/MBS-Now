@@ -94,7 +94,7 @@
         return;
     }
 
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Sort service opportunity listings by..." delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Date", @"Modification date", @"Name", nil];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Sort service opportunity listings" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Date", @"Modification date", @"Name", nil];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
         [sheet showFromBarButtonItem:self.navigationItem.leftBarButtonItem animated:YES];

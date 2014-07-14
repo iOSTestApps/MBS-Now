@@ -80,6 +80,7 @@
 		15A5565718270B100033CADA /* RSVPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A5565618270B100033CADA /* RSVPViewController.m */; };
 		15A5565D182720440033CADA /* FullPurposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A5565C182720440033CADA /* FullPurposeViewController.m */; };
 		15A5566718272A640033CADA /* ClubsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC387D182326D300B3502A /* ClubsViewController.m */; };
+		15A623831973697F006A5130 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A623821973697F006A5130 /* UIView+Toast.m */; };
 		15A878B91808A9B4009A0C21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15A878B81808A9B4009A0C21 /* Images.xcassets */; };
 		15AAF68018D28E3F001AC330 /* Info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15AAF67F18D28E3F001AC330 /* Info.txt */; };
 		15AAF68218D28E4A001AC330 /* clubInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15AAF68118D28E4A001AC330 /* clubInfo.txt */; };
@@ -373,6 +374,8 @@
 		15A5565618270B100033CADA /* RSVPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSVPViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		15A5565B182720440033CADA /* FullPurposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullPurposeViewController.h; sourceTree = "<group>"; };
 		15A5565C182720440033CADA /* FullPurposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullPurposeViewController.m; sourceTree = "<group>"; };
+		15A623811973697F006A5130 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		15A623821973697F006A5130 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		15A878B81808A9B4009A0C21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15AAF67F18D28E3F001AC330 /* Info.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Info.txt; sourceTree = "<group>"; };
 		15AAF68118D28E4A001AC330 /* clubInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clubInfo.txt; sourceTree = "<group>"; };
@@ -717,6 +720,7 @@
 		1557D1FD169F0D3E00F27AE4 = {
 			isa = PBXGroup;
 			children = (
+				15A623801973697F006A5130 /* Toast */,
 				15C1DC90197070B300CF4128 /* XMLDictionary */,
 				15BAFE051935383700780C96 /* SDWebImage */,
 				1547B591192848E200330A94 /* SVWeb */,
@@ -872,6 +876,15 @@
 				15A5565618270B100033CADA /* RSVPViewController.m */,
 			);
 			name = Clubs;
+			sourceTree = "<group>";
+		};
+		15A623801973697F006A5130 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				15A623811973697F006A5130 /* UIView+Toast.h */,
+				15A623821973697F006A5130 /* UIView+Toast.m */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		15AC1E68170A509000908EA9 /* Images */ = {
@@ -1419,6 +1432,7 @@
 				15BAFE041935383200780C96 /* UIImageView+HighlightedWebCache.m in Sources */,
 				15BAFDF81935383200780C96 /* SDImageCache.m in Sources */,
 				1552938B169FBD90006A8B99 /* HomeViewController.m in Sources */,
+				15A623831973697F006A5130 /* UIView+Toast.m in Sources */,
 				157C548C19294E7500D6B224 /* TodayCellTableViewCell.m in Sources */,
 				15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */,
 				15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */,
