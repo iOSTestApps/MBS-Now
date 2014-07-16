@@ -19,4 +19,15 @@
     [super setFrame:frame];
 }
 
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//    self.layer.shadowOffset = CGSizeMake(1, 0);
+//    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+//    self.layer.shadowRadius = 1;
+//    self.layer.shadowOpacity = .25;
+//    CGRect shadowFrame = self.layer.bounds;
+//    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+//    self.layer.shadowPath = shadowPath;
+//}
+
 @end

@@ -30,14 +30,14 @@
       </div>
       <div class="jumbotron">
         <h1>MBS Now</h1>
-        <p class="lead">...a free, student-founded and run iOS and web app made for the Morristown-Beard School. <a href="http://campus.mbs.net/mbsnow/home/meta/#credits">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
+        <p class="lead">...a free, student-founded and run iOS and web app made for the Morristown-Beard School. <a href="http://campus.mbs.net/mbsnow/home/meta/">Learn more</a>, <a href="https://github.com/gdyer/MBS-Now">fork us on GitHub.</p>
         <a class="btn btn-lg btn-primary" href="http://gdyer.de/appstore" target="_blank" role="button">Download for iOS</a>
       </div>
 
 	<h2></h3>
 
       <h3>Announcements</h3>
-      <div class="alert alert-success">
+      <div class="alert alert-primary">
         Welcome to our new server, campus.mbs.net (jointly hosted with GitHub)! <span class="label label-primary">1</span> Version 3.8.1 is available! <a href="http://gdyer.de/appstore">Update today!</a> <span class="label label-primary">2</span> Support for versions 3.6.1 and earlier has been discontinued.
       </div>
       <div class="row marketing">
@@ -51,7 +51,7 @@
 
         <div class="col-lg-6">
           <h4>Forms</h4>
-          <p>All forms that are accessible in MBS Now <a href="http://campus.mbs.net/mbsnow/home/forms/#view">are here</a>. You can <a href="http://campus.mbs.net/mbsnow/home/forms/#upload">add your own forms</a> as well. Uploads are now published automatically.</p>
+          <p>All forms that are accessible in MBS Now <a href="http://campus.mbs.net/mbsnow/home/forms/">are here</a>. You can <a href="http://campus.mbs.net/mbsnow/home/forms/">add your own forms</a> as well. Uploads are now published immediately upon automated approval.</p>
 
           <h4>More</h4>
           <p><a href="http://campus.mbs.net/mbsnow/home/meta">Learn about us</a>, <a href="http://campus.mbs.net/mbsnow/home/report.html"><strong>report a bug</strong></a>, view <a href="http://campus.mbs.net/mbsnow/home/meta/privacy.php">privacy information</a>, or access <a href="http://campus.mbs.net/mbsnow/home/meta">the app's version history</a>.</p>

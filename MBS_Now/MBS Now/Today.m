@@ -16,6 +16,7 @@
 #import "TodayCellTableViewCell.h"
 #import "ScheduleTableViewCell.h"
 #import "EventTableViewCell.h"
+#import "ShortEventTableViewCell.h"
 #import "UIImageView+WebCache.h"
 
 #define CONNECTION_FAILTURE 2
@@ -37,18 +38,20 @@
     [refresh addTarget:self action:@selector(update) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(update)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more-list-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(more)];
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lunch)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lunch)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
+
+    // stop all non-essential connections
     [versionConnection cancel];
     [meetingsConnection cancel];
-    //    [rssConnection cancel];
+    [rssConnection cancel];
+    [communityServiceConnection cancel];
     [specialConnection cancel];
-    //    [rssNewsConnection cancel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -133,7 +136,7 @@
     todayScheduleData = [NSMutableData data];
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
-    if ([self getHourOfDay] > 18) {
+    if ([self getHourOfDay] > 18 || [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"]) {
         // in production, use commented tmrwText rather than unformatted string tmrwText (currently uncommented)
 //        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self tomorrow]]]]];
         NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-17&div=us"]];
@@ -235,10 +238,70 @@
     [_feeds setObject:cur forKey:key];
 }
 
+- (id)shadowCell:(UITableViewCell *)cell {
+    cell.layer.shadowOffset = CGSizeMake(1, 0);
+    cell.layer.shadowColor = [[UIColor blackColor] CGColor];
+    cell.layer.shadowRadius = 1;
+    cell.layer.shadowOpacity = .25;
+    CGRect shadowFrame = cell.layer.bounds;
+    CGPathRef shadowPath = [UIBezierPath bezierPathWithRect:shadowFrame].CGPath;
+    cell.layer.shadowPath = shadowPath;
+    return cell;
+}
+
 - (void)lunch {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"lunchFromToday"]) {
+        // first time accessing a menu
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"lunchFromToday"];
+    } else {
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"lunchFromToday"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"lunchFromToday"];
+    }
+
     BOOL late = ([self getHourOfDay] > 15) ? YES : NO;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"]) late = NO;
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithLunchDay:(late) ? [self dayNameFromDate:[self dateByDistanceFromToday:1]] : [self dayNameFromDate:[NSDate date]]  showingTomorrow:late];
     [self.navigationController pushViewController:fvvc animated:YES];
+}
+
+#pragma mark More
+- (void)more {
+    if (sheet) {
+        [sheet dismissWithClickedButtonIndex:-1 animated:YES];
+        sheet = nil;
+        return;
+    }
+
+    BOOL d = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
+    BOOL l = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (!l) ? @"Only show today's lunch (even after 3)" : @"Show tomorrow's lunch after 3", (showAllEvents) ? @"Only show some calendar events" : @"Show all calendar events", @"Always show latest news story", nil];
+
+    [sheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            // show 2 days
+            [[NSUserDefaults standardUserDefaults] setBool:!([[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"]) forKey:@"alwaysTwoDay"];
+            [self update];
+            break;
+        case 1:
+            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"] forKey:@"alwaysTodayLunch"];
+            break;
+        case 2:
+            // all events
+            showAllEvents = !showAllEvents;
+            [self update];
+            break;
+
+        default:
+            break;
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    sheet = nil;
 }
 
 #pragma mark Connection
@@ -265,12 +328,10 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"%@", connection);
     [self.refreshControl endRefreshing];
     _ret = CONNECTION_FAILTURE;
     [SVProgressHUD dismiss];
     [self.tableView reloadData];
-//    _feeds = [NSMutableDictionary dictionaryWithObjects:@[@"Oops! The connection failed.", [UIImage imageNamed:@"caution-7.png"], [NSNumber numberWithBool:YES], @""] forKeys:@[@"strings", @"images", @"class", @"urls"]];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -347,7 +408,8 @@
             NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
             if ([[self dateFromXmlFormatter:dateStr] compare:[NSDate date]] == NSOrderedSame) {
                 evCount++;
-                [self saveFeedsWithObject:[EventTableViewCell class] andKey:@"class"];
+                NSString *str = foo[@"description"];
+                [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
                 [self saveFeedsWithObject:foo[@"description"] andKey:@"strings"];
                 [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
                 [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
@@ -355,10 +417,10 @@
         }
 
         // because we always want some events to appear, even if they're not happening today
-        while (evCount < 2) {
+        while (evCount < ((showAllEvents) ? (events.count-1) : 2)) {
             evCount++;
             NSString *str = events[evCount][@"description"];
-            [self saveFeedsWithObject:[EventTableViewCell class] andKey:@"class"];
+            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
             [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
             [self saveFeedsWithObject:str andKey:@"urls"];
@@ -377,6 +439,11 @@
             [self saveFeedsWithObject:UPDATE_URL andKey:@"urls"];
         }
     }
+
+//    else if (connection == rssNewsConnection) {
+//        NSArray *events = [NSDictionary dictionaryWithXMLData:rssNewsData][@"channel"][@"item"];
+//        NSLog(@"%@", events);
+//    }
     _ret = CONNECTION_SUCCESS;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
@@ -404,7 +471,7 @@
             case CONNECTION_FAILTURE:
                 cell.imageView.image = [UIImage imageNamed:@"caution-7.png"];
                 cell.textLabel.text = @"Nuts; the connection failed!";
-                cell.detailTextLabel.text = @"Tap here for the offline schedule";
+                cell.detailTextLabel.text = @"Tap for offline use or pull ↓ to reload";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
         }
@@ -417,9 +484,11 @@
         cell.label.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         cell.url = _feeds[@"urls"][indexPath.row];
-        if ([[cell.label.text substringToIndex:6] isEqualToString:@"School"]) cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell = [self shadowCell:cell];
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
+
         return cell;
     } else if (cl == [TodayCellTableViewCell class]) {
         static NSString *iden = @"today";
@@ -429,12 +498,14 @@
         cell.dateTag.text = [NSString stringWithFormat:@"Updated %@", [formatter stringFromDate:[NSDate date]]];
         cell.messageBody.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
+        cell = [self shadowCell:cell];
         return cell;
     } else if (cl == [ScheduleTableViewCell class]) {
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        cell = [self shadowCell:cell];
         return cell;
     } else if (cl == [EventTableViewCell class]) {
         static NSString *iden = @"event";
@@ -444,19 +515,23 @@
         cell.eventBody.text = _feeds[@"strings"][indexPath.row];
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
-//        for (NSString *f in full) {
-//            if ([f isEqualToString:@""]) [full removeObject:f];
-//        }
         if (full.count > 1) { // potentially dangerous assumption here is that if an event has a time, it must have a location and vice-versa
             cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
-            if (full.count == 3) cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
-            else {
-                cell.locTag.hidden = YES;
-                cell.locIcon.hidden = YES;
-            }
-            NSLog(@"%@", cell.locTag.text);
-
+            cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
         }
+        cell = [self shadowCell:cell];
+        return cell;
+    }
+    else if (cl == [ShortEventTableViewCell class]) {
+        static NSString *iden = @"shortEvent";
+        ShortEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        if (cell == nil)
+            cell = [[ShortEventTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
+        cell.eventBody.text = _feeds[@"strings"][indexPath.row];
+        NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
+        [full removeLastObject];
+        if (full.count > 1) cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
+        cell = [self shadowCell:cell];
         return cell;
     }
 
@@ -468,8 +543,8 @@
     id cl = _feeds[@"class"][indexPath.row];
     if (cl == [StandardTableViewCell class]) return 46.0f;
     else if (cl == [TodayCellTableViewCell class]) return 154.0f;
-    else if (cl == [EventTableViewCell class])
-        return ([_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"].count == 3) ? 82.0f : 106.0f;
+    else if (cl == [EventTableViewCell class]) return 106.0f;
+    else if (cl == [ShortEventTableViewCell class]) return 66.0f;
     else return 444.0f;
 }
 
@@ -528,6 +603,7 @@
             return;
         }
 
+        [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
         [self moveAlongWithNotif:alertTitle atTime:[[NSDate date] dateByAddingTimeInterval:20]];
     }
 
@@ -542,19 +618,18 @@
 
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if(alertView.tag == 1) {
+    if (alertView.tag == 1) {
         switch (buttonIndex) {
             case 1:
                 // 8 AM tmrw
                 [self moveAlongWithNotif:alertView.restorationIdentifier atTime:[self getDateForTomorrowAtHour:4]];
-                [self.view makeToast:@"Schedule will appear at 8 AM" duration:2.0f position:@"bottom"];
-                NSLog(@"%@", [self getDateForTomorrowAtHour:4]);
+                [SVProgressHUD showSuccessWithStatus:@"Scheduled for 8 AM"];
                 break;
             case 2:
                 // 7 AM tmrw
                 [self moveAlongWithNotif:alertView.restorationIdentifier atTime:[self getDateForTomorrowAtHour:3]];
-                [self.view makeToast:@"Schedule will appear at 7 AM" duration:2.0f position:@"bottom"];
-                NSLog(@"%@", [self getDateForTomorrowAtHour:3]);
+                [SVProgressHUD showSuccessWithStatus:@"Scheduled for 7 AM"];
+                break;
             case 3:
                 // in 20 seconds
                 [SVProgressHUD showSuccessWithStatus:@"Showing notification in 20 seconds. Lock your device to have it show on the lock-screen."];
@@ -572,7 +647,7 @@
     NSString *grade = [alertView textFieldAtIndex:0].text;
     if ([poss containsObject:grade]) {
         [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
-        [self.view makeToast:@"Thanks. That's editable in Settings." duration:3.0f position:@"bottom"];
+        [self.view makeToast:@"Thanks. That's editable in Settings." duration:2.0f position:@"top"];
         [self update];
         return;
     }

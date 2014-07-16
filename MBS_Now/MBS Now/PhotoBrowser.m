@@ -9,8 +9,12 @@
 #import "PhotoBrowser.h"
 @implementation PhotoBrowser
 
+// CHANGE INIT AND STOPMEASURING'S NSUSERDEFAULT KEY FOR EACH VERSION
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
 
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
@@ -50,6 +54,35 @@
     [super viewWillDisappear:animated];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor blackColor], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self startMeasuring];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self stopMeasuring];
+}
+
+- (void)appDidEnterBackground:(NSNotification *)not {
+    [self stopMeasuring];
+}
+
+- (void)appDidEnterForeground:(NSNotification *)not {
+    [self startMeasuring];
+}
+
+- (void)startMeasuring {
+    _startDate = [NSDate date];
+}
+
+- (void)stopMeasuring {
+    NSInteger secondsInScreen = ABS([_startDate timeIntervalSinceNow]);
+    // only record if this their first time (that what it's organic, and they cannot dismiss the view)
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"timeInPhotoBrowser"])
+        [[NSUserDefaults standardUserDefaults] setInteger:secondsInScreen forKey:@"timeInPhotoBrowser"];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

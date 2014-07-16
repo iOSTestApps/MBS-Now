@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface DataViewController : UIViewController <MFMailComposeViewControllerDelegate> {
+@interface DataViewController : UIViewController <MFMailComposeViewControllerDelegate, UIAlertViewDelegate> {
 
     IBOutlet UIButton *_1;
     IBOutlet UITextView *textView;

@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UISwipeGestureRecognizer *down = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(done:)];
+    down.direction = UISwipeGestureRecognizerDirectionDown;
+    [down setNumberOfTouchesRequired:1];
+    [self.view addGestureRecognizer:down];
+
     switch (iow) {
         case 0: {
             imageView.image = [UIImage imageNamed:@"Headmaster_Caldwell_Oct.jpg"];

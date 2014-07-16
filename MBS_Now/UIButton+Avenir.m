@@ -12,9 +12,9 @@
 
 - (void)setFrame:(CGRect)frame {
     float s = self.titleLabel.font.pointSize;
-    self.titleLabel.font = [UIFont fontWithName:@"Avenir" size:s];
+    NSString *c = [NSString stringWithFormat:@"%@", super.class];
+    self.titleLabel.font = [UIFont fontWithName:@"Avenir" size:([c isEqualToString:@"UIButton"]) ? s : s-4];
     [super setFrame:frame];
 }
-
 
 @end

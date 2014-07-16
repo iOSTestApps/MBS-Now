@@ -66,12 +66,18 @@
     NSString *division = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
     NSInteger selfDataExport = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfDataExport"];
     NSInteger fullScheduleViewsFromTodayCell = [[NSUserDefaults standardUserDefaults] integerForKey:@"fullScheduleViewsFromTodayCell"];
+    NSInteger serviceViews = [[NSUserDefaults standardUserDefaults] integerForKey:@"serviceViews"];
+    NSInteger timeInPhotoBrowser = [[NSUserDefaults standardUserDefaults] integerForKey:@"timeInPhotoBrowser"];
+
+    NSString *dressTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
 
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
+    BOOL alwaysTwoDay = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
+    
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %d, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, dress-up notification receipt time %@, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, dressTime, [NSDate date]];
 
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %d, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, recorded on %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, [NSDate date]];
     return string;
 }
 
@@ -90,6 +96,7 @@
 - (IBAction)done:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)pushedSend:(id)sender {
     if ([MFMailComposeViewController canSendMail] == YES) {
         MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
@@ -105,18 +112,21 @@
         [composerView setMessageBody:@"You'll be able to view the attachment on any computer. Devices with iOS 7 and later can natively view it. We only see the attachment data upon automatic uploads — nothing else." isHTML:NO];
 
         [self presentViewController:composerView animated:YES completion:nil];
-    } else
-        [SVProgressHUD showErrorWithStatus:@"This device can't send mail!"];
+    } else {
+        UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"No email" message:@"This device cannot send email." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Copy to clipboard", nil];
+        [a show];
+    }
 }
 
 - (IBAction)pushedQuestion:(id)sender {
+    NSString *s = @"http://campus.mbs.net/mbsnow/home/meta/privacy.php";
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithAddress:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"];
+        SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithAddress:s];
         [self presentViewController:wvc animated:YES completion:nil];
         return;
     }
     
-    SVWebViewController *wvc = [[SVWebViewController alloc] initWithAddress:@"http://campus.mbs.net/mbsnow/home/meta/privacy.php"];
+    SVWebViewController *wvc = [[SVWebViewController alloc] initWithAddress:s];
     [self.navigationController pushViewController:wvc animated:YES];
 }
 
@@ -128,8 +138,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"selfDataExport"];
     } else {
         NSInteger f = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfDataExport"];
-        f++;
-        [[NSUserDefaults standardUserDefaults] setInteger:f forKey:@"selfDataExport"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(f+1) forKey:@"selfDataExport"];
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -138,11 +147,18 @@
     else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Failed to send"];
 }
 
-
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
     return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+}
+
+#pragma mark Alert view
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [[UIPasteboard generalPasteboard] setString:[self generateData]];
+        [SVProgressHUD showSuccessWithStatus:@"Copied. Tap and hold in any text field to paste."];
+    }
 }
 
 @end

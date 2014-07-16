@@ -12,6 +12,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"serviceViews"]) {
+        // first time viewing any opportunity
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"serviceViews"];
+    } else {
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"serviceViews"];
+        q++;
+        [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"serviceViews"];
+    }
+
     if ([self.array[7]  isEqualToString: @"Ongoing"]) {
         self.array[2] = @"No Date Specified";
         self.array[3] = @"No Start Time Specified";

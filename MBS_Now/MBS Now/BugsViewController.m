@@ -26,6 +26,7 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 #pragma mark Table View
@@ -46,6 +47,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.bug.count;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -77,10 +79,11 @@
             alert.tag = 2;
             [alert show];
         } else {
+            self.navigationItem.rightBarButtonItem.enabled = YES;
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.plist"]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url];
             connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-            if (connect) [SVProgressHUD showWithStatus:@"Updating"];
+            if (connect) [SVProgressHUD showWithStatus:@"Downloading..."];
         }
     } else if (connection == connect) {
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connect.currentRequest.URL];

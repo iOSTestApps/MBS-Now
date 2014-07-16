@@ -17,6 +17,8 @@
 @property (assign) BOOL showDismiss;
 @property (assign) int counter;
 
+@property (strong, nonatomic) NSDate *startDate;
+
 @property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIPageControl *pager;
 @property (weak, nonatomic) IBOutlet UIImageView *imgView;

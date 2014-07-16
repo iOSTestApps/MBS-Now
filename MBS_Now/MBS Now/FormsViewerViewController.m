@@ -86,6 +86,10 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
+        if (![dayName isEqualToString:@""]) {
+            [SVProgressHUD showErrorWithStatus:@"No menu this day!"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
         [SVProgressHUD dismiss];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"We couldn't find the doc you selected. Please report this bug." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Report", nil];
         [alert show];
@@ -185,8 +189,10 @@
 
 #pragma mark Shake
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
-    if (motion == UIEventSubtypeMotionShake && showingTomorrow)
+    if (motion == UIEventSubtypeMotionShake && showingTomorrow) {
         [self._webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@.pdf", LUNCH_ROOT, [self dayNameFromDate:[NSDate date]]]]]];
+        showingTomorrow = NO;
+    }
 }
 
 #pragma mark Rotation

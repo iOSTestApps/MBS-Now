@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "DataViewController.h"
+#import "UIView+Toast.h"
 #import "SettingsViewController.h"
 #import "UILabel+Avenir.h"
 #import "SVWebViewController.h"
@@ -261,7 +262,7 @@
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"abs"];
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"general"];
 
-            [SVProgressHUD showImage:nil status:@"Visit Settings when you change your mind ;)"];
+            [self.view makeToast:@"Visit Settings when you change your mind ;)" duration:2.0f position:@"top"];
         }
 
         [[NSUserDefaults standardUserDefaults] synchronize];

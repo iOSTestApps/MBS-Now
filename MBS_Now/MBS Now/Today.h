@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Today : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {
+@interface Today : UITableViewController <NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
     NSURLConnection *specialConnection;
     NSMutableData *specialData;
 
@@ -38,10 +38,16 @@
 
     NSURLConnection *communityServiceConnection;
     NSMutableData *communityServiceData;
+
+    UIActionSheet *sheet;
+
+    BOOL showAllEvents;
 }
 
 @property (assign, nonatomic) NSInteger ret; // see marcos in m for details
 @property (strong, nonatomic) NSMutableDictionary *feeds;
+
+@property (strong, nonatomic) NSDate *startDate;
 // feeds[@"strings"] will be an array of text labels.text
 // feeds[@"images"] will be an array of UIImages
 // feeds[@"class"] class name strings

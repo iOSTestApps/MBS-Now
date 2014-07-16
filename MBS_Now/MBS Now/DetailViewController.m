@@ -91,7 +91,7 @@
         case 5:
             // find email
             if ([[tableView cellForRowAtIndexPath:indexPath].textLabel.text rangeOfString:@"@"].location == NSNotFound) {
-                [SVProgressHUD showErrorWithStatus:@"Cannot RSVP. No email address detected."];
+                [SVProgressHUD showErrorWithStatus:@"Can't RSVP: no email address detected!"];
                 return;
             }
             [self performSegueWithIdentifier:@"showRSVP" sender:self];
@@ -105,6 +105,7 @@
             [self performSegueWithIdentifier:@"showHelp" sender:self];
             break;
         default:
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
     }
 }

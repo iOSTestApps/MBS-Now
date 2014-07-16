@@ -47,7 +47,6 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:self.nameField.text forKey:@"yourName"];
 
-    // consult rsvp.php locally
     NSString *string = [NSString stringWithFormat:@"%@;%@;%@;%@;%@", self.details[5], self.nameField.text, self.boolLabel.text, self.details[0], self.details[1]];
     string = [[[string stringByReplacingOccurrencesOfString:@"?" withString:@""] stringByReplacingOccurrencesOfString:@"=" withString:@""] stringByReplacingOccurrencesOfString:@";" withString:@""];
     NSString *escapedString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];

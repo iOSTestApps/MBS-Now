@@ -3,7 +3,7 @@
 //
 
 #import <Availability.h>
-#define AUTO 75
+#define AUTO 50 // automatic data-upload occurs at this number of launches
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
