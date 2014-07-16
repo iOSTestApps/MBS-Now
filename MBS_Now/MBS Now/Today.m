@@ -15,6 +15,7 @@
 #import "StandardTableViewCell.h"
 #import "TodayCellTableViewCell.h"
 #import "ScheduleTableViewCell.h"
+#import "ArticleTableViewCell.h"
 #import "EventTableViewCell.h"
 #import "ShortEventTableViewCell.h"
 #import "UIImageView+WebCache.h"
@@ -28,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    preserve = NO;
+
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
@@ -45,8 +49,9 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:YES];
-
+    if (preserve) return;
     // stop all non-essential connections
+    NSLog(@"killing connections");
     [versionConnection cancel];
     [meetingsConnection cancel];
     [rssConnection cancel];
@@ -62,7 +67,7 @@
         return;
     }
 
-    [self update];
+    if (!preserve) [self update];
 }
 
 - (void)noSavedGrade:(NSString *)append {
@@ -102,7 +107,7 @@
 
 - (void)update {
     _ret = CONNECTION_LOADING;
-    if (!self.refreshControl.refreshing) [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"Building your %@...", [self dayNameFromDate:[NSDate date]]]];
+    if (!self.refreshControl.refreshing) [SVProgressHUD showWithStatus:@"Building your day..."];
     [self.tableView reloadData];
 
     _feeds = [NSMutableDictionary dictionary];
@@ -144,9 +149,9 @@
         tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
     }
 
-//    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
-//    rssNewsData = [NSMutableData data];
-//    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
+    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
+    rssNewsData = [NSMutableData data];
+    rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
 
     NSURLRequest *serviceRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     communityServiceData = [NSMutableData data];
@@ -201,6 +206,12 @@
 - (NSDate *)dateFromXmlFormatter:(NSString *)s {
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"EEE, dd MMM yyyy"];
+    return [form dateFromString:s];
+}
+
+- (NSDate *)dateFromNewsXmlFormatter:(NSString *)s {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss -0000"];
     return [form dateFromString:s];
 }
 
@@ -259,7 +270,6 @@
     }
 
     BOOL late = ([self getHourOfDay] > 15) ? YES : NO;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"]) late = NO;
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithLunchDay:(late) ? [self dayNameFromDate:[self dateByDistanceFromToday:1]] : [self dayNameFromDate:[NSDate date]]  showingTomorrow:late];
     [self.navigationController pushViewController:fvvc animated:YES];
 }
@@ -273,28 +283,35 @@
     }
 
     BOOL d = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
-    BOOL l = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"];
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (!l) ? @"Only show today's lunch (even after 3)" : @"Show tomorrow's lunch after 3", (showAllEvents) ? @"Only show some calendar events" : @"Show all calendar events", @"Always show latest news story", nil];
+    BOOL h = [[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"];
+    BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(showAllEvents) ? @"Only show some calendar events" : @"Show all calendar events", (n) ? @"Only show latest news" : @"Show all recent news", (d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (h) ? @"Make Home the launch screen" : @"Make Today the launch screen", nil];
 
     [sheet showInView:self.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     switch (buttonIndex) {
-        case 0:
+        case 2:
             // show 2 days
             [[NSUserDefaults standardUserDefaults] setBool:!([[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"]) forKey:@"alwaysTwoDay"];
             [self update];
             break;
-        case 1:
-            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTodayLunch"] forKey:@"alwaysTodayLunch"];
-            break;
-        case 2:
-            // all events
+        case 0:
+            // events
             showAllEvents = !showAllEvents;
             [self update];
             break;
-
+        case 1:
+            // news
+            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"] forKey:@"alwaysShowArticle"];
+            [self update];
+            break;
+        case 3:
+            // make today initial VC
+            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"] forKey:@"showTodayFirst"];
+            [SVProgressHUD showSuccessWithStatus:@"Set first screen to appear!"];
+            break;
         default:
             break;
     }
@@ -309,7 +326,7 @@
     if (connection == rssConnection) [rssData appendData:data];
     else if (connection == meetingsConnection) [meetingsData appendData:data];
     else if (connection == versionConnection) [versionData appendData:data];
-//    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
+    else if (connection == rssNewsConnection) [rssNewsData appendData:data];
     else if (connection == scheduleConnection) [scheduleData appendData:data];
     else if (connection == tomorrowTextConnection) [tomorrowTextData appendData:data];
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
@@ -440,10 +457,21 @@
         }
     }
 
-//    else if (connection == rssNewsConnection) {
-//        NSArray *events = [NSDictionary dictionaryWithXMLData:rssNewsData][@"channel"][@"item"];
-//        NSLog(@"%@", events);
-//    }
+    else if (connection == rssNewsConnection) {
+        NSArray *events = [NSDictionary dictionaryWithXMLData:rssNewsData][@"channel"][@"item"];
+        BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
+        for (NSDictionary *d in events) {
+            NSDate *pub = [self dateFromNewsXmlFormatter:d[@"pubDate"]];
+            NSLog(@"%@", pub);
+            if ([pub compare:[NSDate date]] == NSOrderedSame || [pub compare:[self dateByDistanceFromToday:-1]] == NSOrderedSame || n) {
+                // either a story from yesterday or today
+                [self saveFeedsWithObject:[ArticleTableViewCell class] andKey:@"class"];
+                [self saveFeedsWithObject:d[@"title"] andKey:@"strings"];
+                [self saveFeedsWithObject:d[@"pubDate"] andKey:@"images"];
+                [self saveFeedsWithObject:d[@"link"] andKey:@"urls"];
+            }
+        }
+    }
     _ret = CONNECTION_SUCCESS;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
@@ -535,6 +563,17 @@
         return cell;
     }
 
+    else if (cl == [ArticleTableViewCell class]) {
+        static NSString *iden = @"article";
+        ArticleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+        if (cell == nil)
+            cell = [[ArticleTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
+        cell.articleBody.text = [NSString stringWithFormat:@"%@ (tap to read)", _feeds[@"strings"][indexPath.row]];
+        cell.dateTag.text = [NSString stringWithFormat:@"Posted on %@", [_feeds[@"images"][indexPath.row] stringByReplacingOccurrencesOfString:@":00 -0000" withString:@""]];
+        cell = [self shadowCell:cell];
+        return cell;
+    }
+
     return nil;
 }
 
@@ -545,16 +584,27 @@
     else if (cl == [TodayCellTableViewCell class]) return 154.0f;
     else if (cl == [EventTableViewCell class]) return 106.0f;
     else if (cl == [ShortEventTableViewCell class]) return 66.0f;
+    else if (cl == [ArticleTableViewCell class]) return 71.0f;
     else return 444.0f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    preserve = NO;
     if (_ret == CONNECTION_FAILTURE) {
         [self performSegueWithIdentifier:@"offline" sender:self];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
+
     NSString *iden = [tableView cellForRowAtIndexPath:indexPath].reuseIdentifier;
+    if ([iden isEqualToString:@"article"]) {
+        preserve = YES;
+        NSString *s = [_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"newsid="][1];
+        FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithFullURL:[NSString stringWithFormat:@"http://www.mbs.net/cf_news/view.cfm?newsid=%@", s]];
+        [self.navigationController pushViewController:fvvc animated:YES];
+        return;
+    }
+
     if ([iden isEqualToString:@"event"]) {[tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;}
     if ([iden isEqualToString:@"schedule"]) {

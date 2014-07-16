@@ -21,8 +21,8 @@
     NSURLConnection *rssConnection;
     NSMutableData *rssData;
 
-//    NSURLConnection *rssNewsConnection;
-//    NSMutableData *rssNewsData;
+    NSURLConnection *rssNewsConnection;
+    NSMutableData *rssNewsData;
 
     // text schedules
     NSURLConnection *scheduleConnection;
@@ -42,6 +42,8 @@
     UIActionSheet *sheet;
 
     BOOL showAllEvents;
+
+    BOOL preserve; // set to YES when a refresh should not occur on viewDidAppear:
 }
 
 @property (assign, nonatomic) NSInteger ret; // see marcos in m for details
@@ -49,7 +51,7 @@
 
 @property (strong, nonatomic) NSDate *startDate;
 // feeds[@"strings"] will be an array of text labels.text
-// feeds[@"images"] will be an array of UIImages
+// feeds[@"images"] will be an array of UIImages, except for Article Cells, where it's a string
 // feeds[@"class"] class name strings
 // feeds[@"urls"] will be the webpage OR more text. You must set it as "" when no URL or additional text is needed
 @end

@@ -14,6 +14,9 @@
     [super viewDidLoad];
     self.delegate = self;
 
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"])
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedLaunching) name:UIApplicationDidFinishLaunchingNotification object:nil];
+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         // iOS 7.x
         [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor]}
@@ -27,6 +30,10 @@
         [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor clearColor]}
                                                  forState:UIControlStateSelected];
     }
+}
+
+- (void)finishedLaunching {
+    self.selectedIndex = 1;
 }
 
 #pragma mark Tabs

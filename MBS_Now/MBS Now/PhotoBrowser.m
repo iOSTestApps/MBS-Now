@@ -42,6 +42,7 @@
     lrecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [lrecognizer setNumberOfTouchesRequired:1];
     [self.view addGestureRecognizer:lrecognizer];
+
     if (!_showDismiss) {
         UISwipeGestureRecognizer *down = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)];
         down.direction = UISwipeGestureRecognizerDirectionDown;
@@ -92,7 +93,7 @@
 - (id)init {
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
-    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:@[@"lucas.png", @"campus.png", @"github.png"] showDismiss:NO description:@[@"We're happy to announce Lucas Fagan will be running the app from now on! Graham is leaving for college!", @"All of our data is now stored on campus.mbs.net/mbsnow, making connections much faster (and more secure).", @"The app is now entirely open sourced on GitHub. Tell your friends! ow.ly/wlnSW."] title:[NSString stringWithFormat:@"What's new in %@", version]];
+    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:@[@"lucas.png", @"t1.png", @"t2.png", @"cs.png", @"ios7-icon.jpg"] showDismiss:NO description:@[@"Lucas Fagan will be running the app from now on! Thank you for supporting MBS Now for the past two years! —Graham", @"Introducing Today, a personalized summary of all things MBS. Quickly view schedules, calendar events, news, meetings, deadlines, and more.", @"Today provides a data-driven approach to simplifying your day. It accumulates all the things you need and helps you keep on track.", @"Introducing Community Service. Add or view service opportunities to get more involved in and out of MBS.", @"For various reasons, MBS Now requires iOS 7 and higher. Tell your lame iOS 5 and 6 friends that it's time to update."] title:[NSString stringWithFormat:@"What's new in %@", version]];
     return pb;
 }
 
