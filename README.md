@@ -1,6 +1,6 @@
 # MBS Now
 
-... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to get a feel for what's here.
+... a free, student-run iOS and web app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to learn more about us and the app.
 
 
 > MBS Now admins: check/update [the wiki](https://github.com/gdyer/MBS-Now/wiki/Transition) for/with release information and commit info.
