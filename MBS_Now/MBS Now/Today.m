@@ -215,7 +215,7 @@
     return [form dateFromString:s];
 }
 
-- (int)getHourOfDay {
+- (NSInteger)getHourOfDay {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
     return [components hour];

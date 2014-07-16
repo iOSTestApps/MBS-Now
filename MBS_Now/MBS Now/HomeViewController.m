@@ -29,9 +29,9 @@
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         /*CHANGES WITH VERSIONS*/
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"361"] == NO) {
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"409"] == NO) {
             PhotoBrowser *pb = [[PhotoBrowser alloc] init];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self presentViewController:pb animated:YES completion:nil];
             return;
@@ -145,7 +145,7 @@
         messagePart = @"ends";
         components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
     }
-    NSNumber *dayCount = [NSNumber numberWithInt:[components day]];
+    NSNumber *dayCount = [NSNumber numberWithInteger:[components day]];
     UIImage *img = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun-7.png"] : [UIImage imageNamed:@"backpack.png"];
     return @[img, messagePart, dayCount];
 }

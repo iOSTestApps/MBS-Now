@@ -41,10 +41,10 @@
     }
 
     // to display PhotoBrowser "what's new"
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"])
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"])
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
     else
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
@@ -72,10 +72,10 @@
         [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
     }
 
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"361"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"361"];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
     } else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"361"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
     }
 
     [[NSUserDefaults standardUserDefaults] synchronize];
