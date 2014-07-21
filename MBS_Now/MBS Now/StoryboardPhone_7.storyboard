@@ -90,7 +90,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed, 30 Jul 2014 at 6:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fxr-Ce-Dcc">
-                                            <rect key="frame" x="46" y="7" width="254" height="21"/>
+                                            <rect key="frame" x="46" y="9" width="254" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -150,22 +150,22 @@
                                     <outlet property="dateTag" destination="7FN-5b-xeU" id="j9z-Yb-90X"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shortEvent" rowHeight="66" id="Wfw-q7-Jrg" customClass="ShortEventTableViewCell">
-                                <rect key="frame" x="0.0" y="353" width="320" height="66"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shortEvent" rowHeight="74" id="Wfw-q7-Jrg" customClass="ShortEventTableViewCell">
+                                <rect key="frame" x="0.0" y="353" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Wfw-q7-Jrg" id="45k-as-VNN">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed, 30 Jul 2014 at 6:00 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Wc-n6-urH">
-                                            <rect key="frame" x="35" y="3" width="265" height="21"/>
+                                            <rect key="frame" x="44" y="9" width="256" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar-7.png" id="aYa-Q0-vPu">
-                                            <rect key="frame" x="7" y="3" width="20" height="20"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.png" id="aYa-Q0-vPu">
+                                            <rect key="frame" x="8" y="4" width="28" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uyw-CX-ICp">
@@ -176,7 +176,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdfasdfbajsdfkajsdfbaskdjfabsdlfkjasndflkajsdfnaskjldf" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b9H-bj-Eh8">
-                                            <rect key="frame" x="7" y="22" width="306" height="43"/>
+                                            <rect key="frame" x="8" y="31" width="306" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -189,7 +190,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="retCell" textLabel="9UK-vF-hym" detailTextLabel="gxR-nX-R8S" rowHeight="40" style="IBUITableViewCellStyleSubtitle" id="6HE-xb-j5J">
-                                <rect key="frame" x="0.0" y="419" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="427" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6HE-xb-j5J" id="vny-pT-f23">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -213,7 +214,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="standard" rowHeight="46" id="wA7-jc-bfP" customClass="StandardTableViewCell">
-                                <rect key="frame" x="0.0" y="459" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="467" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wA7-jc-bfP" id="oXo-a0-dVG">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
@@ -237,7 +238,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="schedule" rowHeight="444" id="3F2-f7-qVy" customClass="ScheduleTableViewCell">
-                                <rect key="frame" x="0.0" y="505" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="513" width="320" height="444"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3F2-f7-qVy" id="HRI-Oy-ttF">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="443"/>
@@ -1489,6 +1490,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="jur-ce-KPQ" id="OkQ-R3-YGf"/>
+                        <segue destination="32e-UB-Zfu" kind="modal" identifier="add" id="axq-Vb-zHP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5v-jw-p6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1501,7 +1503,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3" y="2540"/>
+            <point key="canvasLocation" x="-161" y="2628"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="Xpt-d1-J2j">
@@ -1916,7 +1918,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     <navigationItem key="navigationItem" title="Community Service" id="nx7-79-KYF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5Zh-P4-TT6">
                             <connections>
-                                <segue destination="32e-UB-Zfu" kind="modal" id="ggG-lS-L6W"/>
+                                <segue destination="32e-UB-Zfu" kind="modal" identifier="add" id="ggG-lS-L6W"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2043,8 +2045,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
-                                    <navigationItem title="Add an opportunity" id="avj-qT-KWy">
-                                        <barButtonItem key="leftBarButtonItem" title="Done" id="KCf-q1-5Is">
+                                    <navigationItem title="Add item" id="avj-qT-KWy">
+                                        <barButtonItem key="leftBarButtonItem" image="downward-arrow-7-active.png" id="KCf-q1-5Is">
                                             <connections>
                                                 <action selector="done:" destination="32e-UB-Zfu" id="DVQ-Po-lHN"/>
                                             </connections>
@@ -2061,6 +2063,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                         <color key="backgroundColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="dGi-C7-S8a" id="DSE-bQ-992"/>
                         <outlet property="webView" destination="eZn-Ub-LwO" id="IZ5-NZ-p9F"/>
                         <segue destination="4" kind="modal" identifier="done" id="SNC-wD-9NJ"/>
                     </connections>
@@ -2096,11 +2099,11 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <image name="bank.png" width="30" height="30"/>
         <image name="bookmark-7-active.png" width="30" height="30"/>
         <image name="bug.png" width="29" height="30"/>
-        <image name="calendar-7.png" width="30" height="30"/>
         <image name="calendar.png" width="29" height="30"/>
         <image name="clock.png" width="29" height="30"/>
         <image name="direction-sign-multiple-7-active.png" width="30" height="30"/>
         <image name="document-7.png" width="30" height="30"/>
+        <image name="downward-arrow-7-active.png" width="30" height="30"/>
         <image name="gear-7-active.png" width="30" height="30"/>
         <image name="hand.png" width="30" height="30"/>
         <image name="info-7-active.png" width="30" height="30"/>
@@ -2126,9 +2129,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LMc-Mf-m1x"/>
-        <segue reference="3MT-6i-bVb"/>
+        <segue reference="ggG-lS-L6W"/>
         <segue reference="CP7-J2-2T1"/>
         <segue reference="EnD-GY-im9"/>
+        <segue reference="LMc-Mf-m1x"/>
+        <segue reference="3MT-6i-bVb"/>
     </inferredMetricsTieBreakers>
 </document>

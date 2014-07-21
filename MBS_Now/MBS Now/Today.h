@@ -30,21 +30,27 @@
     NSURLConnection *tomorrowTextConnection;
     NSMutableData *tomorrowTextData;
 
-    // photos
+    // graphical schedules
     NSURLConnection *todayScheduleConnection;
     NSMutableData *todayScheduleData;
     NSURLConnection *tomorrowScheduleConnection;
     NSMutableData *tomorrowScheduleData;
 
+    NSURLConnection *notificationUpdates;
+    NSMutableData *notificationData;
+
     NSURLConnection *communityServiceConnection;
     NSMutableData *communityServiceData;
 
-    UIActionSheet *sheet;
+    NSURLConnection *weatherConnection;
+    NSMutableData *weatherData;
 
-    BOOL showAllEvents;
+    UIActionSheet *sheet;
 
     BOOL preserve; // set to YES when a refresh should not occur on viewDidAppear:
 }
+
+- (void)genFromPrefs:(NSString *)pack;
 
 @property (assign, nonatomic) NSInteger ret; // see marcos in m for details
 @property (strong, nonatomic) NSMutableDictionary *feeds;

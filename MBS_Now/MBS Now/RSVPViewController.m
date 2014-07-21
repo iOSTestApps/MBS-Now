@@ -41,17 +41,19 @@
         [alert show];
         return;
     }
-    if (self.nameField.text.length < 4 || ([self.nameField.text rangeOfString:@" "].location == NSNotFound)) {
-        [SVProgressHUD showErrorWithStatus:@"Full name, please!"];
+    if (![self notify] || self.nameField.text.length < 4 || ([self.nameField.text rangeOfString:@" "].location == NSNotFound || [self.nameField.text componentsSeparatedByString:@" "].count > 2 || [self.nameField.text rangeOfString:@"&"].location != NSNotFound || [self.nameField.text rangeOfString:@"="].location != NSNotFound || [self.nameField.text rangeOfString:@"?"].location != NSNotFound)) {
+        [SVProgressHUD showErrorWithStatus:@"Enter your full name with a single space character!"];
         return;
     }
     [[NSUserDefaults standardUserDefaults] setObject:self.nameField.text forKey:@"yourName"];
 
-    NSString *string = [NSString stringWithFormat:@"%@;%@;%@;%@;%@", self.details[5], self.nameField.text, self.boolLabel.text, self.details[0], self.details[1]];
-    string = [[[string stringByReplacingOccurrencesOfString:@"?" withString:@""] stringByReplacingOccurrencesOfString:@"=" withString:@""] stringByReplacingOccurrencesOfString:@";" withString:@""];
-    NSString *escapedString = [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/rsvp.php?query=%@", escapedString];
+    NSArray *names = [self.nameField.text componentsSeparatedByString:@" "];
+    NSString *m = [NSString stringWithFormat:@"fn=%@&ln=%@&e=%@&cn=%@&mt=%@&r=%@", names[0], names[1], [self.details[5] componentsSeparatedByString:@": "][1], [_details[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [_details[1] stringByReplacingOccurrencesOfString:@"/" withString:@"-"], _boolLabel.text];
+
+    NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/rsvp.php?%@", m];
+    NSLog(@"%@", urlString);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    NSLog(@"%@", request);
 
     [request setHTTPMethod:@"GET"];
 
@@ -122,11 +124,8 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [SVProgressHUD dismiss];
     NSString *echo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"(%@)", echo);
     if ([echo isEqualToString:@"sent"]) {
-        if ([self notify] == YES)
-            [SVProgressHUD showSuccessWithStatus:@"RSVPed successfully. We'll also remind you 5 minutes before the meeting starts."];
-        else [SVProgressHUD showSuccessWithStatus:@"RSVPed successfully"];
+        [SVProgressHUD showSuccessWithStatus:@"Sent! We'll also remind you 5 minutes before the meeting starts."];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.details[7]];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

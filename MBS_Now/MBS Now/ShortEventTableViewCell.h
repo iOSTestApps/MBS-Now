@@ -11,5 +11,5 @@
 @interface ShortEventTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *dateTag;
 @property (weak, nonatomic) IBOutlet UILabel *eventBody;
-
+//@property (weak, nonatomic) IBOutlet UILabel *addToCal;
 @end

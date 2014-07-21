@@ -7,9 +7,8 @@
 //
 
 #import "ClubsViewController.h"
-#import "SimpleWebViewController.h"
+#import "AddItemViewController.h"
 #import "DetailViewController.h"
-
 @implementation ClubsViewController
 
 - (void)viewDidLoad {
@@ -35,12 +34,11 @@
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(moveAlongWithCreation)];
 }
 
 - (void)moveAlongWithCreation {
-    SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meeting.html"]];
-    swvc.specifier = @"rem";
-    [self presentViewController:swvc animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"add" sender:self];
 }
 
 #pragma mark Connection
@@ -67,7 +65,7 @@
 
     self.descriptions = [self.csv objectAtIndex:0];
     [self.csv removeObjectAtIndex:0];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 
     [[NSUserDefaults standardUserDefaults] setObject:self.csv forKey:@"meetingLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -80,7 +78,7 @@
     [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch meetings. %@",[error localizedDescription]]];
     self.csv = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"Connection failed", @"Connection failed", @"...? Tap refresh to try again", nil], nil];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)refreshData {
@@ -96,16 +94,10 @@
         [SVProgressHUD showWithStatus:@"Updating..."];
 }
 
-#pragma mark Action
-- (IBAction)pushedAdd:(id)sender {
-    [self moveAlongWithCreation];
-}
-
 #pragma mark UIAlertView delegate methods
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1 && alertView.tag == 1) {
-        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/meeting.html"]];
-        [self presentViewController:swvc animated:YES completion:nil];
+        [self moveAlongWithCreation];
     }
 }
 
@@ -136,7 +128,12 @@
 
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([segue.identifier isEqualToString:@"add"]) {
+        [segue.destinationViewController setNameInit:@"club event"];
+        [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/meeting.html"];
+    }
+
+    else if ([segue.identifier isEqualToString:@"showDetail"]) {
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"meetingsViewed"]) {
             // first time viewing a meeting
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"meetingsViewed"];

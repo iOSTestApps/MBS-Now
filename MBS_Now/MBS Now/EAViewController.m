@@ -93,7 +93,7 @@
         string = @"Go to class first";
     }
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
-    [_tblView reloadData];
+    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -110,7 +110,7 @@
     distinctions = @[@"Nuts; the connection failed!"];
     string = error.localizedDescription;
     string=nil;
-    [_tblView reloadData];
+    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Alert

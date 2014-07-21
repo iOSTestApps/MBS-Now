@@ -68,7 +68,7 @@
 		159773DC17606AB200D9AEB3 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773DB17606AB100D9AEB3 /* ContactViewController.m */; };
 		159773E1176116D100D9AEB3 /* OfflineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159773E0176116D100D9AEB3 /* OfflineViewController.m */; };
 		159A3D9C177B65D60085010C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159A3D9A177B65BF0085010C /* AudioToolbox.framework */; };
-		159CF8E91964EF5000BD7433 /* CSAddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E61964EF5000BD7433 /* CSAddItemViewController.m */; };
+		159CF8E91964EF5000BD7433 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E61964EF5000BD7433 /* AddItemViewController.m */; };
 		159CF8EA1964EF5000BD7433 /* CSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E81964EF5000BD7433 /* CSMainViewController.m */; };
 		159CF8EE1964EFB500BD7433 /* StoryboardPhone_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8ED1964EFB500BD7433 /* StoryboardPhone_7.storyboard */; };
 		159CF8F11965DD2B00BD7433 /* paperwork-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8EF1965DD2B00BD7433 /* paperwork-7.png */; };
@@ -82,6 +82,8 @@
 		15AAF68018D28E3F001AC330 /* Info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15AAF67F18D28E3F001AC330 /* Info.txt */; };
 		15AAF68218D28E4A001AC330 /* clubInfo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 15AAF68118D28E4A001AC330 /* clubInfo.txt */; };
 		15AC1E64170A4F6E00908EA9 /* WelcomesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AC1E62170A4F6E00908EA9 /* WelcomesViewController.m */; };
+		15B80C151977530500133160 /* UIButton+Avenir.m in Sources */ = {isa = PBXBuildFile; fileRef = 15B80C141977530500133160 /* UIButton+Avenir.m */; };
+		15B80C171978893600133160 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B80C161978893600133160 /* EventKit.framework */; };
 		15B9B27416B8DFAF00F29BC8 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B9B26F16B8DEEE00F29BC8 /* CoreLocation.framework */; };
 		15BAFDA11935126700780C96 /* clock-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAFD9F1935126700780C96 /* clock-7.png */; };
 		15BAFDA21935126700780C96 /* clock-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15BAFDA01935126700780C96 /* clock-7@2x.png */; };
@@ -104,9 +106,6 @@
 		15BAFE041935383200780C96 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 15BAFDF51935383200780C96 /* UIImageView+HighlightedWebCache.m */; };
 		15BAFE071935384700780C96 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15BAFE061935384700780C96 /* ImageIO.framework */; };
 		15C151CD1799F70600060CAB /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C151CB1799F70600060CAB /* DataViewController.m */; };
-		15C1DC72196F5DF400CF4128 /* push-pin-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC70196F5DF400CF4128 /* push-pin-7.png */; };
-		15C1DC73196F5DF400CF4128 /* push-pin-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */; };
-		15C1DC79196F657D00CF4128 /* UIButton+Avenir.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */; };
 		15C1DC7C196F673100CF4128 /* UILabel+Avenir.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */; };
 		15C1DC7F1970265D00CF4128 /* throw-rubbish.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC7D1970265D00CF4128 /* throw-rubbish.png */; };
 		15C1DC801970265D00CF4128 /* throw-rubbish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15C1DC7E1970265D00CF4128 /* throw-rubbish@2x.png */; };
@@ -127,6 +126,10 @@
 		15CC3883182327C000B3502A /* SimpleWebViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15CC3882182327C000B3502A /* SimpleWebViewController_7.xib */; };
 		15CC388C1824165000B3502A /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CC388B1824165000B3502A /* DetailViewController.m */; };
 		15CC38911825B4AB00B3502A /* delete.html in Resources */ = {isa = PBXBuildFile; fileRef = 15CC38901825B4AB00B3502A /* delete.html */; };
+		15CE40C01979FB2800B06315 /* cloud-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE40BE1979FB2800B06315 /* cloud-7.png */; };
+		15CE40C11979FB2800B06315 /* cloud-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE40BF1979FB2800B06315 /* cloud-7@2x.png */; };
+		15CE40C4197A0C7000B06315 /* push-pin-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE40C2197A0C7000B06315 /* push-pin-7.png */; };
+		15CE40C5197A0C7000B06315 /* push-pin-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CE40C3197A0C7000B06315 /* push-pin-7@2x.png */; };
 		15CEF8B51975B41300B66718 /* more-list-7-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CEF8B31975B41300B66718 /* more-list-7-active.png */; };
 		15CEF8B61975B41300B66718 /* more-list-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15CEF8B41975B41300B66718 /* more-list-7-active@2x.png */; };
 		15CEF8B91975FEA500B66718 /* ShortEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF8B81975FEA500B66718 /* ShortEventTableViewCell.m */; };
@@ -369,7 +372,7 @@
 		159773DF176116D000D9AEB3 /* OfflineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineViewController.h; sourceTree = "<group>"; };
 		159773E0176116D100D9AEB3 /* OfflineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineViewController.m; sourceTree = "<group>"; };
 		159A3D9A177B65BF0085010C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		159CF8E61964EF5000BD7433 /* CSAddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAddItemViewController.m; sourceTree = "<group>"; };
+		159CF8E61964EF5000BD7433 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddItemViewController.m; path = "MBS Now/AddItemViewController.m"; sourceTree = "<group>"; };
 		159CF8E71964EF5000BD7433 /* CSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMainViewController.h; sourceTree = "<group>"; };
 		159CF8E81964EF5000BD7433 /* CSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMainViewController.m; sourceTree = "<group>"; };
 		159CF8ED1964EFB500BD7433 /* StoryboardPhone_7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardPhone_7.storyboard; sourceTree = "<group>"; };
@@ -388,6 +391,9 @@
 		15AAF68118D28E4A001AC330 /* clubInfo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clubInfo.txt; sourceTree = "<group>"; };
 		15AC1E61170A4F6D00908EA9 /* WelcomesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomesViewController.h; path = "MBS Now/WelcomesViewController.h"; sourceTree = "<group>"; };
 		15AC1E62170A4F6E00908EA9 /* WelcomesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomesViewController.m; path = "MBS Now/WelcomesViewController.m"; sourceTree = "<group>"; };
+		15B80C131977530500133160 /* UIButton+Avenir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Avenir.h"; sourceTree = "<group>"; };
+		15B80C141977530500133160 /* UIButton+Avenir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Avenir.m"; sourceTree = "<group>"; };
+		15B80C161978893600133160 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		15B9B26F16B8DEEE00F29BC8 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		15BAFD9F1935126700780C96 /* clock-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7.png"; sourceTree = "<group>"; };
 		15BAFDA01935126700780C96 /* clock-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7@2x.png"; sourceTree = "<group>"; };
@@ -428,10 +434,6 @@
 		15BAFE061935384700780C96 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		15C151CA1799F70600060CAB /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		15C151CB1799F70600060CAB /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
-		15C1DC70196F5DF400CF4128 /* push-pin-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7.png"; sourceTree = "<group>"; };
-		15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7@2x.png"; sourceTree = "<group>"; };
-		15C1DC77196F657D00CF4128 /* UIButton+Avenir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Avenir.h"; path = "../UIButton+Avenir.h"; sourceTree = "<group>"; };
-		15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Avenir.m"; path = "../UIButton+Avenir.m"; sourceTree = "<group>"; };
 		15C1DC7A196F673100CF4128 /* UILabel+Avenir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+Avenir.h"; path = "../UILabel+Avenir.h"; sourceTree = "<group>"; };
 		15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Avenir.m"; path = "../UILabel+Avenir.m"; sourceTree = "<group>"; };
 		15C1DC7D1970265D00CF4128 /* throw-rubbish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "throw-rubbish.png"; sourceTree = "<group>"; };
@@ -459,6 +461,10 @@
 		15CC388A1824165000B3502A /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		15CC388B1824165000B3502A /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		15CC38901825B4AB00B3502A /* delete.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = delete.html; sourceTree = "<group>"; };
+		15CE40BE1979FB2800B06315 /* cloud-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-7.png"; sourceTree = "<group>"; };
+		15CE40BF1979FB2800B06315 /* cloud-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-7@2x.png"; sourceTree = "<group>"; };
+		15CE40C2197A0C7000B06315 /* push-pin-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7.png"; sourceTree = "<group>"; };
+		15CE40C3197A0C7000B06315 /* push-pin-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-7@2x.png"; sourceTree = "<group>"; };
 		15CEF8B31975B41300B66718 /* more-list-7-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-list-7-active.png"; sourceTree = "<group>"; };
 		15CEF8B41975B41300B66718 /* more-list-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more-list-7-active@2x.png"; sourceTree = "<group>"; };
 		15CEF8B71975FEA500B66718 /* ShortEventTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortEventTableViewCell.h; sourceTree = "<group>"; };
@@ -617,7 +623,7 @@
 		15FFD9F618C69D900049FD02 /* Data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Data.txt; sourceTree = "<group>"; };
 		3B49C10219648FC40083DA33 /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
 		3B49C10319648FC40083DA33 /* hand@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hand@2x.png"; sourceTree = "<group>"; };
-		3B49C10419648FC40083DA33 /* CSAddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAddItemViewController.h; sourceTree = "<group>"; };
+		3B49C10419648FC40083DA33 /* AddItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddItemViewController.h; path = "MBS Now/AddItemViewController.h"; sourceTree = "<group>"; };
 		3B49C10819648FC40083DA33 /* CSDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDetailViewController.h; sourceTree = "<group>"; };
 		3B49C10919648FC40083DA33 /* CSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -627,6 +633,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B80C171978893600133160 /* EventKit.framework in Frameworks */,
 				15BAFE071935384700780C96 /* ImageIO.framework in Frameworks */,
 				154B06F8179A5D0200E95689 /* QuartzCore.framework in Frameworks */,
 				152FB66C16B8C8AA00D0CB91 /* MapKit.framework in Frameworks */,
@@ -764,6 +771,7 @@
 		1557D20B169F0D3E00F27AE4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15B80C161978893600133160 /* EventKit.framework */,
 				15BAFE061935384700780C96 /* ImageIO.framework */,
 				154B06F7179A5D0100E95689 /* QuartzCore.framework */,
 				159A3D9A177B65BF0085010C /* AudioToolbox.framework */,
@@ -786,10 +794,10 @@
 				15592B8B179F4DB4003FE956 /* TabViewController.m */,
 				15EF3F6918D25D9500FE928D /* UITableViewCell+Width.h */,
 				15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */,
-				15C1DC77196F657D00CF4128 /* UIButton+Avenir.h */,
-				15C1DC78196F657D00CF4128 /* UIButton+Avenir.m */,
 				15C1DC7A196F673100CF4128 /* UILabel+Avenir.h */,
 				15C1DC7B196F673100CF4128 /* UILabel+Avenir.m */,
+				15B80C131977530500133160 /* UIButton+Avenir.h */,
+				15B80C141977530500133160 /* UIButton+Avenir.m */,
 				15529361169F7D25006A8B99 /* Tabbed VCs */,
 				152FB66916B8C88200D0CB91 /* Other VCs */,
 				1575B97C16E56ABE003CAA82 /* Content Viewers */,
@@ -843,6 +851,8 @@
 		1575B97C16E56ABE003CAA82 /* Content Viewers */ = {
 			isa = PBXGroup;
 			children = (
+				3B49C10419648FC40083DA33 /* AddItemViewController.h */,
+				159CF8E61964EF5000BD7433 /* AddItemViewController.m */,
 				15FFD9DA18C69CCE0049FD02 /* OfflineViewerViewController.h */,
 				15FFD9DB18C69CCE0049FD02 /* OfflineViewerViewController.m */,
 				15FFD9D118C69C9A0049FD02 /* FormsViewerViewController.h */,
@@ -879,14 +889,14 @@
 				157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */,
 				15C1DC8919706A3500CF4128 /* EventTableViewCell.h */,
 				15C1DC8A19706A3500CF4128 /* EventTableViewCell.m */,
-				15CEF8C21976DCE200B66718 /* ArticleTableViewCell.h */,
-				15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */,
 				15CEF8B71975FEA500B66718 /* ShortEventTableViewCell.h */,
 				15CEF8B81975FEA500B66718 /* ShortEventTableViewCell.m */,
-				15BAFDA3193526B700780C96 /* ScheduleTableViewCell.h */,
+				15CEF8C21976DCE200B66718 /* ArticleTableViewCell.h */,
+				15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */,
 				15BAFDA4193526B700780C96 /* ScheduleTableViewCell.m */,
-				157C54AA19296E5B00D6B224 /* StandardTableViewCell.h */,
+				15BAFDA3193526B700780C96 /* ScheduleTableViewCell.h */,
 				157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */,
+				157C54AA19296E5B00D6B224 /* StandardTableViewCell.h */,
 			);
 			name = Today;
 			sourceTree = "<group>";
@@ -918,13 +928,15 @@
 		15AC1E68170A509000908EA9 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				15C1DC70196F5DF400CF4128 /* push-pin-7.png */,
-				15C1DC71196F5DF400CF4128 /* push-pin-7@2x.png */,
 				15CEF8B31975B41300B66718 /* more-list-7-active.png */,
 				15CEF8B41975B41300B66718 /* more-list-7-active@2x.png */,
+				15CE40BE1979FB2800B06315 /* cloud-7.png */,
+				15CE40BF1979FB2800B06315 /* cloud-7@2x.png */,
 				157649031911745B008405B5 /* What's new */,
 				1590CFC6196C78DB00BE0284 /* cloud-download-7.png */,
 				1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */,
+				15CE40C2197A0C7000B06315 /* push-pin-7.png */,
+				15CE40C3197A0C7000B06315 /* push-pin-7@2x.png */,
 				15C1DC851970684700CF4128 /* map-pin-7.png */,
 				15C1DC861970684700CF4128 /* map-pin-7@2x.png */,
 				15CEF8BE1976DC2500B66718 /* document-7.png */,
@@ -1165,8 +1177,6 @@
 			children = (
 				159CF8E71964EF5000BD7433 /* CSMainViewController.h */,
 				159CF8E81964EF5000BD7433 /* CSMainViewController.m */,
-				3B49C10419648FC40083DA33 /* CSAddItemViewController.h */,
-				159CF8E61964EF5000BD7433 /* CSAddItemViewController.m */,
 				3B49C10819648FC40083DA33 /* CSDetailViewController.h */,
 				3B49C10919648FC40083DA33 /* CSDetailViewController.m */,
 			);
@@ -1254,6 +1264,7 @@
 				15FFD94018C69B040049FD02 /* book-7-active.png in Resources */,
 				1547B586192848DA00330A94 /* SVWebViewController.bundle in Resources */,
 				15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */,
+				15CE40C01979FB2800B06315 /* cloud-7.png in Resources */,
 				15FFD94618C69B040049FD02 /* clock.png in Resources */,
 				15FFD98018C69B040049FD02 /* notifications-board.png in Resources */,
 				15FFD9A818C69B040049FD02 /* write-7-active@2x.png in Resources */,
@@ -1291,11 +1302,11 @@
 				15FFD96618C69B040049FD02 /* forward-7-active@2x.png in Resources */,
 				15FFD96718C69B040049FD02 /* gear-7-active.png in Resources */,
 				15FFD91D18C69B040049FD02 /* 3DCulpolaIcon72.png in Resources */,
-				15C1DC73196F5DF400CF4128 /* push-pin-7@2x.png in Resources */,
 				15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */,
 				15FFD93018C69B040049FD02 /* arrow-forward@2x.png in Resources */,
 				15CEF8CB1976F52C00B66718 /* t1.png in Resources */,
 				15BAFDA11935126700780C96 /* clock-7.png in Resources */,
+				15CE40C5197A0C7000B06315 /* push-pin-7@2x.png in Resources */,
 				1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				159CF8F11965DD2B00BD7433 /* paperwork-7.png in Resources */,
 				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
@@ -1303,6 +1314,7 @@
 				15FFD9DC18C69CCE0049FD02 /* OfflineViewerViewController_7.xib in Resources */,
 				156AEAC7192D3DE9006239BA /* caution-7@2x.png in Resources */,
 				15FFD92618C69B040049FD02 /* arrow-back.png in Resources */,
+				15CE40C11979FB2800B06315 /* cloud-7@2x.png in Resources */,
 				15FFD99818C69B040049FD02 /* server-network-setting-white.png in Resources */,
 				15FFD98418C69B040049FD02 /* paper-clip@2x.png in Resources */,
 				15FFD99918C69B040049FD02 /* server-network-setting-white@2x.png in Resources */,
@@ -1414,6 +1426,7 @@
 				15C1DC8F19706BC400CF4128 /* calendar@2x.png in Resources */,
 				15FFD92018C69B040049FD02 /* 10.png in Resources */,
 				15FFD92E18C69B040049FD02 /* arrow-circle-03.png in Resources */,
+				15CE40C4197A0C7000B06315 /* push-pin-7.png in Resources */,
 				15C676B0196F1E9400DD15AE /* sun-7.png in Resources */,
 				15FFD9EB18C69CFE0049FD02 /* SVProgressHUD.bundle in Resources */,
 				15FFD92218C69B040049FD02 /* 12.png in Resources */,
@@ -1422,7 +1435,6 @@
 				15FFD99A18C69B040049FD02 /* speaker@2x.png in Resources */,
 				15FFD9F718C69D900049FD02 /* Data.txt in Resources */,
 				15FFD99C18C69B040049FD02 /* star-7-active@2x.png in Resources */,
-				15C1DC72196F5DF400CF4128 /* push-pin-7.png in Resources */,
 				1590CFD4196C821E00BE0284 /* man-three-7.png in Resources */,
 				15FFD98718C69B040049FD02 /* people-communicate-mini.png in Resources */,
 				15FFD93E18C69B040049FD02 /* blackButtonHighlight.png in Resources */,
@@ -1460,7 +1472,7 @@
 				1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */,
 				1547B58A192848DA00330A94 /* SVWebViewControllerActivityChrome.m in Sources */,
 				15BAFDFB1935383200780C96 /* SDWebImageDownloaderOperation.m in Sources */,
-				159CF8E91964EF5000BD7433 /* CSAddItemViewController.m in Sources */,
+				159CF8E91964EF5000BD7433 /* AddItemViewController.m in Sources */,
 				15CC388C1824165000B3502A /* DetailViewController.m in Sources */,
 				157C549619295E4500D6B224 /* XMLDictionary.m in Sources */,
 				1557D233169F0D3E00F27AE4 /* CalViewController.m in Sources */,
@@ -1472,6 +1484,7 @@
 				15BAFDF91935383200780C96 /* SDWebImageCompat.m in Sources */,
 				15529358169F7840006A8B99 /* LunchViewController.m in Sources */,
 				15BAFE041935383200780C96 /* UIImageView+HighlightedWebCache.m in Sources */,
+				15B80C151977530500133160 /* UIButton+Avenir.m in Sources */,
 				15BAFDF81935383200780C96 /* SDImageCache.m in Sources */,
 				1552938B169FBD90006A8B99 /* HomeViewController.m in Sources */,
 				15A623831973697F006A5130 /* UIView+Toast.m in Sources */,
@@ -1479,7 +1492,6 @@
 				15FFD9EC18C69CFE0049FD02 /* SVProgressHUD.m in Sources */,
 				15CBDA1016ADAB1F00DC020B /* InfoViewController.m in Sources */,
 				15FFD9D318C69C9A0049FD02 /* FormsViewerViewController.m in Sources */,
-				15C1DC79196F657D00CF4128 /* UIButton+Avenir.m in Sources */,
 				15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */,
 				152FB66716B8C71300D0CB91 /* DirectionsViewController.m in Sources */,
 				1547B587192848DA00330A94 /* SVWebViewController.m in Sources */,
@@ -1588,6 +1600,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -1610,6 +1623,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";

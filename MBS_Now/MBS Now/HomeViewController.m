@@ -40,10 +40,8 @@
     }
 
     if (q == 1) {
-        // first launch
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notifications" message:@"Notifications have changed. Would you like to receive alerts for formal dress days, A/B distinctions, and general announcements?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
-        alert.tag = 11;
-        [alert show];
+        UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Sounds good!" otherButtonTitles:nil, nil];
+        [a show];
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         return;
@@ -64,15 +62,6 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         return;
     }
-
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"autoCheck"] == 0) {
-        NSURL *myURL = [NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"];
-        NSURLRequest *request = [NSURLRequest requestWithURL:myURL
-                                                 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                             timeoutInterval:20];
-        meetingsConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    }
-
 
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
@@ -247,26 +236,7 @@
 
 #pragma mark - Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 11) {
-        if (buttonIndex == 1) {
-            SettingsViewController *svc = [[SettingsViewController alloc] init];
-            // passing in 1 does not display an SVProgressHUD -- we'll handle that here
-            // the actual defaults are saved in the SVC methods
-            [svc setUpAB_Notifications:1];
-            [svc setUpDressUpNotifications:1 withHour:@" 07 00"];
-            [svc setUpGeneralNotifications:1];
-
-            [SVProgressHUD showSuccessWithStatus:@"Select a receipt time (currently 7 AM) or modify your choice in Settings."];
-        } else {
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"dressUps"];
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"abs"];
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"general"];
-
-            [self.view makeToast:@"Visit Settings when you change your mind ;)" duration:2.0f position:@"top"];
-        }
-
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    } else if (alertView.tag == 13 && buttonIndex == 1)
+    if (alertView.tag == 13 && buttonIndex == 1)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
 }
 

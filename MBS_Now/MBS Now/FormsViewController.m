@@ -45,7 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    [_tblView reloadData];
+    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)refresh {
@@ -109,7 +109,7 @@
     self.dataArray = [self.dataArray sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
     _tblView.userInteractionEnabled = YES;
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
-    [_tblView reloadData];
+    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
@@ -124,7 +124,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch forms. %@", [error localizedDescription]]];
     self.dataArray = @[@"Aw snap; connection failed!"];
-    [_tblView reloadData];
+    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Actions

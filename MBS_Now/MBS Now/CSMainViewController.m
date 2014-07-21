@@ -8,6 +8,7 @@
 
 #import "CSMainViewController.h"
 #import "CSDetailViewController.h"
+#import "AddItemViewController.h"
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 #define IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @implementation ViewController
@@ -29,10 +30,8 @@
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-    self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)]/*, [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadData)]*/];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)];
     self.navigationItem.leftBarButtonItem.enabled = NO;
-
-    NSLog(@"%@",self.array);
 }
 
 #pragma mark Table View
@@ -56,16 +55,12 @@
         cell.textLabel.text = self.array[indexPath.row];
         cell.detailTextLabel.text = @"";
         cell.accessoryType = UITableViewCellAccessoryNone;
-
     }
     else {
         cell.textLabel.text = self.array[indexPath.row][1];
         cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     }
-
-    NSLog(@"%@",self.array);
 
 	return cell;
 }
@@ -160,7 +155,7 @@
     self.array = [[NSMutableArray alloc] init];
     [self.array addObject:@"Connection failure!"];
     //self.tableView.userInteractionEnabled = NO;
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -211,7 +206,7 @@
         return [date1 compare:date2];
     }].mutableCopy;
     _footer = @"Sorted by opportunity date";
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)sortByCreationDate {
@@ -225,7 +220,7 @@
         return [date1 compare:date2];
     }].mutableCopy;
     _footer = @"Sorted by modification date";
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)sortByTitle {
@@ -235,13 +230,20 @@
         return [string1 caseInsensitiveCompare:string2];
     }].mutableCopy;
     _footer = @"Sorted alphabetically by name";
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"csshowdetails"])
-        ((CSDetailViewController *)segue.destinationViewController).array = self.array[_tableView.indexPathForSelectedRow.row];
+    NSIndexPath *indexPath = _tableView.indexPathForSelectedRow;
+
+    if ([segue.identifier isEqualToString:@"add"]) {
+        [segue.destinationViewController setNameInit:@"service post"];
+        [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
+    }
+    else if ([segue.identifier isEqualToString:@"csshowdetails"])
+        ((CSDetailViewController *)segue.destinationViewController).array = self.array[indexPath.row];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

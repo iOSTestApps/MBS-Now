@@ -1,4 +1,4 @@
-Every 75 launches, we automatically collect some numbers and strings concerning your usage. The information is completely anonymous and only about MBS Now.
+Every 50 launches, we automatically collect some numbers and strings concerning your usage. The information is designed to be user-anonymous and is only about MBS Now.
 
 
 

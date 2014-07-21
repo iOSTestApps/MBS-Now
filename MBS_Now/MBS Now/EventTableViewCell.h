@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *locTag;
 @property (weak, nonatomic) IBOutlet UILabel *dateTag;
 @property (weak, nonatomic) IBOutlet UITextView *eventBody;
-
+//@property (weak, nonatomic) IBOutlet UILabel *addToCal;
 @end

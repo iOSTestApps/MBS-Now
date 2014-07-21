@@ -6,16 +6,17 @@
 //  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
-#import "CSAddItemViewController.h"
+#import "AddItemViewController.h"
 @implementation AddItemViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSURL *url = [NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/service.html"];
+    NSURL *url = [NSURL URLWithString:_addressInit];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
     self.webView.delegate = self;
-    [SVProgressHUD showWithStatus:@"Loading"];
+    [SVProgressHUD showWithStatus:@"Loading..."];
+    self.navBar.topItem.title = [NSString stringWithFormat:@"Add a %@", _nameInit];
 }
 
 #pragma mark WebView delegate
@@ -35,7 +36,10 @@
         NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         edit = [[html componentsSeparatedByString:@"<a class=\"ss-bottom-link\" href=\""][1] componentsSeparatedByString:@"\" title=\"Save this link to edit your response later.\""][0];
         [[UIPasteboard generalPasteboard] setString:edit];
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/service_success.php?e=%@", edit]]]];
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://gdyer.de/item_success.php?e=%@n=%@", edit, [_nameInit stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]]]];
+
+        NSLog(@"http://gdyer.de/item_success.php?e=%@&n=%@", edit, [_nameInit stringByReplacingOccurrencesOfString:@" " withString:@"%20"]);
+
         return;
     }
 }
@@ -112,6 +116,7 @@
     [messageController setBody:[NSString stringWithFormat:@"You're free to modify the service opportunity I just posted to MBS Now: %@", edit]];
     [self presentViewController:messageController animated:YES completion:nil];
 }
+
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     // dismiss MFMailVC (cancelled or saved)
     [self dismissViewControllerAnimated:YES completion:nil];

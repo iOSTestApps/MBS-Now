@@ -19,6 +19,7 @@
 #import "EventTableViewCell.h"
 #import "ShortEventTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import <EventKit/EventKit.h>
 
 #define CONNECTION_FAILTURE 2
 #define CONNECTION_LOADING 1
@@ -29,7 +30,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     preserve = NO;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -51,7 +51,6 @@
     [super viewDidDisappear:YES];
     if (preserve) return;
     // stop all non-essential connections
-    NSLog(@"killing connections");
     [versionConnection cancel];
     [meetingsConnection cancel];
     [rssConnection cancel];
@@ -112,6 +111,13 @@
 
     _feeds = [NSMutableDictionary dictionary];
 
+    NSDateFormatter *pretty = [[NSDateFormatter alloc] init];
+    [pretty setDateFormat:@"EEEE, MMMM d, y"];
+    [self saveFeedsWithObject:[NSString stringWithFormat:@"Today is %@.", [pretty stringFromDate:[NSDate date]]] andKey:@"strings"];
+    [self saveFeedsWithObject:[UIImage imageNamed:@"push-pin-7.png"] andKey:@"images"];
+    [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+    [self saveFeedsWithObject:@"" andKey:@"urls"];
+
     HomeViewController *hvc = [[HomeViewController alloc] init];
     NSArray *f = [hvc countdown];
     int days = [f[2] intValue];
@@ -130,9 +136,8 @@
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 
     // start connection for TEXT-BASED today schedule
-    //    NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
-    //    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=%@", [form stringFromDate:[NSDate date]], savedDivision]]];
-    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-16&div=us"]];
+    NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
+    NSURLRequest *schedule = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=%@", [self stringFromFormatterDate:[NSDate date]], savedDivision]]];
     scheduleData = [NSMutableData data];
     scheduleConnection = [[NSURLConnection alloc] initWithRequest:schedule delegate:self startImmediately:YES];
 
@@ -142,9 +147,7 @@
     todayScheduleConnection = [[NSURLConnection alloc] initWithRequest:todaySchedule delegate:self startImmediately:YES];
 
     if ([self getHourOfDay] > 18 || [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"]) {
-        // in production, use commented tmrwText rather than unformatted string tmrwText (currently uncommented)
-//        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self tomorrow]]]]];
-        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=2014-1-17&div=us"]];
+        NSURLRequest *tmrwText = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbs/widget/dayPeriodsForMBSNow.php?day=%@&div=us", [self stringFromFormatterDate:[self dateByDistanceFromToday:1]]]]];
         tomorrowTextData = [NSMutableData data];
         tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
     }
@@ -172,6 +175,14 @@
     NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
     rssData = [NSMutableData data];
     rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
+
+    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
+    notificationData = [NSMutableData data];
+    notificationUpdates = [[NSURLConnection alloc] initWithRequest:notifs delegate:self startImmediately:YES];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=40.802721&lon=-74.448287&units=imperial"]];
+    weatherData = [NSMutableData data];
+    weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
 - (void)moveAlongWithNotif:(NSString *)title atTime:(NSDate *)fireDate {
@@ -243,13 +254,14 @@
 }
 
 - (void)saveFeedsWithObject:(id)object andKey:(NSString *)key{
-    if (!object) {[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Report a bug: 'null object for key '%@'", key]]; return;}
+    if (!object) {[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"File a bug: \"null object for key %@\"", key]]; return;}
     NSMutableArray *cur = ([_feeds[key] count] > 0) ? _feeds[key] : [NSMutableArray array];
     [cur addObject:object];
     [_feeds setObject:cur forKey:key];
 }
 
 - (id)shadowCell:(UITableViewCell *)cell {
+    if (cell.layer.shadowRadius > 0) return cell;
     cell.layer.shadowOffset = CGSizeMake(1, 0);
     cell.layer.shadowColor = [[UIColor blackColor] CGColor];
     cell.layer.shadowRadius = 1;
@@ -274,6 +286,134 @@
     [self.navigationController pushViewController:fvvc animated:YES];
 }
 
+// THIS CODE CREATES CALENDAR EVENTS FOR SHORTEVENT AND EVENT CELLS. Strange things are happening, and I don't think it (as a feature) will be used enough to stress over.
+//- (BOOL)checkCalendarForEventName:(NSString *)n andTime:(NSString *)t {
+//    // remember, event dict's format has keys formatted like (name of event)(time of event) and objects with event ids
+//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"]) return NO;
+//    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] allObjects] containsObject:[NSString stringWithFormat:@"%@%@", n, t]]) return YES;
+//    return NO;
+//}
+//
+//- (void)createCalendarEventFromString:(NSString *)t atLocation:(NSString *)l withTitle:(NSString *)n {
+//    EKEventStore *store = [[EKEventStore alloc] init];
+//    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+//        if (!granted) return;
+//        NSDateFormatter *form = [[NSDateFormatter alloc] init];
+//        [form setDateFormat:@"EEE, dd MMM yyyy h:mm a"];
+//        [form setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];
+//
+//        EKEvent *event = [EKEvent eventWithEventStore:store];
+//        event.title = n;
+//        if (l) event.location = l;
+//        event.startDate = [form dateFromString:[t stringByReplacingOccurrencesOfString:@"at " withString:@""]];
+//        event.endDate = [event.startDate dateByAddingTimeInterval:60*15];
+//        [event setCalendar:[store defaultCalendarForNewEvents]];
+//        NSError *err = nil;
+//        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
+//        NSString *i = event.eventIdentifier;
+//
+//        if (err) { [SVProgressHUD showErrorWithStatus:err.localizedDescription]; return;}
+//
+//        [self d:i n:n t:t];
+//    }];
+//}
+//
+//- (void)d:(NSString *)i n:(NSString *)n t:(NSString *)t {
+//    NSLog(@"CALLEd");
+//    NSMutableDictionary *events = [[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] mutableCopy];
+//    if (!events) events = [NSMutableDictionary dictionary];
+//    [events setObject:i forKey:[NSString stringWithFormat:@"%@%@", n, t]];
+//    [[NSUserDefaults standardUserDefaults] setObject:events forKey:@"calendarEvents"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
+//    [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationRight];
+//    [SVProgressHUD showSuccessWithStatus:@"added"];
+//}
+//
+//- (void)removeEventWithName:(NSString *)n andTime:(NSString *)t {
+//    NSMutableDictionary *events = [[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] mutableCopy];
+//    if (!events) events = [NSMutableDictionary dictionary];
+//
+//    NSString *key = [NSString stringWithFormat:@"%@%@", n, t];
+//    NSString *eid = [events objectForKey:key];
+//    [events removeObjectForKey:key];
+//
+//    [[NSUserDefaults standardUserDefaults] setObject:events forKey:@"calendarEvents"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//    EKEventStore *store = [[EKEventStore alloc] init];
+//    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+//        if (!granted) { return; }
+//        EKEvent *eventToRemove = [store eventWithIdentifier:eid];
+//        if (eventToRemove) {
+//            NSError *error = nil;
+//            [store removeEvent:eventToRemove span:EKSpanThisEvent commit:YES error:&error];
+//            if (error) {[SVProgressHUD showErrorWithStatus:error.localizedDescription]; return;}
+//        } else {[SVProgressHUD showErrorWithStatus:@"Whoops. No event to remove!"]; return;}
+//    }];
+//
+//    NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
+//    [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationLeft];
+//    [SVProgressHUD showSuccessWithStatus:@"Removed!"];
+//}
+
+#pragma mark Notification processing
+- (NSDate *)dateFromNotificationString:(NSString *)s {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"MM/dd/yyyy HH mm"];
+    [form setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];
+    return [form dateFromString:s];
+}
+
+- (void)fireNotificationAtTime:(NSDate *)t withMessage:(NSString *)m {
+    UILocalNotification *lcl = [[UILocalNotification alloc] init];
+    lcl.fireDate = t;
+    lcl.alertBody = m;
+    lcl.soundName = UILocalNotificationDefaultSoundName;
+    lcl.alertAction = @"View";
+    lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    lcl.timeZone = [NSTimeZone timeZoneWithName:@"America/New_York"];
+
+    [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
+}
+
+- (void)generateNotifications:(NSString *)category andCalculateTime:(BOOL)c {
+    NSString *hour = @"";
+    if (c) {
+        NSString *dressTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
+        if (dressTime) {
+            // determine number of chars that represent time
+            hour =  ([dressTime rangeOfString:@":"].location == NSNotFound) ? [NSString stringWithFormat:@"0%@ 00", [dressTime substringToIndex:1]] : [NSString stringWithFormat:@"0%@ %@", [dressTime substringToIndex:1], [dressTime substringWithRange:NSMakeRange(2, 2)]];
+        }
+    }
+
+    for (NSString *f in [category componentsSeparatedByString:@"\n"]) {
+        NSArray *s = [f componentsSeparatedByString:@" | "];
+        if (s.count < 2) continue;
+        NSDate *fireTime = [self dateFromNotificationString:[s[0] stringByReplacingOccurrencesOfString:@"$" withString:hour]];
+        NSComparisonResult result = [[NSDate date] compare:fireTime];
+        if (result == NSOrderedAscending || result == NSOrderedSame) {
+            NSLog(@"%@", s[0]);
+            [self fireNotificationAtTime:fireTime withMessage:s[1]];
+        }
+    }
+}
+
+- (void)genFromPrefs:(NSString *)pack {
+    NSLog(@"generating notifcations in Today");
+    NSArray *lists = [pack componentsSeparatedByString:@"^"];
+
+    // 8 possibilities encapsulated here
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"abs"])
+        [self generateNotifications:lists[1] andCalculateTime:NO];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"general"])
+        [self generateNotifications:lists[2] andCalculateTime:NO];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"])
+        [self generateNotifications:lists[0] andCalculateTime:NO];
+}
+
 #pragma mark More
 - (void)more {
     if (sheet) {
@@ -285,7 +425,8 @@
     BOOL d = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
     BOOL h = [[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"];
     BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(showAllEvents) ? @"Only show some calendar events" : @"Show all calendar events", (n) ? @"Only show latest news" : @"Show all recent news", (d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (h) ? @"Make Home the launch screen" : @"Make Today the launch screen", nil];
+    BOOL e = [[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(e) ? @"Only show some calendar events" : @"Show all calendar events", (n) ? @"Only show latest news" : @"Show all recent news", (d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (h) ? @"Make Home the launch screen" : @"Make Today the launch screen", nil];
 
     [sheet showInView:self.view];
 }
@@ -299,7 +440,7 @@
             break;
         case 0:
             // events
-            showAllEvents = !showAllEvents;
+            [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"] forKey:@"showAllEvents"];
             [self update];
             break;
         case 1:
@@ -321,6 +462,13 @@
     sheet = nil;
 }
 
+- (void)willPresentActionSheet:(UIActionSheet *)actionSheet {
+    [actionSheet.subviews enumerateObjectsUsingBlock:^(id _currentView, NSUInteger idx, BOOL *stop) {
+        if ([_currentView isKindOfClass:[UIButton class]]) {
+            [((UIButton *)_currentView).titleLabel setFont:[UIFont fontWithName:@"Avenir" size:16.0f]];
+        }
+    }];
+}
 #pragma mark Connection
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (connection == rssConnection) [rssData appendData:data];
@@ -332,6 +480,8 @@
     else if (connection == todayScheduleConnection) [todayScheduleData appendData:data];
     else if (connection == tomorrowScheduleConnection) [tomorrowScheduleData appendData:data];
     else if (connection == communityServiceConnection) [communityServiceData appendData:data];
+    else if (connection == notificationUpdates) [notificationData appendData:data];
+    else if (connection == weatherConnection) [weatherData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -345,6 +495,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"URL causing failure: %@", connection.currentRequest.URL.absoluteString);
     [self.refreshControl endRefreshing];
     _ret = CONNECTION_FAILTURE;
     [SVProgressHUD dismiss];
@@ -434,7 +585,7 @@
         }
 
         // because we always want some events to appear, even if they're not happening today
-        while (evCount < ((showAllEvents) ? (events.count-1) : 2)) {
+        while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 2)) {
             evCount++;
             NSString *str = events[evCount][@"description"];
             [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
@@ -451,7 +602,7 @@
 //        if ([fileText stringByReplacingOccurrencesOfString:@"." withString:@""].intValue > [infoDict[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""].intValue)
         if (![fileText isEqualToString:infoDict[@"CFBundleShortVersionString"]]) {
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
-            [self saveFeedsWithObject:@"Update available! Tap to download." andKey:@"strings"];
+            [self saveFeedsWithObject:@"Update available! Tap to download it." andKey:@"strings"];
             [self saveFeedsWithObject:[UIImage imageNamed:@"download-7.png"] andKey:@"images"];
             [self saveFeedsWithObject:UPDATE_URL andKey:@"urls"];
         }
@@ -462,7 +613,6 @@
         BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
         for (NSDictionary *d in events) {
             NSDate *pub = [self dateFromNewsXmlFormatter:d[@"pubDate"]];
-            NSLog(@"%@", pub);
             if ([pub compare:[NSDate date]] == NSOrderedSame || [pub compare:[self dateByDistanceFromToday:-1]] == NSOrderedSame || n) {
                 // either a story from yesterday or today
                 [self saveFeedsWithObject:[ArticleTableViewCell class] andKey:@"class"];
@@ -472,6 +622,36 @@
             }
         }
     }
+
+    else if (connection == notificationUpdates) {
+        NSString *remotePack = [[NSString alloc] initWithData:notificationData encoding:NSUTF8StringEncoding];
+        NSString *localPack = [[NSUserDefaults standardUserDefaults] objectForKey:@"notificationPack"];
+        if (![localPack isEqualToString:remotePack]) {
+            [self genFromPrefs:remotePack];
+            [[NSUserDefaults standardUserDefaults] setObject:remotePack forKey:@"notificationPack"];
+        }
+    }
+
+    else if (connection == weatherConnection) {
+        NSError *error;
+        id object = [NSJSONSerialization JSONObjectWithData:weatherData options:0 error:&error];
+        if (error) {
+            [SVProgressHUD showErrorWithStatus:@"Weather isn't cooperating. Sorry :("];
+            return;
+        } else {
+            if ([object isKindOfClass:[NSDictionary class]]) {
+                NSString *f = object[@"weather"][0][@"description"];
+                NSString *t = object[@"main"][@"temp"];
+                NSString *weather = [NSString stringWithFormat:@"%@%@ at %.0f\u00B0F at MBS", [f substringToIndex:1].uppercaseString, [f substringFromIndex:1], [t floatValue]];
+
+                [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+                [self saveFeedsWithObject:weather andKey:@"strings"];
+                [self saveFeedsWithObject:[UIImage imageNamed:@"cloud-7.png"] andKey:@"images"];
+                [self saveFeedsWithObject:@"" andKey:@"urls"];
+            }
+        }
+    }
+
     _ret = CONNECTION_SUCCESS;
     [self.tableView reloadData];
     [self.refreshControl endRefreshing];
@@ -493,12 +673,12 @@
         switch (_ret) {
             case CONNECTION_LOADING:
                 cell.imageView.image = [UIImage imageNamed:@"cloud-download-7.png"];
-                cell.textLabel.text = [NSString stringWithFormat:@"Happy %@. Updating...", [self dayNameFromDate:[NSDate date]]];
+                cell.textLabel.text = [NSString stringWithFormat:@"Happy %@! Working...", [self dayNameFromDate:[NSDate date]]];
                 cell.detailTextLabel.text = @"Taking a while? Swipe down to restart.";
                 break;
             case CONNECTION_FAILTURE:
                 cell.imageView.image = [UIImage imageNamed:@"caution-7.png"];
-                cell.textLabel.text = @"Nuts; the connection failed!";
+                cell.textLabel.text = @"Nuts; a connection failed!";
                 cell.detailTextLabel.text = @"Tap for offline use or pull ↓ to reload";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
@@ -512,7 +692,6 @@
         cell.label.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         cell.url = _feeds[@"urls"][indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell = [self shadowCell:cell];
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
@@ -547,6 +726,12 @@
             cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
             cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
         }
+
+//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text]) {
+//            cell.addToCal.textColor = [UIColor colorWithRed:32/255.0f green:107/255.0f blue:24/255.0f alpha:1.0f];
+//            cell.addToCal.text = @"✓ saved to calendar";
+//        }
+
         cell = [self shadowCell:cell];
         return cell;
     }
@@ -560,6 +745,12 @@
         [full removeLastObject];
         if (full.count > 1) cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
         cell = [self shadowCell:cell];
+
+//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text]) {
+//            cell.addToCal.textColor = [UIColor colorWithRed:32/255.0f green:107/255.0f blue:24/255.0f alpha:1.0f];
+//            cell.addToCal.text = @"✓ saved to calendar";
+//        }
+
         return cell;
     }
 
@@ -583,7 +774,7 @@
     if (cl == [StandardTableViewCell class]) return 46.0f;
     else if (cl == [TodayCellTableViewCell class]) return 154.0f;
     else if (cl == [EventTableViewCell class]) return 106.0f;
-    else if (cl == [ShortEventTableViewCell class]) return 66.0f;
+    else if (cl == [ShortEventTableViewCell class]) return 74.0f;
     else if (cl == [ArticleTableViewCell class]) return 71.0f;
     else return 444.0f;
 }
@@ -605,8 +796,24 @@
         return;
     }
 
-    if ([iden isEqualToString:@"event"]) {[tableView deselectRowAtIndexPath:indexPath animated:YES];
-        return;}
+//    if ([iden isEqualToString:@"event"]) {
+//        EventTableViewCell *cell = (EventTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text])
+//            [self removeEventWithName:cell.eventBody.text andTime:cell.dateTag.text];
+//        else
+//            [self createCalendarEventFromString:cell.dateTag.text atLocation:nil withTitle:cell.eventBody.text];
+//        return;
+//    }
+//
+//    if ([iden isEqualToString:@"shortEvent"]) {
+//        ShortEventTableViewCell *cell = (ShortEventTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text])
+//            [self removeEventWithName:cell.eventBody.text andTime:cell.dateTag.text];
+//        else
+//            [self createCalendarEventFromString:cell.dateTag.text atLocation:nil withTitle:cell.eventBody.text];
+//        return;
+//    }
+
     if ([iden isEqualToString:@"schedule"]) {
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"fullScheduleViewsFromTodayCell"]) {
             // first time scheduling a text-based schedule notification
@@ -616,7 +823,7 @@
             q++;
             [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"fullScheduleViewsFromTodayCell"];
         }
-
+        preserve = YES;
         FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
         [self.navigationController pushViewController:vc animated:YES];
         return;
@@ -644,7 +851,7 @@
     }
     else if (_feeds[@"class"][indexPath.row] == [TodayCellTableViewCell class]) {
         NSString *alertTitle = [((TodayCellTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]) messageBody].text;
-        if ([alertTitle rangeOfString:@"Tomorrow"].location != NSNotFound /*&& [self getHourOfDay] > 15*/) {
+        if ([alertTitle rangeOfString:@"Tomorrow"].location != NSNotFound) {
             // scheduling an alert when it's the day before
             UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Is tomorrow better?" message:@"Would you like to schedule this notification for tomorrow instead?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes, at 8 AM", @"Yes, at 7 AM", @"No, now", nil];
             a.tag = 1;

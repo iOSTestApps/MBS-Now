@@ -231,8 +231,10 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    
-    self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+
+    NSString *t = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+
+    self.navigationItem.title = ([t isEqualToString:@"GitHub & BitBucket HTML Preview"]) ? @"MBS Now for web" : t;
     [self updateToolbarItems];
 }
 

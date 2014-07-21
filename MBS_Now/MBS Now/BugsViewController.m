@@ -64,7 +64,8 @@
         [connect cancel];
         self.bug = @[@"Tap to check again", @"No confirmed bugs"];
         self.description = @[@"Connection required", @"New reports are checked immediately"];
-        [self.tableView reloadData];
+
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -90,7 +91,7 @@
         self.bug = [dict allValues];
         self.description = [dict allKeys];
         [SVProgressHUD dismiss];
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -98,7 +99,7 @@
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
     self.bug = @[@"Connection failed"];
     self.description = @[@"Tap here to try again"];
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark -

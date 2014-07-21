@@ -8,6 +8,7 @@
 
 #import "DataViewController.h"
 #import "SVWebViewController.h"
+#import "SimpleWebViewController.h"
 @implementation DataViewController
 
 - (void)viewDidLoad {
@@ -34,6 +35,7 @@
 #pragma mark Generate data
 - (NSString *)generateData {
     NSString *systemName = [[UIDevice currentDevice] systemName];
+    NSString *deviceName = [[UIDevice currentDevice] name];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     NSString *model = [[UIDevice currentDevice] model];
 
@@ -43,7 +45,6 @@
 
     NSInteger forms = [[NSUserDefaults standardUserDefaults] integerForKey:@"formsTapped"];
     NSInteger offline = [[NSUserDefaults standardUserDefaults] integerForKey:@"schedulesTapped"];
-    NSInteger menus = [[NSUserDefaults standardUserDefaults] integerForKey:@"menusTapped"];
     NSInteger contacts = [[NSUserDefaults standardUserDefaults] integerForKey:@"contactsTapped"];
     NSInteger rsvps = [[NSUserDefaults standardUserDefaults] integerForKey:@"rsvps"];
 
@@ -68,15 +69,18 @@
     NSInteger fullScheduleViewsFromTodayCell = [[NSUserDefaults standardUserDefaults] integerForKey:@"fullScheduleViewsFromTodayCell"];
     NSInteger serviceViews = [[NSUserDefaults standardUserDefaults] integerForKey:@"serviceViews"];
     NSInteger timeInPhotoBrowser = [[NSUserDefaults standardUserDefaults] integerForKey:@"timeInPhotoBrowser"];
+    NSInteger lunchFromToday = [[NSUserDefaults standardUserDefaults] objectForKey:@"lunchFromToday"];
 
     NSString *dressTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
 
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
     BOOL alwaysTwoDay = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
+    BOOL alwaysShowArticle = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
+    BOOL showTodayFirst = [[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"];
     
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, menus tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, dress-up notification receipt time %@, recorded on %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)menus, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, dressTime, [NSDate date]];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, lunch menu views from Today %ld, dress-up notification receipt time %@, always show news articles in Today %d, show Today as launch screen %d, device name %@, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, (long)lunchFromToday, dressTime, alwaysShowArticle, showTodayFirst, deviceName, [NSDate date]];
 
     return string;
 }
@@ -88,9 +92,9 @@
     if (date) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd, HH:mm"];
-        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %ld launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
+        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
     } else
-        string = [NSString stringWithFormat:@"Never collected before. First collection in %ld launch(es)", AUTO - (q % AUTO)];
+        string = [NSString stringWithFormat:@"Never collected before. First collection in %d launch(es)", AUTO - (q % AUTO)];
     [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];
 }
 - (IBAction)done:(id)sender {
@@ -126,8 +130,8 @@
         return;
     }
     
-    SVWebViewController *wvc = [[SVWebViewController alloc] initWithAddress:s];
-    [self.navigationController pushViewController:wvc animated:YES];
+    SimpleWebViewController *wvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:s]];
+    [self presentViewController:wvc animated:YES completion:nil];
 }
 
 #pragma mark Mail

@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate> {
+@interface SettingsViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, UIActionSheetDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate> {
 
     IBOutletCollection(UITableViewCell) NSArray *cells;
+
+    NSMutableData *notificationData;
+    NSURLConnection *notificationUpdates;
 
     IBOutlet UIButton *colorButton;
 
@@ -41,9 +44,5 @@
 - (IBAction)pushedChangeGrade:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)question:(id)sender;
-
-- (void)setUpGeneralNotifications:(int)q;
-- (void)setUpAB_Notifications:(int)q;
-- (void)setUpDressUpNotifications:(int)q withHour:(NSString *)hours;
 
 @end

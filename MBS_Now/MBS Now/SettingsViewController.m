@@ -8,7 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "SimpleWebViewController.h"
-
+#import "Today.h"
 @interface SettingsViewController () {
     NSArray *colorsArray;
     NSArray *timesArray;
@@ -60,6 +60,31 @@
     [button setBackgroundImage:buttonImageHighlight forState:UIControlStateHighlighted];
 }
 
+- (void)startConnection {
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
+    notificationData = [NSMutableData data];
+    notificationUpdates = [[NSURLConnection alloc] initWithRequest:notifs delegate:self startImmediately:YES];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+#pragma mark Connection
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [notificationData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSString *remotePack = [[NSString alloc] initWithData:notificationData encoding:NSUTF8StringEncoding];
+    Today *t = [[Today alloc] init];
+    [t genFromPrefs:remotePack];
+    [[NSUserDefaults standardUserDefaults] setObject:remotePack forKey:@"notificationPack"];
+    [SVProgressHUD dismiss];
+}
+
 #pragma mark Actions
 - (IBAction)pushedDone:(id)sender {
     [SVProgressHUD dismiss];
@@ -95,13 +120,18 @@
 
 #pragma mark -
 - (IBAction)switchValueChanged:(id)sender {
+    [SVProgressHUD dismiss];
     // Dress-up days
+    [[NSUserDefaults standardUserDefaults] setBool:nSwitch.on forKey:@"dressUps"];
     if (nSwitch.on == YES) {
         if (sheet) {
             [sheet dismissWithClickedButtonIndex:-1 animated:YES];
             sheet = nil;
             return;
         }
+
+        // WARNING: do NOT change these times to two-digit hours (e.g. 10:00 AM) or 0-leading hours (e.g. 8:05)
+        // if you must, rewrite generateNotifications:: in Today.m
         sheet = [[UIActionSheet alloc] initWithTitle:@"Tap away for 7 AM" delegate:self cancelButtonTitle:@"7 AM" destructiveButtonTitle:nil otherButtonTitles:@"4 AM", @"5 AM", @"5:30 AM", @"6 AM", @"6:30 AM", @"6:45 AM", nil];
         sheet.tag = 2;
         [sheet showInView:self.view];
@@ -109,14 +139,18 @@
 }
 
 - (IBAction)switch2ValueChanged:(id)sender {
+    [SVProgressHUD dismiss];
     // A/B weeks
-    if (nSwitch2.on == YES) [self setUpAB_Notifications:0];
+    [[NSUserDefaults standardUserDefaults] setBool:nSwitch2.on forKey:@"abs"];
+    if (nSwitch2.on == YES) [self startConnection];
     else [self turnOff];
 }
 
 - (IBAction)switch3ValueChanged:(id)sender {
+    [SVProgressHUD dismiss];
     // General notifications
-    if (nSwitch3.on == YES) [self setUpGeneralNotifications:0];
+    [[NSUserDefaults standardUserDefaults] setBool:nSwitch3.on forKey:@"general"];
+    if (nSwitch3.on == YES) [self startConnection];
     else [self turnOff];
 }
 
@@ -149,180 +183,6 @@
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"abs"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"general"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)setUpDressUpNotifications:(int)q withHour:(NSString *)hours {
-    NSMutableArray *datesOnly = [NSMutableArray arrayWithObjects:
-                                @"03/04/2014",
-                                @"04/11/2014",
-                                @"04/25/2014",
-                                @"05/01/2014",
-                                @"05/07/2014",
-                                @"05/20/2014", nil];
-
-    NSMutableArray *dateStrings = [[NSMutableArray alloc] init];
-    for (NSString *chi in datesOnly) {
-        NSMutableString *foo = [chi mutableCopy];
-        [foo insertString:hours atIndex:chi.length];
-        [dateStrings addObject:foo];
-    }
-    
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy hh mm"];
-    [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
-
-    NSMutableArray *datesArray = [NSMutableArray arrayWithObjects: nil];
-
-    for (int x = 0; x < dateStrings.count; x++)
-        [datesArray addObject:[dateFormat dateFromString:[dateStrings objectAtIndex:x]]];
-
-    for (int y = 0; y < datesArray.count; y++) {
-        NSComparisonResult result = [[NSDate date] compare:datesArray[y]];
-        if (result == NSOrderedAscending || result == NSOrderedSame) {
-            // datesArray[y] is in the future or today
-            UILocalNotification *lcl = [[UILocalNotification alloc] init];
-            lcl.fireDate = [datesArray objectAtIndex:y];
-            lcl.alertBody = [NSString stringWithFormat:@"Today: dress-up day"];
-            lcl.soundName = UILocalNotificationDefaultSoundName;
-            lcl.alertAction = @"View";
-            lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
-            lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-            [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-        }
-    }
-
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"dressUps"];
-
-    if (q == 0)
-        [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
-}
-
-- (void)setUpAB_Notifications:(int)q {
-    // A weeks
-    NSArray *aWeeks = @[
-                       @"02/03/2014 08",
-                       @"02/19/2014 08",
-                       @"03/03/2014 08",
-                       @"03/31/2014 08",
-                       @"04/14/2014 08",
-                       @"04/28/2014 08",
-                       @"05/12/2014 08",
-                       @"05/27/2014 08"];
-
-    // B weeks
-    NSArray *bWeeks = @[
-                       @"02/10/2014 08",
-                       @"02/24/2014 08",
-                       @"03/24/2014 08",
-                       @"04/08/2014 08",
-                       @"04/21/2014 09",
-                       @"05/05/2014 08",
-                       @"05/19/2014 08"];
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy hh"];
-    [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
-
-    NSMutableArray *aArray = [NSMutableArray array];
-    NSMutableArray *bArray = [NSMutableArray array];
-
-    for (int x = 0; x < aWeeks.count; x++)
-        [aArray addObject:[dateFormat dateFromString:[aWeeks objectAtIndex:x]]];
-
-    for (int x = 0; x < bWeeks.count; x++)
-        [bArray addObject:[dateFormat dateFromString:[bWeeks objectAtIndex:x]]];
-
-    // B WEEKS
-    NSMutableArray *bNotificiations = [NSMutableArray array];
-    for (int y = 0; y < bArray.count; y++) {
-        NSComparisonResult result = [[NSDate date] compare:bArray[y]];
-        if (result == NSOrderedAscending || result == NSOrderedSame) {
-            // bArray[y] is in the future or today
-            UILocalNotification *lcl = [[UILocalNotification alloc] init];
-            lcl.fireDate = [bArray objectAtIndex:y];
-            lcl.alertBody = [NSString stringWithFormat:@"This week: B"];
-            lcl.soundName = UILocalNotificationDefaultSoundName;
-            lcl.alertAction = @"View";
-            [bNotificiations addObject:lcl];
-            lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-            [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-        }
-    }
-
-    // A WEEKS
-    NSMutableArray *aNotifications = [[NSMutableArray alloc] init];
-    for (int y = 0; y < aArray.count; y++) {
-        NSComparisonResult result = [[NSDate date] compare:aArray[y]];
-        if (result == NSOrderedAscending || result == NSOrderedSame) {
-            // aArray[y] is in the future or today
-            UILocalNotification *lcl = [[UILocalNotification alloc] init];
-            lcl.fireDate = [aArray objectAtIndex:y];
-            lcl.alertBody = [NSString stringWithFormat:@"This week: A"];
-            lcl.soundName = UILocalNotificationDefaultSoundName;
-            lcl.alertAction = @"View";
-            [aNotifications addObject:lcl];
-            lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-            [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-        }
-    }
-
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
-
-    if (q == 0) [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (aWeeks.count + bWeeks.count)]];
-}
-
-- (void)setUpGeneralNotifications:(int)q {
-    // BE SURE TO CHANGE DESCRIPTIONS
-    NSArray *dateStrings = @[
-                            @"03/28/2014 08",
-                            @"05/30/2014 08",
-                            @"02/19/2014 08",
-                            @"05/08/2014 08",
-                            @"05/05/2014 08"];
-    // BE SURE TO CHANGE dateString ARRAY
-    NSArray *descriptions = @[
-                             @"Today: end of 3/4",
-                             @"See you in September!",
-                             @"Monday, A schedule",
-                             @"Tomorrow: service hours due",
-                             @"Best of luck on APs!"];
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM/dd/yyyy hh"];
-    [dateFormat setTimeZone:[NSTimeZone defaultTimeZone]];
-
-    NSMutableArray *datesArray = [NSMutableArray array];
-
-    for (int x = 0; x < dateStrings.count; x++)
-        [datesArray addObject:[dateFormat dateFromString:[dateStrings objectAtIndex:x]]];
-
-    if (descriptions.count == datesArray.count) {
-        for (int y = 0; y < datesArray.count; y++) {
-            // datesArray[y] is in the future or today
-            NSComparisonResult result = [[NSDate date] compare:datesArray[y]];
-            if (result == NSOrderedAscending || result == NSOrderedSame) {
-                UILocalNotification *lcl = [[UILocalNotification alloc] init];
-                lcl.fireDate = [datesArray objectAtIndex:y];
-                lcl.alertBody = [descriptions objectAtIndex:y];
-                lcl.soundName = UILocalNotificationDefaultSoundName;
-                lcl.alertAction = @"View";
-                lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
-                lcl.timeZone = [NSTimeZone defaultTimeZone];
-
-                [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
-            }
-        }
-        if (q == 0) [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%lu alerts created", (unsigned long)dateStrings.count]];
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"General alerts are not available. Please report this bug ASAP." delegate:self cancelButtonTitle:@"Report" otherButtonTitles:@"Dismiss", nil];
-        alert.tag = 2;
-        [alert show];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"general"];
 }
 
 #pragma mark Alert View
@@ -361,10 +221,10 @@
             [SVProgressHUD showSuccessWithStatus:@"Change will occur upon next launch (close from multitasking)"];
         }
     } else {
-        [self setUpDressUpNotifications:0 withHour:abbreviatedTimes[buttonIndex]];
         dressTime.text = [actionSheet buttonTitleAtIndex:buttonIndex];
-        [[NSUserDefaults standardUserDefaults] setObject:[actionSheet buttonTitleAtIndex:buttonIndex] forKey:@"dressTime"];
+        [[NSUserDefaults standardUserDefaults] setObject:dressTime.text forKey:@"dressTime"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self startConnection];
     }
 }
 

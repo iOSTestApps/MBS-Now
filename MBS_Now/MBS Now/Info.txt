@@ -2,7 +2,7 @@ You're running version %@.
 
 Credits:
 • Programming and design: Lucas Fagan
-• SVProgressHUD: Sam Vermette
+• Various open-source libraries
 • Clubs and service powered by Google
 • Offline schedules by Ms. Jaimi Belfi
 • Special thanks to Mrs. Barbara Napholtz
