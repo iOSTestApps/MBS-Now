@@ -17,7 +17,7 @@ We now have a YouTube demo, posted [here](http://youtu.be/_jhYwPW_TC8). It's a m
 
 ![Nice app, right?](https://raw.githubusercontent.com/mbsdev/media/master/marketing/cover-2.png)
 # More
-This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVProgressWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, and [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey.
+This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVProgressWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey, and [Toast](https://github.com/scalessec/Toast) by Charles Scalesse.
 
 For images—launch screens, app icons, wallpapers, marketing stuff—go [here](https://github.com/mbsdev/media).
 
