@@ -50,6 +50,8 @@
 		1573821117F2436E00956F6F /* databases.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1573820E17F2436E00956F6F /* databases.plist */; };
 		1573821217F2436E00956F6F /* ids.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1573820F17F2436E00956F6F /* ids.plist */; };
 		1573821317F2436E00956F6F /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1573821017F2436E00956F6F /* keys.plist */; };
+		1579B77A197CA9DB003F7C16 /* note-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1579B778197CA9DA003F7C16 /* note-7.png */; };
+		1579B77B197CA9DB003F7C16 /* note-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1579B779197CA9DB003F7C16 /* note-7@2x.png */; };
 		157C548C19294E7500D6B224 /* TodayCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */; };
 		157C54931929514F00D6B224 /* Today.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C54921929514F00D6B224 /* Today.m */; };
 		157C549619295E4500D6B224 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 157C549519295E4500D6B224 /* XMLDictionary.m */; };
@@ -347,6 +349,8 @@
 		1573820E17F2436E00956F6F /* databases.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = databases.plist; sourceTree = "<group>"; };
 		1573820F17F2436E00956F6F /* ids.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ids.plist; sourceTree = "<group>"; };
 		1573821017F2436E00956F6F /* keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		1579B778197CA9DA003F7C16 /* note-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note-7.png"; sourceTree = "<group>"; };
+		1579B779197CA9DB003F7C16 /* note-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note-7@2x.png"; sourceTree = "<group>"; };
 		157C548A19294E7500D6B224 /* TodayCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayCellTableViewCell.h; sourceTree = "<group>"; };
 		157C548B19294E7500D6B224 /* TodayCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayCellTableViewCell.m; sourceTree = "<group>"; };
 		157C54911929514F00D6B224 /* Today.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Today.h; sourceTree = "<group>"; };
@@ -1054,6 +1058,8 @@
 				15FFD8EA18C69B040049FD02 /* map-pin-area-multiple@2x.png */,
 				15FFD8EB18C69B040049FD02 /* mutiply-sign.png */,
 				15FFD8EC18C69B040049FD02 /* mutiply-sign@2x.png */,
+				1579B778197CA9DA003F7C16 /* note-7.png */,
+				1579B779197CA9DB003F7C16 /* note-7@2x.png */,
 				15FFD8ED18C69B040049FD02 /* noodle.png */,
 				15FFD8EE18C69B040049FD02 /* noodle@2x.png */,
 				15FFD8EF18C69B040049FD02 /* notifications-board.png */,
@@ -1262,6 +1268,8 @@
 				15FFD95918C69B040049FD02 /* Default~ipad.png in Resources */,
 				157C549E1929692D00D6B224 /* star-7@2x.png in Resources */,
 				15FFD94018C69B040049FD02 /* book-7-active.png in Resources */,
+				1579B77B197CA9DB003F7C16 /* note-7@2x.png in Resources */,
+				1579B77A197CA9DB003F7C16 /* note-7.png in Resources */,
 				1547B586192848DA00330A94 /* SVWebViewController.bundle in Resources */,
 				15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */,
 				15CE40C01979FB2800B06315 /* cloud-7.png in Resources */,

@@ -67,6 +67,12 @@
     }
 
     if (!preserve) [self update];
+    preserve = NO;
+}
+
+- (BOOL)isReceivingAllNotifs {
+    NSString *f = [NSString stringWithFormat:@"%d%d%d", [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"], [[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"], [[NSUserDefaults standardUserDefaults] boolForKey:@"general"]];
+    return ([f isEqualToString:@"111"]) ? 1 : 0;
 }
 
 - (void)noSavedGrade:(NSString *)append {
@@ -152,9 +158,19 @@
         tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
     }
 
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+    if (q<20 && ![self isReceivingAllNotifs]) {
+        [self saveFeedsWithObject:@"Tap to start receiving notifications" andKey:@"strings"];
+        [self saveFeedsWithObject:[UIImage imageNamed:@"note-7.png"] andKey:@"images"];
+        [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+        [self saveFeedsWithObject:@"alerts" andKey:@"urls"];
+    }
+
     NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
     rssNewsData = [NSMutableData data];
     rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
+
+    [self startNotifsConnection];
 
     NSURLRequest *serviceRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
     communityServiceData = [NSMutableData data];
@@ -176,13 +192,15 @@
     rssData = [NSMutableData data];
     rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
 
-    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
-    notificationData = [NSMutableData data];
-    notificationUpdates = [[NSURLConnection alloc] initWithRequest:notifs delegate:self startImmediately:YES];
-
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=40.802721&lon=-74.448287&units=imperial"]];
     weatherData = [NSMutableData data];
     weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+- (void)startNotifsConnection {
+    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
+    notificationData = [NSMutableData data];
+    notificationUpdates = [[NSURLConnection alloc] initWithRequest:notifs delegate:self startImmediately:YES];
 }
 
 - (void)moveAlongWithNotif:(NSString *)title atTime:(NSDate *)fireDate {
@@ -280,7 +298,7 @@
         NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"lunchFromToday"];
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"lunchFromToday"];
     }
-
+    preserve = YES;
     BOOL late = ([self getHourOfDay] > 15) ? YES : NO;
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithLunchDay:(late) ? [self dayNameFromDate:[self dateByDistanceFromToday:1]] : [self dayNameFromDate:[NSDate date]]  showingTomorrow:late];
     [self.navigationController pushViewController:fvvc animated:YES];
@@ -598,9 +616,7 @@
     else if (connection == versionConnection) {
         NSString *fileText = [[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding];
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
-        // in production, use commented condition below instead of string comparison
-//        if ([fileText stringByReplacingOccurrencesOfString:@"." withString:@""].intValue > [infoDict[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""].intValue)
-        if (![fileText isEqualToString:infoDict[@"CFBundleShortVersionString"]]) {
+        if ([fileText stringByReplacingOccurrencesOfString:@"." withString:@""].intValue > [infoDict[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""].intValue) {
             [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
             [self saveFeedsWithObject:@"Update available! Tap to download it." andKey:@"strings"];
             [self saveFeedsWithObject:[UIImage imageNamed:@"download-7.png"] andKey:@"images"];
@@ -831,6 +847,17 @@
     else if ([iden isEqualToString:@"standard"]) {
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
         if (![str isEqualToString:@""]) {
+            if ([str isEqualToString:@"alerts"]) {
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"dressUps"];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"abs"];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"general"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+
+                [self startNotifsConnection];
+                [self.view makeToast:@"Done! Visit Settings to change receipt times and more." duration:3.0f position:@"top"];
+                [self update];
+                return;
+            }
             if ([str isEqualToString:@"Clubs"]) {
                 self.tabBarController.selectedIndex = 2;
                 return;
