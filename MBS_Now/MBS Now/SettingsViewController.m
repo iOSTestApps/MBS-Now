@@ -62,7 +62,7 @@
 
 - (void)startConnection {
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://gdyer.de/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
+    NSURLRequest *notifs = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/notifs.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20.0f];
     notificationData = [NSMutableData data];
     notificationUpdates = [[NSURLConnection alloc] initWithRequest:notifs delegate:self startImmediately:YES];
     [[NSUserDefaults standardUserDefaults] synchronize];

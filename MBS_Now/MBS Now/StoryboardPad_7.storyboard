@@ -1696,6 +1696,15 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
         <!--Clubs View Controller - Clubs-->
         <scene sceneID="eRD-dc-11j">
             <objects>
+                <searchDisplayController id="wOe-E8-gIl">
+                    <connections>
+                        <outlet property="delegate" destination="nD7-0x-BHH" id="krT-XS-QK7"/>
+                        <outlet property="searchContentsController" destination="nD7-0x-BHH" id="26M-bc-K4E"/>
+                        <outlet property="searchResultsDataSource" destination="nD7-0x-BHH" id="SDB-V4-5Uo"/>
+                        <outlet property="searchResultsDelegate" destination="nD7-0x-BHH" id="gbI-Uc-jGn"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EI9-hx-0gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="nD7-0x-BHH" customClass="ClubsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aWY-mu-P4T">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -1735,27 +1744,12 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                             <outlet property="delegate" destination="nD7-0x-BHH" id="Zl2-a1-I8T"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Clubs" id="fRc-wR-18S">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lrn-k5-uyS">
-                            <connections>
-                                <action selector="pushedAdd:" destination="nD7-0x-BHH" id="RJa-rc-OBN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Clubs" id="fRc-wR-18S"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="wOe-E8-gIl" id="SLV-LW-RWB"/>
                         <segue destination="BcJ-6t-KVt" kind="modal" identifier="add" id="hnb-uO-XoO"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EI9-hx-0gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="wOe-E8-gIl">
-                    <connections>
-                        <outlet property="delegate" destination="nD7-0x-BHH" id="krT-XS-QK7"/>
-                        <outlet property="searchContentsController" destination="nD7-0x-BHH" id="26M-bc-K4E"/>
-                        <outlet property="searchResultsDataSource" destination="nD7-0x-BHH" id="SDB-V4-5Uo"/>
-                        <outlet property="searchResultsDelegate" destination="nD7-0x-BHH" id="gbI-Uc-jGn"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-490" y="3495"/>
         </scene>
