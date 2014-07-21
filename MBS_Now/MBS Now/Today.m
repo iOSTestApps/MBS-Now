@@ -158,8 +158,17 @@
         tomorrowTextConnection = [[NSURLConnection alloc] initWithRequest:tmrwText delegate:self startImmediately:YES];
     }
 
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"todayReloads"]) {
+        // first time scheduling a text-based schedule notification
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"todayReloads"];
+    } else {
+        NSInteger tr = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayReloads"];
+        tr++;
+        [[NSUserDefaults standardUserDefaults] setInteger:tr forKey:@"todayReloads"];
+    }
+
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-    if (q<20 && ![self isReceivingAllNotifs]) {
+    if ((q<20 && ![self isReceivingAllNotifs]) || ([[NSUserDefaults standardUserDefaults] integerForKey:@"todayReloads"] < 20 && ![self isReceivingAllNotifs])) {
         [self saveFeedsWithObject:@"Tap to start receiving notifications" andKey:@"strings"];
         [self saveFeedsWithObject:[UIImage imageNamed:@"note-7.png"] andKey:@"images"];
         [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];

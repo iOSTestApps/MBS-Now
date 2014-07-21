@@ -15,6 +15,7 @@ Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you th
 
 We now have a YouTube demo, posted [here](http://youtu.be/_jhYwPW_TC8). It's a much more fluid (and exciting!) way to explore our interface.
 
+![Nice app, right?](https://raw.githubusercontent.com/mbsdev/media/master/marketing/cover-2.png)
 # More
 This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVProgressWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, and [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey.
 

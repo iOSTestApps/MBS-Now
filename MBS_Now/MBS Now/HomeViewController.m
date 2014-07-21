@@ -50,7 +50,7 @@
     if (q % AUTO == 0 && q != 0) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/save.php?text_box=%@", escapedDataString];
+        NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/upload_4.php?text_box=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];
