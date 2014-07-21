@@ -1,6 +1,6 @@
 # MBS Now
 
-... a free, student-run iOS app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to get a feel for what's here.
+... a free, student-run iOS and web app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to learn more about us and the app.
 
 
 > MBS Now admins: check/update [the wiki](https://github.com/gdyer/MBS-Now/wiki/Transition) for/with release information and commit info.
@@ -12,47 +12,13 @@
 Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school).
 
 ## Explore our UI
-### General
-Name (w/out "ViewController") | Screenshot
---- | --- | ---
-Home | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/HomeVC.png)
-Clubs | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/ClubsVC.png)
-Detail | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/DetailVC.png)
-FullPurpose | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/fullpurpose.png)
-RSVP | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/rsvp.png)
-Explore | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/ExploreVC.png)
-Settings | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/SettingsVC.png)
-Lunch | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/LunchVC.png)
-Forms | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/FormsVC.png)
-Data | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/DataVC.png)
-Offline | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/offline.png)
-Info | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/info.png)
-EA | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/distinctions.png)
-Widget | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/widget.png)
-Cal | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/cal.png)
-Data | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/data.png)
-Credentials | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/credentials.png)
-Directions | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/directions.png)
-About | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/about.png)
-Contact | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/contact.png)
-Bugs | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/bugs.png)
 
-### Content viewers
-These all have convenience initializers.
-
-Name (w/out "ViewController") | Screenshot
---- | --- | ---
-FormsViewer | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/formsviewer.png)
-Web | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/WebVC.png)
-OfflineViewer | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/offlineviewer.png)
-PhotoBrowser | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/photobrowser.png)
-SimpleWeb | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/simpleweb.png)
-Welcomes | [Here](http://campus.mbs.net/mbsnow/home/code/screenshots/welcomes.png)
+We now have a YouTube demo, posted [here](https://www.youtube.com/watch?v=0drtfEakNmQ). It's a much more fluid way to explore our interface.
 
 # More
 This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVProgressWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, and [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey.
 
-For images—launch screens, app icons, wallpapers, marketing stuff—go [here](http://campus.mbs.net/mbsnow/home/images).
+For images—launch screens, app icons, wallpapers, marketing stuff—go [here](https://github.com/mbsdev/media).
 
 MBS Now does not support iOS versions less than `7.0`
 
