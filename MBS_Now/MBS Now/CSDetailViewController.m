@@ -7,231 +7,174 @@
 //
 
 #import "CSDetailViewController.h"
-
+#import "FullPurposeViewController.h"
 @implementation CSDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"serviceViews"]) {
-        // first time viewing any opportunity
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"serviceViews"];
-    } else {
-        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"serviceViews"];
-        q++;
-        [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"serviceViews"];
-    }
 
-    if ([self.array[7]  isEqualToString: @"Ongoing"]) {
-        self.array[2] = @"No Date Specified";
-        self.array[3] = @"No Start Time Specified";
-        self.array[4] = @"No End Time Specified";
-    }
-    if ([self.array[2] isEqualToString:@""]) {
-        self.array[2] = @"No Date Specified";
-    }
-    if ([self.array[3] isEqualToString:@""]) {
-        self.array[3] = @"No Start Time Specified";
-    }
-    if ([self.array[4] isEqualToString:@""]) {
-        self.array[4] = @"No End Time Specified";
-    }
-    if ([self.array[5] isEqualToString:@""]) {
-        self.array[5] = @"No Details Specified";
-    }
-    NSString *stringg = self.array[6];
-    if ([stringg rangeOfString:@"@"].location == NSNotFound) {
-        self.array[6] = @"Invalid Email Address";
-        self.emailButton.enabled = NO;
-    } 
-   
-    self.emailButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    NSString *rem = self.details[0];
+    NSString *remDesc = self.descriptions[0];
+    [self.details removeObjectAtIndex:0];
+    [self.descriptions removeObjectAtIndex:0];
+    [self.details addObject:rem];
+    [self.descriptions addObject:remDesc];
 
-    self.navigationItem.title = self.array[1];
-    self.dateLabel.text = self.array[2];
-    self.startTimeLabel.text = self.array[3];
-    self.endTimeLabel.text = self.array[4];
-    self.detailsView.text = self.array[5];
-    NSString *lowerCase = [self.array[6] lowercaseString];
-    [self.emailButton setTitle:lowerCase forState:UIControlStateNormal];
+    self.navigationItem.title = self.details[0];
+
+    self.tableView.showsVerticalScrollIndicator = NO;
+
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
+    footer.backgroundColor = [UIColor clearColor];
+    self.tableView.tableFooterView = footer;
+
+    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(output)];
 }
 
-- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [self dismissViewControllerAnimated:YES completion:nil];
+#pragma mark Table view
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *iden = @"ReuseCell";
 
-    if (result == MFMailComposeResultSent) [SVProgressHUD showSuccessWithStatus:@"Sent!"];
-    else if (result == MFMailComposeResultFailed) [SVProgressHUD showErrorWithStatus:@"Failed to send!"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
+    if (cell == nil)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
+
+    NSString *info = _details[indexPath.row];
+    if ([info isEqualToString:@""]) {
+        cell.textLabel.text = @"Not provided";
+        cell.textLabel.textColor = [UIColor lightGrayColor];
+    } else
+        cell.textLabel.text = info;
+    cell.accessoryType = (indexPath.row == 5 || (info.length > 26 && [[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad)) ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+    cell.detailTextLabel.text = _descriptions[indexPath.row];
+	return cell;
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (actionSheet.tag == 44 && buttonIndex == 0) {
-        NSArray *objectsToShare = @[];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
 
-        if ([self.array[7] isEqualToString:@"Ongoing"]) {
-            NSString *stringg = [NSString stringWithFormat:@"%@ is an ongoing community service opportunity", self.array[1]];
-            objectsToShare = @[stringg];
-        } else {
-            //one time event
-        if (![self.array[2] isEqualToString:@"No Date Specified"] && ![self.array[3] isEqualToString:@"No Start Time Specified"] && ![self.array[4] isEqualToString:@"No End Time Specified"]) {
-            //everything provided
-            NSString *strngg = [NSString stringWithFormat:@"%@ is on %@ from %@ to %@.",self.array[1], self.array[2], self.array[3], self.array[4]];
-            objectsToShare = @[strngg];
-        } else if (![self.array[2] isEqualToString:@"No Date Specified"] && ![self.array[3] isEqualToString:@"No Start Time Specified"]) {
-            //everything but an end time
-            NSString *strng  = [NSString stringWithFormat:@"%@ is on %@ starting at %@.",self.array[1], self.array[2], self.array[3]];
-            objectsToShare = @[strng];
-        } else if (![self.array[2] isEqualToString:@"No Date Specified"]) {
-            NSString *strng = [NSString stringWithFormat:@"%@ is on %@.",self.array[1],self.array[2]];
-            objectsToShare = @[strng];
-        } else {
-            NSString *string = [NSString stringWithFormat:@"%@ is an ongoing community service oppurtunity.",self.array[1]];
-            objectsToShare = @[string];
-            }
-        }
-       
-        
-        UIActivityViewController *controller = [[UIActivityViewController alloc] initWithActivityItems:objectsToShare applicationActivities:nil];
-        
-        // Exclude all activities except AirDrop.
-        NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
-                                        UIActivityTypePostToWeibo,
-                                        UIActivityTypePrint,
-                                        UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
-                                        UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
-                                        UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
-        controller.excludedActivityTypes = excludedActivities;
-        
-        // Present the controller
-        [self presentViewController:controller animated:YES completion:nil];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.details.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 5) [self setUpMailWithTo:_details[indexPath.row] andSubject:_details[0] andBody:@""];
+    else if ([tableView cellForRowAtIndexPath:indexPath].accessoryType != UITableViewCellAccessoryNone) [self performSegueWithIdentifier:@"more" sender:self];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (NSString *)genBody {
+    NSString *ret = @"";
+    for (int x = 0; x<_details.count; x++)
+        ret = [ret stringByAppendingString:[NSString stringWithFormat:@"%@: %@\n", _descriptions[x], _details[x]]];
+    return ret;
+}
+
+#pragma mark Action sheet
+- (void)output {
+    if (sheet) {
+        [sheet dismissWithClickedButtonIndex:-1 animated:YES];
+        sheet = nil;
         return;
-    } else if (actionSheet.tag == 44 && buttonIndex == 1) {
-        if ([self.array[2] isEqualToString:@"No Date Specified"]) {
-            [SVProgressHUD showErrorWithStatus:@"Sorry, but there's no date associated with this event!"];
-        } else {
-            NSDateFormatter *format = [[NSDateFormatter alloc] init];
-            [format setDateFormat:@"h:mm a MM/dd/yy"];
-            [format setTimeZone:[NSTimeZone localTimeZone]];
-            NSString *dateString = [NSString stringWithFormat:@"%@ %@",self.array[3],self.array[2]];
-            NSDate *datee = [format dateFromString:dateString];
-            if ([[NSDate date] compare:datee] == NSOrderedAscending) {
-                //theres a date
-                if ([self.array[3] isEqualToString:@"No Start Time Specified"]) {
-                    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-                    [format setDateFormat:@"HH:mm MM/dd/yy"];
-                    [format setTimeZone:[NSTimeZone localTimeZone]];
-                    NSString *dateString = [NSString stringWithFormat:@"08:00 %@",self.array[2]];
-                    NSDate *date = [format dateFromString:dateString];
-                    UILocalNotification *lnf = [[UILocalNotification alloc] init];
-                    lnf.fireDate = date;
-                    lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
-                    lnf.timeZone = [NSTimeZone defaultTimeZone];
-                    [[UIApplication sharedApplication] scheduleLocalNotification:lnf];
-                    // NSString *striing = [NSString stringWithFormat:@"%@",lnf];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert Created" message:@"Alert created for 8:00 AM on the day of the event." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-                    [alert show];
-                    
-                } else {
-        
-                    UILocalNotification *lnf = [[UILocalNotification alloc] init];
-                    lnf.fireDate = [datee dateByAddingTimeInterval:-60*30]; //30 min before
-                    lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
-                    lnf.timeZone = [NSTimeZone defaultTimeZone];
-                    [[UIApplication sharedApplication] scheduleLocalNotification:lnf];
-                    // NSString *striing = [NSString stringWithFormat:@"%@",lnf];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert Created" message:@"Alert created for 30 minutes before start time" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-                    [alert show];
-                    
-                }
-            } else {
-                //event has already happened
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Event Has Passed" message:@"Sorry, but is seems like this event has already happened." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-                [alert show];
-            }
-         
-            
+    }
+    sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"\"%@\" service opportunity", self.details[0]] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Flag for review" otherButtonTitles:@"Email this post", nil];
+
+    [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0: {
+            [self flag];
+            break;
+        }
+        case 1: {
+            [self emailMeeting];
+            break;
         }
     }
-    
-   /* if ((actionSheet.tag == 2 && buttonIndex == 4)||(actionSheet.tag == 1 && buttonIndex == 0)||(actionSheet.tag == 3 && buttonIndex == 5)) {
-        UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-        CGSize pickerSize = [datePicker sizeThatFits:CGSizeZero];
-        datePicker.frame = CGRectMake(0, 356, pickerSize.width, pickerSize.height);
-        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        self.detailsTitle.hidden = YES;
-        self.detailsView.hidden = YES;
-        [self.view addSubview:datePicker];
-    } else if ((actionSheet.tag == 2 && buttonIndex == 0)||(actionSheet.tag == 3 && buttonIndex == 1)) {
-        [self scheduleNotificationAtTime:@"08:00 AM" isToday:YES];
-    } else if ((actionSheet.tag == 2 && buttonIndex == 1)||(actionSheet.tag == 3 && buttonIndex == 2)) {
-        [self scheduleNotificationAtTime:@"12:00 PM" isToday:YES];
-    } else if ((actionSheet.tag == 2 && buttonIndex == 2)||(actionSheet.tag == 3 && buttonIndex == 3)) {
-        [self scheduleNotificationAtTime:@"08:00 AM" isToday:NO];
-    } else if ((actionSheet.tag == 2 && buttonIndex == 3)||(actionSheet.tag == 3 && buttonIndex == 4)){
-        [self scheduleNotificationAtTime:@"12:00 PM" isToday:NO];
-    } else {
-        //must be an alert for start time, so tag = 3 and buttonIndex = 0
-        [self scheduleNotificationAtTime:self.array[3] isToday:YES];
-    } */
 }
-/*-(void)scheduleNotificationAtTime:(NSString *)time isToday:(BOOL)today {
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    format.dateFormat = @"HH:mm a MM/dd/yy";
-    NSString *dateString = [NSString stringWithFormat:@"%@ %@",time,self.array[2]];
-    NSDate *date = [format dateFromString:dateString];
-    UILocalNotification *lnf = [[UILocalNotification alloc] init];
-    lnf.fireDate = date;
-    if (today == YES) {
-        lnf.alertBody = [NSString stringWithFormat:@"%@ is today",self.navigationItem.title];
-        lnf.timeZone = [NSTimeZone defaultTimeZone];
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    sheet = nil;
+}
+
+- (void)flag {
+    if ([MFMailComposeViewController canSendMail] == YES) {
+        MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
+        composerView.mailComposeDelegate = self;
+        [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
+        [composerView setSubject:@"Flag meeting"];
+
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"delete" ofType:@"html"];
+        NSString *body = [[NSString stringWithContentsOfFile:path encoding:NSMacOSRomanStringEncoding error:nil] stringByAppendingString:[NSString stringWithFormat:@"<i>Request to delete: service post called \"%@\" created on %@.</i></font></div></body></html>", _details[0], _details[_details.count-1]]];
+
+        [composerView setMessageBody:body isHTML:YES];
+        [composerView setToRecipients:@[@"lucasfagan@verizon.net"]];
+        [self presentViewController:composerView animated:YES completion:nil];
 
     } else {
-        lnf.alertBody = [NSString stringWithFormat:@"%@ is tomorrow",self.navigationItem.title];
-        lnf.timeZone = [NSTimeZone defaultTimeZone];
+        [SVProgressHUD showErrorWithStatus:@"Your device can't send mail. Use FirstClass."];
     }
 
-    [[UIApplication sharedApplication] scheduleLocalNotification:lnf];
-}*/
+}
 
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+    if (result == MFMailComposeResultSent)
+        [SVProgressHUD showSuccessWithStatus:@"Queued for sending."];
+    else if (result == MFMailComposeResultFailed)
+        [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-#pragma mark Actions
-- (IBAction)emailButtonPushed:(id)sender {
+- (void)setUpMailWithTo:(NSString *)foo andSubject:(NSString *)bar andBody:(NSString *)body {
     if ([MFMailComposeViewController canSendMail] == YES) {
-        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-        picker.mailComposeDelegate = self;
-        [picker setSubject:@"I'm Interested"];
-        NSArray *toRecipients = @[self.emailButton.titleLabel.text];
-        [picker setToRecipients:toRecipients];
-        [self presentViewController:picker animated:YES completion:nil];
+        MFMailComposeViewController *composerView = [[MFMailComposeViewController alloc] init];
+        composerView.mailComposeDelegate = self;
+        [composerView setModalPresentationStyle:UIModalPresentationFormSheet];
+        [composerView setToRecipients:@[foo]];
+        [composerView setSubject:bar];
+        [composerView setMessageBody:body isHTML:NO];
+        [self presentViewController:composerView animated:YES completion:nil];
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail" message:@"This device cannot send mail. Make sure you have an internet connection and an email account set up in settings." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Aw, snap!" message:[NSString stringWithFormat:@"Your device can't send mail."]  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
         [alert show];
     }
 }
 
-- (IBAction)exportButton:(id)sender {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Share",@"Set up alert", nil];
-    as.tag = 44;
-    [as showFromBarButtonItem:_exportButton animated:YES];
+- (void)emailMeeting {
+    [self setUpMailWithTo:@"" andSubject:@"Service opportunity from MBS Now" andBody:[self genBody]];
 }
-/* - (IBAction)exportButton:(id)sender {
- 
- NSString *a = [NSString stringWithFormat:@"Set up reminder for %@",self.navigationItem.title];
- UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:a delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Custom alert", nil];
- sheet.tag = 1;
- if ([self.array[7] isEqualToString:@"Ongoing"]) {
- [sheet showFromBarButtonItem:self.exportButton animated:YES];
- } else {
- if ([self.array[2] isEqualToString:@"No Date Specified"]) {
- [sheet showFromBarButtonItem:self.exportButton animated:YES];
- }
- else if ([self.array[3] isEqualToString:@"No Start Time Specified"] && !([self.array[2] isEqualToString:@"No Date Specified"])) {
- UIActionSheet *sheet2 = [[UIActionSheet alloc] initWithTitle:a delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"8:00 AM on day of event",@"12:00 PM on day of event",@"8:00 AM on day before event",@"12:00 PM on day before event", @"Custom alert",nil];
- sheet2.tag = 2;
- [sheet2 showFromBarButtonItem:self.exportButton animated:YES];
- } else {
- UIActionSheet *sheet3 = [[UIActionSheet alloc] initWithTitle:a delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Start time on day of event",@"8:00 AM on day of event",@"12:00 PM on day of event",@"8:00 AM on day before event",@"12:00 PM on day before event", @"Custom alert",nil];
- [sheet3 showFromBarButtonItem:self.exportButton animated:YES];
- sheet3.tag = 3;
- }
- }
- } */
+
+#pragma mark Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"more"]) {
+        [segue.destinationViewController setNavTitle:_details[0]];
+        [segue.destinationViewController setFullPurpose:_details[[self.tableView indexPathForSelectedRow].row]];
+    }
+}
+
+#pragma mark Rotation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
+    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+}
+
+#pragma mark Alerts
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        UIPasteboard *pb = [UIPasteboard generalPasteboard];
+        if (alertView.tag == 1) {
+            pb.string = [NSString stringWithFormat:@"[send message to lucasfagan@verizon.net]\nRequest to delete %@ created at %@", _details[0], _details[_details.count-1]];
+        } else if (alertView.tag == 2) {
+            [UIPasteboard generalPasteboard].string = [[self genBody] stringByAppendingString:@"\n\nOpen MBS Now Service for more information."];
+            [SVProgressHUD showSuccessWithStatus:@"Copied!"];
+        }
+    }
+}
+
 @end

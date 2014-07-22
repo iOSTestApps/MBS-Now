@@ -50,10 +50,8 @@
     NSArray *names = [self.nameField.text componentsSeparatedByString:@" "];
     NSString *m = [NSString stringWithFormat:@"fn=%@&ln=%@&e=%@&cn=%@&mt=%@&r=%@", names[0], names[1], [self.details[5] componentsSeparatedByString:@": "][1], [_details[0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [_details[1] stringByReplacingOccurrencesOfString:@"/" withString:@"-"], _boolLabel.text];
 
-    NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/rsvp.php?%@", m];
-    NSLog(@"%@", urlString);
+    NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/rsvp.php?%@", m];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    NSLog(@"%@", request);
 
     [request setHTTPMethod:@"GET"];
 

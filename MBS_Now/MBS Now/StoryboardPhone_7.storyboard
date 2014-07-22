@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -1482,6 +1482,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Clubs" id="F18-WH-gTJ">
+                        <barButtonItem key="backBarButtonItem" title="All" id="qlX-Oo-Yfw"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q5q-aR-o3n">
                             <connections>
                                 <action selector="pushedAdd:" destination="qLy-T0-qo1" id="IaW-Yc-AqW"/>
@@ -1869,10 +1870,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1032" y="1189"/>
         </scene>
-        <!--View Controller - Community Service-->
+        <!--View Controller - All-->
         <scene sceneID="osb-gW-VSG">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="x6O-mg-rUi" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="All" automaticallyAdjustsScrollViewInsets="NO" id="x6O-mg-rUi" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MBg-oI-eUr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1916,6 +1917,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Community Service" id="nx7-79-KYF">
+                        <barButtonItem key="backBarButtonItem" title="All" id="A4W-1F-DrG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5Zh-P4-TT6">
                             <connections>
                                 <segue destination="32e-UB-Zfu" kind="modal" identifier="add" id="ggG-lS-L6W"/>
@@ -1925,7 +1927,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="yfn-8F-mcB" id="bj7-eC-dKQ"/>
-                        <segue destination="FtO-fY-UlP" kind="push" identifier="csshowdetails" id="7wG-we-jBy"/>
+                        <segue destination="sec-gV-H9E" kind="push" identifier="csshowdetails" id="V2T-0d-GAb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgM-5U-Iid" sceneMemberID="firstResponder"/>
@@ -1933,104 +1935,52 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             <point key="canvasLocation" x="-1788" y="3060"/>
         </scene>
         <!--Detail View Controller-->
-        <scene sceneID="g8O-gk-bls">
+        <scene sceneID="Snb-t4-M36">
             <objects>
-                <viewController id="FtO-fY-UlP" customClass="CSDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZgM-1W-vh9">
+                <tableViewController id="sec-gV-H9E" customClass="CSDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="2KO-SX-6e8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLU-mP-WhF">
-                                <rect key="frame" x="20" y="82" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eNV-ee-qOD">
-                                <rect key="frame" x="20" y="161" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7oL-zI-b4y">
-                                <rect key="frame" x="20" y="238" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tbd-US-oLz">
-                                <rect key="frame" x="20" y="267" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2ZF-i1-HSq">
-                                <rect key="frame" x="20" y="190" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Wb-DB-Vjo">
-                                <rect key="frame" x="20" y="111" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R6U-Db-2Il">
-                                <rect key="frame" x="20" y="314" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Sb-Px-xZF">
-                                <rect key="frame" x="20" y="395" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" id="4QG-IR-yWD">
-                                <rect key="frame" x="20" y="424" width="280" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tfD-vv-TG4">
-                                <rect key="frame" x="20" y="343" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="emailButtonPushed:" destination="FtO-fY-UlP" eventType="touchUpInside" id="KYB-YD-jkH"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="pcr-4N-819">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="rac-1S-872">
-                            <connections>
-                                <action selector="exportButton:" destination="FtO-fY-UlP" id="avR-Pp-RzK"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReuseCell" textLabel="qqT-pQ-6CJ" detailTextLabel="MC7-JR-Z6W" style="IBUITableViewCellStyleSubtitle" id="KeX-kQ-uOu">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KeX-kQ-uOu" id="eE4-Y5-9RV">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qqT-pQ-6CJ">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MC7-JR-Z6W">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="sec-gV-H9E" id="g1R-Lb-9mg"/>
+                            <outlet property="delegate" destination="sec-gV-H9E" id="VL5-bT-Q4S"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="zkK-Mb-k6h"/>
                     <connections>
-                        <outlet property="dateLabel" destination="0Wb-DB-Vjo" id="pEw-oU-4CV"/>
-                        <outlet property="detailsTitle" destination="8Sb-Px-xZF" id="cqN-uG-uod"/>
-                        <outlet property="detailsView" destination="4QG-IR-yWD" id="JL5-Yw-ik5"/>
-                        <outlet property="emailButton" destination="tfD-vv-TG4" id="e3i-yw-OsC"/>
-                        <outlet property="endTimeLabel" destination="tbd-US-oLz" id="DTD-OE-kwA"/>
-                        <outlet property="exportButton" destination="rac-1S-872" id="6tS-S1-FGa"/>
-                        <outlet property="startTimeLabel" destination="2ZF-i1-HSq" id="WkU-v3-37M"/>
+                        <segue destination="C8K-7a-guS" kind="push" identifier="more" id="FEb-6a-Dfo"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0cZ-fq-9JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UJa-JR-DVo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1427" y="3358"/>
+            <point key="canvasLocation" x="-1209" y="3447"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="1MV-K6-L5z">
@@ -2129,10 +2079,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="axq-Vb-zHP"/>
+        <segue reference="FEb-6a-Dfo"/>
         <segue reference="YN7-qv-aKn"/>
-        <segue reference="ggG-lS-L6W"/>
-        <segue reference="CP7-J2-2T1"/>
-        <segue reference="LMc-Mf-m1x"/>
         <segue reference="3MT-6i-bVb"/>
+        <segue reference="LMc-Mf-m1x"/>
     </inferredMetricsTieBreakers>
 </document>

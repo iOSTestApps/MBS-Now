@@ -48,16 +48,15 @@
 
 #pragma mark Table view
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *iden = @"ReuseCell";
 
-    static NSString *simpleTableIdentifier = @"ReuseCell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
 
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
     }
-    cell.textLabel.text = [self.details objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [self.descriptions objectAtIndex:indexPath.row];
+    cell.textLabel.text = self.details[indexPath.row];
+    cell.detailTextLabel.text = self.descriptions[indexPath.row];
     if (indexPath.row > 3 && indexPath.row != 7) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if ((indexPath.row == 4) && ([[self.details objectAtIndex:4] length] > 26)) {

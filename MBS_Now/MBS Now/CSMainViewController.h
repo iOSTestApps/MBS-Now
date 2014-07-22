@@ -17,6 +17,7 @@
 @property (nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *footer;
+@property (strong, nonatomic) NSArray *descs;
 - (void)reloadData;
 
 @end

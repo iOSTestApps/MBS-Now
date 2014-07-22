@@ -8,17 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+@interface CSDetailViewController : UITableViewController <UIAlertViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
+    UIActionSheet *sheet;
+}
 
-@interface CSDetailViewController : UIViewController  <MFMailComposeViewControllerDelegate, UIActionSheetDelegate>
-@property (nonatomic) NSMutableArray *array;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *emailButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *exportButton;
-@property (weak, nonatomic) IBOutlet UITextView *detailsView;
-@property (weak, nonatomic) IBOutlet UILabel *detailsTitle;
+@property (strong, nonatomic) NSMutableArray *descriptions;
+@property (strong, nonatomic) NSMutableArray *details;
+@property (assign) int *detailIndexPath;
 
-- (IBAction)emailButtonPushed:(id)sender;
-- (IBAction)exportButton:(id)sender;
 @end

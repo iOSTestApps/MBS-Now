@@ -522,6 +522,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    _feeds = nil;
     NSLog(@"URL causing failure: %@", connection.currentRequest.URL.absoluteString);
     [self.refreshControl endRefreshing];
     _ret = CONNECTION_FAILTURE;
@@ -667,7 +668,7 @@
             if ([object isKindOfClass:[NSDictionary class]]) {
                 NSString *f = object[@"weather"][0][@"description"];
                 NSString *t = object[@"main"][@"temp"];
-                NSString *weather = [NSString stringWithFormat:@"%@%@ at %.0f\u00B0F at MBS", [f substringToIndex:1].uppercaseString, [f substringFromIndex:1], [t floatValue]];
+                NSString *weather = [NSString stringWithFormat:@"%@%@ at %.0f\u00B0F over MBS", [f substringToIndex:1].uppercaseString, [f substringFromIndex:1], [t floatValue]];
 
                 [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
                 [self saveFeedsWithObject:weather andKey:@"strings"];

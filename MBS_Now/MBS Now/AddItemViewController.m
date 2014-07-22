@@ -36,9 +36,7 @@
         NSString *html = [self.webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
         edit = [[html componentsSeparatedByString:@"<a class=\"ss-bottom-link\" href=\""][1] componentsSeparatedByString:@"\" title=\"Save this link to edit your response later.\""][0];
         [[UIPasteboard generalPasteboard] setString:edit];
-        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://gdyer.de/item_success.php?e=%@n=%@", edit, [_nameInit stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]]]];
-
-        NSLog(@"http://gdyer.de/item_success.php?e=%@&n=%@", edit, [_nameInit stringByReplacingOccurrencesOfString:@" " withString:@"%20"]);
+        [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/item_success.php?e=%@&n=%@", edit, [_nameInit stringByReplacingOccurrencesOfString:@" " withString:@"%20"]]]]];
 
         return;
     }

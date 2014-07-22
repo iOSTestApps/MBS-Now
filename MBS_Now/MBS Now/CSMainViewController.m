@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Community Service";
-    
+
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5) ? 20 : 40)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
@@ -58,17 +58,19 @@
     }
     else {
         cell.textLabel.text = self.array[indexPath.row][1];
-        cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"On %@", self.array[indexPath.row][2]] : @"Ongoing Event";
+        cell.detailTextLabel.text = ([self.array[indexPath.row][7] isEqualToString:@"One Time Event"] && (![self.array[indexPath.row][2] isEqualToString:@""])) ? [NSString stringWithFormat:@"Happening on %@", self.array[indexPath.row][2]] : @"Ongoing Event";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
 	return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self.array containsObject:@"Connection failure!"]) {
         [self performSegueWithIdentifier:@"csshowdetails" sender:self];
     }
 }
+
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.array[indexPath.row] isKindOfClass:[NSString class]]) {
         return NO;
@@ -169,8 +171,11 @@
         NSArray *dummy = [foo componentsSeparatedByString:@","];
         [self.array addObject:dummy];
     }
+    _descs = _array[0];
     if (self.array.count != 0) [self.array removeObjectAtIndex:0];
     if (_array.count > 1) ((UIBarButtonItem *)self.navigationItem.leftBarButtonItems[0]).enabled = YES;
+
+//    NSLog(@"%@", _array[0]);
 
     [[NSUserDefaults standardUserDefaults] setObject:_array forKey:@"serviceLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -241,8 +246,10 @@
         [segue.destinationViewController setNameInit:@"service post"];
         [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
     }
-    else if ([segue.identifier isEqualToString:@"csshowdetails"])
-        ((CSDetailViewController *)segue.destinationViewController).array = self.array[indexPath.row];
+    else if ([segue.identifier isEqualToString:@"csshowdetails"]) {
+        [segue.destinationViewController setDetails:self.array[indexPath.row]];
+        [segue.destinationViewController setDescriptions:_descs.mutableCopy];
+    }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

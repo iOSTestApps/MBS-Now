@@ -1444,6 +1444,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Community Service" id="Fpt-Pa-rTJ">
+                        <barButtonItem key="backBarButtonItem" title="All service posts" id="Y5j-xg-wea"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="6nQ-Ro-ptD">
                             <connections>
                                 <segue destination="BcJ-6t-KVt" kind="modal" identifier="add" id="6yJ-Ab-O7M"/>
@@ -1452,12 +1453,59 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8tf-wI-Rqq" id="XXW-Ad-0fs"/>
-                        <segue destination="pSl-9h-fa6" kind="push" identifier="csshowdetails" id="pxF-YW-7cr"/>
+                        <segue destination="G8u-qd-167" kind="push" identifier="csshowdetails" id="ooL-jv-oqG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d7z-UL-bAp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-565" y="4939"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Ozi-ra-blf">
+            <objects>
+                <tableViewController id="G8u-qd-167" customClass="CSDetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MHY-fd-x2c">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReuseCell" textLabel="fEO-Tm-Ygb" detailTextLabel="tYz-GZ-QeS" style="IBUITableViewCellStyleSubtitle" id="mnz-9g-tDS">
+                                <rect key="frame" x="0.0" y="86" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mnz-9g-tDS" id="mg8-OF-Ty8">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fEO-Tm-Ygb">
+                                            <rect key="frame" x="15" y="3" width="34" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tYz-GZ-QeS">
+                                            <rect key="frame" x="15" y="25" width="43" height="15"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="G8u-qd-167" id="hwO-Z8-QR9"/>
+                            <outlet property="delegate" destination="G8u-qd-167" id="R2v-YI-30G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="eyd-Pc-rKc">
+                        <barButtonItem key="backBarButtonItem" title="Post" id="7jY-Cm-7P6"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WkP-7C-LTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="403" y="5500"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="N18-VH-B0e">
@@ -1497,105 +1545,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnw-cO-fGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="403" y="4383"/>
-        </scene>
-        <!--Detail View Controller - Test-->
-        <scene sceneID="t4Y-tU-Obl">
-            <objects>
-                <viewController id="pSl-9h-fa6" customClass="CSDetailViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vKg-FQ-bP5">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wSu-RW-P0D">
-                                <rect key="frame" x="20" y="147" width="728" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vz5-yZ-fPo">
-                                <rect key="frame" x="20" y="197" width="728" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pGe-Zw-LjV">
-                                <rect key="frame" x="20" y="277" width="728" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lQM-qe-CBb">
-                                <rect key="frame" x="20" y="327" width="728" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bu1-pB-ilH">
-                                <rect key="frame" x="20" y="409" width="728" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YlV-dW-eqs">
-                                <rect key="frame" x="20" y="459" width="728" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zvk-i6-y1Q">
-                                <rect key="frame" x="20" y="539" width="728" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gvu-xz-R3M">
-                                <rect key="frame" x="20" y="675" width="728" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AR3-Fe-h34">
-                                <rect key="frame" x="20" y="594" width="728" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="emailButtonPushed:" destination="pSl-9h-fa6" eventType="touchUpInside" id="SLV-bT-kSJ"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="center" id="5MB-mr-wvo">
-                                <rect key="frame" x="157" y="719" width="454" height="164"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Test" id="Dzn-1l-GPx">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="JW7-xU-tL5">
-                            <connections>
-                                <action selector="exportButton:" destination="pSl-9h-fa6" id="wGi-1g-d4a"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="dateLabel" destination="Vz5-yZ-fPo" id="G0A-u7-mqj"/>
-                        <outlet property="detailsTitle" destination="gvu-xz-R3M" id="5VE-y5-NfW"/>
-                        <outlet property="detailsView" destination="5MB-mr-wvo" id="ZG3-lg-Tie"/>
-                        <outlet property="emailButton" destination="AR3-Fe-h34" id="5cj-xz-hCm"/>
-                        <outlet property="endTimeLabel" destination="YlV-dW-eqs" id="qkT-tk-OXq"/>
-                        <outlet property="exportButton" destination="JW7-xU-tL5" id="bxy-ym-wdF"/>
-                        <outlet property="startTimeLabel" destination="lQM-qe-CBb" id="ZcS-Lh-mYq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="seq-zq-Np9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="415" y="5434"/>
         </scene>
         <!--Cal View Controller - Listings-->
         <scene sceneID="13">
@@ -1696,15 +1645,6 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
         <!--Clubs View Controller - Clubs-->
         <scene sceneID="eRD-dc-11j">
             <objects>
-                <searchDisplayController id="wOe-E8-gIl">
-                    <connections>
-                        <outlet property="delegate" destination="nD7-0x-BHH" id="krT-XS-QK7"/>
-                        <outlet property="searchContentsController" destination="nD7-0x-BHH" id="26M-bc-K4E"/>
-                        <outlet property="searchResultsDataSource" destination="nD7-0x-BHH" id="SDB-V4-5Uo"/>
-                        <outlet property="searchResultsDelegate" destination="nD7-0x-BHH" id="gbI-Uc-jGn"/>
-                    </connections>
-                </searchDisplayController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EI9-hx-0gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="nD7-0x-BHH" customClass="ClubsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aWY-mu-P4T">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -1750,6 +1690,15 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <segue destination="BcJ-6t-KVt" kind="modal" identifier="add" id="hnb-uO-XoO"/>
                     </connections>
                 </tableViewController>
+                <searchDisplayController id="wOe-E8-gIl">
+                    <connections>
+                        <outlet property="delegate" destination="nD7-0x-BHH" id="krT-XS-QK7"/>
+                        <outlet property="searchContentsController" destination="nD7-0x-BHH" id="26M-bc-K4E"/>
+                        <outlet property="searchResultsDataSource" destination="nD7-0x-BHH" id="SDB-V4-5Uo"/>
+                        <outlet property="searchResultsDelegate" destination="nD7-0x-BHH" id="gbI-Uc-jGn"/>
+                    </connections>
+                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EI9-hx-0gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-490" y="3495"/>
         </scene>
@@ -2036,9 +1985,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="hnb-uO-XoO"/>
-        <segue reference="P0c-K7-di6"/>
         <segue reference="ese-uN-3RG"/>
+        <segue reference="P0c-K7-di6"/>
         <segue reference="ICH-Gy-RpE"/>
+        <segue reference="6yJ-Ab-O7M"/>
     </inferredMetricsTieBreakers>
 </document>

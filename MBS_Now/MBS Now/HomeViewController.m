@@ -46,7 +46,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         return;
     }
-
+    NSLog(@"%d", q);
     if (q % AUTO == 0 && q != 0) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -56,7 +56,7 @@
         [request setHTTPMethod:@"GET"];
         sendingData = [NSURLConnection connectionWithRequest:request delegate:self];
         if (sendingData)
-            [SVProgressHUD showWithStatus:@"Sending data"];
+            [SVProgressHUD showWithStatus:@"Sending data..."];
         // even though this doesn't account for a failure to send, it's better to avoid a delay
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
