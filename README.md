@@ -23,6 +23,8 @@ For images—launch screens, app icons, wallpapers, marketing stuff—go [here](
 
 MBS Now does not support iOS versions less than `7.0`
 
+To run our Python files, it may be helpful to download and run our virtual environment [here](https://github.com/mbsdev/mbsdev.github.io).
+
 [Contact us](mailto:team@gdyer.de).
 
 [Some rights reserved](https://creativecommons.org/licenses/by-nc/3.0/)
