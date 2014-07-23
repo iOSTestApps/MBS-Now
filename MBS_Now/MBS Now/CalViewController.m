@@ -19,6 +19,10 @@
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) [self loadWithDefaults];
     else [self controlChange:self];
 
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        _navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(stop)];
+        return;
+    }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(stop)];
 }
 
@@ -26,7 +30,7 @@
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
     NSString *foo = [NSString stringWithFormat:@"http://mbshomework.wikispaces.com/%ldth+Grade", (long)q];
     urlToLoad = [NSURL URLWithString:foo];
-    control.selectedSegmentIndex = 1;
+    _control.selectedSegmentIndex = 1;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:urlToLoad cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0f];
 
@@ -70,7 +74,7 @@
 
 - (IBAction)controlChange:(id)sender {
     [_webView stopLoading];
-    switch (control.selectedSegmentIndex) {
+    switch (_control.selectedSegmentIndex) {
         case 0:
             urlToLoad = [NSURL URLWithString:@"http://www.mbs.net/pagecalpop.cfm?p=1424&calview=grid&period=week"];
             break;
@@ -87,7 +91,7 @@
             break;
     }
 
-    if (control.selectedSegmentIndex == 1) {
+    if (_control.selectedSegmentIndex == 1) {
         // MS HW
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"])
             [self loadWithDefaults];

@@ -22,6 +22,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(pushedDone:)];
+    right.direction = UISwipeGestureRecognizerDirectionRight;
+    [right setNumberOfTouchesRequired:1];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) [self.view addGestureRecognizer:right];
+
     for (UITableViewCell *cell in cells) {
         cell.backgroundColor = [UIColor colorWithWhite:1.0f alpha:.8f];
         cell.layer.shadowOffset = CGSizeMake(1, 0);

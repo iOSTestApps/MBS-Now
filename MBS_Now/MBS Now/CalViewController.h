@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CalViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, UIAlertViewDelegate> {
-
-    IBOutlet UISegmentedControl *control;
     NSURL *urlToLoad;
 }
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *control;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;
 @property (nonatomic, assign) NSMutableData *receivedData;
 
