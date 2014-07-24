@@ -6,4 +6,4 @@ Press the question mark to view what we collect.
 
 To see your own current data, tap the button below. Press the book icon to view the upload history for this device.
 
-Visit campus.mbs.net/mbsnow/home/meta/privacy.php to learn more.
+Visit mbsdev.github.io/privacy.html to learn more.

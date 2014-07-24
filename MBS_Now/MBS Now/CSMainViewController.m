@@ -241,7 +241,6 @@
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSIndexPath *indexPath = _tableView.indexPathForSelectedRow;
-
     if ([segue.identifier isEqualToString:@"add"]) {
         [segue.destinationViewController setNameInit:@"service post"];
         [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];

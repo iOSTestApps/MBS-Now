@@ -6,9 +6,10 @@ Credits:
 • Clubs and service powered by Google
 • Offline schedules by Ms. Jaimi Belfi
 • Special thanks to Mrs. Barbara Napholtz
+• Special thanks to the GitHub team
 
 Past credits:
 • Programming and design: Graham Dyer
 • App icon and splash: Lena Rajan
 
-Use MBS Now on your desktop computer! Visit campus.mbs.net/mbsnow to start.
+Use MBS Now in your web-browser! Visit mbsdev.github.io to start.

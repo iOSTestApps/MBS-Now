@@ -41,10 +41,11 @@
         [alert show];
         return;
     }
-    if (![self notify] || self.nameField.text.length < 4 || ([self.nameField.text rangeOfString:@" "].location == NSNotFound || [self.nameField.text componentsSeparatedByString:@" "].count > 2 || [self.nameField.text rangeOfString:@"&"].location != NSNotFound || [self.nameField.text rangeOfString:@"="].location != NSNotFound || [self.nameField.text rangeOfString:@"?"].location != NSNotFound)) {
+    if ([self notify]) {
         [SVProgressHUD showErrorWithStatus:@"Enter your full name with a single space character!"];
         return;
     }
+
     [[NSUserDefaults standardUserDefaults] setObject:self.nameField.text forKey:@"yourName"];
 
     NSArray *names = [self.nameField.text componentsSeparatedByString:@" "];
@@ -123,7 +124,8 @@
     [SVProgressHUD dismiss];
     NSString *echo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([echo isEqualToString:@"sent"]) {
-        [SVProgressHUD showSuccessWithStatus:@"Sent! We'll also remind you 5 minutes before the meeting starts."];
+        UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Sent!" message:@"We'll also remind you 5 minutes before the meeting starts." delegate:self cancelButtonTitle:@"Thanks!" otherButtonTitles:nil, nil];
+        [a show];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:self.details[7]];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
