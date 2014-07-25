@@ -2,13 +2,8 @@ import csv,datetime
 from os.path import expanduser
 home = expanduser("~")
 divs = []
-# URL for notifications for 14-15 year:
-# http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2014
-# ^ Click on CSV
 
-# find new general alert possibilities here: http://www.mbs.net/page.cfm?do=calsearch&p=1424&keywords=service&eventsorting=past
-
-# TODO: possibly more general notifications
+print("Hey! Since version 4.0, there's a better version of this script that actually generates notifs.txt for you. It's in this same directory called notifications4.py")
 
 def hasNumbers(inputString):
     return any(char.isdigit() for char in inputString)

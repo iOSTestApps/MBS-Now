@@ -4,7 +4,6 @@ Credits:
 • Programming and design: Lucas Fagan
 • Various open-source libraries
 • Clubs and service powered by Google
-• Offline schedules by Ms. Jaimi Belfi
 • Special thanks to Mrs. Barbara Napholtz
 • Special thanks to the GitHub team
 

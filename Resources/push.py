@@ -6,8 +6,8 @@ os.chdir(to_cd)
 
 auto_pull = input('Auto-pull now? (y/anything): ')
 if auto_pull is 'y':
-	os.system("python Resources/pull.py")
-
+	os.system("git pull https://github.com/mbsdev/MBS-Now.git")
+	
 auto_commit = input('Commit message (type "q" to quit): ')
 if auto_commit is 'q':
 	raise SystemExit

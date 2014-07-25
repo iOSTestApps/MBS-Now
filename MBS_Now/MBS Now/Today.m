@@ -420,14 +420,13 @@
         NSDate *fireTime = [self dateFromNotificationString:[s[0] stringByReplacingOccurrencesOfString:@"$" withString:hour]];
         NSComparisonResult result = [[NSDate date] compare:fireTime];
         if (result == NSOrderedAscending || result == NSOrderedSame) {
-            NSLog(@"%@", s[0]);
             [self fireNotificationAtTime:fireTime withMessage:s[1]];
         }
     }
 }
 
 - (void)genFromPrefs:(NSString *)pack {
-    NSLog(@"generating notifcations in Today");
+    NSLog(@"generating from prefs");
     NSArray *lists = [pack componentsSeparatedByString:@"^"];
 
     // 8 possibilities encapsulated here
@@ -438,7 +437,7 @@
         [self generateNotifications:lists[2] andCalculateTime:NO];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"])
-        [self generateNotifications:lists[0] andCalculateTime:NO];
+        [self generateNotifications:lists[0] andCalculateTime:YES];
 }
 
 #pragma mark More

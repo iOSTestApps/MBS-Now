@@ -76,7 +76,7 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" id="5SZ-VN-CIX">
-                    <rect key="frame" x="0.0" y="456" width="320" height="65"/>
+                    <rect key="frame" x="0.0" y="432" width="320" height="89"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <string key="text">Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit Lorem ipsum dolor sit er elit </string>
