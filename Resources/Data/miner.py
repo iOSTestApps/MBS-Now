@@ -7,7 +7,7 @@ def avg(list):
         sum += float(elm[0])
     return(str(sum/(len(list)*1.0)))
 
-url = 'http://campus.mbs.net/mbsnow/scripts/data.txt'
+url = 'http://gdyer.de/data.txt'
 f = urllib.request.urlopen(url)
 data = f.read()
 

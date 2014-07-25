@@ -3,7 +3,7 @@ import urllib.request, urllib.parse, urllib.error, datetime, os
 from os.path import expanduser
 home = expanduser("~")
 
-# run this on a SATURDAY, SUNDAY, or MONDAY if you only want to do it once per week.
+# run this on a SATURDAY, sunday, or monday if you only want to do it once per week.
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 weekdays = days[0:5]

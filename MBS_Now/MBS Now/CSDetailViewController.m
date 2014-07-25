@@ -13,15 +13,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSString *rem = self.details[0];
-    NSString *remDesc = self.descriptions[0];
-    [self.details removeObjectAtIndex:0];
-    [self.descriptions removeObjectAtIndex:0];
-    [self.details addObject:rem];
-    [self.descriptions addObject:remDesc];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"M/d/yyyy h:m:ss"];
+    if ([format dateFromString:self.details[0]]) {
+        NSString *rem = self.details[0];
+        NSString *remDesc = self.descriptions[0];
+        [self.details removeObjectAtIndex:0];
+        [self.descriptions removeObjectAtIndex:0];
+        [self.details addObject:rem];
+        [self.descriptions addObject:remDesc];
+    }
 
     self.navigationItem.title = self.details[0];
-
     self.tableView.showsVerticalScrollIndicator = NO;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -32,6 +35,11 @@
 
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(output)];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    _details = _descriptions = nil;
 }
 
 #pragma mark Table view

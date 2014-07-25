@@ -13,9 +13,10 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, NSURLConnectionDelegate> {
     UIActionSheet *sheet;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) NSMutableArray *array;
 @property (nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSString *footer;
 @property (strong, nonatomic) NSArray *descs;
 - (void)reloadData;

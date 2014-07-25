@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Community Service";
-
+    
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, (IS_IPHONE_5) ? 20 : 40)];
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
@@ -32,6 +32,11 @@
     [self.tableView addSubview:self.refreshControl];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)];
     self.navigationItem.leftBarButtonItem.enabled = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 #pragma mark Table View
@@ -66,17 +71,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (![self.array containsObject:@"Connection failure!"]) {
+    if (![self.array containsObject:@"Connection failure!"])
         [self performSegueWithIdentifier:@"csshowdetails" sender:self];
-    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.array[indexPath.row] isKindOfClass:[NSString class]]) {
-        return NO;
-    } else {
-        return YES;
-    }
+    return ([self.array[indexPath.row] isKindOfClass:[NSString class]]) ? NO : YES;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -246,10 +246,10 @@
         [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
     }
     else if ([segue.identifier isEqualToString:@"csshowdetails"]) {
+        NSLog(@"%@", self.array[indexPath.row]);
         [segue.destinationViewController setDetails:self.array[indexPath.row]];
         [segue.destinationViewController setDescriptions:_descs.mutableCopy];
     }
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

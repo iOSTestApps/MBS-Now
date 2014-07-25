@@ -12,6 +12,7 @@
     UIActionSheet *sheet;
 }
 
+
 @property (strong, nonatomic) NSMutableArray *descriptions;
 @property (strong, nonatomic) NSMutableArray *details;
 @property (assign) int *detailIndexPath;
