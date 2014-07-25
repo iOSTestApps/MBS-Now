@@ -51,7 +51,7 @@
 
     [self setUpButtonWithImageName:@"grey" andButton:msChange];
 
-    [self setUpButtonWithImageName:([[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"] ? @"grey" : @"black") andButton:msClear];
+    [self setUpButtonWithImageName:(([[NSUserDefaults standardUserDefaults] objectForKey:@"division"] || [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"]) ? @"grey" : @"black") andButton:msClear];
 
     dressTime.text = ([[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"]) ? [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"] : @"7:00 AM";
 }
@@ -103,21 +103,23 @@
 }
 
 - (IBAction)pushedClearGrade:(id)sender {
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"] || [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"msGrade"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"division"];
         [SVProgressHUD showSuccessWithStatus:@"Grade cleared"];
         [self dismissViewControllerAnimated:YES completion:nil];
     } else [SVProgressHUD showErrorWithStatus:@"No grade has been saved"];
 }
 
 - (IBAction)pushedChangeGrade:(id)sender {
-    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"];
-    NSString *foo = (q == 0) ? @"No MS grade has been saved" : [NSString stringWithFormat:@"Currently in %ldth grade", (long)q];
+    NSString *g = [NSString stringWithFormat:@"%dth", [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"]];
+    if ([g isEqualToString:@"0th"] && [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]) g = [NSString stringWithFormat:@"a %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]];
+    NSString *foo = ([g isEqualToString:@""]) ? @"No MS grade has been saved" : [NSString stringWithFormat:@"Currently in %@ grade", g];
 
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change MS Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-    [alert textFieldAtIndex:0].placeholder = @"6, 7, or 8";
+    [alert textFieldAtIndex:0].placeholder = @"Enter between 6 and 12";
     alert.tag = 1;
     [alert show];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"msGrade"];
@@ -198,13 +200,25 @@
             // save grade
             NSInteger q = [alertView textFieldAtIndex:0].text.integerValue;
             NSNumber *grade = [NSNumber numberWithInteger:q];
-            NSArray *grades = @[[NSNumber numberWithInt:6], [NSNumber numberWithInt:7], [NSNumber numberWithInt:8]];
-            if ([grades containsObject:grade]) {
+
+            NSMutableArray *grades = [NSMutableArray array];
+            for (int x = 6; x < 13; x++)
+                [grades addObject:[NSNumber numberWithInt:x]];
+            NSMutableArray *msGrades = [NSMutableArray array];
+            for (int x = 6; x < 9; x++)
+                [grades addObject:[NSNumber numberWithInt:x]];
+
+            if ([msGrades containsObject:grade])
                 [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                [self setUpButtonWithImageName:@"grey" andButton:msClear];
-                [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %ldth grade!", (long)q]];
-            } else {[SVProgressHUD showErrorWithStatus:@"Not an MS grade. Try again"]; [alertView resignFirstResponder];}
+            else if ([grades containsObject:grade])
+                [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
+            else {
+                [SVProgressHUD showErrorWithStatus:@"Invalid grade! Try again."];
+                return;
+            }
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self setUpButtonWithImageName:@"grey" andButton:msClear];
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"Enjoy %ldth grade!", (long)q]];
         }
     } else if (alertView.tag == 2) {
         if (buttonIndex == 0) {

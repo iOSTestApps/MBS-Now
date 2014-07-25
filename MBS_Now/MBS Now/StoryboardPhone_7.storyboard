@@ -1359,7 +1359,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                                 <rect key="frame" x="20" y="513" width="131" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Clear MS Grade">
+                                <state key="normal" title="Clear Grade">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
