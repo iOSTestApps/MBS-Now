@@ -37,11 +37,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(output)];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    _details = _descriptions = nil;
-}
-
 #pragma mark Table view
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *iden = @"ReuseCell";
@@ -89,6 +84,7 @@
         sheet = nil;
         return;
     }
+
     sheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"\"%@\" service opportunity", self.details[0]] delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Flag for review" otherButtonTitles:@"Email this post", nil];
 
     [sheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
