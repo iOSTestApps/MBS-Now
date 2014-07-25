@@ -5,7 +5,7 @@ home = expanduser("~")
 divs = []
 # URL for notifications for 14-15 year:
 # http://www.mbs.net/cf_calendar/export.cfm?type=export&list=4486&athlist=&loopstart=09/01/2014&loopend=06/30/2015
-# ^ Click on CSV
+# ^ Click on CSV after checking "school calendar"
 
 # find new general alert possibilities here: http://www.mbs.net/page.cfm?do=calsearch&p=1424&keywords=service&eventsorting=past
 
@@ -120,19 +120,48 @@ for x in range(0, len(general)):
     if x < len(general)-1:
         core_string += '\n'
 
-print(core_string)
+# print(core_string)
+old_notifs = ''
 
 try:
-    f = open(home + "/Desktop/notifs.txt", "w")
+    f = open(home + "/Dropbox/MBS-Now/Resources/notifs.txt", "r")
+    try:
+        old_notifs = f.read()
+    finally:
+        f.close()
+except IOError:
+    pass
+
+try:
+    f = open(home + "/Dropbox/MBS-Now/Resources/old_notifs.txt", "w")
+    try:
+        f.writelines(old_notifs)
+    finally:
+        f.close()
+except IOError:
+    pass
+
+try:
+    f = open(home + "/Dropbox/MBS-Now/Resources/notifs.txt", "w")
     try:
         f.writelines(core_string)
-        print('\nWrote notifs.txt to your Desktop')
+        print('\nWrote Resources/notifs.txt and saved old pack at Resources/old_notifs.txt')
     finally:
         f.close()
 except IOError:
     pass
 
 print("\nDRESS-UP DAYS\nrejected:", rejected)
-p = input('Type "p" to auto-push, making this pack live immediately (type anything else to quit): ')
+p = input('Auto-push, making this pack live immediately? (p/anything): ')
 if p is 'p':
-    os.system("python " + home + '/Dropbox/MBS-Now/Resources/push.py')
+    c = input('Commit message ("q" to quit): ')
+    if c is not "q":
+        to_cd = home + "/Dropbox/MBS-Now/"
+        os.chdir(to_cd)
+        os.system("git add -A Resources/")
+        os.system("git add -A MBS_Now/")
+        os.system("git add README.md")
+        os.system("git commit -m '" + c + "'")
+        os.system("git remote rm origin")
+        os.system("git remote add origin https://github.com/mbsdev/MBS-Now.git")
+        os.system("git push origin master")
