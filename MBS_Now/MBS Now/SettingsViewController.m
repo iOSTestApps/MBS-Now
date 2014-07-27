@@ -116,7 +116,7 @@
     if ([g isEqualToString:@"0th"] && [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]) g = [NSString stringWithFormat:@"a %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]];
     NSString *foo = ([g isEqualToString:@"0th"]) ? @"No grade has been saved" : [NSString stringWithFormat:@"Currently in %@ grade", g];
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change MS Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
     [alert textFieldAtIndex:0].placeholder = @"Enter between 6 and 12";

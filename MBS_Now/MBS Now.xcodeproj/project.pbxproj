@@ -1219,7 +1219,7 @@
 				ORGANIZATIONNAME = "MBS Now";
 				TargetAttributes = {
 					1557D207169F0D3E00F27AE4 = {
-						DevelopmentTeam = 2HZQMVV24W;
+						DevelopmentTeam = HXH496D5TS;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 0;
@@ -1632,8 +1632,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Graham Dyer (2HZQMVV24W)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MBS Now/MBS Now-Prefix.pch";
@@ -1642,7 +1642,7 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
 				PRODUCT_NAME = "MBS Now";
-				PROVISIONING_PROFILE = "F5ED4964-D628-478F-9EE2-62C01B4CEFB2";
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F5ED4964-D628-478F-9EE2-62C01B4CEFB2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
