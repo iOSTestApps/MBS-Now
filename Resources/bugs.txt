@@ -1,0 +1,2 @@
+Tap to refresh | Connection required
+This is a main title | Don't chnge the line above this
