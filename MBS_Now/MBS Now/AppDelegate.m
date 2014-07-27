@@ -9,6 +9,23 @@
 #import "AppDelegate.h"
 @implementation AppDelegate
 
+- (void)inc {
+    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"]) {
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"four-dfl"];
+    } else {
+        NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(x+1) forKey:@"four-dfl"];
+    }
+
+    // to display PhotoBrowser "what's new"
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"])
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
+    else
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir" size:16], NSFontAttributeName, [UIColor blackColor], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
@@ -30,21 +47,7 @@
         [self.window makeKeyAndVisible];
     }
 
-    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"])
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dfl"];
-    else {
-        NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-        x++;
-        [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
-    }
-
-    // to display PhotoBrowser "what's new"
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"])
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
-    else
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self inc];
     return YES;
 }
 
@@ -62,23 +65,8 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    if (![[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"]) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"dfl"];
-    } else {
-        NSInteger x = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
-        x++;
-        [[NSUserDefaults standardUserDefaults] setInteger:x forKey:@"dfl"];
-    }
-
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
-    } else {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"409"];
-    }
-
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self inc];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

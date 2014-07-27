@@ -7,6 +7,7 @@
 //
 
 #import "Today.h"
+#import "DataViewController.h"
 #import "FormsViewerViewController.h"
 #import "UIView+Toast.h"
 #import "XMLDictionary.h"
@@ -30,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     preserve = NO;
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
@@ -68,6 +70,22 @@
 
     if (!preserve) [self update];
     preserve = NO;
+
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
+//    if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        NSLog(@"SENDING!");
+        DataViewController *dvc = [[DataViewController alloc] init];
+        NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/upload_4.php?d=%@", escapedDataString];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+
+        [request setHTTPMethod:@"GET"];
+        NSURLConnection *sendingData = [NSURLConnection connectionWithRequest:request delegate:self];
+        [sendingData start];
+        // even though this doesn't account for a failure to send, it's better to avoid a delay
+        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+//    }
 }
 
 - (BOOL)isReceivingAllNotifs {
@@ -167,7 +185,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:tr forKey:@"todayReloads"];
     }
 
-    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
     if ((q<20 && ![self isReceivingAllNotifs]) || ([[NSUserDefaults standardUserDefaults] integerForKey:@"todayReloads"] < 20 && ![self isReceivingAllNotifs])) {
         [self saveFeedsWithObject:@"Tap to start receiving notifications" andKey:@"strings"];
         [self saveFeedsWithObject:[UIImage imageNamed:@"note-7.png"] andKey:@"images"];
@@ -446,6 +464,15 @@
         [sheet dismissWithClickedButtonIndex:-1 animated:YES];
         sheet = nil;
         return;
+    }
+
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"todayMoreViews"]) {
+        // first time tapping "More"
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"todayMoreViews"];
+    } else {
+        NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayMoreViews"];
+        q++;
+        [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"todayMoreViews"];
     }
 
     BOOL d = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysTwoDay"];
@@ -940,6 +967,8 @@
     NSString *grade = [alertView textFieldAtIndex:0].text;
     if ([poss containsObject:grade]) {
         [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
+        if (grade.integerValue < 9)
+            [[NSUserDefaults standardUserDefaults] setInteger:grade.intValue forKey:@"msGrade"];
         [self.view makeToast:@"Thanks. That's editable in Settings." duration:2.0f position:@"top"];
         [self update];
         return;

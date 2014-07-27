@@ -23,7 +23,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+    NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     _versionLabel.text = [NSString stringWithFormat:@"You're running %@", infoDict[@"CFBundleShortVersionString"]];
     
@@ -42,14 +42,14 @@
     if (q == 1) {
         UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Sounds good!" otherButtonTitles:nil, nil];
         [a show];
-        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         return;
     }
-    if (q % AUTO == 0 && q != 0) {
+    if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/upload_4.php?text_box=%@", escapedDataString];
+        NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/upload_4.php?d=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];
@@ -57,7 +57,7 @@
         if (sendingData)
             [SVProgressHUD showWithStatus:@"Sending data..."];
         // even though this doesn't account for a failure to send, it's better to avoid a delay
-        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
+        [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         return;
     }
@@ -156,17 +156,10 @@
 
 #pragma mark Connections
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    if (connection == sendingData) {
+    if (connection == sendingData)
         [SVProgressHUD dismiss];
-        NSString *echo = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        if ([echo isEqualToString:@"Success"]) {
-            [SVProgressHUD showSuccessWithStatus:@"Done; thanks!"];
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastSend"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-    } else if (connection == versionConnection) {
+    else if (connection == versionConnection)
         [versionData appendData:data];
-    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -202,10 +195,10 @@
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString *f = [infoDict objectForKey:@"CFBundleShortVersionString"];
         if (remoteVersion > [[f stringByReplacingOccurrencesOfString:@"." withString:@""] integerValue]) {
-                NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+                NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
                 if ((q % 6 == 0) && q != 0) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Good news" message:@"MBS Now just got better. Download the update now." delegate:self cancelButtonTitle:@"Later" otherButtonTitles:@"Get it", nil];
-                [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"dfl"];
+                [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
                 alert.tag = 13;
                 [alert show];

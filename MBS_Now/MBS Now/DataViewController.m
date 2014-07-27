@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    q = [[NSUserDefaults standardUserDefaults] integerForKey:@"dfl"];
+    q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
 
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Data" ofType:@"txt"];
     [textView setText:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]];
@@ -69,7 +69,7 @@
     NSInteger fullScheduleViewsFromTodayCell = [[NSUserDefaults standardUserDefaults] integerForKey:@"fullScheduleViewsFromTodayCell"];
     NSInteger serviceViews = [[NSUserDefaults standardUserDefaults] integerForKey:@"serviceViews"];
     NSInteger timeInPhotoBrowser = [[NSUserDefaults standardUserDefaults] integerForKey:@"timeInPhotoBrowser"];
-    NSInteger lunchFromToday = [[NSUserDefaults standardUserDefaults] objectForKey:@"lunchFromToday"];
+    NSInteger lunchFromToday = [[NSUserDefaults standardUserDefaults] integerForKey:@"lunchFromToday"];
 
     NSString *dressTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
 
@@ -80,9 +80,9 @@
     BOOL showTodayFirst = [[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"];
 
     NSInteger todayReloads = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayReloads"];
-
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, contacts tapped %ld, launches %d, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings view %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, lunch menu views from Today %ld, dress-up notification receipt time %@, always show news articles in Today %d, show Today as launch screen %d, Today reloads %d, device name %@, recorded on %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)contacts, q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, (long)lunchFromToday, dressTime, alwaysShowArticle, showTodayFirst, todayReloads, deviceName, [NSDate date]];
+    NSInteger todayMoreTaps = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayMoreViews"];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, contacts tapped %ld, launches %d, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings viewed %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, lunch menu views from Today %ld, dress-up notification receipt time %@, always show news articles in Today %d, show Today as launch screen %d, Today reloads %d, Today hamburger taps %d, device name %@, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)contacts, q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, (long)lunchFromToday, dressTime, alwaysShowArticle, showTodayFirst, todayReloads, todayMoreTaps, deviceName, [NSDate date]];
 
     return string;
 }
