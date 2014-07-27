@@ -10,11 +10,12 @@
 
 @interface BugsViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIAlertViewDelegate> {
     NSURLConnection *versionConnection;
+    NSMutableData *connectionData;
     NSURLConnection *connect;
 }
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *bug;
-@property (nonatomic, strong) NSArray *description;
+@property (nonatomic, strong) NSMutableArray *bug;
+@property (nonatomic, strong) NSMutableArray *description;
 
 @end

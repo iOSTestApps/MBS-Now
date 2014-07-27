@@ -72,8 +72,7 @@
     preserve = NO;
 
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
-//    if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        NSLog(@"SENDING!");
+    if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/upload_4.php?d=%@", escapedDataString];
@@ -85,7 +84,7 @@
         // even though this doesn't account for a failure to send, it's better to avoid a delay
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-//    }
+    }
 }
 
 - (BOOL)isReceivingAllNotifs {

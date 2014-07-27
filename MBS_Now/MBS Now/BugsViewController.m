@@ -17,8 +17,8 @@
 
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     self.navigationItem.title = [NSString stringWithFormat:@"Confirmed Bugs (%@)", [infoDict objectForKey:@"CFBundleShortVersionString"]];
-    self.bug = @[@"Tap to refresh"];
-    self.description = @[@"Connection is required"];
+    self.bug = [@[@"Tap to refresh"] mutableCopy];
+    self.description = [@[@"Connection is required"] mutableCopy];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];
@@ -55,15 +55,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[tableView cellForRowAtIndexPath:indexPath].textLabel.text rangeOfString:@"Tap"].location != NSNotFound)
         [self pushedDownload];
+    else [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark Connection
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (connection == connect) [connectionData appendData:data];
+}
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (([(NSHTTPURLResponse *)response statusCode] == 404) && connection == connect) {
         [SVProgressHUD dismiss];
         [connect cancel];
-        self.bug = @[@"Tap to check again", @"No confirmed bugs"];
-        self.description = @[@"Connection required", @"New reports are checked immediately"];
+        self.bug = [@[@"Tap to check again", @"No confirmed bugs"] mutableCopy];
+        self.description = [@[@"Connection required", @"New reports are checked immediately"] mutableCopy];
 
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
     }
@@ -81,24 +85,31 @@
             [alert show];
         } else {
             self.navigationItem.rightBarButtonItem.enabled = YES;
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.plist"]];
-            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.txt"]];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0f];
             connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
             if (connect) [SVProgressHUD showWithStatus:@"Downloading..."];
+            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         }
     } else if (connection == connect) {
-        NSDictionary *dict = [NSDictionary dictionaryWithContentsOfURL:connect.currentRequest.URL];
-        self.bug = [dict allValues];
-        self.description = [dict allKeys];
-        [SVProgressHUD dismiss];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        self.bug = [NSMutableArray array];
+        self.description = [NSMutableArray array];
+        NSString *bugString = [[NSString alloc] initWithData:connectionData encoding:NSUTF8StringEncoding];
+        for (NSString *foo in [bugString componentsSeparatedByString:@"\n"]) {
+            NSArray *bar = [foo componentsSeparatedByString:@" | "];
+            if (bar.count == 2) {
+                [_description addObject:bar[1]];
+                [_bug addObject:bar[0]];
+            }
+        }
+        [self.tableView reloadData];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
-    self.bug = @[@"Connection failed"];
-    self.description = @[@"Tap here to try again"];
+    self.bug = [@[@"Connection failed"] mutableCopy];
+    self.description = [@[@"Tap here to try again"] mutableCopy];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -107,10 +118,9 @@
     [SVProgressHUD showWithStatus:@"Updating..."];
     self.description = self.bug = nil;
 
+    connectionData = [NSMutableData data];
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
-                                         timeoutInterval:15];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }
 
