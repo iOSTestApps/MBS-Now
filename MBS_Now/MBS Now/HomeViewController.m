@@ -105,12 +105,12 @@
 }
 
 - (NSArray *)countdown {
-    NSString *startSchool = @"2014-09-03";
-    NSString *endSchool = @"2014-06-05";
+    NSString *startSchool = @"09/03/2014";
+    NSString *endSchool = @"06/02/2014";
     NSDate *current = [NSDate date];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
+    [formatter setDateFormat:@"MM/dd/yyyy"];
 
     NSDate *endDate = [formatter dateFromString:endSchool];
     NSDate *startDate = [formatter dateFromString:startSchool];

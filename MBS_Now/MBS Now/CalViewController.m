@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _webView.delegate = self;
-    
+
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"]) [self loadWithDefaults];
     else [self controlChange:self];
 

@@ -112,7 +112,7 @@
 }
 
 - (IBAction)pushedChangeGrade:(id)sender {
-    NSString *g = [NSString stringWithFormat:@"%dth", [[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"]];
+    NSString *g = [NSString stringWithFormat:@"%ldth", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"msGrade"]];
     if ([g isEqualToString:@"0th"] && [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]) g = [NSString stringWithFormat:@"a %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"division"]];
     NSString *foo = ([g isEqualToString:@"0th"]) ? @"No grade has been saved" : [NSString stringWithFormat:@"Currently in %@ grade", g];
 

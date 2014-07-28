@@ -16,6 +16,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UISwipeGestureRecognizer *right = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(done:)];
+    right.direction = UISwipeGestureRecognizerDirectionRight;
+    [right setNumberOfTouchesRequired:1];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) [self.view addGestureRecognizer:right];
+
     UIImage *buttonImage = [[UIImage imageNamed:@"greyButton.png"]
                             resizableImageWithCapInsets:UIEdgeInsetsMake(18, 18, 18, 18)];
     UIImage *buttonImageHighlight = [[UIImage imageNamed:@"greyButtonHighlight.png"]
@@ -30,11 +35,6 @@
 
     control.selectedSegmentIndex = self.segueIndex;
     [self controlChange:self];
-}
-
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
 }
 
 #pragma mark Actions
