@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.csv = [NSMutableArray arrayWithObject:@[@"Hang tight... updating", @"You can pull to refresh", @"...? Fetching"]];
+    self.csv = [NSMutableArray arrayWithObject:@[@"Hang tight... updating", @"Hang tight... updating!", @"...? Fetching!"]];
     self.descriptions = @[@"Please refresh meetings", @"Return to previous screen"];
     self.tableView.userInteractionEnabled = NO;
 
