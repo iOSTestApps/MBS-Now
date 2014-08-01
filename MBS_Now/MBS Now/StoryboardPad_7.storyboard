@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -177,6 +177,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5TV-OK-GB5"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPj-FZ-NYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -586,7 +587,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="6pG-3h-VrD">
-                                <rect key="frame" x="3" y="64" width="768" height="858"/>
+                                <rect key="frame" x="0.0" y="0.0" width="771" height="922"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="g7o-UX-QJ2" id="jzN-oR-Yv4"/>
@@ -1100,6 +1101,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PzH-b1-uq3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGi-FC-OHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1126,6 +1128,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="g81-FX-urK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="xqa-wM-1pe" id="wqg-1W-Aff"/>
@@ -1160,6 +1163,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="vXo-Ts-qsj"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -1190,6 +1194,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="GL7-8z-QRQ"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="cHs-b5-DyQ" id="Hks-7C-tuX"/>
@@ -1338,6 +1343,22 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="1006" y="2847"/>
         </scene>
+        <!--Navigation Controller - Docs-->
+        <scene sceneID="FJd-dc-Rgn">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="akP-J2-SrI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Docs" image="paperwork.png" id="qmr-1A-7c1"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h1E-jF-WAS">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="FHn-yF-a11" kind="relationship" relationship="rootViewController" id="NEz-3u-57m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wST-Fc-fq3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2741" y="1589"/>
+        </scene>
         <!--Forms View Controller - Docs-->
         <scene sceneID="nGK-Ga-5pU">
             <objects>
@@ -1378,6 +1399,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Docs" image="paperwork.png" id="Po1-V4-nUT"/>
+                    <navigationItem key="navigationItem" id="gDc-E8-z5w"/>
                     <connections>
                         <outlet property="_searchBar" destination="hhO-Cm-zRR" id="Sbp-lc-J0q"/>
                         <outlet property="searchDisplayController" destination="8IE-XE-deF" id="25n-Ac-sey"/>
@@ -1395,7 +1417,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-387" y="2322"/>
+            <point key="canvasLocation" x="-2467" y="2890"/>
         </scene>
         <!--View Controller - Community Service-->
         <scene sceneID="N35-Da-IH1">
@@ -1614,7 +1636,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     </tabBar>
                     <connections>
                         <segue destination="dfH-zp-a0g" kind="relationship" relationship="viewControllers" id="j8t-Tv-qTU"/>
-                        <segue destination="FHn-yF-a11" kind="relationship" relationship="viewControllers" id="xOr-jY-V2G"/>
+                        <segue destination="akP-J2-SrI" kind="relationship" relationship="viewControllers" id="ERE-Cd-ufe"/>
                         <segue destination="mtz-Up-Lxk" kind="relationship" relationship="viewControllers" id="jTv-5A-s6p"/>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="moA-i2-0fF"/>
                         <segue destination="G1y-dd-0Z1" kind="relationship" relationship="viewControllers" id="T2a-GE-222"/>
@@ -1624,7 +1646,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2194" y="60"/>
+            <point key="canvasLocation" x="-2246" y="60"/>
         </scene>
         <!--Clubs View Controller - Clubs-->
         <scene sceneID="eRD-dc-11j">
@@ -1911,7 +1933,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d68-Ye-HZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1361" y="3475"/>
+            <point key="canvasLocation" x="-1417" y="3635"/>
         </scene>
         <!--Navigation Controller - Service-->
         <scene sceneID="7mU-qJ-ycU">
@@ -1969,9 +1991,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ese-uN-3RG"/>
+        <segue reference="hnb-uO-XoO"/>
         <segue reference="P0c-K7-di6"/>
         <segue reference="ICH-Gy-RpE"/>
-        <segue reference="6yJ-Ab-O7M"/>
+        <segue reference="okE-ih-MY8"/>
     </inferredMetricsTieBreakers>
 </document>
