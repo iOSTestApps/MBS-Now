@@ -81,8 +81,8 @@
 
     NSInteger todayReloads = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayReloads"];
     NSInteger todayMoreTaps = [[NSUserDefaults standardUserDefaults] integerForKey:@"todayMoreViews"];
-    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, contacts tapped %ld, launches %d, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings viewed %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, lunch menu views from Today %ld, dress-up notification receipt time %@, always show news articles in Today %d, show Today as launch screen %d, Today reloads %d, Today hamburger taps %d, device name %@, recorded on %@",
-        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)contacts, q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, (long)lunchFromToday, dressTime, alwaysShowArticle, showTodayFirst, todayReloads, todayMoreTaps, deviceName, [NSDate date]];
+    NSString *string = [NSString stringWithFormat:@"\n\n\nSystem name %@, version %@, model %@, height %.2f, width %.2f, forms tapped %ld, offline tapped %ld, contacts tapped %ld, launches %ld, version %@, sent before %d, MS grade %ld, dress notifications %d, A/B notifications %d, General notifications %d, logins tapped %d, button color %@, club autocheck prefernce %ld, RSVP button taps %ld, text schedule notifications received %ld, club meetings viewed %ld, division %@, self-data exports %ld, full schedule views from Today image cell %ld, service postings viewed %ld, time spent in first what's new screen %ld, always show tomorrow's schedule in Today %d, lunch menu views from Today %ld, dress-up notification receipt time %@, always show news articles in Today %d, show Today as launch screen %d, Today reloads %ld, Today hamburger taps %ld, device name %@, recorded on %@",
+        systemName, systemVersion, model, screenH, screenW, (long)forms, (long)offline, (long)contacts, (long)q, version, sentBefore, (long)ms, formalNs, abNs, generalNs, logsSaved, color, (long)autoCheckClubs, (long)rsvps, (long)scheduleNotifs, (long)meetingsViewed, division, (long)selfDataExport, (long)fullScheduleViewsFromTodayCell, (long)serviceViews, (long)timeInPhotoBrowser, alwaysTwoDay, (long)lunchFromToday, dressTime, alwaysShowArticle, showTodayFirst, (long)todayReloads, (long)todayMoreTaps, deviceName, [NSDate date]];
 
     return string;
 }
@@ -94,7 +94,8 @@
     if (date) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"MM/dd, HH:mm"];
-        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date], AUTO - (q % AUTO)];
+        string = [NSString stringWithFormat:@"Last collected on %@. Next collection in %d launches.", [formatter stringFromDate:date],
+                  AUTO - (q % AUTO)];
     } else
         string = [NSString stringWithFormat:@"Never collected before. First collection in %d launch(es)", AUTO - (q % AUTO)];
     [SVProgressHUD showImage:[UIImage imageNamed:@"book-7-active@2x.png"] status:string];

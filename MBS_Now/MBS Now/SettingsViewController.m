@@ -119,7 +119,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Change Grade" message:foo delegate:self cancelButtonTitle:@"Save" otherButtonTitles:nil, nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-    [alert textFieldAtIndex:0].placeholder = @"Enter between 6 and 12";
+    [alert textFieldAtIndex:0].placeholder = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? @"Enter an MS grade" : @"Enter between 6 and 12";
     alert.tag = 1;
     [alert show];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"msGrade"];
@@ -208,13 +208,22 @@
             for (int x = 6; x < 9; x++)
                 [grades addObject:[NSNumber numberWithInt:x]];
 
-            if ([msGrades containsObject:grade])
-                [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
-            else if ([grades containsObject:grade])
-                [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
-            else {
-                [SVProgressHUD showErrorWithStatus:@"Invalid grade! Try again."];
-                return;
+            if (![UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                if ([msGrades containsObject:grade])
+                    [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
+                else if ([grades containsObject:grade])
+                    [[NSUserDefaults standardUserDefaults] setObject:((grade.integerValue < 9) ? @"MS" : @"US") forKey:@"division"];
+                else {
+                    [SVProgressHUD showErrorWithStatus:@"Invalid grade! Try again."];
+                    return;
+                }
+            } else {
+                if ([msGrades containsObject:grade])
+                    [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
+                else {
+                    [SVProgressHUD showErrorWithStatus:@"Invalid grade! Try again."];
+                    return;
+                }
             }
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self setUpButtonWithImageName:@"grey" andButton:msClear];
