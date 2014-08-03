@@ -206,7 +206,7 @@
                 [grades addObject:[NSNumber numberWithInt:x]];
             NSMutableArray *msGrades = [NSMutableArray array];
             for (int x = 6; x < 9; x++)
-                [grades addObject:[NSNumber numberWithInt:x]];
+                [msGrades addObject:[NSNumber numberWithInt:x]];
 
             if (![UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
                 if ([msGrades containsObject:grade])

@@ -34,13 +34,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeRight)) {
-        [self scrollViewDidScroll:_iPadScroller];
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && UIInterfaceOrientationIsPortrait(orientation)) {
+        [self updateLabels:NSNotFound];
     } else  {
         if (IS_IPHONE_5) {
             for (UILabel *chi in _first)
                 chi.textColor = [UIColor darkGrayColor];
-        } else {for (UILabel *foo in _first) foo.textColor = [UIColor whiteColor];}}
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -238,7 +240,7 @@
 #pragma mark - Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        [self scrollViewDidScroll:_iPadScroller];
+        [self updateLabels:NSNotFound];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -247,8 +249,8 @@
 }
 
 #pragma mark Scroll View
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    int q = scrollView.contentOffset.y;
+- (void)updateLabels:(int)q {
+    if (q == NSNotFound) q = _iPadScroller.contentOffset.y;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if (IS_IPHONE_5) {
             if (q > 75) {
@@ -290,7 +292,9 @@
         }
     } else {
         // iPad
-        if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown || ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait)) {
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        if (UIInterfaceOrientationIsPortrait(orientation)) {
+            NSLog(@"HELLO!");
             _iPadCatalog.textColor = [UIColor darkGrayColor];
             UIColor *foo = (q > 82) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             for (UILabel *lbl in _first) lbl.textColor = foo;
@@ -304,6 +308,10 @@
             if (q < 272) ((UILabel *)_first[1]).textColor = [UIColor whiteColor];
         }
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self updateLabels:scrollView.contentOffset.y];
 }
 
 @end
