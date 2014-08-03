@@ -375,8 +375,6 @@
 		159773DB17606AB100D9AEB3 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		159773DF176116D000D9AEB3 /* OfflineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineViewController.h; sourceTree = "<group>"; };
 		159773E0176116D100D9AEB3 /* OfflineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineViewController.m; sourceTree = "<group>"; };
-		15989FBA198C6D6A001C92FC /* Headmaster_Caldwell_Oct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Headmaster_Caldwell_Oct.jpg; path = "../../../../Documents/MBS-Now/MBS_Now/MBS Now/Images/Headmaster_Caldwell_Oct.jpg"; sourceTree = "<group>"; };
-		15989FBC198C6DA3001C92FC /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = RMitchellWebPic.jpg; path = "../../../../Documents/MBS-Now/MBS_Now/MBS Now/Images/RMitchellWebPic.jpg"; sourceTree = "<group>"; };
 		15989FC0198C7170001C92FC /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RMitchellWebPic.jpg; sourceTree = "<group>"; };
 		15989FC2198C718C001C92FC /* Headmaster_Caldwell_Oct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Headmaster_Caldwell_Oct.jpg; sourceTree = "<group>"; };
 		159A3D9A177B65BF0085010C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -1049,8 +1047,6 @@
 				15FFD8DC18C69B040049FD02 /* greyButtonHighlight@2x.png */,
 				15FFD8DF18C69B040049FD02 /* home-7-active.png */,
 				15FFD8E018C69B040049FD02 /* home-7-active@2x.png */,
-				15989FBA198C6D6A001C92FC /* Headmaster_Caldwell_Oct.jpg */,
-				15989FBC198C6DA3001C92FC /* RMitchellWebPic.jpg */,
 				15FFD8E118C69B040049FD02 /* image@2x.png */,
 				15FFD8E218C69B040049FD02 /* info-7-active.png */,
 				15FFD8E318C69B040049FD02 /* info-7-active@2x.png */,

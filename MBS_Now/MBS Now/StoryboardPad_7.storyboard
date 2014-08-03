@@ -477,7 +477,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Bugs + Reporter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S8z-Al-1rY">
-                                        <rect key="frame" x="88" y="801" width="115" height="23"/>
+                                        <rect key="frame" x="88" y="801" width="157" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -554,7 +554,8 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
-                        <outlet property="_l1" destination="YC9-4R-TcK" id="n9i-Ge-Pb1"/>
+                        <outlet property="iPadCatalog" destination="Jvw-pA-wRk" id="cco-nM-6m1"/>
+                        <outlet property="iPadScroller" destination="eon-LU-dsc" id="ZWg-xL-sgz"/>
                         <outlet property="versionLabel" destination="m5M-a8-D1p" id="TzW-In-0Ph"/>
                         <outletCollection property="buttons" destination="PCb-iJ-8wx" id="F2w-za-wXM"/>
                         <outletCollection property="buttons" destination="rx2-A6-Rph" id="Lf9-h1-wqZ"/>
@@ -583,18 +584,18 @@
             <objects>
                 <viewController id="g7o-UX-QJ2" customClass="ExploreViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3kE-PX-nD2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" id="6pG-3h-VrD">
-                                <rect key="frame" x="0.0" y="0.0" width="771" height="922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="771" height="858"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="g7o-UX-QJ2" id="jzN-oR-Yv4"/>
                                 </connections>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OQm-YH-zNY">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="858"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <connections>
@@ -603,7 +604,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mxv-hb-yM4">
-                                <rect key="frame" x="21" y="930" width="732" height="32"/>
+                                <rect key="frame" x="21" y="866" width="732" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="View listings">
@@ -1367,7 +1368,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BYx-18-iJR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BYx-18-iJR">
                                 <rect key="frame" x="0.0" y="95" width="768" height="878"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1992,8 +1993,8 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="hnb-uO-XoO"/>
-        <segue reference="P0c-K7-di6"/>
-        <segue reference="ICH-Gy-RpE"/>
+        <segue reference="yTd-iT-oht"/>
+        <segue reference="S15-6g-c3F"/>
         <segue reference="okE-ih-MY8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -32,10 +32,6 @@ UIAlertView *defaultAlert;
     [self.view addGestureRecognizer:down];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    if ([imageName isEqualToString:@"02.png"]) [self.view makeToast:@"Monday schedule is incorrect. A replacement has yet to be made available." duration:5.0f position:@"bottom"];
-}
-
 - (id)initWithImageName:(NSString *)iName {
     imageName = iName;
     return [super initWithNibName:@"OfflineViewerViewController_7"  bundle:nil];

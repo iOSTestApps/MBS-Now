@@ -77,7 +77,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch meetings. %@",[error localizedDescription]]];
-    self.csv = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"Connection failed", @"Connection failed", @"...? Tap refresh to try again", nil], nil];
+    self.csv = [NSMutableArray arrayWithObjects:@[@"Connection failed", @"Connection failed", @"...? Tap refresh to try again"], nil];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 

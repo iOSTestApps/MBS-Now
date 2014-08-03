@@ -29,10 +29,10 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *first;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *second;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *third;
+@property (weak, nonatomic) IBOutlet UILabel *iPadCatalog;
+@property (weak, nonatomic) IBOutlet UIScrollView *iPadScroller;
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *l1;
-@property (weak, nonatomic) IBOutlet UILabel *l2;
 
 @property (nonatomic, assign) NSMutableData *receivedData;
 @end

@@ -21,6 +21,28 @@
 @implementation HomeViewController
 @synthesize receivedData;
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    NSString *foo;
+    NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
+    NSArray *array = @[@"black", @"grey", @"tan"];
+    // This is set in SettingsVC
+    foo = ([array containsObject:defaultColor]) ? defaultColor : @"grey";
+    [self setUpButtonsWithColor:foo andButtons:_buttons];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeRight)) {
+        [self scrollViewDidScroll:_iPadScroller];
+    } else  {
+        if (IS_IPHONE_5) {
+            for (UILabel *chi in _first)
+                chi.textColor = [UIColor darkGrayColor];
+        } else {for (UILabel *foo in _first) foo.textColor = [UIColor whiteColor];}}
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
@@ -39,7 +61,7 @@
         /*CHANGES WITH VERSIONS*/
     }
 
-    if (q == 1) {
+    if (q == 1 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Sounds good!" otherButtonTitles:nil, nil];
         [a show];
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
@@ -71,25 +93,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [versionConnection cancel];
-}
-
-- (void)viewDidLoad {
-    // NOTE: content size for the scroll view is set in the storyboard file
-    [super viewDidLoad];
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && ([UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeLeft || [UIDevice currentDevice].orientation == UIInterfaceOrientationLandscapeRight)) {
-        _l1.textColor = [UIColor whiteColor];
-    } else  {
-        if (IS_IPHONE_5) {
-            for (UILabel *chi in _first)
-                chi.textColor = [UIColor darkGrayColor];
-        } else {for (UILabel *foo in _first) foo.textColor = [UIColor whiteColor];}}
-
-    NSString *foo;
-    NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
-    NSArray *array = @[@"black", @"grey", @"tan"];
-    // This is set in SettingsVC
-    foo = ([array containsObject:defaultColor]) ? defaultColor : @"grey";
-    [self setUpButtonsWithColor:foo andButtons:_buttons];
 }
 
 - (void)setUpButtonsWithColor:(NSString *)name andButtons:(NSArray *)buttonArray {
@@ -234,26 +237,8 @@
 
 #pragma mark - Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-            _l1.textColor = [UIColor darkGrayColor];
-            _l2.textColor = [UIColor darkGrayColor];
-        } else {
-            _l1.textColor = [UIColor whiteColor];
-            _l2.textColor = [UIColor whiteColor];
-        }
-        if (toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-            for (UILabel *label in _first) {
-                label.textColor = [UIColor darkGrayColor];
-            }
-            _l1.textColor = [UIColor darkGrayColor];
-        } else {
-            for (UILabel *label in _first) {
-                label.textColor = [UIColor whiteColor];
-            }
-            _l1.textColor = [UIColor whiteColor];
-        }
-    }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        [self scrollViewDidScroll:_iPadScroller];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -306,14 +291,17 @@
     } else {
         // iPad
         if ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortraitUpsideDown || ([UIDevice currentDevice].orientation == UIInterfaceOrientationPortrait)) {
+            _iPadCatalog.textColor = [UIColor darkGrayColor];
             UIColor *foo = (q > 82) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             for (UILabel *lbl in _first) lbl.textColor = foo;
+            ((UILabel *)_first[1]).textColor = [UIColor whiteColor];
         } else {
-            _l1.textColor = (q > 52) ? [UIColor darkGrayColor] : [UIColor whiteColor];
+            _iPadCatalog.textColor = (q > 64) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             UIColor *foo = (q > 170) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             for (UILabel *lbl in _first) lbl.textColor = foo;
             UIColor *bar = (q > 392) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             for (UILabel *lbl in _second) lbl.textColor = bar;
+            if (q < 272) ((UILabel *)_first[1]).textColor = [UIColor whiteColor];
         }
     }
 }
