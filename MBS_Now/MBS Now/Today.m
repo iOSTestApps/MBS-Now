@@ -9,6 +9,7 @@
 #import "Today.h"
 #import "DataViewController.h"
 #import "FormsViewerViewController.h"
+#import "FullPurposeViewController.h"
 #import "UIView+Toast.h"
 #import "XMLDictionary.h"
 #import "HomeViewController.h"
@@ -26,6 +27,7 @@
 #define CONNECTION_LOADING 1
 #define CONNECTION_SUCCESS 0
 #define UPDATE_URL @"https://itunes.apple.com/us/app/mbs-now/id617180145?mt=8"
+#define ANNOUNCEMENTS_IMG @"notifications-board.png"
 
 @implementation Today
 
@@ -221,6 +223,10 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=40.802721&lon=-74.448287&units=imperial"]];
     weatherData = [NSMutableData data];
     weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+
+    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announce.txt"]];
+    announcementsData = [NSMutableData data];
+    announcementsConnection = [[NSURLConnection alloc] initWithRequest:announce delegate:self startImmediately:YES];
 }
 
 - (void)startNotifsConnection {
@@ -534,6 +540,7 @@
     else if (connection == communityServiceConnection) [communityServiceData appendData:data];
     else if (connection == notificationUpdates) [notificationData appendData:data];
     else if (connection == weatherConnection) [weatherData appendData:data];
+    else if (connection == announcementsConnection) [announcementsData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -699,6 +706,19 @@
                 [self saveFeedsWithObject:weather andKey:@"strings"];
                 [self saveFeedsWithObject:[UIImage imageNamed:@"cloud-7.png"] andKey:@"images"];
                 [self saveFeedsWithObject:@"" andKey:@"urls"];
+            }
+        }
+    }
+
+    else if (connection == announcementsConnection) {
+        NSString *announcements = [[NSString alloc] initWithData:announcementsData encoding:NSUTF8StringEncoding];
+        for (NSString *foo in [announcements componentsSeparatedByString:@"\n"]) {
+            if (![foo isEqualToString:@""]) {
+                NSArray *seps = [foo componentsSeparatedByString:@" | "];
+                [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
+                [self saveFeedsWithObject:seps[0] andKey:@"strings"];
+                [self saveFeedsWithObject:[UIImage imageNamed:ANNOUNCEMENTS_IMG] andKey:@"images"];
+                [self saveFeedsWithObject:seps[1] andKey:@"urls"];
             }
         }
     }
@@ -880,6 +900,11 @@
         return;
     }
     else if ([iden isEqualToString:@"standard"]) {
+        UIImage *img = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) img].image;
+        if (img == [UIImage imageNamed:ANNOUNCEMENTS_IMG]) {
+            [self performSegueWithIdentifier:@"announce-body" sender:self];
+            return;
+        }
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
         if (![str isEqualToString:@""]) {
             if ([str isEqualToString:@"alerts"]) {
@@ -974,6 +999,17 @@
     }
     
     [self noSavedGrade:@"Whoops! Try again."];
+}
+#pragma mark Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"announce-body"]) {
+        preserve = YES;
+        NSString *label = [(StandardTableViewCell *)([self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]]) label].text;
+        NSString *fullPurpose = [(StandardTableViewCell *)([self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]]) url];
+        ((FullPurposeViewController *)[segue destinationViewController]).navTitle = label;
+        ((FullPurposeViewController *)[segue destinationViewController]).fullPurpose = fullPurpose;
+        [segue.destinationViewController setHideNavBar:YES];
+    }
 }
 
 @end

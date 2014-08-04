@@ -43,6 +43,8 @@
 		155A54CD16C40E37000FDAC5 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 155A54CC16C40E36000FDAC5 /* AboutViewController.m */; };
 		155AFA31193E3F5E00DFF572 /* clock-7-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 155AFA2F193E3F5E00DFF572 /* clock-7-active.png */; };
 		155AFA32193E3F5E00DFF572 /* clock-7-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155AFA30193E3F5E00DFF572 /* clock-7-active@2x.png */; };
+		155D8C4219900FC300C49CC4 /* notifications-board.png in Resources */ = {isa = PBXBuildFile; fileRef = 155D8C4019900FC300C49CC4 /* notifications-board.png */; };
+		155D8C4319900FC300C49CC4 /* notifications-board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 155D8C4119900FC300C49CC4 /* notifications-board@2x.png */; };
 		156AEAC6192D3DE9006239BA /* caution-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 156AEAC4192D3DE9006239BA /* caution-7.png */; };
 		156AEAC7192D3DE9006239BA /* caution-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 156AEAC5192D3DE9006239BA /* caution-7@2x.png */; };
 		156CAA6916DC10990057A2C1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156CAA6116DC10810057A2C1 /* MessageUI.framework */; };
@@ -232,8 +234,6 @@
 		15FFD97D18C69B040049FD02 /* mutiply-sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8EC18C69B040049FD02 /* mutiply-sign@2x.png */; };
 		15FFD97E18C69B040049FD02 /* noodle.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8ED18C69B040049FD02 /* noodle.png */; };
 		15FFD97F18C69B040049FD02 /* noodle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8EE18C69B040049FD02 /* noodle@2x.png */; };
-		15FFD98018C69B040049FD02 /* notifications-board.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8EF18C69B040049FD02 /* notifications-board.png */; };
-		15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8F018C69B040049FD02 /* notifications-board@2x.png */; };
 		15FFD98218C69B040049FD02 /* P0.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8F118C69B040049FD02 /* P0.png */; };
 		15FFD98318C69B040049FD02 /* paper-clip.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8F218C69B040049FD02 /* paper-clip.png */; };
 		15FFD98418C69B040049FD02 /* paper-clip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15FFD8F318C69B040049FD02 /* paper-clip@2x.png */; };
@@ -341,6 +341,8 @@
 		155A54CC16C40E36000FDAC5 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		155AFA2F193E3F5E00DFF572 /* clock-7-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7-active.png"; sourceTree = "<group>"; };
 		155AFA30193E3F5E00DFF572 /* clock-7-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7-active@2x.png"; sourceTree = "<group>"; };
+		155D8C4019900FC300C49CC4 /* notifications-board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications-board.png"; sourceTree = "<group>"; };
+		155D8C4119900FC300C49CC4 /* notifications-board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications-board@2x.png"; sourceTree = "<group>"; };
 		156AEAC4192D3DE9006239BA /* caution-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caution-7.png"; sourceTree = "<group>"; };
 		156AEAC5192D3DE9006239BA /* caution-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "caution-7@2x.png"; sourceTree = "<group>"; };
 		156CAA6116DC10810057A2C1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -573,8 +575,6 @@
 		15FFD8EC18C69B040049FD02 /* mutiply-sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mutiply-sign@2x.png"; path = "Images/mutiply-sign@2x.png"; sourceTree = "<group>"; };
 		15FFD8ED18C69B040049FD02 /* noodle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noodle.png; path = Images/noodle.png; sourceTree = "<group>"; };
 		15FFD8EE18C69B040049FD02 /* noodle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "noodle@2x.png"; path = "Images/noodle@2x.png"; sourceTree = "<group>"; };
-		15FFD8EF18C69B040049FD02 /* notifications-board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notifications-board.png"; path = "Images/notifications-board.png"; sourceTree = "<group>"; };
-		15FFD8F018C69B040049FD02 /* notifications-board@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "notifications-board@2x.png"; path = "Images/notifications-board@2x.png"; sourceTree = "<group>"; };
 		15FFD8F118C69B040049FD02 /* P0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = P0.png; path = Images/P0.png; sourceTree = "<group>"; };
 		15FFD8F218C69B040049FD02 /* paper-clip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paper-clip.png"; path = "Images/paper-clip.png"; sourceTree = "<group>"; };
 		15FFD8F318C69B040049FD02 /* paper-clip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "paper-clip@2x.png"; path = "Images/paper-clip@2x.png"; sourceTree = "<group>"; };
@@ -898,10 +898,10 @@
 				15CEF8B81975FEA500B66718 /* ShortEventTableViewCell.m */,
 				15CEF8C21976DCE200B66718 /* ArticleTableViewCell.h */,
 				15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */,
-				15BAFDA4193526B700780C96 /* ScheduleTableViewCell.m */,
 				15BAFDA3193526B700780C96 /* ScheduleTableViewCell.h */,
-				157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */,
+				15BAFDA4193526B700780C96 /* ScheduleTableViewCell.m */,
 				157C54AA19296E5B00D6B224 /* StandardTableViewCell.h */,
+				157C54AB19296E5B00D6B224 /* StandardTableViewCell.m */,
 			);
 			name = Today;
 			sourceTree = "<group>";
@@ -1062,10 +1062,10 @@
 				15FFD8EC18C69B040049FD02 /* mutiply-sign@2x.png */,
 				1579B778197CA9DA003F7C16 /* note-7.png */,
 				1579B779197CA9DB003F7C16 /* note-7@2x.png */,
+				155D8C4019900FC300C49CC4 /* notifications-board.png */,
+				155D8C4119900FC300C49CC4 /* notifications-board@2x.png */,
 				15FFD8ED18C69B040049FD02 /* noodle.png */,
 				15FFD8EE18C69B040049FD02 /* noodle@2x.png */,
-				15FFD8EF18C69B040049FD02 /* notifications-board.png */,
-				15FFD8F018C69B040049FD02 /* notifications-board@2x.png */,
 				15FFD8F118C69B040049FD02 /* P0.png */,
 				15FFD8F218C69B040049FD02 /* paper-clip.png */,
 				15FFD8F318C69B040049FD02 /* paper-clip@2x.png */,
@@ -1277,7 +1277,6 @@
 				15FFD99F18C69B040049FD02 /* tanButton@2x.png in Resources */,
 				15CE40C01979FB2800B06315 /* cloud-7.png in Resources */,
 				15FFD94618C69B040049FD02 /* clock.png in Resources */,
-				15FFD98018C69B040049FD02 /* notifications-board.png in Resources */,
 				15FFD9A818C69B040049FD02 /* write-7-active@2x.png in Resources */,
 				15BAFDA7193533FD00780C96 /* loading-schedule.png in Resources */,
 				15FFD94218C69B040049FD02 /* bookmark-7-active.png in Resources */,
@@ -1319,7 +1318,6 @@
 				15CE40C5197A0C7000B06315 /* push-pin-7@2x.png in Resources */,
 				1547B58F192848DA00330A94 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
 				159CF8F11965DD2B00BD7433 /* paperwork-7.png in Resources */,
-				15FFD98118C69B040049FD02 /* notifications-board@2x.png in Resources */,
 				15FFD9A118C69B040049FD02 /* tanButtonHighlight@2x.png in Resources */,
 				15FFD9DC18C69CCE0049FD02 /* OfflineViewerViewController_7.xib in Resources */,
 				156AEAC7192D3DE9006239BA /* caution-7@2x.png in Resources */,
@@ -1418,6 +1416,7 @@
 				15FFD97E18C69B040049FD02 /* noodle.png in Resources */,
 				15CEF8B51975B41300B66718 /* more-list-7-active.png in Resources */,
 				155AFA32193E3F5E00DFF572 /* clock-7-active@2x.png in Resources */,
+				155D8C4219900FC300C49CC4 /* notifications-board.png in Resources */,
 				1573821217F2436E00956F6F /* ids.plist in Resources */,
 				15FFD98F18C69B040049FD02 /* quote@2x.png in Resources */,
 				15CEF8CC1976F52C00B66718 /* t2.png in Resources */,
@@ -1439,6 +1438,7 @@
 				15C676B0196F1E9400DD15AE /* sun-7.png in Resources */,
 				15FFD9EB18C69CFE0049FD02 /* SVProgressHUD.bundle in Resources */,
 				15FFD92218C69B040049FD02 /* 12.png in Resources */,
+				155D8C4319900FC300C49CC4 /* notifications-board@2x.png in Resources */,
 				15FFD98A18C69B040049FD02 /* phone-book@2x.png in Resources */,
 				15FFD98818C69B040049FD02 /* people-communicate-mini@2x.png in Resources */,
 				15FFD99A18C69B040049FD02 /* speaker@2x.png in Resources */,
