@@ -65,11 +65,13 @@
 
     if (q == 1 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Go there", nil];
+        a.tag = 12;
         [a show];
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        return;
+        return; // because q is certainly not great enough for data uploads and they just updated, so don't check the remote version
     }
+
     if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -235,6 +237,8 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 13 && buttonIndex == 1)
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/app/id617180145?mt=8"]];
+    else if (alertView.tag == 12 && buttonIndex == 1)
+        self.tabBarController.selectedIndex = 1;
 }
 
 #pragma mark - Rotation

@@ -49,6 +49,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more-list-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(more)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lunch)];
+    if ([@[@"Saturday", @"Sunday"] containsObject:[self dayNameFromDate:[NSDate date]]]) {self.navigationItem.rightBarButtonItem.enabled = NO;}
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -336,77 +337,6 @@
     [self.navigationController pushViewController:fvvc animated:YES];
 }
 
-// THIS CODE CREATES CALENDAR EVENTS FOR SHORTEVENT AND EVENT CELLS. Strange things are happening, and I don't think it (as a feature) will be used enough to stress over.
-//- (BOOL)checkCalendarForEventName:(NSString *)n andTime:(NSString *)t {
-//    // remember, event dict's format has keys formatted like (name of event)(time of event) and objects with event ids
-//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"]) return NO;
-//    if ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] allObjects] containsObject:[NSString stringWithFormat:@"%@%@", n, t]]) return YES;
-//    return NO;
-//}
-//
-//- (void)createCalendarEventFromString:(NSString *)t atLocation:(NSString *)l withTitle:(NSString *)n {
-//    EKEventStore *store = [[EKEventStore alloc] init];
-//    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-//        if (!granted) return;
-//        NSDateFormatter *form = [[NSDateFormatter alloc] init];
-//        [form setDateFormat:@"EEE, dd MMM yyyy h:mm a"];
-//        [form setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];
-//
-//        EKEvent *event = [EKEvent eventWithEventStore:store];
-//        event.title = n;
-//        if (l) event.location = l;
-//        event.startDate = [form dateFromString:[t stringByReplacingOccurrencesOfString:@"at " withString:@""]];
-//        event.endDate = [event.startDate dateByAddingTimeInterval:60*15];
-//        [event setCalendar:[store defaultCalendarForNewEvents]];
-//        NSError *err = nil;
-//        [store saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
-//        NSString *i = event.eventIdentifier;
-//
-//        if (err) { [SVProgressHUD showErrorWithStatus:err.localizedDescription]; return;}
-//
-//        [self d:i n:n t:t];
-//    }];
-//}
-//
-//- (void)d:(NSString *)i n:(NSString *)n t:(NSString *)t {
-//    NSLog(@"CALLEd");
-//    NSMutableDictionary *events = [[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] mutableCopy];
-//    if (!events) events = [NSMutableDictionary dictionary];
-//    [events setObject:i forKey:[NSString stringWithFormat:@"%@%@", n, t]];
-//    [[NSUserDefaults standardUserDefaults] setObject:events forKey:@"calendarEvents"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
-//    [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationRight];
-//    [SVProgressHUD showSuccessWithStatus:@"added"];
-//}
-//
-//- (void)removeEventWithName:(NSString *)n andTime:(NSString *)t {
-//    NSMutableDictionary *events = [[[NSUserDefaults standardUserDefaults] objectForKey:@"calendarEvents"] mutableCopy];
-//    if (!events) events = [NSMutableDictionary dictionary];
-//
-//    NSString *key = [NSString stringWithFormat:@"%@%@", n, t];
-//    NSString *eid = [events objectForKey:key];
-//    [events removeObjectForKey:key];
-//
-//    [[NSUserDefaults standardUserDefaults] setObject:events forKey:@"calendarEvents"];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//
-//    EKEventStore *store = [[EKEventStore alloc] init];
-//    [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-//        if (!granted) { return; }
-//        EKEvent *eventToRemove = [store eventWithIdentifier:eid];
-//        if (eventToRemove) {
-//            NSError *error = nil;
-//            [store removeEvent:eventToRemove span:EKSpanThisEvent commit:YES error:&error];
-//            if (error) {[SVProgressHUD showErrorWithStatus:error.localizedDescription]; return;}
-//        } else {[SVProgressHUD showErrorWithStatus:@"Whoops. No event to remove!"]; return;}
-//    }];
-//
-//    NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
-//    [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationLeft];
-//    [SVProgressHUD showSuccessWithStatus:@"Removed!"];
-//}
-
 #pragma mark Notification processing
 - (NSDate *)dateFromNotificationString:(NSString *)s {
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
@@ -512,8 +442,10 @@
             [SVProgressHUD showSuccessWithStatus:@"Set first screen to appear!"];
             break;
         case 4:
-            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"] < 15) [self.view makeToast:@"You can also tap these cells to get the web schedule." duration:3.0f position:@"top" image:[UIImage imageNamed:@"fyi-sched.png"]];
-            [self performSelector:@selector(showDaySched) withObject:nil afterDelay:3.5f];
+            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"] < 20) {
+                [self.view makeToast:@"You can also tap these cells to get the web schedule." duration:3.0f position:@"top" image:[UIImage imageNamed:@"fyi-sched.png"]];
+                [self performSelector:@selector(showDaySched) withObject:nil afterDelay:3.5f];
+            } else [self showDaySched];
             break;
         default:
             break;
@@ -639,29 +571,8 @@
     }
 
     else if (connection == rssConnection) {
-        NSArray *events = [NSDictionary dictionaryWithXMLData:rssData][@"channel"][@"item"];
-        int evCount = 0;
-        for (NSDictionary *foo in events) {
-            NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
-            if ([[self dateFromXmlFormatter:dateStr] compare:[NSDate date]] == NSOrderedSame) {
-                evCount++;
-                NSString *str = foo[@"description"];
-                [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
-                [self saveFeedsWithObject:foo[@"description"] andKey:@"strings"];
-                [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
-                [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
-            } else break;
-        }
-
-        // because we always want some events to appear, even if they're not happening today
-        while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 2)) {
-            evCount++;
-            NSString *str = events[evCount][@"description"];
-            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
-            [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
-            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
-            [self saveFeedsWithObject:str andKey:@"urls"];
-        }
+        [self processEventsFromData:rssData];
+        [rssConnection cancel];
     }
 
     else if (connection == versionConnection) {
@@ -737,6 +648,32 @@
     [self.refreshControl endRefreshing];
 }
 
+- (void)processEventsFromData:(NSData *)e {
+    NSArray *events = [NSDictionary dictionaryWithXMLData:e][@"channel"][@"item"];
+    int evCount = 0;
+    for (NSDictionary *foo in events) {
+        NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
+        if ([[self dateFromXmlFormatter:dateStr] compare:[NSDate date]] == NSOrderedSame) {
+            evCount++;
+            NSString *str = foo[@"description"];
+            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
+            [self saveFeedsWithObject:foo[@"description"] andKey:@"strings"];
+            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
+            [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
+        } else break;
+    }
+
+    // because we always want some events to appear, even if they're not happening today
+    while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 2)) {
+        evCount++;
+        NSString *str = events[evCount][@"description"];
+        [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
+        [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
+        [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
+        [self saveFeedsWithObject:str andKey:@"urls"];
+    }
+}
+
 #pragma mark Table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return (_ret > 0) ? 1 : [_feeds[@"class"] count];
@@ -806,12 +743,6 @@
             cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
             cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
         }
-
-//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text]) {
-//            cell.addToCal.textColor = [UIColor colorWithRed:32/255.0f green:107/255.0f blue:24/255.0f alpha:1.0f];
-//            cell.addToCal.text = @"✓ saved to calendar";
-//        }
-
         cell = [self shadowCell:cell];
         return cell;
     }
@@ -823,13 +754,8 @@
         cell.eventBody.text = _feeds[@"strings"][indexPath.row];
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
-        if (full.count > 1) cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
+        cell.dateTag.text = (full.count > 1) ? [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]] : [full[0] componentsSeparatedByString:@": "][1];
         cell = [self shadowCell:cell];
-
-//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text]) {
-//            cell.addToCal.textColor = [UIColor colorWithRed:32/255.0f green:107/255.0f blue:24/255.0f alpha:1.0f];
-//            cell.addToCal.text = @"✓ saved to calendar";
-//        }
 
         return cell;
     }
@@ -875,24 +801,6 @@
         [self.navigationController pushViewController:fvvc animated:YES];
         return;
     }
-
-//    if ([iden isEqualToString:@"event"]) {
-//        EventTableViewCell *cell = (EventTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text])
-//            [self removeEventWithName:cell.eventBody.text andTime:cell.dateTag.text];
-//        else
-//            [self createCalendarEventFromString:cell.dateTag.text atLocation:nil withTitle:cell.eventBody.text];
-//        return;
-//    }
-//
-//    if ([iden isEqualToString:@"shortEvent"]) {
-//        ShortEventTableViewCell *cell = (ShortEventTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        if ([self checkCalendarForEventName:cell.eventBody.text andTime:cell.dateTag.text])
-//            [self removeEventWithName:cell.eventBody.text andTime:cell.dateTag.text];
-//        else
-//            [self createCalendarEventFromString:cell.dateTag.text atLocation:nil withTitle:cell.eventBody.text];
-//        return;
-//    }
 
     if ([iden isEqualToString:@"schedule"]) {
         if (![[NSUserDefaults standardUserDefaults] objectForKey:@"fullScheduleViewsFromTodayCell"]) {

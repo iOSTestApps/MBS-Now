@@ -24,6 +24,21 @@
     return YES;
 }
 
+- (void)animateWithPlaceHolder:(NSString *)s {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    [_nameField setValue:[UIColor redColor] forKeyPath:@"_placeholderLabel.textColor"];
+    _nameField.text = @"";
+    _nameField.placeholder = s;
+    [animation setDuration:0.05];
+    [animation setRepeatCount:2];
+    [animation setAutoreverses:YES];
+    [animation setFromValue:[NSValue valueWithCGPoint:
+                             CGPointMake(_nameField.center.x - 20.0f, _nameField.center.y)]];
+    [animation setToValue:[NSValue valueWithCGPoint:
+                           CGPointMake(_nameField.center.x + 20.0f, _nameField.center.y)]];
+    [_nameField.layer addAnimation:animation forKey:@"position"];
+}
+
 #pragma mark Actions
 - (IBAction)go:(id)sender {
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"rsvps"]) {
@@ -41,8 +56,13 @@
         [alert show];
         return;
     }
-    if ([self notify]) {
-        [SVProgressHUD showErrorWithStatus:@"Enter your full name with a single space character!"];
+    if ([self meetingInFuture]) {
+        if ([self.nameField.text rangeOfString:@" "].location == NSNotFound || _nameField.text.length > 4) {
+            [self animateWithPlaceHolder:@"Full name, please!"];
+            return;
+        }
+    } else {
+        [self animateWithPlaceHolder:@"Meeting already happened or has no date!"];
         return;
     }
 
@@ -58,7 +78,6 @@
 
     NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
     if (connection) [SVProgressHUD showWithStatus:@"Working"];
-
 }
 
 - (IBAction)switchDidChange:(id)sender {
@@ -71,18 +90,24 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)meetingInFuture {
+    NSComparisonResult result = [[NSDate date] compare:[self getMeetingDate]];
+    return (result == NSOrderedAscending) ? YES : NO;
+}
+
+- (NSDate *)getMeetingDate {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+    NSString *dateString = [NSString stringWithFormat:@"%@ %@", self.details[1], self.details[2]];
+    return [dateFormat dateFromString:dateString];
+}
+
 - (BOOL)notify {
     if ([self.boolLabel.text isEqualToString:@"yes"]) {
         UILocalNotification *lcl = [[UILocalNotification alloc] init];
 
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
-        NSString *dateString = [NSString stringWithFormat:@"%@ %@", self.details[1], self.details[2]];
-        NSDate *bar = [dateFormat dateFromString:dateString];
-
-        NSComparisonResult result = [[NSDate date] compare:bar];
-        if (result == NSOrderedAscending) {
-            lcl.fireDate = [bar dateByAddingTimeInterval:(-5*60)];
+        if ([self meetingInFuture]) {
+            lcl.fireDate = [[self getMeetingDate] dateByAddingTimeInterval:(-5*60)];
             lcl.alertBody = [NSString stringWithFormat:@"%@ meeting in 5 minutes. Meet here: %@", self.details[0], self.details[4]];
             lcl.soundName = UILocalNotificationDefaultSoundName;
             lcl.alertAction = @"View";

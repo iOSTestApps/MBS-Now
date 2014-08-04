@@ -246,7 +246,6 @@
         [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
     }
     else if ([segue.identifier isEqualToString:@"csshowdetails"]) {
-        NSLog(@"%@", self.array[indexPath.row]);
         [segue.destinationViewController setDetails:self.array[indexPath.row]];
         [segue.destinationViewController setDescriptions:_descs.mutableCopy];
     }
