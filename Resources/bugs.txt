@@ -1,0 +1,2 @@
+Calendar events in Today | Dates displayed are sometimes wrong
+Tap to refresh | A connection is required
