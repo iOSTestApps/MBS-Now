@@ -484,7 +484,7 @@
     BOOL h = [[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"];
     BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
     BOOL e = [[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"];
-    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(e) ? @"Only show some calendar events" : @"Show all calendar events", (n) ? @"Only show latest news" : @"Show all recent news", (d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (h) ? @"Make Home the launch screen" : @"Make Today the launch screen", nil];
+    sheet = [[UIActionSheet alloc] initWithTitle:@"Customize your Today feed" delegate:self cancelButtonTitle:@"Dismiss" destructiveButtonTitle:nil otherButtonTitles:(e) ? @"Only show some calendar events" : @"Show all calendar events", (n) ? @"Only show latest news" : @"Show all recent news", (d) ? @"Show tomorrow's text schedule after 3" : @"Always show tomorrow's text schedule", (h) ? @"Make Home the launch screen" : @"Make Today the launch screen", @"Load web-based schedule", nil];
 
     [sheet showInView:self.view];
 }
@@ -511,9 +511,18 @@
             [[NSUserDefaults standardUserDefaults] setBool:![[NSUserDefaults standardUserDefaults] boolForKey:@"showTodayFirst"] forKey:@"showTodayFirst"];
             [SVProgressHUD showSuccessWithStatus:@"Set first screen to appear!"];
             break;
+        case 4:
+            if ([[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"] < 15) [self.view makeToast:@"You can also tap these cells to get the web schedule." duration:3.0f position:@"top" image:[UIImage imageNamed:@"fyi-sched.png"]];
+            [self performSelector:@selector(showDaySched) withObject:nil afterDelay:3.5f];
+            break;
         default:
             break;
     }
+}
+
+- (void)showDaySched {
+    FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
@@ -895,8 +904,7 @@
             [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"fullScheduleViewsFromTodayCell"];
         }
         preserve = YES;
-        FormsViewerViewController *vc = [[FormsViewerViewController alloc] initWithFullURL:@"http://campus.mbs.net/mbs/widget/daySched.php"];
-        [self.navigationController pushViewController:vc animated:YES];
+        [self showDaySched];
         return;
     }
     else if ([iden isEqualToString:@"standard"]) {

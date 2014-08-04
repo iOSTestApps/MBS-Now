@@ -74,6 +74,7 @@
 		15989FC1198C7170001C92FC /* RMitchellWebPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15989FC0198C7170001C92FC /* RMitchellWebPic.jpg */; };
 		15989FC3198C718C001C92FC /* Headmaster_Caldwell_Oct.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15989FC2198C718C001C92FC /* Headmaster_Caldwell_Oct.jpg */; };
 		159A3D9C177B65D60085010C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 159A3D9A177B65BF0085010C /* AudioToolbox.framework */; };
+		159B881C199032290055BF15 /* fyi-sched.png in Resources */ = {isa = PBXBuildFile; fileRef = 159B881B199032290055BF15 /* fyi-sched.png */; };
 		159CF8E91964EF5000BD7433 /* AddItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E61964EF5000BD7433 /* AddItemViewController.m */; };
 		159CF8EA1964EF5000BD7433 /* CSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 159CF8E81964EF5000BD7433 /* CSMainViewController.m */; };
 		159CF8EE1964EFB500BD7433 /* StoryboardPhone_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 159CF8ED1964EFB500BD7433 /* StoryboardPhone_7.storyboard */; };
@@ -380,6 +381,7 @@
 		15989FC0198C7170001C92FC /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RMitchellWebPic.jpg; sourceTree = "<group>"; };
 		15989FC2198C718C001C92FC /* Headmaster_Caldwell_Oct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Headmaster_Caldwell_Oct.jpg; sourceTree = "<group>"; };
 		159A3D9A177B65BF0085010C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		159B881B199032290055BF15 /* fyi-sched.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fyi-sched.png"; sourceTree = "<group>"; };
 		159CF8E61964EF5000BD7433 /* AddItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddItemViewController.m; path = "MBS Now/AddItemViewController.m"; sourceTree = "<group>"; };
 		159CF8E71964EF5000BD7433 /* CSMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMainViewController.h; sourceTree = "<group>"; };
 		159CF8E81964EF5000BD7433 /* CSMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMainViewController.m; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				15CEF8B41975B41300B66718 /* more-list-7-active@2x.png */,
 				15CE40BE1979FB2800B06315 /* cloud-7.png */,
 				15CE40BF1979FB2800B06315 /* cloud-7@2x.png */,
+				159B881B199032290055BF15 /* fyi-sched.png */,
 				157649031911745B008405B5 /* What's new */,
 				1590CFC6196C78DB00BE0284 /* cloud-download-7.png */,
 				1590CFC7196C78DB00BE0284 /* cloud-download-7@2x.png */,
@@ -1416,6 +1419,7 @@
 				15FFD97E18C69B040049FD02 /* noodle.png in Resources */,
 				15CEF8B51975B41300B66718 /* more-list-7-active.png in Resources */,
 				155AFA32193E3F5E00DFF572 /* clock-7-active@2x.png in Resources */,
+				159B881C199032290055BF15 /* fyi-sched.png in Resources */,
 				155D8C4219900FC300C49CC4 /* notifications-board.png in Resources */,
 				1573821217F2436E00956F6F /* ids.plist in Resources */,
 				15FFD98F18C69B040049FD02 /* quote@2x.png in Resources */,

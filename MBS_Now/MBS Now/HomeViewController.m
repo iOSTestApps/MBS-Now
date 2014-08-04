@@ -64,7 +64,7 @@
     }
 
     if (q == 1 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Sounds good!" otherButtonTitles:nil, nil];
+        UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Want notifications?" message:@"If you want basic alerts from MBS Now, tap the Today tab and \"start receiving notifications\"" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Go there", nil];
         [a show];
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"four-dfl"];
         [[NSUserDefaults standardUserDefaults] synchronize];
