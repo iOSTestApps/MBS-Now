@@ -57,7 +57,7 @@
         return;
     }
     if ([self meetingInFuture]) {
-        if ([self.nameField.text rangeOfString:@" "].location == NSNotFound || _nameField.text.length > 4) {
+        if ([self.nameField.text rangeOfString:@" "].location == NSNotFound || _nameField.text.length < 4) {
             [self animateWithPlaceHolder:@"Full name, please!"];
             return;
         }
@@ -161,6 +161,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1)
         [self directContact:nil];
+    else [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark Mail

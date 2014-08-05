@@ -742,12 +742,12 @@
 			children = (
 				15529389169FBD90006A8B99 /* HomeViewController.h */,
 				1552938A169FBD90006A8B99 /* HomeViewController.m */,
-				3B49C10F1964929E0083DA33 /* Service */,
-				157C549A1929688900D6B224 /* Today */,
 				15727F0D16FA21E900586848 /* FormsViewController.h */,
 				15727F0E16FA21E900586848 /* FormsViewController.m */,
 				15529356169F7840006A8B99 /* LunchViewController.h */,
 				15529357169F7840006A8B99 /* LunchViewController.m */,
+				3B49C10F1964929E0083DA33 /* Service */,
+				157C549A1929688900D6B224 /* Today */,
 				159390CF182EDBA600E4AFA7 /* Clubs */,
 			);
 			name = "Tabbed VCs";
