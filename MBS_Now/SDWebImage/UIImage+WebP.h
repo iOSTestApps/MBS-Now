@@ -3,7 +3,7 @@
 //  SDWebImage
 //
 //  Created by Olivier Poitrey on 07/06/13.
-//  Copyright (c) 2014 Dailymotion. All rights reserved.
+//  Copyright (c) 2013 Dailymotion. All rights reserved.
 //
 
 #ifdef SD_WEBP

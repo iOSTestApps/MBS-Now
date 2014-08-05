@@ -261,7 +261,7 @@
         if (d == 1) return @"yesterday";
         if (d < 8) return [NSString stringWithFormat:@"this past %@", [self dayNameFromDate:[self dateByDistanceFromToday:d]]];
         if (d < 15) return @"last week";
-        if (d < 60) return [NSString stringWithFormat:@"%ld weeks ago", labs([self weeksBetweenDate:[NSDate date] andDate:i])];
+        if (d < 60) return [NSString stringWithFormat:@"%d weeks ago", d/7];
         NSInteger m = labs([self monthsBetweenDate:[NSDate date] andDate:i]);
         if (d < 150) return [NSString stringWithFormat:@"over %ld %@ ago", (long)m, (m > 1) ? @"months" : @"month"];
         else return [NSString stringWithFormat:@"on %@", [self stringFromFormatterDate:i]];
@@ -290,12 +290,6 @@
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [calendar components:NSDayCalendarUnit fromDate:a toDate:b options:0];
     return components.day;
-}
-
-- (NSInteger)weeksBetweenDate:(NSDate *)a andDate:(NSDate *)b {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSWeekCalendarUnit fromDate:a toDate:b options:0];
-    return components.week;
 }
 
 - (NSInteger)monthsBetweenDate:(NSDate *)a andDate:(NSDate *)b {
@@ -779,8 +773,8 @@
     } else if (cl == [ScheduleTableViewCell class]) {
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-        [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
-        if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        [cell.today sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         cell = [self shadowCell:cell];
         return cell;
     } else if (cl == [EventTableViewCell class]) {
