@@ -225,7 +225,7 @@
     weatherData = [NSMutableData data];
     weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 
-    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announe.txt"]];
+    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announce.txt"]];
     announcementsData = [NSMutableData data];
     announcementsConnection = [[NSURLConnection alloc] initWithRequest:announce delegate:self startImmediately:YES];
 }
