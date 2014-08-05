@@ -29,6 +29,15 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
+- (void)showNoBugs {
+    [connect cancel];
+    connectionData = nil;
+    self.bug = [@[@"Tap to check again", @"No confirmed bugs"] mutableCopy];
+    self.description = [@[@"Connection required", @"New reports are checked immediately"] mutableCopy];
+
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 #pragma mark Table View
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *iden = @"iden";
@@ -65,11 +74,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (([(NSHTTPURLResponse *)response statusCode] == 404) && connection == connect) {
         [SVProgressHUD dismiss];
-        [connect cancel];
-        self.bug = [@[@"Tap to check again", @"No confirmed bugs"] mutableCopy];
-        self.description = [@[@"Connection required", @"New reports are checked immediately"] mutableCopy];
-
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+        [self showNoBugs];
     }
 }
 
@@ -85,7 +90,7 @@
             [alert show];
         } else {
             self.navigationItem.rightBarButtonItem.enabled = YES;
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/bugs.txt"]];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/bugs.txt"]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0f];
             connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
             if (connect) [SVProgressHUD showWithStatus:@"Downloading..."];
@@ -95,6 +100,7 @@
         self.bug = [NSMutableArray array];
         self.description = [NSMutableArray array];
         NSString *bugString = [[NSString alloc] initWithData:connectionData encoding:NSUTF8StringEncoding];
+        if ([bugString isEqualToString:@"\n"] || [bugString isEqualToString:@""]) {[self showNoBugs]; return;}
         for (NSString *foo in [bugString componentsSeparatedByString:@"\n"]) {
             NSArray *bar = [foo componentsSeparatedByString:@" | "];
             if (bar.count == 2) {
@@ -108,7 +114,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
-    self.bug = [@[@"Connection failed"] mutableCopy];
+    self.bug = [@[@"Connection failed. Tap to retry"] mutableCopy];
     self.description = [@[@"Tap here to try again"] mutableCopy];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
