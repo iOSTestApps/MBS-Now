@@ -36,7 +36,7 @@
     [super viewWillAppear:animated];
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && UIInterfaceOrientationIsPortrait(orientation)) {
-        [self updateLabels:NSNotFound];
+        [self updateLabels:-10000];
     } else  {
         if (IS_IPHONE_5) {
             for (UILabel *chi in _first)
@@ -244,7 +244,7 @@
 #pragma mark - Rotation
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        [self updateLabels:NSNotFound];
+        [self updateLabels:-10000];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
@@ -254,7 +254,7 @@
 
 #pragma mark Scroll View
 - (void)updateLabels:(int)q {
-    if (q == NSNotFound) q = _iPadScroller.contentOffset.y;
+    if (q == -10000) q = _iPadScroller.contentOffset.y;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if (IS_IPHONE_5) {
             if (q > 75) {

@@ -255,15 +255,15 @@
 
 - (NSString *)smartDate:(NSDate *)i { // intended for days, not hours or minutes
     NSComparisonResult result = [[self dateWithoutTime:[NSDate date]] compare:[self dateWithoutTime:i]];
-    int d = abs([self daysBetweenDate:[NSDate date] andDate:i]);
+    NSInteger d = labs([self daysBetweenDate:[NSDate date] andDate:i]);
     if (result == NSOrderedDescending) {
         // i is in the past
         if (d == 1) return @"yesterday";
         if (d < 8) return [NSString stringWithFormat:@"this past %@", [self dayNameFromDate:[self dateByDistanceFromToday:d]]];
         if (d < 15) return @"last week";
-        if (d < 60) return [NSString stringWithFormat:@"%d weeks ago", abs([self weeksBetweenDate:[NSDate date] andDate:i])];
-        int m = abs([self monthsBetweenDate:[NSDate date] andDate:i]);
-        if (d < 150) return [NSString stringWithFormat:@"over %d %@ ago", m, (m > 1) ? @"months" : @"month"];
+        if (d < 60) return [NSString stringWithFormat:@"%ld weeks ago", labs([self weeksBetweenDate:[NSDate date] andDate:i])];
+        NSInteger m = labs([self monthsBetweenDate:[NSDate date] andDate:i]);
+        if (d < 150) return [NSString stringWithFormat:@"over %ld %@ ago", (long)m, (m > 1) ? @"months" : @"month"];
         else return [NSString stringWithFormat:@"on %@", [self stringFromFormatterDate:i]];
     } else if (result == NSOrderedAscending) {
         // i is in the future -- method is not intended for this
@@ -286,19 +286,19 @@
     return components;
 }
 
-- (int)daysBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+- (NSInteger)daysBetweenDate:(NSDate *)a andDate:(NSDate *)b {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [calendar components:NSDayCalendarUnit fromDate:a toDate:b options:0];
     return components.day;
 }
 
-- (int)weeksBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+- (NSInteger)weeksBetweenDate:(NSDate *)a andDate:(NSDate *)b {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [calendar components:NSWeekCalendarUnit fromDate:a toDate:b options:0];
     return components.week;
 }
 
-- (int)monthsBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+- (NSInteger)monthsBetweenDate:(NSDate *)a andDate:(NSDate *)b {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [calendar components:NSMonthCalendarUnit fromDate:a toDate:b options:0];
     return components.month;
@@ -334,7 +334,7 @@
     return [components hour];
 }
 
-- (NSDate *)getDateForTomorrowAtHour:(int)h {
+- (NSDate *)getDateForTomorrowAtHour:(NSInteger)h {
     NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
@@ -346,7 +346,7 @@
     return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
 }
 
-- (NSDate *)dateByDistanceFromToday:(int)d {
+- (NSDate *)dateByDistanceFromToday:(NSInteger)d {
     NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
