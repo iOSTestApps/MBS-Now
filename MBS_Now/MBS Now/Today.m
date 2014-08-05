@@ -253,6 +253,57 @@
     }
 }
 
+- (NSString *)smartDate:(NSDate *)i { // intended for days, not hours or minutes
+    NSComparisonResult result = [[self dateWithoutTime:[NSDate date]] compare:[self dateWithoutTime:i]];
+    int d = abs([self daysBetweenDate:[NSDate date] andDate:i]);
+    if (result == NSOrderedDescending) {
+        // i is in the past
+        if (d == 1) return @"yesterday";
+        if (d < 8) return [NSString stringWithFormat:@"this past %@", [self dayNameFromDate:[self dateByDistanceFromToday:d]]];
+        if (d < 15) return @"last week";
+        if (d < 60) return [NSString stringWithFormat:@"%d weeks ago", abs([self weeksBetweenDate:[NSDate date] andDate:i])];
+        int m = abs([self monthsBetweenDate:[NSDate date] andDate:i]);
+        if (d < 150) return [NSString stringWithFormat:@"over %d %@ ago", m, (m > 1) ? @"months" : @"month"];
+        else return [NSString stringWithFormat:@"on %@", [self stringFromFormatterDate:i]];
+    } else if (result == NSOrderedAscending) {
+        // i is in the future -- method is not intended for this
+        if (d == 1)
+            return @"tomorrow";
+        else return [self stringFromFormatterDate:i];
+    } else return @"just now"; // i is in the present
+}
+
+- (NSDate *)dateWithoutTime:(NSDate *)i {
+    if (i == nil )
+        i = [NSDate date];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:i];
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
+}
+
+- (NSDateComponents *)timeBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:a toDate:b options:0];
+    return components;
+}
+
+- (int)daysBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSDayCalendarUnit fromDate:a toDate:b options:0];
+    return components.day;
+}
+
+- (int)weeksBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSWeekCalendarUnit fromDate:a toDate:b options:0];
+    return components.week;
+}
+
+- (int)monthsBetweenDate:(NSDate *)a andDate:(NSDate *)b {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSMonthCalendarUnit fromDate:a toDate:b options:0];
+    return components.month;
+}
+
 - (NSString *)stringFromFormatterDate:(NSDate *)d {
     NSDateFormatter *form = [[NSDateFormatter alloc] init];
     [form setDateFormat:@"y-M-d"];
@@ -766,7 +817,8 @@
         if (cell == nil)
             cell = [[ArticleTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
         cell.articleBody.text = [NSString stringWithFormat:@"%@ (tap to read)", _feeds[@"strings"][indexPath.row]];
-        cell.dateTag.text = [NSString stringWithFormat:@"Posted on %@", [_feeds[@"images"][indexPath.row] stringByReplacingOccurrencesOfString:@":00 -0000" withString:@""]];
+        NSDate *dateTag = [self dateFromNewsXmlFormatter:_feeds[@"images"][indexPath.row]];
+        cell.dateTag.text = [NSString stringWithFormat:@"Posted %@", [self smartDate:dateTag]];
         cell = [self shadowCell:cell];
         return cell;
     }
