@@ -225,7 +225,7 @@
     weatherData = [NSMutableData data];
     weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 
-    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announce.txt"]];
+    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announe.txt"]];
     announcementsData = [NSMutableData data];
     announcementsConnection = [[NSURLConnection alloc] initWithRequest:announce delegate:self startImmediately:YES];
 }
@@ -683,6 +683,7 @@
 
     else if (connection == announcementsConnection) {
         NSString *announcements = [[NSString alloc] initWithData:announcementsData encoding:NSUTF8StringEncoding];
+        if ([announcements isEqualToString:@"Not Found"]) return;
         for (NSString *foo in [announcements componentsSeparatedByString:@"\n"]) {
             if (![foo isEqualToString:@""]) {
                 NSArray *seps = [foo componentsSeparatedByString:@" | "];
