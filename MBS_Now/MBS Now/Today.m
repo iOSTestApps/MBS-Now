@@ -683,7 +683,7 @@
 
     else if (connection == announcementsConnection) {
         NSString *announcements = [[NSString alloc] initWithData:announcementsData encoding:NSUTF8StringEncoding];
-        if ([announcements isEqualToString:@"Not Found"]) return;
+        if ([announcements isEqualToString:@"Not Found"] || [announcements isEqualToString:@""]) return;
         for (NSString *foo in [announcements componentsSeparatedByString:@"\n"]) {
             if (![foo isEqualToString:@""]) {
                 NSArray *seps = [foo componentsSeparatedByString:@" | "];
