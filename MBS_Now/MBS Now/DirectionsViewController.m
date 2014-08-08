@@ -21,7 +21,7 @@
     mbs.latitude = 40.804085;
     mbs.longitude = -74.448408;
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Maps" style:UIBarButtonItemStyleBordered target:self action:@selector(openMaps)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Open Maps" style:UIBarButtonItemStylePlain target:self action:@selector(openMaps)];
 
     viewRegion = MKCoordinateRegionMakeWithDistance(mbs, .3 * METERSTOMILE, .3 * METERSTOMILE);
     
@@ -33,7 +33,7 @@
     point.subtitle = @"70 Whippany Road, 07960";
     [self.directionsView addAnnotation:point];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(orient)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStylePlain target:self action:@selector(orient)];
 }
 
 #pragma mark Actions

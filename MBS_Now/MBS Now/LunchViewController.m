@@ -22,7 +22,7 @@
     [formatter setDateFormat:@"EEEE"];
     weekDay = [formatter stringFromDate:[NSDate date]];
 
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
 
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
@@ -78,7 +78,7 @@
     [formatter setDateFormat:@"EEEE"];
     weekDay = [formatter stringFromDate:[NSDate date]];
 
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
 
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 

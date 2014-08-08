@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *bug;
-@property (nonatomic, strong) NSMutableArray *description;
+@property (nonatomic, strong) NSMutableArray *mainTitle;
 
 @end

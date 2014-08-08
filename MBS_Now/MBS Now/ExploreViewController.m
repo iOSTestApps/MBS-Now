@@ -14,7 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(orient)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"home-7-active.png"] style:UIBarButtonItemStylePlain target:self action:@selector(orient)];
 
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 20)];
     footer.backgroundColor = [UIColor clearColor];

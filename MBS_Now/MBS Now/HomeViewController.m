@@ -125,20 +125,20 @@
     NSDateComponents *components;
     NSString *messagePart;
 
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     if ([endDate compare:current] == NSOrderedDescending && [startDate compare:current] == NSOrderedAscending) {
         // school's in session
-        components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
+        components = [gregorianCalendar components:NSCalendarUnitDay fromDate:current toDate:endDate options:0];
         messagePart = @"ends";
     } else if ([startDate compare:current] == NSOrderedDescending) {
         // summer
-        components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:startDate options:0];
+        components = [gregorianCalendar components:NSCalendarUnitDay fromDate:current toDate:startDate options:0];
         messagePart = @"starts";
     } else if ([current compare:endDate] == NSOrderedDescending) messagePart = @"UPDATE MBS NOW";
 
     if ([startDate compare:endDate] == NSOrderedDescending && [endDate compare:current] == NSOrderedDescending) {
         messagePart = @"ends";
-        components = [gregorianCalendar components:NSDayCalendarUnit fromDate:current toDate:endDate options:0];
+        components = [gregorianCalendar components:NSCalendarUnitDay fromDate:current toDate:endDate options:0];
     }
     NSNumber *dayCount = [NSNumber numberWithInteger:[components day]];
     UIImage *img = ([messagePart isEqualToString:@"starts"]) ? [UIImage imageNamed:@"sun-7.png"] : [UIImage imageNamed:@"backpack.png"];

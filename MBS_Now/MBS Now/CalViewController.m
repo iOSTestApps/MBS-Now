@@ -20,10 +20,10 @@
     else [self controlChange:self];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        _navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(stop)];
+        _navBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStylePlain target:self action:@selector(stop)];
         return;
     }
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(stop)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mutiply-sign.png"] style:UIBarButtonItemStylePlain target:self action:@selector(stop)];
 }
 
 - (void)loadWithDefaults {

@@ -30,7 +30,7 @@
     self.refreshControl = refresh;
 
     [self.tableView addSubview:self.refreshControl];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(showSortOptions)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"paperwork-7.png"] style:UIBarButtonItemStylePlain target:self action:@selector(showSortOptions)];
     self.navigationItem.leftBarButtonItem.enabled = NO;
 }
 

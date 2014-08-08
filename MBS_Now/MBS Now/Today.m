@@ -46,9 +46,9 @@
     [refresh addTarget:self action:@selector(update) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = refresh;
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more-list-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(more)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more-list-7-active.png"] style:UIBarButtonItemStylePlain target:self action:@selector(more)];
 
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(lunch)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStylePlain target:self action:@selector(lunch)];
     if ([@[@"Saturday", @"Sunday"] containsObject:[self dayNameFromDate:[NSDate date]]]) {self.navigationItem.rightBarButtonItem.enabled = NO;}
 }
 
@@ -261,7 +261,7 @@
         if (d == 1) return @"yesterday";
         if (d < 8) return [NSString stringWithFormat:@"this past %@", [self dayNameFromDate:[self dateByDistanceFromToday:d]]];
         if (d < 15) return @"last week";
-        if (d < 60) return [NSString stringWithFormat:@"%ld weeks ago", labs([self weeksBetweenDate:[NSDate date] andDate:i])];
+        if (d < 60) return [NSString stringWithFormat:@"%ld weeks ago", (d/7)];
         NSInteger m = labs([self monthsBetweenDate:[NSDate date] andDate:i]);
         if (d < 150) return [NSString stringWithFormat:@"over %ld %@ ago", (long)m, (m > 1) ? @"months" : @"month"];
         else return [NSString stringWithFormat:@"on %@", [self stringFromFormatterDate:i]];
@@ -276,31 +276,25 @@
 - (NSDate *)dateWithoutTime:(NSDate *)i {
     if (i == nil )
         i = [NSDate date];
-    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:i];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:i];
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
 - (NSDateComponents *)timeBetweenDate:(NSDate *)a andDate:(NSDate *)b {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:a toDate:b options:0];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:a toDate:b options:0];
     return components;
 }
 
 - (NSInteger)daysBetweenDate:(NSDate *)a andDate:(NSDate *)b {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSDayCalendarUnit fromDate:a toDate:b options:0];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitDay fromDate:a toDate:b options:0];
     return components.day;
 }
 
-- (NSInteger)weeksBetweenDate:(NSDate *)a andDate:(NSDate *)b {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSWeekCalendarUnit fromDate:a toDate:b options:0];
-    return components.week;
-}
-
 - (NSInteger)monthsBetweenDate:(NSDate *)a andDate:(NSDate *)b {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [calendar components:NSMonthCalendarUnit fromDate:a toDate:b options:0];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *components = [calendar components:NSCalendarUnitMonth fromDate:a toDate:b options:0];
     return components.month;
 }
 
@@ -330,12 +324,12 @@
 
 - (NSInteger)getHourOfDay {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:[NSDate date]];
+    NSDateComponents *components = [calendar components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:[NSDate date]];
     return [components hour];
 }
 
 - (NSDate *)getDateForTomorrowAtHour:(NSInteger)h {
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
@@ -347,7 +341,7 @@
 }
 
 - (NSDate *)dateByDistanceFromToday:(NSInteger)d {
-    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
     NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
 
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
@@ -494,6 +488,7 @@
             break;
         case 4:
             if ([[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"] < 20) {
+                [self.tableView scrollsToTop];
                 [self.view makeToast:@"You can also tap these cells to get the web schedule." duration:3.0f position:@"top" image:[UIImage imageNamed:@"fyi-sched.png"]];
                 [self performSelector:@selector(showDaySched) withObject:nil afterDelay:3.5f];
             } else [self showDaySched];
@@ -779,8 +774,8 @@
     } else if (cl == [ScheduleTableViewCell class]) {
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-        [cell.today setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
-        if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        [cell.today sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
+        if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         cell = [self shadowCell:cell];
         return cell;
     } else if (cl == [EventTableViewCell class]) {
