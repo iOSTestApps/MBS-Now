@@ -135,10 +135,10 @@
                 if ([grades containsObject:grade]) {
                     [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"msGrade"];
                     [self loadWithDefaults];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You can change or clear your grade in 'Settings' from the 'Home' tab" delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You can change your grade in Settings. Just tap the gear icon from the Home tab." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
                     [alert show];
                 } else {
-                    [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Tap 'Public' and then 'HW' again"];
+                    [SVProgressHUD showErrorWithStatus:@"Not an MS grade. Tap 'Public' and then 'HW' to try again"];
                 }
             }
         } 

@@ -17,6 +17,9 @@
     self.navBar.hidden = self.hideNavBar;
     self.navBar.topItem.title = self.navTitle;
     self.navigationItem.title = self.navTitle;
+    if (!self.navigationController.navigationBar.translucent && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        _tv.frame = CGRectMake(10, 11, 300, self.view.bounds.size.height - 70);
+    }
 }
 
 // iPad only

@@ -757,6 +757,7 @@
         cell.img.image = _feeds[@"images"][indexPath.row];
         cell.url = _feeds[@"urls"][indexPath.row];
         cell = [self shadowCell:cell];
+        if (cell.label.text.length > 36) {cell.label.font = [UIFont fontWithName:@"Avenir" size:12.0f]; NSLog(@"derp!");}
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
 

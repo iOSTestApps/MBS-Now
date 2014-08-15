@@ -7,7 +7,6 @@
 //
 
 #import "ExploreViewController.h"
-#import "FullPurposeViewController.h"
 #define METERSTOMILE 1609.344
 
 @implementation ExploreViewController
@@ -103,10 +102,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    if (![subtitles[indexPath.row] isEqualToString:@" "]) {
-        self.accessoryIndex = indexPath.row;
-        [self performSegueWithIdentifier:@"full" sender:self];
-    }
+    if (![subtitles[indexPath.row] isEqualToString:@" "])
+        [SVProgressHUD showImage:nil status:subtitles[indexPath.row]];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +125,7 @@
     cell.textLabel.text = descriptions[indexPath.row];
     cell.detailTextLabel.text = subtitles[indexPath.row];
     // this is bad practice (to use pre-game values like this)
-    cell.accessoryType = (indexPath.row != 0 && indexPath.row != 1 && indexPath.row != 15 && indexPath.row != 22) ?
+    cell.accessoryType = ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad && indexPath.row != 0 && indexPath.row != 1 && indexPath.row != 15 && indexPath.row != 22) ?
     UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryNone;
     return cell;
 }
@@ -176,13 +173,6 @@
 }
 - (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-}
-
-#pragma mark Segues
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [segue.destinationViewController setNavTitle:[descriptions objectAtIndex:self.accessoryIndex]];
-    [segue.destinationViewController setFullPurpose:[subtitles objectAtIndex:self.accessoryIndex]];
-    [segue.destinationViewController setHideNavBar:NO];
 }
 
 @end

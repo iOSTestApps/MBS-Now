@@ -111,19 +111,26 @@
     }
 }
 
-- (NSArray *)countdown {
+
+- (NSArray *)intervalDates {
     NSString *startSchool = @"09/03/2014";
     NSString *endSchool = @"06/02/2015";
-    NSDate *current = [NSDate date];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy"];
 
-    NSDate *endDate = [formatter dateFromString:endSchool];
-    NSDate *startDate = [formatter dateFromString:startSchool];
+    return @[[formatter dateFromString:startSchool],[formatter dateFromString:endSchool]];
+}
+
+- (NSArray *)countdown {
+    NSDate *current = [NSDate date];
 
     NSDateComponents *components;
     NSString *messagePart;
+
+    NSArray *interval = [self intervalDates];
+    NSDate *startDate = interval[0];
+    NSDate *endDate = interval[1];
 
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     if ([endDate compare:current] == NSOrderedDescending && [startDate compare:current] == NSOrderedAscending) {

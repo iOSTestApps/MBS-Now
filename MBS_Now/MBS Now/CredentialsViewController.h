@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CredentialsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
-
     NSArray *ids;
     NSArray *names;
     NSArray *keys;

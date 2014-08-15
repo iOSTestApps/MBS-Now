@@ -19,6 +19,7 @@
 }
 
 - (NSArray *)countdown;
+- (NSArray *)intervalDates;
 
 - (IBAction)pushedCountdown:(id)sender;
 - (IBAction)pushedCredentials:(id)sender;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller - Home-->
+        <!--Home-->
         <scene sceneID="bq7-yz-Wyh">
             <objects>
                 <navigationController definesPresentationContext="YES" id="MiR-vS-817" sceneMemberID="viewController">
@@ -22,12 +22,12 @@
             </objects>
             <point key="canvasLocation" x="-1427" y="-376"/>
         </scene>
-        <!--Today - Today-->
+        <!--Today-->
         <scene sceneID="ET1-k9-Yei">
             <objects>
                 <tableViewController id="7rY-Ro-EPc" customClass="Today" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="mAP-Bx-f67">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -130,7 +130,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdfasdfbajsdfkajsdfbaskdjfabsdlfkjasndflkajsdfnaskjldf" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iar-Y9-HDG">
-                                            <rect key="frame" x="12" y="26.5" width="295" height="43"/>
+                                            <rect key="frame" x="12" y="27" width="295" height="43"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -175,7 +175,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdfasdfbajsdfkajsdfbaskdjfabsdlfkjasndflkajsdfnaskjldf" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b9H-bj-Eh8">
-                                            <rect key="frame" x="8" y="32.5" width="306" height="44"/>
+                                            <rect key="frame" x="8" y="33" width="306" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -293,13 +293,13 @@
             </objects>
             <point key="canvasLocation" x="-1077" y="516"/>
         </scene>
-        <!--Navigation Controller - Today-->
+        <!--Today-->
         <scene sceneID="jWa-CZ-4V8">
             <objects>
                 <navigationController definesPresentationContext="YES" id="FpI-w6-GDL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Today" image="newspaper-7.png" id="gQ6-r4-S0h"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cXZ-Q5-Ppz">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="cXZ-Q5-Ppz">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -310,7 +310,7 @@
             </objects>
             <point key="canvasLocation" x="-1487" y="516"/>
         </scene>
-        <!--Home View Controller - MBS Now-->
+        <!--MBS Now-->
         <scene sceneID="2YJ-wb-IFm">
             <objects>
                 <viewController id="BLi-Tv-e8g" customClass="HomeViewController" sceneMemberID="viewController">
@@ -684,7 +684,7 @@
             </objects>
             <point key="canvasLocation" x="-998" y="-400"/>
         </scene>
-        <!--Explore View Controller - Explore Campus-->
+        <!--Explore Campus-->
         <scene sceneID="cWv-Fh-hOg">
             <objects>
                 <viewController id="WUa-dV-KHc" customClass="ExploreViewController" sceneMemberID="viewController">
@@ -727,14 +727,13 @@
                         <outlet property="listings" destination="IF3-L3-ySZ" id="bhb-In-U28"/>
                         <outlet property="mapView" destination="f4K-TX-Or5" id="osL-Bf-W6t"/>
                         <outlet property="swap" destination="aV0-QH-OY4" id="nWH-eE-bqd"/>
-                        <segue destination="C8K-7a-guS" kind="modal" identifier="full" id="18p-mB-R41"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YsE-xG-dUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="432" y="1838"/>
         </scene>
-        <!--Offline View Controller - Offline Schedule-->
+        <!--Offline Schedule-->
         <scene sceneID="voT-e7-rTf">
             <objects>
                 <viewController title="Offline Schedule" id="1VH-gR-sqY" customClass="OfflineViewController" sceneMemberID="viewController">
@@ -761,7 +760,7 @@
             </objects>
             <point key="canvasLocation" x="-20" y="-279"/>
         </scene>
-        <!--Contact View Controller - Contact MBS-->
+        <!--Contact MBS-->
         <scene sceneID="sq1-p5-dbD">
             <objects>
                 <viewController title="Contact MBS" id="Mc2-Na-f48" customClass="ContactViewController" sceneMemberID="viewController">
@@ -788,7 +787,7 @@
             </objects>
             <point key="canvasLocation" x="-32" y="-2646"/>
         </scene>
-        <!--Directions View Controller - Directions-->
+        <!--Directions-->
         <scene sceneID="971-aD-ilV">
             <objects>
                 <viewController title="Directions" id="Ujp-dq-y6O" customClass="DirectionsViewController" sceneMemberID="viewController">
@@ -844,7 +843,7 @@
             </objects>
             <point key="canvasLocation" x="-20" y="932"/>
         </scene>
-        <!--About View Controller - About MBS-->
+        <!--About MBS-->
         <scene sceneID="bZm-Kg-vDp">
             <objects>
                 <viewController title="About MBS" id="9K3-1M-vSf" customClass="AboutViewController" sceneMemberID="viewController">
@@ -925,7 +924,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-20" y="1574"/>
         </scene>
-        <!--Credentials View Controller - Credentials-->
+        <!--Credentials-->
         <scene sceneID="gz1-zs-poW">
             <objects>
                 <viewController title="Credentials" id="0Z0-tr-ouE" customClass="CredentialsViewController" sceneMemberID="viewController">
@@ -1071,7 +1070,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-43" y="-1468"/>
         </scene>
-        <!--Data View Controller - Data Uploads-->
+        <!--Data Uploads-->
         <scene sceneID="Nb9-SH-0Jc">
             <objects>
                 <viewController title="Data Uploads" id="Ksn-5y-pkh" customClass="DataViewController" sceneMemberID="viewController">
@@ -1137,7 +1136,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-10" y="324"/>
         </scene>
-        <!--View Controller - Lunch Blocks-->
+        <!--Lunch Blocks-->
         <scene sceneID="HKf-x7-9Xw">
             <objects>
                 <viewController id="AE8-cS-jSB" customClass="EAViewController" sceneMemberID="viewController">
@@ -1436,7 +1435,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-578" y="-2646"/>
         </scene>
-        <!--Clubs View Controller - Clubs-->
+        <!--Clubs-->
         <scene sceneID="NT3-Mp-d5j">
             <objects>
                 <tableViewController id="qLy-T0-qo1" customClass="ClubsViewController" sceneMemberID="viewController">
@@ -1537,7 +1536,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-496" y="1981"/>
         </scene>
-        <!--View Controller - RSVP-->
+        <!--RSVP-->
         <scene sceneID="x5L-F7-yiJ">
             <objects>
                 <viewController id="LHB-aw-eaU" customClass="RSVPViewController" sceneMemberID="viewController">
@@ -1634,11 +1633,11 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             <objects>
                 <viewController id="C8K-7a-guS" customClass="FullPurposeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="czv-vo-QSN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="qBk-uS-mN6">
-                                <rect key="frame" x="15" y="71" width="288" height="440"/>
+                                <rect key="frame" x="10" y="11" width="300" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1649,38 +1648,19 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                     <outlet property="delegate" destination="C8K-7a-guS" id="SgY-DD-XnK"/>
                                 </connections>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" id="x5v-DI-G8g">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem id="vUB-Zd-t2N">
-                                        <barButtonItem key="leftBarButtonItem" title="Done" id="u4b-xN-P1i">
-                                            <connections>
-                                                <action selector="pushedDone:" destination="C8K-7a-guS" id="zPg-g8-DoR"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <view contentMode="scaleToFill" id="tqv-ZA-Cnq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="44U-bd-wiS"/>
                     <connections>
-                        <outlet property="navBar" destination="x5v-DI-G8g" id="H3X-8c-b3K"/>
                         <outlet property="tv" destination="qBk-uS-mN6" id="2VR-Bq-6G6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SrW-M7-B1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-585" y="3339"/>
+            <point key="canvasLocation" x="-565" y="3531"/>
         </scene>
-        <!--Navigation Controller - Docs-->
+        <!--Docs-->
         <scene sceneID="k7K-VP-LTE">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Eoh-E1-tt3" sceneMemberID="viewController">
@@ -1697,7 +1677,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1587" y="1189"/>
         </scene>
-        <!--Navigation Controller - Clubs-->
+        <!--Clubs-->
         <scene sceneID="CcL-0j-Vdz">
             <objects>
                 <navigationController definesPresentationContext="YES" id="izH-dB-iRb" sceneMemberID="viewController">
@@ -1713,7 +1693,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1370" y="1981"/>
         </scene>
-        <!--Cal View Controller - Listings-->
+        <!--Listings-->
         <scene sceneID="13">
             <objects>
                 <viewController title="Listings" id="3" customClass="CalViewController" sceneMemberID="viewController">
@@ -1795,7 +1775,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-2342" y="1038"/>
         </scene>
-        <!--Forms View Controller - Docs-->
+        <!--Docs-->
         <scene sceneID="G22-Lt-bhZ">
             <objects>
                 <viewController title="Docs" id="1v9-Zk-SUN" customClass="FormsViewController" sceneMemberID="viewController">
@@ -1866,7 +1846,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1032" y="1189"/>
         </scene>
-        <!--View Controller - All-->
+        <!--All-->
         <scene sceneID="osb-gW-VSG">
             <objects>
                 <viewController title="All" automaticallyAdjustsScrollViewInsets="NO" id="x6O-mg-rUi" customClass="ViewController" sceneMemberID="viewController">
@@ -2018,7 +1998,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1164" y="2750"/>
         </scene>
-        <!--Navigation Controller - Service-->
+        <!--Service-->
         <scene sceneID="Ul7-8B-Ll3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZL-Np-2w2" sceneMemberID="viewController">
@@ -2072,13 +2052,16 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="axq-Vb-zHP"/>
+        <segue reference="EnD-GY-im9"/>
+        <segue reference="x54-XE-0UW"/>
         <segue reference="LMc-Mf-m1x"/>
         <segue reference="3MT-6i-bVb"/>
-        <segue reference="YN7-qv-aKn"/>
-        <segue reference="FEb-6a-Dfo"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 #import "OfflineViewController.h"
 #import "OfflineViewerViewController.h"
+#import "HomeViewController.h"
 
 @implementation OfflineViewController
 
@@ -15,6 +16,16 @@
     [super viewDidLoad];
     divisions = @[@"Upper School", @"Middle School", @"Listing"];
 }
+
+- (NSDate *)dateByDistanceFromToday:(NSInteger)d {
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
+
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    offsetComponents.day = d;
+    return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
+}
+
 
 #pragma mark TableView
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -75,7 +86,12 @@
     } else {
         // listings section
         cell.textLabel.text = @"A/B Week List";
-        cell.detailTextLabel.text = @"2013-2014";
+        NSDateFormatter *form = [[NSDateFormatter alloc] init];
+        [form setDateFormat:@"YYYY"];
+        HomeViewController *hvc = [[HomeViewController alloc] init];
+        NSArray *interval = [hvc intervalDates];
+        // this is great because these dates will automatically update when the countdown date changes. This type of automation saves a lot of time and prevents user-confusion
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@", [form stringFromDate:interval[0]], [form stringFromDate:interval[1]]];
     }
     return cell;
 }
