@@ -431,6 +431,9 @@
     NSLog(@"generating from prefs");
     NSArray *lists = [pack componentsSeparatedByString:@"^"];
 
+    // bad part here is that any club reminders will be cancelled too
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
     // 8 possibilities encapsulated here
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"abs"])
         [self generateNotifications:lists[1] andCalculateTime:NO];
