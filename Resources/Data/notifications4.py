@@ -45,7 +45,9 @@ du_dates = []
 du_names = [] # better than a for-loop assigning a generic message because these typically have a reason for dressing-up
 rejected = []
 a_weeks = []
+compiled_a_weeks = []
 b_weeks = []
+compiled_b_weeks = []
 general = []
 gen_dates = []
 interval_dates = 0
@@ -59,9 +61,13 @@ for foo in events:
         else:
             rejected.append(foo[0])
     if "a week" in ret:
-        a_weeks.append(foo[1])
+        if return_week(foo[1]) not in compiled_a_weeks:
+            compiled_a_weeks.append(return_week(foo[1]))            
+            a_weeks.append(foo[1])
     if "b week" in ret:
-        b_weeks.append(foo[1])
+        if return_week(foo[1]) not in compiled_b_weeks:        
+            compiled_b_weeks.append(return_week(foo[1]))
+            b_weeks.append(foo[1])
     if ('end of second semester' in ret or 'end of 2nd semester' in ret or 'last day of academic classes' in ret or 'last day of 2nd semester' in ret) and interval_dates < 1:
         interval_dates += 1
         general.append('The second semester ends today. Have a great summer!')

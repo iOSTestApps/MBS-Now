@@ -139,7 +139,7 @@
 
     NSDateFormatter *pretty = [[NSDateFormatter alloc] init];
     [pretty setDateFormat:@"EEEE, MMMM d, y"];
-    [self saveFeedsWithObject:[NSString stringWithFormat:@"Today is %@.", [pretty stringFromDate:[NSDate date]]] andKey:@"strings"];
+    [self saveFeedsWithObject:[NSString stringWithFormat:@"It's %@.", [pretty stringFromDate:[NSDate date]]] andKey:@"strings"];
     [self saveFeedsWithObject:[UIImage imageNamed:@"push-pin-7.png"] andKey:@"images"];
     [self saveFeedsWithObject:[StandardTableViewCell class] andKey:@"class"];
     [self saveFeedsWithObject:@"" andKey:@"urls"];
@@ -347,6 +347,10 @@
     NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
     offsetComponents.day = d;
     return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
+}
+
+- (BOOL)isALocation:(NSString *)i {
+    return ([i.lowercaseString rangeOfString:@"location"].location != NSNotFound) ? YES : NO;
 }
 
 - (void)saveFeedsWithObject:(id)object andKey:(NSString *)key{
@@ -756,12 +760,11 @@
         cell.label.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
         cell.url = _feeds[@"urls"][indexPath.row];
-        cell = [self shadowCell:cell];
         if (cell.label.text.length > 36) {cell.label.font = [UIFont fontWithName:@"Avenir" size:12.0f]; NSLog(@"derp!");}
         if (cell == nil)
             cell = [[StandardTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
 
-        return cell;
+        return [self shadowCell:cell];;
     } else if (cl == [TodayCellTableViewCell class]) {
         static NSString *iden = @"today";
         TodayCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
@@ -770,15 +773,13 @@
         cell.dateTag.text = [NSString stringWithFormat:@"Updated %@", [formatter stringFromDate:[NSDate date]]];
         cell.messageBody.text = _feeds[@"strings"][indexPath.row];
         cell.img.image = _feeds[@"images"][indexPath.row];
-        cell = [self shadowCell:cell];
-        return cell;
+        return [self shadowCell:cell];
     } else if (cl == [ScheduleTableViewCell class]) {
         static NSString *iden = @"schedule";
         ScheduleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         [cell.today sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][0]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
         if ([_feeds[@"dayScheds"] count] > 1) [cell.tomorrow sd_setImageWithURL:[NSURL URLWithString:_feeds[@"dayScheds"][1]] placeholderImage:[UIImage imageNamed:@"loading-schedule.png"]];
-        cell = [self shadowCell:cell];
-        return cell;
+        return [self shadowCell:cell];
     } else if (cl == [EventTableViewCell class]) {
         static NSString *iden = @"event";
         EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
@@ -788,11 +789,12 @@
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
         if (full.count > 1) { // potentially dangerous assumption here is that if an event has a time, it must have a location and vice-versa
-            cell.dateTag.text = [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]];
-            cell.locTag.text = [full[2] componentsSeparatedByString:@": "][1];
+            cell.dateTag.text = [NSString stringWithFormat:@"%@%@", [full[0] componentsSeparatedByString:@": "][1], ([self isALocation:full[1]]) ? @"" : [NSString stringWithFormat:@" at %@", [full[1] componentsSeparatedByString:@": "][1]]];
+            cell.locTag.text = ([self isALocation:full[1]]) ? [full[1] componentsSeparatedByString:@": "][1] : [full[2] componentsSeparatedByString:@": "][1];
+        } else {
+            NSLog(@"%@", _feeds[@"strings"][indexPath.row]);
         }
-        cell = [self shadowCell:cell];
-        return cell;
+        return [self shadowCell:cell];
     }
     else if (cl == [ShortEventTableViewCell class]) {
         static NSString *iden = @"shortEvent";
@@ -803,9 +805,8 @@
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
         cell.dateTag.text = (full.count > 1) ? [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]] : [full[0] componentsSeparatedByString:@": "][1];
-        cell = [self shadowCell:cell];
 
-        return cell;
+        return [self shadowCell:cell];
     }
 
     else if (cl == [ArticleTableViewCell class]) {
@@ -816,8 +817,7 @@
         cell.articleBody.text = [NSString stringWithFormat:@"%@ (tap to read)", _feeds[@"strings"][indexPath.row]];
         NSDate *dateTag = [self dateFromNewsXmlFormatter:_feeds[@"images"][indexPath.row]];
         cell.dateTag.text = [NSString stringWithFormat:@"Posted %@", [self smartDate:dateTag]];
-        cell = [self shadowCell:cell];
-        return cell;
+        return [self shadowCell:cell];
     }
 
     return nil;

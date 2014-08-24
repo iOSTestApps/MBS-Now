@@ -95,7 +95,7 @@ for foo in data:
             elif ret[2] is ' model iPad':
                 ipads += 1
             elif 'Simulator' in ret[2]:
-                sims += 1
+                continue
             height.append(re.findall('\d+.\d+', ret[3]))
             width.append(re.findall('\d+.\d+', ret[4]))
             forms.append(int_from_str(ret[5]))
@@ -170,4 +170,4 @@ print('Most common device name: ' + most_common(names))
 print(str(du_receipt) + ' users have chosen a personal dress-up receipt time')
 print(str(us) + ' upper-school affiliated users, ' + str(ms) + ' middle-school affiliated users')
 print(str(black) + ' users have black buttons, ' + str(tan) + ' have tan buttons, ' + str(default) + ' have grey/default buttons')
-print(str(iphones) + ' iPhone, ' + str(ipads) + ' iPad, and ' + str(sims) + ' simulator uploads = ' + str(ipads + iphones + sims) + ' total uploads')
+print(str(iphones) + ' iPhone, ' + str(ipads) + ' iPad = ' + str(ipads + iphones + sims) + ' total uploads')
