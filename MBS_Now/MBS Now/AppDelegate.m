@@ -84,7 +84,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"In-app notification!" message:notification.alertBody delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"In-app notification!" message:[NSString stringWithFormat:@"%@ [this notification may be out of date!]", notification.alertBody] delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
     [alert show];
 }
 

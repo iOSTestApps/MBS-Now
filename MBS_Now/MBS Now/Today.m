@@ -261,7 +261,7 @@
         if (d == 1) return @"yesterday";
         if (d < 8) return [NSString stringWithFormat:@"this past %@", [self dayNameFromDate:[self dateByDistanceFromToday:d]]];
         if (d < 15) return @"last week";
-        if (d < 60) return [NSString stringWithFormat:@"%ld weeks ago", (d/7)];
+        if (d < 60) return [NSString stringWithFormat:@"%d weeks ago", (d/7)];
         NSInteger m = labs([self monthsBetweenDate:[NSDate date] andDate:i]);
         if (d < 150) return [NSString stringWithFormat:@"over %ld %@ ago", (long)m, (m > 1) ? @"months" : @"month"];
         else return [NSString stringWithFormat:@"on %@", [self stringFromFormatterDate:i]];
