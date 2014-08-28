@@ -1,4 +1,5 @@
-AP Biology AP Chemistry
+AP Biology
+AP Chemistry
 AP Calculus A/B
 AP English 12
 AP European Hist
@@ -20,7 +21,8 @@ Biology H
 Business Math
 Calculus
 Ceramics
-Chemistry Spanish 4
+Chemistry
+Spanish 4
 Chorus Mini Sess.
 Chorus Theater 1
 College Math Top.
@@ -97,4 +99,11 @@ Theater 2
 Theater Dance
 Wellness 10
 Wellness 11
-Wellness 9 AP Studio Art Art 4 College Math Top. Eng - Quests H Eng - Quests Hum Eng 11 H Pre Calculus H
+Wellness 9
+AP Studio Art
+Art 4
+College Math Top.
+Eng - Quests H
+Eng - Quests
+Hum Eng 11 H
+Pre Calculus H
