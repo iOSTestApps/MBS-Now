@@ -1,1 +1,1 @@
-Events in Today | Today may crash when all events are displayed.
+
