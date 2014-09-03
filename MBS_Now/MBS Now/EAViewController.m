@@ -59,7 +59,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  (string) ? @"Go to lunch FIRST if your class is NOT here" : nil;
+    return  (string) ? @"If your class is not here, go to early lunch" : nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
