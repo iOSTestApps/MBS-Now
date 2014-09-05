@@ -19,6 +19,9 @@
     NSURL *nextLunchURL;
     NSString *nextWeekDay;
     NSURLConnection *meetingsConnection;
+    
+    NSURLConnection *notificationUpdates;
+    NSMutableData *notificationData;
 }
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;

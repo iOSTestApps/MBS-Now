@@ -115,6 +115,67 @@
             [[NSUserDefaults standardUserDefaults] setObject:csv forKey:@"meetingLog"];
         }
     }
+    if (connection == notificationUpdates) {
+        NSString *remotePack = [[NSString alloc] initWithData:notificationData encoding:NSUTF8StringEncoding];
+        NSString *localPack = [[NSUserDefaults standardUserDefaults] objectForKey:@"notificationPack"];
+        if (![localPack isEqualToString:remotePack]) {
+            [self genFromPrefs:remotePack];
+            [[NSUserDefaults standardUserDefaults] setObject:remotePack forKey:@"notificationPack"];
+        }
+    }
+}
+- (void)fireNotificationAtTime:(NSDate *)t withMessage:(NSString *)m {
+    UILocalNotification *lcl = [[UILocalNotification alloc] init];
+    lcl.fireDate = t;
+    lcl.alertBody = m;
+    lcl.soundName = UILocalNotificationDefaultSoundName;
+    lcl.alertAction = @"View";
+    lcl.applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber + 1;
+    lcl.timeZone = [NSTimeZone timeZoneWithName:@"America/New_York"];
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:lcl];
+}
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    if (connection == notificationUpdates) [notificationData appendData:data];
+
+}
+- (void)generateNotifications:(NSString *)category andCalculateTime:(BOOL)c {
+    NSString *hour = @"";
+    if (c) {
+        NSString *dressTime = [[NSUserDefaults standardUserDefaults] objectForKey:@"dressTime"];
+        if (dressTime) {
+            // determine number of chars that represent time
+            hour =  ([dressTime rangeOfString:@":"].location == NSNotFound) ? [NSString stringWithFormat:@"0%@ 00", [dressTime substringToIndex:1]] : [NSString stringWithFormat:@"0%@ %@", [dressTime substringToIndex:1], [dressTime substringWithRange:NSMakeRange(2, 2)]];
+        }
+    }
+    
+    for (NSString *f in [category componentsSeparatedByString:@"\n"]) {
+        NSArray *s = [f componentsSeparatedByString:@" | "];
+        if (s.count < 2) continue;
+        NSDate *fireTime = [self dateFromNotificationString:[s[0] stringByReplacingOccurrencesOfString:@"$" withString:hour]];
+        NSComparisonResult result = [[NSDate date] compare:fireTime];
+        if (result == NSOrderedAscending || result == NSOrderedSame) {
+            [self fireNotificationAtTime:fireTime withMessage:s[1]];
+        }
+    }
+}
+
+- (void)genFromPrefs:(NSString *)pack {
+    NSLog(@"generating from prefs");
+    NSArray *lists = [pack componentsSeparatedByString:@"^"];
+    
+    // bad part here is that any club reminders will be cancelled too
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    // 8 possibilities encapsulated here
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"abs"])
+        [self generateNotifications:lists[1] andCalculateTime:NO];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"general"])
+        [self generateNotifications:lists[2] andCalculateTime:NO];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"])
+        [self generateNotifications:lists[0] andCalculateTime:YES];
 }
 
 - (BOOL)compareArrays:(NSArray *)array1 and:(NSArray *)array2 {
@@ -134,7 +195,12 @@
 
     return YES; // they're the same
 }
-
+- (NSDate *)dateFromNotificationString:(NSString *)s {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"MM/dd/yyyy HH mm"];
+    [form setTimeZone:[NSTimeZone timeZoneWithName:@"America/New_York"]];
+    return [form dateFromString:s];
+}
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [SVProgressHUD showWithStatus:@"Loading"];
