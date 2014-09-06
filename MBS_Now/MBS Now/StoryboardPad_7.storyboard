@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <scenes>
-        <!--Schedule-->
+        <!--Widget View Controller - Schedule-->
         <scene sceneID="11">
             <objects>
                 <viewController id="2" customClass="WidgetViewController" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
             </objects>
             <point key="canvasLocation" x="-1274" y="-2351"/>
         </scene>
-        <!--Lunch-->
+        <!--Lunch View Controller - Lunch-->
         <scene sceneID="IHK-6w-BmX">
             <objects>
                 <viewController id="G1y-dd-0Z1" customClass="LunchViewController" sceneMemberID="viewController">
@@ -144,16 +144,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5TV-OK-GB5"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPj-FZ-NYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="767" y="-2894"/>
         </scene>
-        <!--Database Credentials-->
+        <!--Credentials View Controller - Database Credentials-->
         <scene sceneID="4yz-Px-6Ai">
             <objects>
                 <viewController id="Db7-yz-Qpj" customClass="CredentialsViewController" sceneMemberID="viewController">
@@ -179,7 +176,7 @@
             </objects>
             <point key="canvasLocation" x="2197" y="-1015"/>
         </scene>
-        <!--Home-->
+        <!--Navigation Controller - Home-->
         <scene sceneID="WKa-AM-LEc">
             <objects>
                 <navigationController definesPresentationContext="YES" id="dfH-zp-a0g" sceneMemberID="viewController">
@@ -196,7 +193,7 @@
             </objects>
             <point key="canvasLocation" x="-1342" y="28"/>
         </scene>
-        <!--MBS Now — Home-->
+        <!--Home View Controller - MBS Now — Home-->
         <scene sceneID="GbZ-PR-o3c">
             <objects>
                 <viewController wantsFullScreenLayout="YES" definesPresentationContext="YES" modalTransitionStyle="partialCurl" id="GbC-Ub-Soh" customClass="HomeViewController" sceneMemberID="viewController">
@@ -547,7 +544,7 @@
             </objects>
             <point key="canvasLocation" x="-53" y="622"/>
         </scene>
-        <!--Explore Campus-->
+        <!--Explore View Controller - Explore Campus-->
         <scene sceneID="gXu-fg-DSC">
             <objects>
                 <viewController id="g7o-UX-QJ2" customClass="ExploreViewController" sceneMemberID="viewController">
@@ -590,10 +587,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Explore Campus" id="VcE-MP-rDW"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="listings" destination="OQm-YH-zNY" id="Acw-1E-QdZ"/>
                         <outlet property="mapView" destination="6pG-3h-VrD" id="qtZ-IH-Xgn"/>
@@ -1074,16 +1068,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="PzH-b1-uq3"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGi-FC-OHu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1752" y="224"/>
         </scene>
-        <!--Lunch Distinctions-->
+        <!--View Controller - Lunch Distinctions-->
         <scene sceneID="qTU-6p-lzI">
             <objects>
                 <viewController title="Lunch Distinctions" id="SGA-qQ-93B" customClass="EAViewController" sceneMemberID="viewController">
@@ -1104,10 +1095,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="g81-FX-urK"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="xqa-wM-1pe" id="wqg-1W-Aff"/>
                         <outlet property="tblView" destination="vGb-xc-0jL" id="QRV-XG-pzT"/>
@@ -1125,7 +1113,7 @@
             </objects>
             <point key="canvasLocation" x="2666" y="1906"/>
         </scene>
-        <!--Directions to Campus-->
+        <!--Directions View Controller - Directions to Campus-->
         <scene sceneID="bJt-00-pdb">
             <objects>
                 <viewController title="Directions to Campus" id="EsW-fk-ChG" customClass="DirectionsViewController" sceneMemberID="viewController">
@@ -1143,10 +1131,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vXo-Ts-qsj"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="directionsView" destination="dV1-Xz-UnB" id="Yq6-Ur-61y"/>
                     </connections>
@@ -1155,7 +1140,7 @@
             </objects>
             <point key="canvasLocation" x="1703" y="1328"/>
         </scene>
-        <!--Confirmed Bugs + Reporter-->
+        <!--Bugs View Controller - Confirmed Bugs + Reporter-->
         <scene sceneID="hS6-g7-TfE">
             <objects>
                 <viewController title="Confirmed Bugs + Reporter" id="4iX-jg-Wt9" customClass="BugsViewController" sceneMemberID="viewController">
@@ -1176,10 +1161,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="GL7-8z-QRQ"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics">
-                        <size key="portraitSize" width="768" height="1024"/>
-                        <size key="landscapeSize" width="1024" height="768"/>
-                    </simulatedScreenMetrics>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="cHs-b5-DyQ" id="Hks-7C-tuX"/>
                     </connections>
@@ -1327,7 +1309,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="1006" y="2847"/>
         </scene>
-        <!--Docs-->
+        <!--Navigation Controller - Docs-->
         <scene sceneID="FJd-dc-Rgn">
             <objects>
                 <navigationController definesPresentationContext="YES" id="akP-J2-SrI" sceneMemberID="viewController">
@@ -1343,7 +1325,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2741" y="1589"/>
         </scene>
-        <!--Docs-->
+        <!--Forms View Controller - Docs-->
         <scene sceneID="nGK-Ga-5pU">
             <objects>
                 <viewController id="FHn-yF-a11" customClass="FormsViewController" sceneMemberID="viewController">
@@ -1403,7 +1385,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2467" y="2890"/>
         </scene>
-        <!--Community Service-->
+        <!--View Controller - Community Service-->
         <scene sceneID="N35-Da-IH1">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="gpY-dZ-MkV" customClass="ViewController" sceneMemberID="viewController">
@@ -1552,7 +1534,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="403" y="4383"/>
         </scene>
-        <!--Listings-->
+        <!--Cal View Controller - Listings-->
         <scene sceneID="13">
             <objects>
                 <viewController id="3" customClass="CalViewController" sceneMemberID="viewController">
@@ -1632,7 +1614,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2246" y="60"/>
         </scene>
-        <!--Clubs-->
+        <!--Clubs View Controller - Clubs-->
         <scene sceneID="eRD-dc-11j">
             <objects>
                 <tableViewController id="nD7-0x-BHH" customClass="ClubsViewController" sceneMemberID="viewController">
@@ -1726,7 +1708,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="425" y="3383"/>
         </scene>
-        <!--RSVP-->
+        <!--View Controller - RSVP-->
         <scene sceneID="wtQ-eS-0gY">
             <objects>
                 <viewController id="iqv-sT-LLj" customClass="RSVPViewController" sceneMemberID="viewController">
@@ -1844,7 +1826,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="1461" y="3732"/>
         </scene>
-        <!--Full Purpose-->
+        <!--Full Purpose View Controller - Full Purpose-->
         <scene sceneID="ViE-Nb-uHz">
             <objects>
                 <viewController id="Mhf-4w-9qA" customClass="FullPurposeViewController" sceneMemberID="viewController">
@@ -1903,7 +1885,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="2159" y="3732"/>
         </scene>
-        <!--Clubs-->
+        <!--Navigation Controller - Clubs-->
         <scene sceneID="1xr-Vf-1NQ">
             <objects>
                 <navigationController definesPresentationContext="YES" id="mtz-Up-Lxk" sceneMemberID="viewController">
@@ -1919,7 +1901,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1417" y="3635"/>
         </scene>
-        <!--Service-->
+        <!--Navigation Controller - Service-->
         <scene sceneID="7mU-qJ-ycU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aLd-Jm-pvS" sceneMemberID="viewController">
@@ -1971,10 +1953,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination">
-            <size key="portraitSize" width="768" height="1024"/>
-            <size key="landscapeSize" width="1024" height="768"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="hnb-uO-XoO"/>

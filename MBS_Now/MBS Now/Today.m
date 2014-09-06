@@ -120,7 +120,7 @@
 }
 
 - (void)addTextScheduleFeed:(NSString *)raw withDayIndex:(BOOL)i { // i is the day index; 0 for today, 1 for tomorrow
-    // this method is just a quicker way to add text schedules to _feeds
+                                                                   // this method is just a quicker way to add text schedules to _feeds
     NSString *sched = [NSString stringWithFormat:@"%@: %@", ((i == 0) ? @"Today" : @"Tomorrow"), [[[raw stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
     // see saveFeedsWithObject:andKey: for details
     [self saveFeedsWithObject:sched andKey:@"strings"];
@@ -423,7 +423,7 @@
     // does user want general notifs?
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"general"])
         [self generateNotifications:lists[2] andCalculateTime:NO];
-    
+
 }
 
 - (NSDate *)dateFromNotificationString:(NSString *)s {
@@ -1045,7 +1045,7 @@
         [self update];
         return;
     }
-    
+
     [self noSavedGrade:@"Whoops! Try again."];
 }
 
