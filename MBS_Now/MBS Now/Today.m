@@ -23,11 +23,14 @@
 #import "UIImageView+WebCache.h"
 #import <EventKit/EventKit.h>
 
+
 #define CONNECTION_FAILTURE 2
 #define CONNECTION_LOADING 1
 #define CONNECTION_SUCCESS 0
 #define UPDATE_URL @"https://itunes.apple.com/us/app/mbs-now/id617180145?mt=8"
 #define ANNOUNCEMENTS_IMG @"notifications-board.png"
+#define WEATHER_IMG @"cloud-7.png"
+#define DATE_IMG @"push-pin-7.png"
 
 @implementation Today
 
@@ -869,10 +872,17 @@
     }
     else if ([iden isEqualToString:@"standard"]) {
         UIImage *img = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) img].image;
+        NSString *ttl = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) label].text;
+        NSLog(@"%@",ttl);
+
         if (img == [UIImage imageNamed:ANNOUNCEMENTS_IMG]) {
             [self performSegueWithIdentifier:@"announce-body" sender:self];
             return;
+        } else if ([ttl rangeOfString:@"over MBS"].location != NSNotFound) {
+            SVWebViewController *wvc = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://weather.weatherbug.com/weather-safety/online-weather-center/OnlineWeatherCenter.aspx?aid=5896"]];
+            [self.navigationController pushViewController:wvc animated:YES];
         }
+        
         NSString *str = [(StandardTableViewCell *)([tableView cellForRowAtIndexPath:indexPath]) url];
         if (![str isEqualToString:@""]) {
             if ([str isEqualToString:@"alerts"]) {
