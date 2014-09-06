@@ -10,6 +10,7 @@
 @implementation AppDelegate
 
 - (void)inc {
+    // four-dfl is the count of application launches in version four. This default is rarely changed
     if (![[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"]) {
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"four-dfl"];
     } else {
@@ -17,7 +18,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:(x+1) forKey:@"four-dfl"];
     }
 
-    // to display PhotoBrowser "what's new"
+    // to display PhotoBrowser "what's new", search project for this key and change it here.
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"409"])
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"409"];
     else
@@ -35,6 +36,7 @@
        } forState:UIControlStateNormal];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        // iPhone/iPod
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPhone_7" bundle:nil];
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
