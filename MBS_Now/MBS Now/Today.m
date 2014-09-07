@@ -628,23 +628,12 @@
 
 - (void)processEventsFromData:(NSData *)e {
     // used exclusively for event data processing
-    NSMutableArray *events = [[NSDictionary dictionaryWithXMLData:e][@"channel"][@"item"] mutableCopy];
+    NSArray *events = [NSDictionary dictionaryWithXMLData:e][@"channel"][@"item"];
     int evCount = 0;
-//    for (NSDictionary *foo in events) {
-//        NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
-//        NSInteger res = [[self dateFromXmlFormatter:dateStr] compare:[NSDate date]];
-//        if (res == NSOrderedSame) {
-//            evCount++;
-//            NSString *str = foo[@"description"];
-//            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
-//            [self saveFeedsWithObject:str andKey:@"strings"];
-//            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
-//            [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
-//        } else break; // because the XML is ordered where as soon as you encounter a future event, everything later will be a future event too
-//    }
 
-    // because we always want some events to appear, even if they're not happening today (which the loop above would detect). 2 will appear as a minimum or all will appear if the user has that setting enabled (default with key "showAllEvents" == YES)
-    while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 2)) {
+    // We always want some events to appear, even if they're not happening today (which the loop above would detect). 2 will appear as a minimum or all will appear if the user has that setting enabled (default with key "showAllEvents" == YES)
+
+    while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 8)) {
         NSString *dateStr = [[events[evCount][@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
         NSInteger res = [[self dateFromXmlFormatter:dateStr] compare:[NSDate date]];
         NSInteger resTmrw = [[self dateFromXmlFormatter:dateStr] compare:[self dateByDistanceFromToday:1]];
@@ -659,6 +648,7 @@
         [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
         [self saveFeedsWithObject:str andKey:@"urls"];
         evCount++;
+        if (events.count == evCount) break;
     }
 }
 
