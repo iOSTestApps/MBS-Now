@@ -218,7 +218,7 @@
     }
 
     // begin mbs.net news connection
-    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"]];
+    NSURLRequest *rssNews = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/rss.cfm?news=0"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     rssNewsData = [NSMutableData data];
     rssNewsConnection = [[NSURLConnection alloc] initWithRequest:rssNews delegate:self startImmediately:YES];
 
@@ -226,37 +226,37 @@
     [self startNotifsConnection];
 
     // start the community service form request
-    NSURLRequest *serviceRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+    NSURLRequest *serviceRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0AsW47GVmNrjDdHZEWEoxS0lDVVpMVEg5LUR1ZnBIUkE&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     communityServiceData = [NSMutableData data];
     communityServiceConnection = [[NSURLConnection alloc] initWithRequest:serviceRequest delegate:self];
 
     // start the clubs form request
-    NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:20];
+    NSURLRequest *docRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://docs.google.com/spreadsheet/pub?key=0Ar9jhHUssWrpdGJSYTFjWWhDWndKQW0yckluTU5PX1E&output=csv"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     meetingsData = [NSMutableData data];
     meetingsConnection = [[NSURLConnection alloc] initWithRequest:docRequest delegate:self];
 
     // check the remote version number for comparison
-    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
+    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     versionData = [NSMutableData data];
     versionConnection = [[NSURLConnection alloc] initWithRequest:version delegate:self startImmediately:YES];
 
     // check to see if Special.pdf returns a 404 (handling in connection:didReceiveResponse:)
-    NSURLRequest *special = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
+    NSURLRequest *special = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/forms/Special.pdf"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     specialData = [NSMutableData data];
     specialConnection = [[NSURLConnection alloc] initWithRequest:special delegate:self startImmediately:YES];
 
     // start the mbs.net RSS calendar connection
-    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10];
+    NSURLRequest *rss = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.mbs.net/data/calendar/rsscache/calendar_4486.rss"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     rssData = [NSMutableData data];
     rssConnection = [[NSURLConnection alloc] initWithRequest:rss delegate:self startImmediately:YES];
 
     // start the weather connection
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=40.802721&lon=-74.448287&units=imperial"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/weather?lat=40.802721&lon=-74.448287&units=imperial"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     weatherData = [NSMutableData data];
     weatherConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 
     // start connnection to check if announce.txt has information
-    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announce.txt"]];
+    NSURLRequest *announce = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/announce.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:20];
     announcementsData = [NSMutableData data];
     announcementsConnection = [[NSURLConnection alloc] initWithRequest:announce delegate:self startImmediately:YES];
 }
@@ -628,28 +628,37 @@
 
 - (void)processEventsFromData:(NSData *)e {
     // used exclusively for event data processing
-    NSArray *events = [NSDictionary dictionaryWithXMLData:e][@"channel"][@"item"];
+    NSMutableArray *events = [[NSDictionary dictionaryWithXMLData:e][@"channel"][@"item"] mutableCopy];
     int evCount = 0;
-    for (NSDictionary *foo in events) {
-        NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
-        if ([[self dateFromXmlFormatter:dateStr] compare:[NSDate date]] == NSOrderedSame) {
-            evCount++;
-            NSString *str = foo[@"description"];
-            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
-            [self saveFeedsWithObject:foo[@"description"] andKey:@"strings"];
-            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
-            [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
-        } else break;
-    }
+//    for (NSDictionary *foo in events) {
+//        NSString *dateStr = [[foo[@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
+//        NSInteger res = [[self dateFromXmlFormatter:dateStr] compare:[NSDate date]];
+//        if (res == NSOrderedSame) {
+//            evCount++;
+//            NSString *str = foo[@"description"];
+//            [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
+//            [self saveFeedsWithObject:str andKey:@"strings"];
+//            [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
+//            [self saveFeedsWithObject:foo[@"pubDate"] andKey:@"urls"];
+//        } else break; // because the XML is ordered where as soon as you encounter a future event, everything later will be a future event too
+//    }
 
     // because we always want some events to appear, even if they're not happening today (which the loop above would detect). 2 will appear as a minimum or all will appear if the user has that setting enabled (default with key "showAllEvents" == YES)
     while (evCount < (([[NSUserDefaults standardUserDefaults] boolForKey:@"showAllEvents"]) ? (events.count-1) : 2)) {
-        evCount++;
+        NSString *dateStr = [[events[evCount][@"description"] componentsSeparatedByString:@"Date: "][1] componentsSeparatedByString:@"<br />"][0];
+        NSInteger res = [[self dateFromXmlFormatter:dateStr] compare:[NSDate date]];
+        NSInteger resTmrw = [[self dateFromXmlFormatter:dateStr] compare:[self dateByDistanceFromToday:1]];
+        if (res == NSOrderedSame) {
+            [self saveFeedsWithObject:[NSString stringWithFormat:@"<today>%@", events[evCount][@"title"]] andKey:@"strings"];
+        } else if (resTmrw == NSOrderedSame)
+            [self saveFeedsWithObject:[NSString stringWithFormat:@"<tomorrow>%@", events[evCount][@"title"]] andKey:@"strings"];
+        else
+            [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
         NSString *str = events[evCount][@"description"];
         [self saveFeedsWithObject:([str rangeOfString:@"Location"].location == NSNotFound) ? [ShortEventTableViewCell class] : [EventTableViewCell class] andKey:@"class"];
-        [self saveFeedsWithObject:events[evCount][@"title"] andKey:@"strings"];
         [self saveFeedsWithObject:[UIImage imageNamed:@"calendar.png"] andKey:@"images"];
         [self saveFeedsWithObject:str andKey:@"urls"];
+        evCount++;
     }
 }
 
@@ -852,7 +861,19 @@
         EventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         if (cell == nil)
             cell = [[EventTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
-        cell.eventBody.text = _feeds[@"strings"][indexPath.row];
+
+        NSString *title = _feeds[@"strings"][indexPath.row];
+        if ([title rangeOfString:@"<today>"].location != NSNotFound) {
+            cell.eventBody.text = [title stringByReplacingOccurrencesOfString:@"<today>" withString:@""];
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor colorWithRed:226/255.0f green:44/255.0f blue:41/255.0f alpha:1.0f];
+        } else if ([title rangeOfString:@"<tomorrow>"].location != NSNotFound) {
+            cell.eventBody.text = [title stringByReplacingOccurrencesOfString:@"<tomorrow>" withString:@""];
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor colorWithRed:34/255.0f green:139/255.0f blue:34/255.0f alpha:1.0f];
+        } else {
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor blackColor];
+            cell.eventBody.text = title;
+        }
+
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
         if (full.count > 1) { // this chunk caused a crash in 4.1 but I believe it is fixed now for all formats of events. Be cautious though...
@@ -869,7 +890,17 @@
         ShortEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
         if (cell == nil)
             cell = [[ShortEventTableViewCell alloc] initWithStyle:nil reuseIdentifier:iden];
-        cell.eventBody.text = _feeds[@"strings"][indexPath.row];
+        NSString *title = _feeds[@"strings"][indexPath.row];
+        if ([title rangeOfString:@"<today>"].location != NSNotFound) {
+            cell.eventBody.text = [title stringByReplacingOccurrencesOfString:@"<today>" withString:@""];
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor colorWithRed:226/255.0f green:44/255.0f blue:41/255.0f alpha:1.0f];
+        } else if ([title rangeOfString:@"<tomorrow>"].location != NSNotFound) {
+            cell.eventBody.text = [title stringByReplacingOccurrencesOfString:@"<tomorrow>" withString:@""];
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor colorWithRed:34/255.0f green:139/255.0f blue:34/255.0f alpha:1.0f];
+        } else {
+            cell.eventBody.textColor = cell.dateTag.textColor = [UIColor blackColor];
+            cell.eventBody.text = title;
+        }
         NSMutableArray *full = [[_feeds[@"urls"][indexPath.row] componentsSeparatedByString:@"<br />"] mutableCopy];
         [full removeLastObject];
         cell.dateTag.text = (full.count > 1) ? [NSString stringWithFormat:@"%@ at %@", [full[0] componentsSeparatedByString:@": "][1], [full[1] componentsSeparatedByString:@": "][1]] : [full[0] componentsSeparatedByString:@": "][1];

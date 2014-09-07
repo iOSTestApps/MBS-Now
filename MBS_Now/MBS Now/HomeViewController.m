@@ -305,7 +305,6 @@
         // iPad
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         if (UIInterfaceOrientationIsPortrait(orientation)) {
-            NSLog(@"HELLO!");
             _iPadCatalog.textColor = [UIColor darkGrayColor];
             UIColor *foo = (q > 82) ? [UIColor darkGrayColor] : [UIColor whiteColor];
             for (UILabel *lbl in _first) lbl.textColor = foo;
