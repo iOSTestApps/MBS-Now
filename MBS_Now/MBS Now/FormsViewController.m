@@ -153,7 +153,7 @@
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
+        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://mbsdev.github.io/report.html"]];
         swvc.specifier = @"bug";
         [self presentViewController:swvc animated:YES completion:nil];
         return;

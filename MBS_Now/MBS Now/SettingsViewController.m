@@ -232,7 +232,7 @@
     } else if (alertView.tag == 2) {
         if (buttonIndex == 0) {
             // report bag general notifications
-            SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
+            SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://mbsdev.github.io/report.html"]];
             [self presentViewController:swvc animated:YES completion:nil];
         }
     }

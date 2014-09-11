@@ -24,7 +24,7 @@
 
     switch (iow) {
         case 0: {
-            imageView.image = [UIImage imageNamed:@"Headmaster_Caldwell_Oct.jpg"];
+            imageView.image = [UIImage imageNamed:@"HMW.jpg"];
             NSString *path = [[NSBundle mainBundle] pathForResource:@"HeadmasterWelcome"
                                                              ofType:@"txt"];
             [textView setText:[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil]]

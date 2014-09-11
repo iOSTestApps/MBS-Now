@@ -254,6 +254,8 @@
 		15CC38911825B4AB00B3502A /* delete.html in Resources */ = {isa = PBXBuildFile; fileRef = 15CC38901825B4AB00B3502A /* delete.html */; };
 		15CEF8B91975FEA500B66718 /* ShortEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF8B81975FEA500B66718 /* ShortEventTableViewCell.m */; };
 		15CEF8C41976DCE200B66718 /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */; };
+		15D82DAB19C22E890006BEAB /* HMW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15D82DAA19C22E890006BEAB /* HMW.jpg */; };
+		15D82DAD19C22F8F0006BEAB /* RMitchellWebPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15D82DAC19C22F8F0006BEAB /* RMitchellWebPic.jpg */; };
 		15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */; };
 		15F2E815176972FF00FA1073 /* WelcomesViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */; };
 		15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E8161769738B00FA1073 /* FormsViewerViewController_7.xib */; };
@@ -578,6 +580,8 @@
 		15CEF8B81975FEA500B66718 /* ShortEventTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortEventTableViewCell.m; sourceTree = "<group>"; };
 		15CEF8C21976DCE200B66718 /* ArticleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTableViewCell.h; sourceTree = "<group>"; };
 		15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
+		15D82DAA19C22E890006BEAB /* HMW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = HMW.jpg; path = Images/welcomes/HMW.jpg; sourceTree = "<group>"; };
+		15D82DAC19C22F8F0006BEAB /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = RMitchellWebPic.jpg; path = Images/welcomes/RMitchellWebPic.jpg; sourceTree = "<group>"; };
 		15EF3F6918D25D9500FE928D /* UITableViewCell+Width.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Width.h"; sourceTree = "<group>"; };
 		15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Width.m"; sourceTree = "<group>"; };
 		15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomesViewController_7.xib; sourceTree = "<group>"; };
@@ -1079,6 +1083,8 @@
 				15AD7B9C1995901100E21F02 /* timer-7-active@2x.png */,
 				15AD7B9D1995901100E21F02 /* upload-7-active.png */,
 				15AD7B9E1995901100E21F02 /* upload-7-active@2x.png */,
+				15D82DAA19C22E890006BEAB /* HMW.jpg */,
+				15D82DAC19C22F8F0006BEAB /* RMitchellWebPic.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1243,6 +1249,7 @@
 				15AD7BE11995901100E21F02 /* cloud-download-7@2x.png in Resources */,
 				15AD7C031995901100E21F02 /* home-7-active@2x.png in Resources */,
 				15AD7C481995901100E21F02 /* timer-7-active.png in Resources */,
+				15D82DAB19C22E890006BEAB /* HMW.jpg in Resources */,
 				15AD7BF21995901100E21F02 /* downward-arrow-7-active@2x.png in Resources */,
 				15AD7C0E1995901100E21F02 /* map-pin-7.png in Resources */,
 				15AD7BFB1995901100E21F02 /* gear-7-active@2x.png in Resources */,
@@ -1289,6 +1296,7 @@
 				15AD7BCF1995901100E21F02 /* bug-black@2x.png in Resources */,
 				15AD7BDC1995901100E21F02 /* clock.png in Resources */,
 				15AD7BCE1995901100E21F02 /* bug-black.png in Resources */,
+				15D82DAD19C22F8F0006BEAB /* RMitchellWebPic.jpg in Resources */,
 				15AD7BD01995901100E21F02 /* bug.png in Resources */,
 				15AD7BE01995901100E21F02 /* cloud-download-7.png in Resources */,
 				15AD7C2F1995901100E21F02 /* quote@2x.png in Resources */,

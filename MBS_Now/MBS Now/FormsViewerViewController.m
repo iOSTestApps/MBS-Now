@@ -183,7 +183,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
+    if (buttonIndex == 1) [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://mbsdev.github.io/report.html"]]];
     else [self dismissViewControllerAnimated:YES completion:nil];
 }
 

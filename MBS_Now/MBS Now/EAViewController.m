@@ -59,7 +59,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return  (string) ? @"If your class is not here, go to early lunch" : nil;
+    return  (string) ? @"Class is not here? Go to early lunch" : nil; // this header must be kept short to prevent text overflow
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,7 +116,7 @@
 #pragma mark Alert
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]];
+        SimpleWebViewController *swvc = [[SimpleWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://mbsdev.github.io/report.html"]];
         [self presentViewController:swvc animated:YES completion:nil];
     }
 }

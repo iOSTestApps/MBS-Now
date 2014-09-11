@@ -47,7 +47,7 @@ BOOL edit;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    if ([webView.request.URL.absoluteString isEqualToString:@"http://campus.mbs.net/mbsnow/home/report.html"]) {
+    if ([webView.request.URL.absoluteString isEqualToString:@"https://mbsdev.github.io/report.html"]) {
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         [SVProgressHUD showImage:[UIImage imageNamed:@"bug-black.png"] status:[NSString stringWithFormat:@"FYI: you're running %@ on iOS %@", [infoDict objectForKey:@"CFBundleShortVersionString"], [UIDevice currentDevice].systemVersion]];
     } else if ([webView.request.URL.host isEqualToString:@"docs.google.com"] && [self.specifier isEqualToString:@"rem"]) {
@@ -145,7 +145,7 @@ BOOL edit;
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     } else if (buttonIndex == 1 && alertView.tag == 4)
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home/report.html"]]];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://mbsdev.github.io/report.html"]]];
 }
 
 #pragma mark Mail
