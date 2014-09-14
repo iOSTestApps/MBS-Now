@@ -79,7 +79,7 @@
             urlToLoad = [NSURL URLWithString:@"http://www.mbs.net/pagecalpop.cfm?p=1424&calview=grid&period=week"];
             break;
         case 1:
-            urlToLoad = [NSURL URLWithString:@"http://mbshomework.wikispaces.com/"];
+            urlToLoad = [NSURL URLWithString:@"http://mbs.net/groups.cfm"];
             break;
         case 2:
             urlToLoad = [NSURL URLWithString:@"http://www.mbs.net/pagecalpop.cfm?p=541&calview=grid&period=week"];
@@ -92,19 +92,8 @@
     }
 
     if (_control.selectedSegmentIndex == 1) {
-        // MS HW
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"msGrade"])
-            [self loadWithDefaults];
-        else {
-            // no defaults. Ask for grade integer.
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Middle school student?" message:@"We'll load your homework by default" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Save my grade", nil];
-            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-            [alert textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumberPad;
-            [alert textFieldAtIndex:0].placeholder = @"Current grade";
-            alert.tag = 1;
-            [alert show];
-        }
-    }
+        
+           }
 
     NSURLRequest *request = [NSURLRequest requestWithURL:urlToLoad cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:30.0f];
 

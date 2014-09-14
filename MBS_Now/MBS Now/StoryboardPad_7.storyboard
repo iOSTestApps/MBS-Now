@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.17" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Widget View Controller - Schedule-->
+        <!--Schedule-->
         <scene sceneID="11">
             <objects>
                 <viewController id="2" customClass="WidgetViewController" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
             </objects>
             <point key="canvasLocation" x="-1274" y="-2351"/>
         </scene>
-        <!--Lunch View Controller - Lunch-->
+        <!--Lunch-->
         <scene sceneID="IHK-6w-BmX">
             <objects>
                 <viewController id="G1y-dd-0Z1" customClass="LunchViewController" sceneMemberID="viewController">
@@ -150,7 +150,7 @@
             </objects>
             <point key="canvasLocation" x="767" y="-2894"/>
         </scene>
-        <!--Credentials View Controller - Database Credentials-->
+        <!--Database Credentials-->
         <scene sceneID="4yz-Px-6Ai">
             <objects>
                 <viewController id="Db7-yz-Qpj" customClass="CredentialsViewController" sceneMemberID="viewController">
@@ -176,7 +176,7 @@
             </objects>
             <point key="canvasLocation" x="2197" y="-1015"/>
         </scene>
-        <!--Navigation Controller - Home-->
+        <!--Home-->
         <scene sceneID="WKa-AM-LEc">
             <objects>
                 <navigationController definesPresentationContext="YES" id="dfH-zp-a0g" sceneMemberID="viewController">
@@ -193,7 +193,7 @@
             </objects>
             <point key="canvasLocation" x="-1342" y="28"/>
         </scene>
-        <!--Home View Controller - MBS Now — Home-->
+        <!--MBS Now — Home-->
         <scene sceneID="GbZ-PR-o3c">
             <objects>
                 <viewController wantsFullScreenLayout="YES" definesPresentationContext="YES" modalTransitionStyle="partialCurl" id="GbC-Ub-Soh" customClass="HomeViewController" sceneMemberID="viewController">
@@ -544,7 +544,7 @@
             </objects>
             <point key="canvasLocation" x="-53" y="622"/>
         </scene>
-        <!--Explore View Controller - Explore Campus-->
+        <!--Explore Campus-->
         <scene sceneID="gXu-fg-DSC">
             <objects>
                 <viewController id="g7o-UX-QJ2" customClass="ExploreViewController" sceneMemberID="viewController">
@@ -1074,7 +1074,7 @@
             </objects>
             <point key="canvasLocation" x="1752" y="224"/>
         </scene>
-        <!--View Controller - Lunch Distinctions-->
+        <!--Lunch Distinctions-->
         <scene sceneID="qTU-6p-lzI">
             <objects>
                 <viewController title="Lunch Distinctions" id="SGA-qQ-93B" customClass="EAViewController" sceneMemberID="viewController">
@@ -1113,7 +1113,7 @@
             </objects>
             <point key="canvasLocation" x="2666" y="1906"/>
         </scene>
-        <!--Directions View Controller - Directions to Campus-->
+        <!--Directions to Campus-->
         <scene sceneID="bJt-00-pdb">
             <objects>
                 <viewController title="Directions to Campus" id="EsW-fk-ChG" customClass="DirectionsViewController" sceneMemberID="viewController">
@@ -1140,7 +1140,7 @@
             </objects>
             <point key="canvasLocation" x="1703" y="1328"/>
         </scene>
-        <!--Bugs View Controller - Confirmed Bugs + Reporter-->
+        <!--Confirmed Bugs + Reporter-->
         <scene sceneID="hS6-g7-TfE">
             <objects>
                 <viewController title="Confirmed Bugs + Reporter" id="4iX-jg-Wt9" customClass="BugsViewController" sceneMemberID="viewController">
@@ -1309,7 +1309,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="1006" y="2847"/>
         </scene>
-        <!--Navigation Controller - Docs-->
+        <!--Docs-->
         <scene sceneID="FJd-dc-Rgn">
             <objects>
                 <navigationController definesPresentationContext="YES" id="akP-J2-SrI" sceneMemberID="viewController">
@@ -1325,7 +1325,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2741" y="1589"/>
         </scene>
-        <!--Forms View Controller - Docs-->
+        <!--Docs-->
         <scene sceneID="nGK-Ga-5pU">
             <objects>
                 <viewController id="FHn-yF-a11" customClass="FormsViewController" sceneMemberID="viewController">
@@ -1385,7 +1385,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2467" y="2890"/>
         </scene>
-        <!--View Controller - Community Service-->
+        <!--Community Service-->
         <scene sceneID="N35-Da-IH1">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="gpY-dZ-MkV" customClass="ViewController" sceneMemberID="viewController">
@@ -1534,7 +1534,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="403" y="4383"/>
         </scene>
-        <!--Cal View Controller - Listings-->
+        <!--Listings-->
         <scene sceneID="13">
             <objects>
                 <viewController id="3" customClass="CalViewController" sceneMemberID="viewController">
@@ -1614,7 +1614,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="-2246" y="60"/>
         </scene>
-        <!--Clubs View Controller - Clubs-->
+        <!--Clubs-->
         <scene sceneID="eRD-dc-11j">
             <objects>
                 <tableViewController id="nD7-0x-BHH" customClass="ClubsViewController" sceneMemberID="viewController">
@@ -1708,7 +1708,7 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
             </objects>
             <point key="canvasLocation" x="425" y="3383"/>
         </scene>
-        <!--View Controller - RSVP-->
+        <!--RSVP-->
         <scene sceneID="wtQ-eS-0gY">
             <objects>
                 <viewController id="iqv-sT-LLj" customClass="RSVPViewController" sceneMemberID="viewController">
@@ -1826,7 +1826,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="1461" y="3732"/>
         </scene>
-        <!--Full Purpose View Controller - Full Purpose-->
+        <!--Full Purpose-->
         <scene sceneID="ViE-Nb-uHz">
             <objects>
                 <viewController id="Mhf-4w-9qA" customClass="FullPurposeViewController" sceneMemberID="viewController">
@@ -1885,7 +1885,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="2159" y="3732"/>
         </scene>
-        <!--Navigation Controller - Clubs-->
+        <!--Clubs-->
         <scene sceneID="1xr-Vf-1NQ">
             <objects>
                 <navigationController definesPresentationContext="YES" id="mtz-Up-Lxk" sceneMemberID="viewController">
@@ -1901,7 +1901,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
             </objects>
             <point key="canvasLocation" x="-1417" y="3635"/>
         </scene>
-        <!--Navigation Controller - Service-->
+        <!--Service-->
         <scene sceneID="7mU-qJ-ycU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aLd-Jm-pvS" sceneMemberID="viewController">
