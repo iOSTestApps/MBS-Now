@@ -91,7 +91,11 @@
     if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+<<<<<<< Updated upstream
         NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/MBSNow/scripts/upload_4.php?d=%@", escapedDataString];
+=======
+        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/scripts/upload_4.php?d=%@", escapedDataString];
+>>>>>>> Stashed changes
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];
@@ -725,8 +729,8 @@
         NSArray *events = [NSDictionary dictionaryWithXMLData:rssNewsData][@"channel"][@"item"];
         BOOL n = [[NSUserDefaults standardUserDefaults] boolForKey:@"alwaysShowArticle"];
         for (NSDictionary *d in events) {
-            NSDate *pub = [self dateFromNewsXmlFormatter:d[@"pubDate"]];
-            if ([pub compare:[NSDate date]] == NSOrderedSame || [pub compare:[self dateByDistanceFromToday:-1]] == NSOrderedSame || n) {
+            NSDate *pub = [self dateWithoutTime:[self dateFromNewsXmlFormatter:d[@"pubDate"]]];
+            if ([pub compare:[self dateWithoutTime:[NSDate date]]] == NSOrderedSame || [pub compare:[self dateByDistanceFromToday:-1]] == NSOrderedSame || n) {
                 // either a story from yesterday or today OR (through the "n" boolean), the user always wants all semi-recent articles to appear
                 [self saveFeedsWithObject:[ArticleTableViewCell class] andKey:@"class"];
                 [self saveFeedsWithObject:d[@"title"] andKey:@"strings"];
