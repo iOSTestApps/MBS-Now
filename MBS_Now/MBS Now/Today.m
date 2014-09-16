@@ -91,7 +91,7 @@
     if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSString *urlString = [NSString stringWithFormat:@"http://gdyer.de/upload_4.php?d=%@", escapedDataString];
+        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/MBSNow/scripts/upload_4.php?d=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];
