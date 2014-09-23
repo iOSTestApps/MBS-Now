@@ -39,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // when the view disappears, a NO setting here makes the view refresh regardless of if already did 5 seconds earlier
+    // when the view disappears, a NO setting here makes the view reresh regardless of if already did 5 seconds earlier
     preserve = NO;
 
     // don't show empty cells

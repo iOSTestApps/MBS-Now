@@ -15,7 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    receivedData = [NSMutableData data];
     [_webView setDelegate:self];
     // get today's name
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -137,6 +137,8 @@
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     if (connection == notificationUpdates) [notificationData appendData:data];
+        [receivedData appendData:data];
+        [_webView loadData:receivedData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
 
 }
 - (void)generateNotifications:(NSString *)category andCalculateTime:(BOOL)c {

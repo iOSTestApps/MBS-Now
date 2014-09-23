@@ -25,7 +25,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;
-@property (nonatomic, assign) NSMutableData *receivedData;
+@property (nonatomic, strong) NSMutableData *receivedData;
 
 - (IBAction)pushedStop:(id)sender;
 - (void)loadFromTable:(NSURL *)urlToLoad;
