@@ -26,7 +26,7 @@
 - (void)mailLink;
 
 @property (weak, nonatomic) IBOutlet UIWebView *_webView;
-@property (assign, nonatomic) NSMutableData *receivedData;
+@property (strong, nonatomic) NSMutableData *receivedData;
 @property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
 
 @end

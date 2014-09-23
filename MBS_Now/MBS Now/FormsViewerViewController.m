@@ -26,11 +26,13 @@
 - (id)initWithLunchDay:(NSString *)day showingTomorrow:(BOOL)late {
     dayName = day;
     showingTomorrow = late;
+    receivedData = [NSMutableData data];
     return [super initWithNibName:@"FormsViewerViewController_7" bundle:nil];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.receivedData = [NSMutableData data];
     [_webView setDelegate:self];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
@@ -94,6 +96,10 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"404 Error" message:@"We couldn't find the doc you selected. Please report this bug." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Report", nil];
         [alert show];
     }
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data   {
+    [receivedData appendData:data];
+    [_webView loadData:receivedData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
 }
 
 #pragma mark Action button
