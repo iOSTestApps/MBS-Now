@@ -39,9 +39,11 @@
 
     NSURLConnection *connection;
     if (!dayName) {
+        data1 = NO;
         finalURL = (finalURL) ? finalURL : [NSURL URLWithString:[NSString stringWithFormat:@"http://campus.mbs.net/mbsnow/home/forms/%@.pdf", extensionName]];
         connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
     } else {
+        data1 = YES;
         finalURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@.pdf", LUNCH_ROOT, dayName]];
         connection = [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:finalURL] delegate:self startImmediately:TRUE];
     }
@@ -98,8 +100,10 @@
     }
 }
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data   {
+    if (data1 == YES) {
     [receivedData appendData:data];
     [_webView loadData:receivedData MIMEType:@"application/pdf" textEncodingName:@"utf-8" baseURL:nil];
+    }
 }
 
 #pragma mark Action button

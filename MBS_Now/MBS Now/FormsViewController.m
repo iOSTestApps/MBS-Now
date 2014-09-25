@@ -14,6 +14,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 0)];
     footer.backgroundColor = [UIColor clearColor];
     self.searchDisplayController.searchResultsTableView.tableFooterView = _tblView.tableFooterView = footer;

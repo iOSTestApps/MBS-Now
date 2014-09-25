@@ -18,6 +18,7 @@
     NSString *dayName;
 
     UIActionSheet *sheet;
+    BOOL data1;
 }
 
 - (id)initWithStringForURL:(NSString *)stringForURL; // default initializer
