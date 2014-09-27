@@ -25,7 +25,7 @@ for i in range(len(days)):
 
 # now do the monthly menu
 if (last.month != datetime.datetime.today().month):
-    print("Conflicting months detected. Storing next month (" + last.month + ") as 'Month2.pdf'.")
+    print("Conflicting months detected. Storing next month (" + str(last.month) + ") as 'Month2.pdf'.")
     url = 'http://myschooldining.com/mbs/createPDFMenuMonthAct.cfm?currDT=' + last.strftime('%m/%d/%y')
     print(url)
     f = urllib.request.urlopen(url)
