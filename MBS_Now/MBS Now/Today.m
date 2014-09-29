@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
+// THIS VC IS IPHONE/IPOD ONLY; see WidgetVC and LunchVC for the iPad equivalents
+
 #import "Today.h"
 #import "DataViewController.h"
 #import "FormsViewerViewController.h"
@@ -39,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // when the view disappears, a NO setting here makes the view reresh regardless of if already did 5 seconds earlier
+    // when the view disappears, a NO setting here makes the view refresh regardless of if already did 5 seconds earlier
     preserve = NO;
 
     // don't show empty cells
@@ -91,6 +93,7 @@
     if (q % AUTO == 0 && q != 0 && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
         NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/MBSNow/scripts/upload_4.php?d=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
