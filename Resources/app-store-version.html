@@ -1,0 +1,16 @@
+<!doctype html>
+<body>
+    <span id="v"></span>
+    <script src="https://mbsdev.github.io/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "https://itunes.apple.com/lookup?id=617180145",
+                dataType: "jsonp",
+                success: function(data) {
+                    $('#v').html(data['results'][0]['version']);
+                }
+            });
+        });
+    </script>
+</body>
