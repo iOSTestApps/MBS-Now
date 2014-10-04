@@ -93,7 +93,7 @@
 - (id)init {
     NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDict objectForKey:@"CFBundleShortVersionString"];
-    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:@[@"lucas.png", @"t1.png", @"t2.png", @"cs.png"] showDismiss:NO description:@[@"Thank you for supporting MBS Now for the past 2 years! From that first buggy version to the polished release today, it's been a blast. Lucas has the reigns now! —Graham", @"Introducing Today, a personalized summary of all things MBS. Quickly view schedules, calendar events, news, meetings, deadlines, weather and more.", @"Today provides a data-driven approach to simplifying your day. It accumulates all the things you need and helps you keep on track.", @"Introducing Community Service. Add or view service opportunities to get more involved in and out of MBS."] title:[NSString stringWithFormat:@"What's new in %@", version]];
+    PhotoBrowser *pb = [[PhotoBrowser alloc] initWithImages:@[@"lucas.png", @"t1.png", @"t2.png", @"cs.png"] showDismiss:NO description:@[@"Thank you for supporting MBS Now for the past 2 years! From that first buggy version to the polished release today, it's been a blast. Lucas has the reins now! —Graham", @"Introducing Today, a personalized summary of all things MBS. Quickly view schedules, calendar events, news, meetings, deadlines, weather and more.", @"Today provides a data-driven approach to simplifying your day. It accumulates all the things you need and helps you keep on track.", @"Introducing Community Service. Add or view service opportunities to get more involved in and out of MBS."] title:[NSString stringWithFormat:@"What's new in %@", version]];
     return pb;
 }
 

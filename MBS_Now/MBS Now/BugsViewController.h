@@ -10,6 +10,8 @@
 
 @interface BugsViewController : UIViewController <UIWebViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, UIAlertViewDelegate> {
     NSURLConnection *versionConnection;
+    NSMutableData *versionData;
+    
     NSMutableData *connectionData;
     NSURLConnection *connect;
 }

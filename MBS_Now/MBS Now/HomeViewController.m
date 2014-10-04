@@ -88,7 +88,7 @@
         return;
     }
 
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.html"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15];
     versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
     versionData = [NSMutableData data];
