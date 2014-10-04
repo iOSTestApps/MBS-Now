@@ -33,7 +33,7 @@ def list_contains(list, needle):
     return False
 
 events = []
-with open(home + '/Downloads/calendar.csv', 'r') as f:
+with open(home + '/Downloads/calendar.csv.txt', 'r') as f:
     reader = csv.reader(f)
     for line in reader:
       events.append(line)
