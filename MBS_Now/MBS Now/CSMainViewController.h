@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CSMainViewController.h
 //  MBS Now
 //
 //  Created by Lucas Fagan on 5/15/14.
