@@ -97,18 +97,21 @@
     NSString *separation = @"\n";
     NSString *fileText = [NSString stringWithContentsOfURL:connection.currentRequest.URL encoding:NSMacOSRomanStringEncoding error:nil];
     NSArray *raw = [fileText componentsSeparatedByString:separation];
-    self.csv = [[NSMutableArray alloc] init];
+    self.csv = [NSMutableArray array];
+    NSMutableArray *toSave = [NSMutableArray array];
     for (NSString *foo in raw) {
         NSArray *dummy = [foo componentsSeparatedByString:@","];
+        [toSave addObject:dummy];
         if ([self thisDateIsInTheFutureOrToday:[self dateFromEventString:dummy[2]]] || _showHistory)
             [self.csv addObject:dummy];
     }
     
     self.descriptions = self.csv[0];
     [self.csv removeObjectAtIndex:0];
+    [toSave removeObjectAtIndex:0];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 
-    [[NSUserDefaults standardUserDefaults] setObject:self.csv forKey:@"meetingLog"];
+    [[NSUserDefaults standardUserDefaults] setObject:toSave forKey:@"meetingLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
     [SVProgressHUD dismiss];
