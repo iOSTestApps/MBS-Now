@@ -13,6 +13,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.csv = [NSMutableArray arrayWithObject:@[@"Hang tight... updating", @"Hang tight... updating!", @"...? Fetching!"]];
     self.descriptions = @[@"Please refresh meetings", @"Return to previous screen"];
     self.tableView.userInteractionEnabled = NO;
@@ -32,13 +33,52 @@
     [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"book-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(toggleHistory)];
+    else
+        self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"book-7-active.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(toggleHistory)], [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshData)]];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(moveAlongWithCreation)];
+}
+
+- (void)toggleHistory {
+    _showHistory=!_showHistory;
+    UIColor *c = (_showHistory) ? [UIColor grayColor] : nil;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) self.navigationItem.leftBarButtonItem.tintColor = c;
+    else [self.navigationItem.leftBarButtonItems[0] setTintColor:c];
+    [self refreshData];
 }
 
 - (void)moveAlongWithCreation {
     [self performSegueWithIdentifier:@"add" sender:self];
+}
+
+#pragma mark Some useful date stuff
+- (NSDate *)dateByDistanceFromToday:(NSInteger)d {
+    NSDateComponents *tomorrowComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    NSDate *compDate = [[NSCalendar currentCalendar] dateFromComponents:tomorrowComponents];
+    
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    offsetComponents.day = d;
+    return [[NSCalendar currentCalendar] dateByAddingComponents:offsetComponents toDate:compDate options:0];
+}
+
+- (NSDate *)dateFromEventString:(NSString *)s {
+    NSDateFormatter *form = [[NSDateFormatter alloc] init];
+    [form setDateFormat:@"M/d/y"];
+    return [form dateFromString:s];
+}
+
+- (BOOL)thisDateIsInTheFutureOrToday:(NSDate *)one {
+    if ([one compare:[self dateWithoutTime:[NSDate date]]] != NSOrderedAscending) return 1;
+    else return 0;
+}
+
+- (NSDate *)dateWithoutTime:(NSDate *)i {
+    if (i == nil )
+        i = [NSDate date];
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:i];
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
 #pragma mark Connection
@@ -60,10 +100,11 @@
     self.csv = [[NSMutableArray alloc] init];
     for (NSString *foo in raw) {
         NSArray *dummy = [foo componentsSeparatedByString:@","];
-        [self.csv addObject:dummy];
+        if ([self thisDateIsInTheFutureOrToday:[self dateFromEventString:dummy[2]]] || _showHistory)
+            [self.csv addObject:dummy];
     }
-
-    self.descriptions = [self.csv objectAtIndex:0];
+    
+    self.descriptions = self.csv[0];
     [self.csv removeObjectAtIndex:0];
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 
@@ -104,15 +145,14 @@
 #pragma mark Table view
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *iden = @"ReuseCell";
-
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:iden];
-
-    if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
+    if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:iden];
     
-    cell.textLabel.text = [[self.csv objectAtIndex:indexPath.row] objectAtIndex:1];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Meeting on %@", [[self.csv objectAtIndex:indexPath.row] objectAtIndex:2]];
-
+    BOOL future = [self thisDateIsInTheFutureOrToday:[self dateFromEventString:self.csv[indexPath.row][2]]];
+    cell.textLabel.text = self.csv[indexPath.row][1];
+    if (_showHistory)
+        cell.textLabel.textColor = (future) ? [UIColor blackColor] : [UIColor lightGrayColor];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ on %@", (future) ? @"Meeting" : @"Met", [[self.csv objectAtIndex:indexPath.row] objectAtIndex:2]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
 	return cell;

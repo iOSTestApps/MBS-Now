@@ -256,6 +256,8 @@
 		15CEF8C41976DCE200B66718 /* ArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */; };
 		15D82DAB19C22E890006BEAB /* HMW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15D82DAA19C22E890006BEAB /* HMW.jpg */; };
 		15D82DAD19C22F8F0006BEAB /* RMitchellWebPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15D82DAC19C22F8F0006BEAB /* RMitchellWebPic.jpg */; };
+		15E16DD819E0CE840000265F /* book-simple-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 15E16DD619E0CE840000265F /* book-simple-7.png */; };
+		15E16DD919E0CE840000265F /* book-simple-7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 15E16DD719E0CE840000265F /* book-simple-7@2x.png */; };
 		15EF3F6B18D25D9500FE928D /* UITableViewCell+Width.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */; };
 		15F2E815176972FF00FA1073 /* WelcomesViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */; };
 		15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15F2E8161769738B00FA1073 /* FormsViewerViewController_7.xib */; };
@@ -583,6 +585,8 @@
 		15CEF8C31976DCE200B66718 /* ArticleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableViewCell.m; sourceTree = "<group>"; };
 		15D82DAA19C22E890006BEAB /* HMW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = HMW.jpg; path = Images/welcomes/HMW.jpg; sourceTree = "<group>"; };
 		15D82DAC19C22F8F0006BEAB /* RMitchellWebPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = RMitchellWebPic.jpg; path = Images/welcomes/RMitchellWebPic.jpg; sourceTree = "<group>"; };
+		15E16DD619E0CE840000265F /* book-simple-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-simple-7.png"; sourceTree = "<group>"; };
+		15E16DD719E0CE840000265F /* book-simple-7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book-simple-7@2x.png"; sourceTree = "<group>"; };
 		15EF3F6918D25D9500FE928D /* UITableViewCell+Width.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Width.h"; sourceTree = "<group>"; };
 		15EF3F6A18D25D9500FE928D /* UITableViewCell+Width.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Width.m"; sourceTree = "<group>"; };
 		15F2E814176972FF00FA1073 /* WelcomesViewController_7.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomesViewController_7.xib; sourceTree = "<group>"; };
@@ -987,6 +991,8 @@
 				15AD7B181995901000E21F02 /* bank@2x.png */,
 				15AD7B1D1995901000E21F02 /* book-7-active.png */,
 				15AD7B1E1995901000E21F02 /* book-7-active@2x.png */,
+				15E16DD619E0CE840000265F /* book-simple-7.png */,
+				15E16DD719E0CE840000265F /* book-simple-7@2x.png */,
 				15AD7B1F1995901000E21F02 /* bookmark-7-active.png */,
 				15AD7B201995901000E21F02 /* bookmark-7-active@2x.png */,
 				15AD7B211995901000E21F02 /* bug-black.png */,
@@ -1252,6 +1258,7 @@
 				15AD7BE11995901100E21F02 /* cloud-download-7@2x.png in Resources */,
 				15AD7C031995901100E21F02 /* home-7-active@2x.png in Resources */,
 				15AD7C481995901100E21F02 /* timer-7-active.png in Resources */,
+				15E16DD819E0CE840000265F /* book-simple-7.png in Resources */,
 				15D82DAB19C22E890006BEAB /* HMW.jpg in Resources */,
 				15AD7BF21995901100E21F02 /* downward-arrow-7-active@2x.png in Resources */,
 				15AD7C0E1995901100E21F02 /* map-pin-7.png in Resources */,
@@ -1404,6 +1411,7 @@
 				15AD7BBB1995901100E21F02 /* arrow-forward@2x.png in Resources */,
 				15AD7C961995934F00E21F02 /* RedOnWhiteInsignia(1004x768).png in Resources */,
 				15AD7C281995901100E21F02 /* phone-book@2x.png in Resources */,
+				15E16DD919E0CE840000265F /* book-simple-7@2x.png in Resources */,
 				15AD7BD41995901100E21F02 /* calendar.png in Resources */,
 				15AAF68018D28E3F001AC330 /* Info.txt in Resources */,
 				15AD7C151995901100E21F02 /* mutiply-sign@2x.png in Resources */,

@@ -239,7 +239,7 @@
     meetingsConnection = [[NSURLConnection alloc] initWithRequest:docRequest delegate:self];
 
     // check the remote version number for comparison
-    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.html"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
+    NSURLRequest *version = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     versionData = [NSMutableData data];
     versionConnection = [[NSURLConnection alloc] initWithRequest:version delegate:self startImmediately:YES];
 
@@ -714,7 +714,6 @@
 
     else if (connection == versionConnection) {
         NSString *fileText = [[NSString alloc] initWithData:versionData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@", fileText);
         NSDictionary *infoDict = [[NSBundle mainBundle] infoDictionary];
         // compare the info.plist version number with the remote one by removing periods and doing an integer comparison
         if ([fileText stringByReplacingOccurrencesOfString:@"." withString:@""].intValue > [infoDict[@"CFBundleShortVersionString"] stringByReplacingOccurrencesOfString:@"." withString:@""].intValue) {

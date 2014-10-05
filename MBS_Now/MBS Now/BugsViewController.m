@@ -125,7 +125,7 @@
     self.mainTitle= self.bug = nil;
 
     connectionData = [NSMutableData data];
-    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.html"];
+    NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
 }

@@ -12,4 +12,5 @@
 
 @property (nonatomic, strong) NSMutableArray *csv;
 @property (strong, nonatomic) NSArray *descriptions; // includes descriptions of data
+@property (assign) BOOL showHistory;
 @end
