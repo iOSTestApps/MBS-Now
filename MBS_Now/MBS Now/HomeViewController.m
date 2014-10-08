@@ -17,13 +17,13 @@
 #import <AudioToolbox/AudioServices.h>
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
-
+#define IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @implementation HomeViewController
 @synthesize receivedData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    if (IS_IPHONE_5) self.iphoneScroller.contentSize = CGSizeMake(320, 1030);
     NSString *foo;
     NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
     NSArray *array = @[@"black", @"grey", @"tan"];

@@ -658,6 +658,7 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="iphoneScroller" destination="wvN-Eb-g3h" id="12s-Hs-DIZ"/>
                         <outlet property="versionLabel" destination="4M8-pb-VSP" id="GAa-Zv-pfu"/>
                         <outletCollection property="buttons" destination="qwQ-OI-8pn" id="qia-qi-Zjw"/>
                         <outletCollection property="buttons" destination="ilF-94-gqN" id="cue-GD-pjo"/>
@@ -1974,7 +1975,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <webView contentMode="scaleToFill" id="eZn-Ub-LwO">
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" id="eZn-Ub-LwO">
                                 <rect key="frame" x="0.0" y="63" width="320" height="417"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>

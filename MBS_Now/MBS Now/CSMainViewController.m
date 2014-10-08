@@ -21,7 +21,7 @@
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 60),0,0,0)];
+    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
