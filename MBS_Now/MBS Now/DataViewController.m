@@ -126,7 +126,7 @@
 }
 
 - (IBAction)pushedQuestion:(id)sender {
-    NSString *s = @"http://campus.mbs.net/mbsnow/home/meta/privacy.php";
+    NSString *s = @"https://mbsdev.github.io/privacy.html";
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithAddress:s];
         [self presentViewController:wvc animated:YES completion:nil];

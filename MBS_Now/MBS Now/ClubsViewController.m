@@ -173,7 +173,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"add"]) {
         [segue.destinationViewController setNameInit:@"club event"];
-        [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/meeting.html"];
+        [segue.destinationViewController setAddressInit:@"https://mbsdev.github.io/meeting.html"];
     }
 
     else if ([segue.identifier isEqualToString:@"showDetail"]) {

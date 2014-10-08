@@ -243,7 +243,7 @@
     NSIndexPath *indexPath = _tableView.indexPathForSelectedRow;
     if ([segue.identifier isEqualToString:@"add"]) {
         [segue.destinationViewController setNameInit:@"service post"];
-        [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
+        [segue.destinationViewController setAddressInit:@"https://mbsdev.github.io/add-service.html"];
     }
     else if ([segue.identifier isEqualToString:@"csshowdetails"]) {
         [segue.destinationViewController setDetails:self.array[indexPath.row]];

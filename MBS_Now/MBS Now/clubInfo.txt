@@ -1,7 +1,7 @@
 New since version 3, is the ability to view and create meetings for clubs. Everything can be done entirely through the app.
 
 A few tips...
-• Be sure your club is registered. Visit campus.mbs.net/mbsnow to begin.
+• Be sure your club is registered. Visit mbsdev.github.io/clubs.html to begin.
 
 • After creating a meeting, you'll be given the option to enable future editing. If you do not save the editing URL, you will have to contact Lucas Fagan to modify or remove your meeting.
 

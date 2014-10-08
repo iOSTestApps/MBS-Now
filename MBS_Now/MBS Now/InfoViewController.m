@@ -68,7 +68,7 @@
 }
 
 - (IBAction)pushedVisitSite:(id)sender {
-    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://campus.mbs.net/mbsnow/home"]];
+    SVModalWebViewController *wvc = [[SVModalWebViewController alloc] initWithURL:[NSURL URLWithString:@"https://mbsdev.github.io"]];
     [self presentViewController:wvc animated:YES completion:nil];
 }
 

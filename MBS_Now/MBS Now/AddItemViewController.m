@@ -86,6 +86,7 @@
 
 #pragma mark Motion
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+    NSLog(@"%@", _webView.request.URL.host);
     if (motion == UIEventSubtypeMotionShake && [_webView.request.URL.host isEqualToString:@"campus.mbs.net"]) {
         if ([MFMessageComposeViewController canSendText] && ![MFMailComposeViewController canSendMail]) [self sendText];
         else if (![MFMessageComposeViewController canSendText] && [MFMailComposeViewController canSendMail]) [self sendEmail];
