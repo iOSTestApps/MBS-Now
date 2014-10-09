@@ -19,5 +19,6 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *bug;
 @property (nonatomic, strong) NSMutableArray *mainTitle;
+@property (nonatomic) UIRefreshControl *refreshControl;
 
 @end

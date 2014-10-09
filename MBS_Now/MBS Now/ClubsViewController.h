@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClubsViewController : UITableViewController <UIAlertViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface ClubsViewController : UITableViewController <UIAlertViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) NSMutableArray *csv;
 @property (strong, nonatomic) NSArray *descriptions; // includes descriptions of data

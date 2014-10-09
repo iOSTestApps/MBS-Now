@@ -122,7 +122,7 @@
     [d show];
 }
 
-- (void)addTextScheduleFeed:(NSString *)raw withDayIndex:(BOOL)i { // i is the day index; 0 for today, 1 for tomorrow
+- (void)addTextScheduleFeed:(NSString *)raw withDayIndex:(BOOL)i { // i is the day index: 0 for today, 1 for tomorrow
                                                                    // this method is just a quicker way to add text schedules to _feeds
     NSString *sched = [NSString stringWithFormat:@"%@: %@", ((i == 0) ? @"Today" : @"Tomorrow"), [[[raw stringByReplacingOccurrencesOfString:@"|" withString:@", "] stringByReplacingOccurrencesOfString:@"Advisors, " withString:@""] stringByReplacingOccurrencesOfString:@"Advisory, " withString:@""]];
     // see saveFeedsWithObject:andKey: for details

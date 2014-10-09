@@ -33,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *iPadCatalog;
 @property (weak, nonatomic) IBOutlet UIScrollView *iPadScroller;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *iphoneScroller;
+
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @property (nonatomic, assign) NSMutableData *receivedData;

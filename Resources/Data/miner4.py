@@ -44,7 +44,7 @@ def most_common(L):
   # pick the highest-count/earliest item
   return max(groups, key=_auxfun)[0]
 
-url = 'http://gdyer.de/data4.txt'
+url = 'http://campus.mbs.net/mbsnow/scripts/data4.txt'
 f = urllib.request.urlopen(url)
 data = f.readlines()
 

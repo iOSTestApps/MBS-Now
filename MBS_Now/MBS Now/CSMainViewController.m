@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  CSMainViewController.m
 //  MBS Now
 //
 //  Created by Lucas Fagan on 5/15/14.
@@ -21,7 +21,7 @@
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake((IS_IPHONE_5 ? 20 : 60),0,0,0)];
+    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -243,7 +243,7 @@
     NSIndexPath *indexPath = _tableView.indexPathForSelectedRow;
     if ([segue.identifier isEqualToString:@"add"]) {
         [segue.destinationViewController setNameInit:@"service post"];
-        [segue.destinationViewController setAddressInit:@"http://campus.mbs.net/mbsnow/home/service.html"];
+        [segue.destinationViewController setAddressInit:@"https://mbsdev.github.io/add-service.html"];
     }
     else if ([segue.identifier isEqualToString:@"csshowdetails"]) {
         [segue.destinationViewController setDetails:self.array[indexPath.row]];

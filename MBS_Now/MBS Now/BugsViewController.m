@@ -27,6 +27,12 @@
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Fetching... just for you ;)"];
+    [refresh addTarget:self action:@selector(pushedDownload) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+    [self.tableView addSubview:self.refreshControl];
 }
 
 - (void)showNoBugs {
@@ -93,7 +99,7 @@
             NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://raw.githubusercontent.com/mbsdev/MBS-Now/master/Resources/bugs.txt"]];
             NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10.0f];
             connect = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-            if (connect) [SVProgressHUD showWithStatus:@"Downloading..."];
+            if (connect && !self.refreshControl.isRefreshing) [SVProgressHUD showWithStatus:@"Downloading..."];
             [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
         }
     } else if (connection == connect) {
@@ -109,10 +115,12 @@
             }
         }
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
     self.bug = [@[@"Connection failed. Tap to retry"] mutableCopy];
     self.mainTitle = [@[@"Tap here to try again"] mutableCopy];
@@ -121,13 +129,18 @@
 
 #pragma mark -
 - (void)pushedDownload {
-    [SVProgressHUD showWithStatus:@"Updating..."];
+    if (!self.refreshControl.isRefreshing) [SVProgressHUD showWithStatus:@"Updating..."];
     self.mainTitle= self.bug = nil;
 
     connectionData = [NSMutableData data];
     NSURL *url = [NSURL URLWithString:@"https://raw.githubusercontent.com/gdyer/MBS-Now/master/Resources/app-store-version.txt"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:15];
     versionConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM d, h:mm:ss a";
+    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated %@", [formatter stringFromDate:[NSDate date]]];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 }
 
 #pragma mark Actions
