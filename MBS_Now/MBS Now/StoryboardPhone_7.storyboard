@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
->>>>>>> cad30821f420b8c6fd7469cc0b2bfe23d919e51f
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
@@ -609,7 +605,7 @@
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                        <size key="value" width="320" height="1100"/>
+                                        <size key="value" width="320" height="1050"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -662,7 +658,6 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="iphoneScroller" destination="wvN-Eb-g3h" id="12s-Hs-DIZ"/>
                         <outlet property="versionLabel" destination="4M8-pb-VSP" id="GAa-Zv-pfu"/>
                         <outletCollection property="buttons" destination="qwQ-OI-8pn" id="qia-qi-Zjw"/>
                         <outletCollection property="buttons" destination="ilF-94-gqN" id="cue-GD-pjo"/>
@@ -1800,11 +1795,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aqX-ef-ykQ">
-<<<<<<< HEAD
-                                <rect key="frame" x="172" y="93" width="132" height="33"/>
-=======
                                 <rect key="frame" x="168" y="93" width="132" height="33"/>
->>>>>>> cad30821f420b8c6fd7469cc0b2bfe23d919e51f
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Add your form">
@@ -1815,7 +1806,7 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tr4-uE-EVy">
-                                <rect key="frame" x="16" y="95" width="132" height="30"/>
+                                <rect key="frame" x="20" y="95" width="132" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Refresh">
@@ -1983,10 +1974,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <webView contentMode="scaleToFill" scalesPageToFit="YES" id="eZn-Ub-LwO">
+                            <webView contentMode="scaleToFill" id="eZn-Ub-LwO">
                                 <rect key="frame" x="0.0" y="63" width="320" height="417"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" red="0.96166361079999996" green="0.95629118840000005" blue="0.96703603319999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -2059,15 +2050,9 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ggG-lS-L6W"/>
-        <segue reference="3MT-6i-bVb"/>
-<<<<<<< HEAD
-        <segue reference="x54-XE-0UW"/>
-        <segue reference="EnD-GY-im9"/>
         <segue reference="P1X-p3-2sm"/>
-=======
-        <segue reference="YN7-qv-aKn"/>
-        <segue reference="LMc-Mf-m1x"/>
         <segue reference="x54-XE-0UW"/>
->>>>>>> cad30821f420b8c6fd7469cc0b2bfe23d919e51f
+        <segue reference="YN7-qv-aKn"/>
+        <segue reference="3MT-6i-bVb"/>
     </inferredMetricsTieBreakers>
 </document>
