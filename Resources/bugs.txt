@@ -1,2 +1,3 @@
 "In app notifcation!" popups | You may have to dismiss many alerts in Today
-Mispelling on forms tab | "Add you_ form"... Whoops!
+Misspelling on forms tab | "Add you_ form"... Whoops!
+CS details not in right order | The text of the cell does not line up with the detail text
