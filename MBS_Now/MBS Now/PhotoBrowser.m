@@ -9,7 +9,7 @@
 #import "PhotoBrowser.h"
 @implementation PhotoBrowser
 
-// CHANGE INIT AND STOPMEASURING'S NSUSERDEFAULT KEY FOR EACH VERSION
+// CHANGE INIT AND STOPMEASURING'S NSUSERDEFAULT KEY FOR EACH VERSION (well, you really only need to change stopMeasuring: when init: changes... if you want interesting stats)
 
 - (void)viewDidLoad {
     [super viewDidLoad];
