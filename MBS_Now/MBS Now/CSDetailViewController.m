@@ -12,7 +12,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    NSLog(@"%@",self.descriptions);
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"M/d/yyyy h:m:ss"];
     if ([format dateFromString:self.details[0]]) {
