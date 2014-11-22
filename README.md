@@ -3,7 +3,7 @@
 ... a free, student-run iOS and web app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to learn more about us and the app.
 
 
-> MBS Now admins: check/update [the wiki](https://github.com/gdyer/MBS-Now/wiki/Transition) for/with release information and commit info.
+> MBS Now admins: keep [the transition wiki](https://github.com/mbsdev/MBS-Now/wiki/Transition) and [the new features wiki](https://github.com/mbdev/mbs-now/wiki/goals) up to date.
 
 > **Reminder**: be sure to change `Resources/app-store-version.txt` when a new version is *available* on the store.
 
