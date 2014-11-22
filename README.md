@@ -5,9 +5,6 @@
 
 > MBS Now admins: keep [the transition wiki](https://github.com/mbsdev/MBS-Now/wiki/Transition) and [the new features wiki](https://github.com/mbdev/mbs-now/wiki/goals) up to date.
 
-> **Reminder**: be sure to change `Resources/app-store-version.txt` when a new version is *available* on the store.
-
-
 
 Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school).
 
