@@ -1,6 +1,6 @@
 Hello, I'm lunch-bot. I handle lunch for MBS Now. Here's what I did recently...
 
-I pushed these here at 15:12, 05 Jan 2015|
+I pushed these here at 15:17, 05 Jan 2015|
 --- |
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/05/15
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/06/15
@@ -8,4 +8,4 @@ I pushed these here at 15:12, 05 Jan 2015|
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/08/15
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/09/15
 | http://myschooldining.com/mbs/createPDFMenuMonthAct.cfm?currDT=01/05/15
-I also copied these new menus to [MBS-Now/Resources/Lunch](https://github.com/mbsdev/MBS-Now/Resources/Lunch). Please don't modify that folder or this repository, because I don't know how to merge :_(
+I also copied these new menus to [MBS-Now/Resources/Lunch](https://github.com/mbsdev/MBS-Now/tree/master/Resources/Lunch). Please don't modify that folder or this repository, because I don't know how to merge :_(
