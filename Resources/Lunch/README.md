@@ -1,6 +1,6 @@
 Hello, I'm lunch-bot. I handle lunch for MBS Now. Here's what I did recently...
 
-I pushed these here at 15:17, 05 Jan 2015|
+I pushed these here at 15:40, 05 Jan 2015|
 --- |
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/05/15
 | http://myschooldining.com/mbs/?cmd=pdfmenuday&currDT=01/06/15
