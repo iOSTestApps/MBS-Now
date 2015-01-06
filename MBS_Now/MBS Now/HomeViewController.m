@@ -26,6 +26,7 @@
     
     self.cvtitles = @[@"Lunch",@"Map",@"Schedule",@"Calendar",@"Databases"];
     self.cvimagetitles = @[@"lunch.jpg",@"map.jpg",@"schedule.jpg",@"cal.jpg",@"database.jpg"];
+    self.cvtitlecolors = @[[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor]];
     self.cvstoryboardindentifiers = @[@"lunch",@"map",@"schedule",@"listings",@"database"];
     if (IS_IPHONE_5) self.iphoneScroller.contentSize = CGSizeMake(320, 1000);
     NSString *foo;
@@ -54,7 +55,9 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cvcell" forIndexPath:indexPath];
     cell.imageView.image = [UIImage imageNamed:self.cvimagetitles[indexPath.item]];
+    cell.imageView.alpha = 0.7;
     cell.titleLabel.text = self.cvtitles[indexPath.item];
+    cell.titleLabel.textColor = self.cvtitlecolors[indexPath.item];
     return cell;
     
     

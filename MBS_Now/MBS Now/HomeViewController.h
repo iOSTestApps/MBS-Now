@@ -29,6 +29,8 @@
 @property (nonatomic) NSArray *cvtitles;
 @property (nonatomic) NSArray *cvimagetitles;
 @property (nonatomic) NSArray *cvstoryboardindentifiers;
+@property (nonatomic) NSArray *cvtitlecolors;
+
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 

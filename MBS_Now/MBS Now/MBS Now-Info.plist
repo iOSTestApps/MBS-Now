@@ -24,14 +24,14 @@
 	<string>4.4.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>UIMainStoryboardFile~iphone</key>
-	<string>StoryboardPhone_7</string>
 	<key>CFBundleVersion</key>
 	<string>441</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>StoryboardPad_7</string>
+	<string>StoryboardPhone_7</string>
+	<key>UIMainStoryboardFile~iphone</key>
+	<string>StoryboardPhone_7</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,11 +53,11 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.7827041745185852</real>
+				<real>0.78270417451858521</real>
 				<key>Green</key>
-				<real>0.7827041745185852</real>
+				<real>0.78270417451858521</real>
 				<key>Red</key>
-				<real>0.7827041745185852</real>
+				<real>0.78270417451858521</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
