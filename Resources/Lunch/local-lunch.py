@@ -3,13 +3,13 @@ import os,sys,urllib2,datetime,base64
 try:
     import sendgrid
 except ImportError:
-    os.system("pip2.7 install sendgrid")
-    sys.exit
+    # bad practice, but this is meant for a very small audiance
+    sys.exit("install sendgrid: 'pip2.7 install sendgrid' and rerun\n\n")
 if sys.version_info[0] >= 3:
-    raise '\n\nfriend, you\'re using python 3, but all the cool kids (and this script) use 2.7. Please type "python2.7 <script-name> <github-username> <github-email>" instead.\n'
+    sys.exit('\n\nfriend, you\'re using python 3, but all the cool kids (and this script) use 2.7. Please type "python2.7 <script-name> <github-username> <github-email>" instead.\n')
 
 
-error = '\n\nplease rerun, entering your GitHub username as an argument: "python <script-name> <github-username> <github-email>"'
+error = 'please rerun, entering your GitHub username as an argument: "python <script-name> <github-username> <github-email>"\n'
 u = ''
 e = ''
 try:
@@ -34,7 +34,7 @@ readme = open('README.md', 'w')
 readme.write('Updated lunch via `local-lunch.py`')
 readme.close()
 today = datetime.datetime.today()
-print("\n\nin addition to pushing, this script will notify Graham to get the scheduled lunch script back on track\n\n")
+print("in addition to pushing, this script will notify Graham to get the scheduled lunch script back on track\n\nquerying lunch people...")
 for i in range(len(days)):
     q = (today.weekday() + i) % len(days)
     if (days[q] in weekdays):
