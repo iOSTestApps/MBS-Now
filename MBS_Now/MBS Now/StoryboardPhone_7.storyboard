@@ -523,7 +523,7 @@
         <!--Directions-->
         <scene sceneID="971-aD-ilV">
             <objects>
-                <viewController storyboardIdentifier="directions" title="Directions" id="Ujp-dq-y6O" customClass="DirectionsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" title="Directions" id="Ujp-dq-y6O" customClass="DirectionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="028-Cv-FMR"/>
                         <viewControllerLayoutGuide type="bottom" id="ulF-Ol-Djb"/>

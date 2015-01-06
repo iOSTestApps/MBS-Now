@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic) NSArray *cvtitles;
 @property (nonatomic) NSArray *cvimagetitles;
+@property (nonatomic) NSArray *cvstoryboardindentifiers;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 
