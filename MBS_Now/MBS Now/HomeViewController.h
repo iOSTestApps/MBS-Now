@@ -10,7 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import "InfoViewController.h"
 
-@interface HomeViewController : UIViewController <UIPopoverControllerDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, MFMailComposeViewControllerDelegate, UIScrollViewDelegate, NSURLConnectionDelegate, UIScrollViewDelegate> {
+@interface HomeViewController : UIViewController <UIPopoverControllerDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, MFMailComposeViewControllerDelegate, UIScrollViewDelegate, NSURLConnectionDelegate, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate> {
 
     NSURLConnection *meetingsConnection;
     NSURLConnection *versionConnection;
@@ -24,6 +24,10 @@
 - (IBAction)pushedCountdown:(id)sender;
 - (IBAction)pushedCredentials:(id)sender;
 - (IBAction)pushedLibrary:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) NSArray *cvtitles;
+@property (nonatomic) NSArray *cvimagetitles;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 

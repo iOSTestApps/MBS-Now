@@ -15,6 +15,7 @@
 #import "FormsViewerViewController.h"
 #import "PhotoBrowser.h"
 #import <AudioToolbox/AudioServices.h>
+#import "CustomCollectionViewCell.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 @implementation HomeViewController
@@ -22,6 +23,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.cvtitles = @[@"Lunch",@"Map",@"Schedule",@"Calendar",@"Databases"];
+    self.cvimagetitles = @[@"lunch.jpg",@"map.jpg",@"schedule.jpg",@"cal.jpg",@"database.jpg"];
     if (IS_IPHONE_5) self.iphoneScroller.contentSize = CGSizeMake(320, 1000);
     NSString *foo;
     NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
@@ -43,7 +47,53 @@
         }
     }
 }
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.cvtitles.count;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cvcell" forIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:self.cvimagetitles[indexPath.item]];
+    cell.titleLabel.text = self.cvtitles[indexPath.item];
+    return cell;
+    
+    
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+     UIStoryboard *storyboard = [UIStoryboard storyboardWithName: @"StoryboardPhone_7" bundle:[NSBundle mainBundle]];
+    UIViewController *vc1 = [storyboard instantiateViewControllerWithIdentifier:@"lunch"];
+    UIViewController *vc2 = [storyboard instantiateViewControllerWithIdentifier:@"directions"];
+    UIViewController *vc3 = [storyboard instantiateViewControllerWithIdentifier:@"schedule"];
+    UIViewController *vc4 = [storyboard instantiateViewControllerWithIdentifier:@"listings"];
+    UIViewController *vc5 = [storyboard instantiateViewControllerWithIdentifier:@"database"];
 
+    switch (indexPath.item) {
+        case 0:
+            [self.navigationController pushViewController:vc1 animated:YES];
+            NSLog(@"1");
+            break;
+        case 1:
+            [self.navigationController pushViewController:vc2 animated:YES];
+            NSLog(@"2");
+            break;
+        case 2:
+            [self.navigationController pushViewController:vc3 animated:YES];
+            NSLog(@"3");
+            break;
+        case 3:
+            [self.navigationController pushViewController:vc4 animated:YES];
+            NSLog(@"4");
+            break;
+        case 4:
+            [self.navigationController pushViewController:vc5 animated:YES];
+            NSLog(@"5");
+            break;
+        default:
+            break;
+    }
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
