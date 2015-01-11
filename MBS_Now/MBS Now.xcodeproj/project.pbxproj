@@ -11,6 +11,7 @@
 		152AE16418D7CFEA00D8BC44 /* HeadmasterWelcome.txt in Resources */ = {isa = PBXBuildFile; fileRef = 152AE16318D7CFEA00D8BC44 /* HeadmasterWelcome.txt */; };
 		152FB66716B8C71300D0CB91 /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 152FB66616B8C71300D0CB91 /* DirectionsViewController.m */; };
 		152FB66C16B8C8AA00D0CB91 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 152FB66A16B8C8A200D0CB91 /* MapKit.framework */; };
+		153852E61A632D2D004CF208 /* UITableView+Reload.m in Sources */ = {isa = PBXBuildFile; fileRef = 153852E51A632D2D004CF208 /* UITableView+Reload.m */; };
 		153B638618195A7400726215 /* StoryboardPad_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 153B638418195A7400726215 /* StoryboardPad_7.storyboard */; };
 		153E7490186A55C7004A9B5A /* contactme.html in Resources */ = {isa = PBXBuildFile; fileRef = 153E748F186A55C7004A9B5A /* contactme.html */; };
 		15454A6E18578DC00064A610 /* PhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 15454A6D18578DC00064A610 /* PhotoBrowser.m */; };
@@ -279,6 +280,8 @@
 		152FB66516B8C71200D0CB91 /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
 		152FB66616B8C71300D0CB91 /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
 		152FB66A16B8C8A200D0CB91 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		153852E41A632D2D004CF208 /* UITableView+Reload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Reload.h"; sourceTree = "<group>"; };
+		153852E51A632D2D004CF208 /* UITableView+Reload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Reload.m"; sourceTree = "<group>"; };
 		153B638418195A7400726215 /* StoryboardPad_7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardPad_7.storyboard; sourceTree = "<group>"; };
 		153E748F186A55C7004A9B5A /* contactme.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contactme.html; sourceTree = "<group>"; };
 		15454A6C18578DC00064A610 /* PhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoBrowser.h; path = "MBS Now/PhotoBrowser.h"; sourceTree = "<group>"; };
@@ -729,6 +732,8 @@
 				15B80C141977530500133160 /* UIButton+Avenir.m */,
 				15AD7AE2199580DA00E21F02 /* UILabel+Avenir.h */,
 				15AD7AE3199580DA00E21F02 /* UILabel+Avenir.m */,
+				153852E41A632D2D004CF208 /* UITableView+Reload.h */,
+				153852E51A632D2D004CF208 /* UITableView+Reload.m */,
 				15529361169F7D25006A8B99 /* Tabbed VCs */,
 				152FB66916B8C88200D0CB91 /* Other VCs */,
 				1575B97C16E56ABE003CAA82 /* Content Viewers */,
@@ -1450,6 +1455,7 @@
 				155588091967B18C003F8A3B /* WidgetViewController.m in Sources */,
 				15AD7ADD1995809700E21F02 /* StandardTableViewCell.m in Sources */,
 				1557D219169F0D3E00F27AE4 /* main.m in Sources */,
+				153852E61A632D2D004CF208 /* UITableView+Reload.m in Sources */,
 				15AD7AAF19957B0900E21F02 /* SDWebImagePrefetcher.m in Sources */,
 				1557D21D169F0D3E00F27AE4 /* AppDelegate.m in Sources */,
 				159CF8E91964EF5000BD7433 /* AddItemViewController.m in Sources */,

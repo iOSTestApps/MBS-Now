@@ -8,7 +8,8 @@
 
 #import "BugsViewController.h"
 #import "SimpleWebViewController.h"
-
+#import "UITableView+Reload.h"
+#import "FullPurposeViewController.h"
 @implementation BugsViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,7 +42,7 @@
     self.bug = [@[@"Tap to check again", @"No confirmed bugs"] mutableCopy];
     self.mainTitle = [@[@"Connection required", @"New reports are checked immediately"] mutableCopy];
 
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 #pragma mark Table View
@@ -67,10 +68,16 @@
     return 1;
 }
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([[tableView cellForRowAtIndexPath:indexPath].textLabel.text rangeOfString:@"Tap"].location != NSNotFound)
         [self pushedDownload];
-    else [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self performSegueWithIdentifier:@"more" sender:self];
+    }
 }
 
 #pragma mark Connection
@@ -124,7 +131,7 @@
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch confirmed bugs. %@",[error localizedDescription]]];
     self.bug = [@[@"Connection failed. Tap to retry"] mutableCopy];
     self.mainTitle = [@[@"Tap here to try again"] mutableCopy];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 #pragma mark -
@@ -163,10 +170,20 @@
     }
 }
 
+#pragma mark Segues
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"more"]) {
+        int i = [self.tableView indexPathForSelectedRow].row;
+        ((FullPurposeViewController *)(segue.destinationViewController)).navTitle = _bug[i];
+        ((FullPurposeViewController *)(segue.destinationViewController)).fullPurpose = _mainTitle[i];
+        
+    }
+}
+
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 @end

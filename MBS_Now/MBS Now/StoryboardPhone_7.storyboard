@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="4">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Home-->
@@ -1422,11 +1422,12 @@ Please explore the links below or browse www.mbs.net to learn more.</string>
                     <navigationItem key="navigationItem" id="MQy-mZ-57b"/>
                     <connections>
                         <outlet property="tableView" destination="kEd-yD-7d4" id="9nR-0X-fWn"/>
+                        <segue destination="C8K-7a-guS" kind="push" identifier="more" id="lb9-ni-qCj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KME-of-Dkw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-578" y="-2646"/>
+            <point key="canvasLocation" x="-565" y="-2640"/>
         </scene>
         <!--Clubs-->
         <scene sceneID="NT3-Mp-d5j">
@@ -2049,10 +2050,10 @@ You're only allowed to RSVP once. If you need to make changes after sending, tap
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ggG-lS-L6W"/>
-        <segue reference="x54-XE-0UW"/>
+        <segue reference="axq-Vb-zHP"/>
         <segue reference="YN7-qv-aKn"/>
         <segue reference="3MT-6i-bVb"/>
         <segue reference="LMc-Mf-m1x"/>
+        <segue reference="lb9-ni-qCj"/>
     </inferredMetricsTieBreakers>
 </document>

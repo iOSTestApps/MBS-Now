@@ -64,8 +64,15 @@
     return self.details.count;
 }
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 5) [self setUpMailWithTo:_details[indexPath.row] andSubject:_details[0] andBody:@""];
+    if (indexPath.row == 5) {
+        if ([_details[indexPath.row] rangeOfString:@"@"].location == NSNotFound) [SVProgressHUD showErrorWithStatus:@"Invalid address!"];
+        else [self setUpMailWithTo:_details[indexPath.row] andSubject:_details[0] andBody:@""];
+    }
     else if ([tableView cellForRowAtIndexPath:indexPath].accessoryType != UITableViewCellAccessoryNone) [self performSegueWithIdentifier:@"more" sender:self];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -165,7 +172,7 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 #pragma mark Alerts

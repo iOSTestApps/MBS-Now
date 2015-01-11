@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 MBS Now. CC BY-NC 3.0 Unported https://creativecommons.org/licenses/by-nc/3.0/
 //
 
-// THIS VC IS IPHONE/IPOD ONLY; see WidgetVC and LunchVC for the iPad equivalents
-
 #import "Today.h"
 #import "DataViewController.h"
 #import "FormsViewerViewController.h"
@@ -60,7 +58,7 @@
 
     // lunch BBI
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"food-sign.png"] style:UIBarButtonItemStylePlain target:self action:@selector(lunch)];
-    // disable BBI if it's the weekend (note that Saturday.pdf and Sunday.pdf will still be viewable on iPad, where this functionality doesn't exist)
+
     if ([@[@"Saturday", @"Sunday"] containsObject:[self dayNameFromDate:[NSDate date]]]) {self.navigationItem.rightBarButtonItem.enabled = NO;}
 }
 
@@ -109,7 +107,7 @@
 - (BOOL)isReceivingAllNotifs {
     int sum = [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"] + [[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"] + [[NSUserDefaults standardUserDefaults] boolForKey:@"general"];
     // return YES if the user is receiving ALL types of default notifications
-    return (sum == 3) ? 1 : 0;
+    return sum==3;
 }
 
 - (void)noSavedGrade:(NSString *)append {
@@ -366,7 +364,7 @@
 
 // check if i contains "location"
 - (BOOL)isALocation:(NSString *)i {
-    return ([i.lowercaseString rangeOfString:@"location"].location != NSNotFound) ? YES : NO;
+    return [i.lowercaseString rangeOfString:@"location"].location != NSNotFound;
 }
 
 // used to save every feed
@@ -402,7 +400,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:(q+1) forKey:@"lunchFromToday"];
     }
     preserve = YES; // prevent the order of _feeds from changing when user returns to this view
-    BOOL late = ([self getHourOfDay] > 15) ? YES : NO; // if it's after 3 PM, automatically show tomorrow's lunch with a message notifying the user of the change (handled in FVVC)
+    BOOL late = [self getHourOfDay] > 15; // if it's after 3 PM, automatically show tomorrow's lunch with a message notifying the user of the change (handled in FVVC)
     FormsViewerViewController *fvvc = [[FormsViewerViewController alloc] initWithLunchDay:(late) ? [self dayNameFromDate:[self dateByDistanceFromToday:1]] : [self dayNameFromDate:[NSDate date]]  showingTomorrow:late];
     [self.navigationController pushViewController:fvvc animated:YES];
 }
@@ -680,7 +678,7 @@
     // TEXT-BASED schedules
     else if (connection == scheduleConnection || connection == tomorrowTextConnection) {
         NSString *schedule = [[NSString alloc] initWithData:((connection == tomorrowTextConnection) ? tomorrowTextData : scheduleData) encoding:NSUTF8StringEncoding];
-        if (![schedule isEqualToString:@""]) [self addTextScheduleFeed:schedule withDayIndex:((connection == tomorrowTextConnection) ? 1 : 0)];
+        if (![schedule isEqualToString:@""]) [self addTextScheduleFeed:schedule withDayIndex:(connection == tomorrowTextConnection)];
     }
 
     // IMAGE-BASED schedules
@@ -1025,7 +1023,7 @@
 // not necessary in iOS 7 and above...
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 #pragma mark Alert

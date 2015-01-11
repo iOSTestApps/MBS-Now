@@ -8,6 +8,7 @@
 
 #import "EAViewController.h"
 #import "SimpleWebViewController.h"
+#import "UITableView+Reload.h"
 @implementation EAViewController
 
 - (void)viewDidLoad {
@@ -93,7 +94,7 @@
         string = @"Go to class first";
     }
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
-    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_tblView reload];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -110,7 +111,7 @@
     distinctions = @[@"Nuts; the connection failed!"];
     string = error.localizedDescription;
     string=nil;
-    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_tblView reload];
 }
 
 #pragma mark Alert
@@ -124,7 +125,7 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 @end

@@ -47,7 +47,7 @@
     nSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"dressUps"];
     nSwitch2.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"abs"];
     nSwitch3.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"general"];
-    clubSwitch.on = ([[NSUserDefaults standardUserDefaults] integerForKey:@"autoCheck"] == 0) ? YES : NO;
+    clubSwitch.on = [[NSUserDefaults standardUserDefaults] integerForKey:@"autoCheck"] == 0;
 
     [self setUpButtonWithImageName:@"grey" andButton:msChange];
 
@@ -263,7 +263,7 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "FormsViewController.h"
 #import "FormsViewerViewController.h"
 #import "SimpleWebViewController.h"
+#import "UITableView+Reload.h"
 @implementation FormsViewController
 @synthesize receivedData;
 
@@ -46,7 +47,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
-    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    if (!preserve) {
+        [_tblView reload];
+        preserve = NO;
+    } else [_tblView deselectRowAtIndexPath:[_tblView indexPathForSelectedRow] animated:1];
 }
 
 - (void)refresh {
@@ -73,6 +77,8 @@
         [[NSUserDefaults standardUserDefaults] setInteger:q forKey:@"formsTapped"];
     }
 
+    preserve = YES;
+    
     // slashes (/) and spaces will not be in the URL
     NSString *foo = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     NSString *bar = [foo stringByReplacingOccurrencesOfString:@"/" withString:@""];
@@ -110,7 +116,7 @@
     self.dataArray = [self.dataArray sortedArrayUsingSelector: @selector(localizedCaseInsensitiveCompare:)];
     _tblView.userInteractionEnabled = YES;
     self.searchDisplayController.searchBar.userInteractionEnabled = YES;
-    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_tblView reload];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if ([(NSHTTPURLResponse *)response statusCode] == 404) {
@@ -125,7 +131,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch forms. %@", [error localizedDescription]]];
     self.dataArray = @[@"Aw snap; connection failed!"];
-    [_tblView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [_tblView reload];
 }
 
 #pragma mark Actions
@@ -148,7 +154,7 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 #pragma mark Alert

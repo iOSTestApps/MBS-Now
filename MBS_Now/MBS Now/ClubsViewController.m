@@ -9,6 +9,7 @@
 #import "ClubsViewController.h"
 #import "AddItemViewController.h"
 #import "DetailViewController.h"
+#import "UITableView+Reload.h"
 @implementation ClubsViewController
 
 - (void)viewDidLoad {
@@ -109,7 +110,7 @@
     self.descriptions = self.csv[0];
     [self.csv removeObjectAtIndex:0];
     [toSave removeObjectAtIndex:0];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 
     [[NSUserDefaults standardUserDefaults] setObject:toSave forKey:@"meetingLog"];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -122,7 +123,7 @@
     [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch meetings. %@",[error localizedDescription]]];
     self.csv = [NSMutableArray arrayWithObjects:@[@"Connection failed", @"Connection failed", @"...? Tap refresh to try again"], nil];
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 - (void)refreshData {
@@ -169,6 +170,10 @@
     return _csv.count;
 }
 
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
+}
+
 #pragma mark Segues
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"add"]) {
@@ -198,7 +203,7 @@
 #pragma mark Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) return YES;
-    return (toInterfaceOrientation == UIDeviceOrientationPortrait) ? YES : NO;
+    return toInterfaceOrientation == UIDeviceOrientationPortrait;
 }
 
 @end

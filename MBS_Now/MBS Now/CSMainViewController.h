@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-// TODO: iPhone 4(S), iPad, details VC design here should mirror details VC for clubs
-
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, NSURLConnectionDelegate> {
     UIActionSheet *sheet;
 }

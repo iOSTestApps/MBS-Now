@@ -9,8 +9,8 @@
 #import "CSMainViewController.h"
 #import "CSDetailViewController.h"
 #import "AddItemViewController.h"
+#import "UITableView+Reload.h"
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
-#define IPAD UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -21,7 +21,7 @@
     footer.backgroundColor = [UIColor clearColor];
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    if (!IPAD) [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(20,0,0,0)];
 
     [self reloadData];
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
@@ -81,6 +81,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     return (_array.count > 1) ? _footer : nil;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 44.0f;
 }
 
 #pragma mark Actions
@@ -157,7 +161,7 @@
     self.array = [[NSMutableArray alloc] init];
     [self.array addObject:@"Connection failure!"];
     //self.tableView.userInteractionEnabled = NO;
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -211,7 +215,7 @@
         return [date1 compare:date2];
     }].mutableCopy;
     _footer = @"Sorted by opportunity date";
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 - (void)sortByCreationDate {
@@ -225,7 +229,7 @@
         return [date1 compare:date2];
     }].mutableCopy;
     _footer = @"Sorted by modification date";
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 - (void)sortByTitle {
@@ -235,7 +239,7 @@
         return [string1 caseInsensitiveCompare:string2];
     }].mutableCopy;
     _footer = @"Sorted alphabetically by name";
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reload];
 }
 
 #pragma mark Segues

@@ -85,14 +85,9 @@
     self.boolLabel.text = (self.boolSwitch.on == YES) ? (@"yes") : (@"no");
 }
 
-// iPad only
-- (IBAction)pushedDone:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (BOOL)meetingInFuture {
     NSComparisonResult result = [[NSDate date] compare:[self getMeetingDate]];
-    return (result == NSOrderedAscending) ? YES : NO;
+    return result == NSOrderedAscending;
 }
 
 - (NSDate *)getMeetingDate {

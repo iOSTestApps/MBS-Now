@@ -12,10 +12,6 @@
 @interface RSVPViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate, MFMailComposeViewControllerDelegate>
 
 - (IBAction)switchDidChange:(id)sender;
-
-// iPad only
-- (IBAction)pushedDone:(id)sender;
-
 - (IBAction)directContact:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *directButton;

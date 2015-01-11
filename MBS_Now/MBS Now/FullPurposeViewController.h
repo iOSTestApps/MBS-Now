@@ -10,9 +10,6 @@
 
 @interface FullPurposeViewController : UIViewController
 
-// iPad only
-- (IBAction)pushedDone:(id)sender;
-
 @property (strong, nonatomic) NSString *fullPurpose;
 @property (strong, nonatomic) NSString *navTitle;
 

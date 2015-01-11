@@ -10,6 +10,7 @@
 
 @interface FormsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate, UIAlertViewDelegate> {
     NSString *urlString;
+    BOOL preserve;
 }
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;

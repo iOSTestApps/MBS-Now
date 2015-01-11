@@ -22,9 +22,4 @@
     }
 }
 
-// iPad only
-- (IBAction)pushedDone:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 @end
