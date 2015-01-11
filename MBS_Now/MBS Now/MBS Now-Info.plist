@@ -29,7 +29,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>StoryboardPad_7</string>
+	<string>StoryboardPhone_7</string>
+	<key>UIMainStoryboardFile~iphone</key>
+	<string>StoryboardPhone_7</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

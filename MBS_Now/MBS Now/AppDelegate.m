@@ -43,10 +43,10 @@
         [self.window makeKeyAndVisible];
     } else {
         // iPad
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPad_7" bundle:nil];
-        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
-        [self.window makeKeyAndVisible];
+        //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"StoryboardPad_7" bundle:nil];
+        //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        //self.window.rootViewController = [mainStoryboard instantiateInitialViewController];
+       // [self.window makeKeyAndVisible];
     }
 
     [self inc];

@@ -15,6 +15,7 @@
 #import "FormsViewerViewController.h"
 #import "PhotoBrowser.h"
 #import <AudioToolbox/AudioServices.h>
+#import "CustomCollectionViewCell.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 @implementation HomeViewController
@@ -22,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.cvtitles = @[@"Lunch",@"Map",@"Schedule",@"Calendar",@"Databases"];
+    self.cvimagetitles = @[@"lunch.jpg",@"map.jpg",@"schedule.jpg",@"cal.jpg",@"database.jpg"];
+    self.cvtitlecolors = @[[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor],[UIColor whiteColor]];
+    self.cvstoryboardindentifiers = @[@"lunch",@"map",@"schedule",@"listings",@"database"];
     if (IS_IPHONE_5) self.iphoneScroller.contentSize = CGSizeMake(320, 1000);
     NSString *foo;
     NSString *defaultColor = [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonColor"];
@@ -43,7 +49,29 @@
         }
     }
 }
-
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.cvtitles.count;
+}
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CustomCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cvcell" forIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:self.cvimagetitles[indexPath.item]];
+    cell.imageView.alpha = 0.7;
+    cell.titleLabel.text = self.cvtitles[indexPath.item];
+    cell.titleLabel.textColor = self.cvtitlecolors[indexPath.item];
+    return cell;
+    
+    
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+     UIStoryboard *storyboard = [UIStoryboard storyboardWithName: @"StoryboardPhone_7" bundle:[NSBundle mainBundle]];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:self.cvstoryboardindentifiers[indexPath.item]];
+    NSLog(@"%ld",(long)indexPath.item);
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
     NSInteger q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];

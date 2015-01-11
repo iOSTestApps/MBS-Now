@@ -270,6 +270,13 @@
 		3B49C10E19648FC40083DA33 /* CSDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B49C10919648FC40083DA33 /* CSDetailViewController.m */; };
 		3B4BFD0919D4DBCC00AEABF8 /* Images-5.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B4BFD0819D4DBCC00AEABF8 /* Images-5.xcassets */; };
 		3B4EA19519E70C24009337AA /* StoryboardPhone_7.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B4EA19419E70C24009337AA /* StoryboardPhone_7.storyboard */; };
+		3B5DFEEB1A56F44100B4410E /* CustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEA1A56F44100B4410E /* CustomCollectionViewCell.m */; };
+		3B5DFEF21A56F69700B4410E /* lunch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEC1A56F69700B4410E /* lunch.jpg */; };
+		3B5DFEF31A56F69700B4410E /* map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEED1A56F69700B4410E /* map.jpg */; };
+		3B5DFEF41A56F69700B4410E /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEE1A56F69700B4410E /* disclosure.png */; };
+		3B5DFEF51A56F69700B4410E /* schedule.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEF1A56F69700B4410E /* schedule.jpg */; };
+		3B5DFEF61A56F69700B4410E /* cal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF01A56F69700B4410E /* cal.jpg */; };
+		3B5DFEF71A56F69700B4410E /* database.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF11A56F69700B4410E /* database.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -605,6 +612,14 @@
 		3B49C10919648FC40083DA33 /* CSDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDetailViewController.m; sourceTree = "<group>"; };
 		3B4BFD0819D4DBCC00AEABF8 /* Images-5.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-5.xcassets"; sourceTree = "<group>"; };
 		3B4EA19419E70C24009337AA /* StoryboardPhone_7.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardPhone_7.storyboard; sourceTree = "<group>"; };
+		3B5DFEE91A56F44100B4410E /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
+		3B5DFEEA1A56F44100B4410E /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
+		3B5DFEEC1A56F69700B4410E /* lunch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lunch.jpg; sourceTree = "<group>"; };
+		3B5DFEED1A56F69700B4410E /* map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = map.jpg; sourceTree = "<group>"; };
+		3B5DFEEE1A56F69700B4410E /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
+		3B5DFEEF1A56F69700B4410E /* schedule.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = schedule.jpg; sourceTree = "<group>"; };
+		3B5DFEF01A56F69700B4410E /* cal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cal.jpg; sourceTree = "<group>"; };
+		3B5DFEF11A56F69700B4410E /* database.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = database.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -666,6 +681,8 @@
 			children = (
 				15529389169FBD90006A8B99 /* HomeViewController.h */,
 				1552938A169FBD90006A8B99 /* HomeViewController.m */,
+				3B5DFEE91A56F44100B4410E /* CustomCollectionViewCell.h */,
+				3B5DFEEA1A56F44100B4410E /* CustomCollectionViewCell.m */,
 				15727F0D16FA21E900586848 /* FormsViewController.h */,
 				15727F0E16FA21E900586848 /* FormsViewController.m */,
 				15529356169F7840006A8B99 /* LunchViewController.h */,
@@ -968,6 +985,7 @@
 		15AD7C511995901B00E21F02 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3B5DFEF81A56F6A100B4410E /* Collection View */,
 				15AD7B9F1995901100E21F02 /* whats-new */,
 				15AD7C521995905C00E21F02 /* schedules */,
 				15AD7C63199590F900E21F02 /* buttons */,
@@ -1179,6 +1197,19 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		3B5DFEF81A56F6A100B4410E /* Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				3B5DFEEC1A56F69700B4410E /* lunch.jpg */,
+				3B5DFEED1A56F69700B4410E /* map.jpg */,
+				3B5DFEEE1A56F69700B4410E /* disclosure.png */,
+				3B5DFEEF1A56F69700B4410E /* schedule.jpg */,
+				3B5DFEF01A56F69700B4410E /* cal.jpg */,
+				3B5DFEF11A56F69700B4410E /* database.jpg */,
+			);
+			name = "Collection View";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1318,8 +1349,10 @@
 				15AD7C7B199590F900E21F02 /* tanButtonHighlight@2x.png in Resources */,
 				15AD7BB61995901100E21F02 /* arrow-circle-01g@2x.png in Resources */,
 				15AD7C001995901100E21F02 /* hand.png in Resources */,
+				3B5DFEF61A56F69700B4410E /* cal.jpg in Resources */,
 				15AD7C75199590F900E21F02 /* greyButton@2x.png in Resources */,
 				15AD7C181995901100E21F02 /* noodle.png in Resources */,
+				3B5DFEF51A56F69700B4410E /* schedule.jpg in Resources */,
 				15AD7BCD1995901100E21F02 /* bookmark-7-active@2x.png in Resources */,
 				15AD7C70199590F900E21F02 /* blackButton.png in Resources */,
 				15AD7ACD1995806B00E21F02 /* SVWebViewController.bundle in Resources */,
@@ -1336,6 +1369,7 @@
 				15AD7C5F1995905C00E21F02 /* 10.png in Resources */,
 				15AD7BDE1995901100E21F02 /* cloud-7.png in Resources */,
 				15AD7BB71995901100E21F02 /* arrow-circle-02.png in Resources */,
+				3B5DFEF41A56F69700B4410E /* disclosure.png in Resources */,
 				15AD7BEF1995901100E21F02 /* download-7.png in Resources */,
 				15AD7BD21995901100E21F02 /* calendar-7.png in Resources */,
 				15F2E8171769738B00FA1073 /* FormsViewerViewController_7.xib in Resources */,
@@ -1392,6 +1426,7 @@
 				15AD7C3F1995901100E21F02 /* sun-7@2x.png in Resources */,
 				15AD7C091995901100E21F02 /* loading-schedule.png in Resources */,
 				15AD7AD61995806B00E21F02 /* SVWebViewControllerActivitySafari@2x.png in Resources */,
+				3B5DFEF31A56F69700B4410E /* map.jpg in Resources */,
 				15AD7BF81995901100E21F02 /* forward-7-active@2x.png in Resources */,
 				1573821117F2436E00956F6F /* databases.plist in Resources */,
 				15AD7C051995901100E21F02 /* info-7-active.png in Resources */,
@@ -1416,6 +1451,7 @@
 				15AD7BD41995901100E21F02 /* calendar.png in Resources */,
 				15AAF68018D28E3F001AC330 /* Info.txt in Resources */,
 				15AD7C151995901100E21F02 /* mutiply-sign@2x.png in Resources */,
+				3B5DFEF71A56F69700B4410E /* database.jpg in Resources */,
 				15AD7C931995934F00E21F02 /* Default.png in Resources */,
 				15AD7C131995901100E21F02 /* more-list-7-active@2x.png in Resources */,
 				15AD7C161995901100E21F02 /* newspaper-7.png in Resources */,
@@ -1423,6 +1459,7 @@
 				15AD7C271995901100E21F02 /* phone-book.png in Resources */,
 				15AD7BD11995901100E21F02 /* bug@2x.png in Resources */,
 				1573821317F2436E00956F6F /* keys.plist in Resources */,
+				3B5DFEF21A56F69700B4410E /* lunch.jpg in Resources */,
 				15AD7C0C1995901100E21F02 /* man-three-7.png in Resources */,
 				15AD7BF11995901100E21F02 /* downward-arrow-7-active.png in Resources */,
 				15AD7BEA1995901100E21F02 /* direction-sign-multiple-7-active@2x.png in Resources */,
@@ -1461,6 +1498,7 @@
 				15454A6E18578DC00064A610 /* PhotoBrowser.m in Sources */,
 				15529358169F7840006A8B99 /* LunchViewController.m in Sources */,
 				15AD7AAC19957B0900E21F02 /* SDWebImageDownloader.m in Sources */,
+				3B5DFEEB1A56F44100B4410E /* CustomCollectionViewCell.m in Sources */,
 				15AD7AAE19957B0900E21F02 /* SDWebImageManager.m in Sources */,
 				15B80C151977530500133160 /* UIButton+Avenir.m in Sources */,
 				15AD7AB119957B0900E21F02 /* UIImage+GIF.m in Sources */,
