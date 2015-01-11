@@ -68,7 +68,7 @@ message = sendgrid.Mail()
 message.add_to(base64.b64decode('R3JhaGFtIER5ZXIgPGdkeWVyMkBpbGxpbm9pcy5lZHU+'))
 message.set_subject('Fix lunch script')
 message.set_text('Graham,\n\nYour shitty MBS Now lunch script likely broke. {0} just had to run local-lunch.'.format(e))
-message.set_from('Dear Friend '+e)
+message.set_from('Dear Friend <{0}>'.format(e))
 status, msg = sg.send(message)
 
 os.chdir("../")
