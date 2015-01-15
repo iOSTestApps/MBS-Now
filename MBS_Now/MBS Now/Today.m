@@ -74,6 +74,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"]);
     [super viewWillAppear:YES];
     NSString *savedDivision = [[NSUserDefaults standardUserDefaults] objectForKey:@"division"];
     if (!savedDivision) {
@@ -90,7 +91,7 @@
         DataViewController *dvc = [[DataViewController alloc] init];
         NSString *escapedDataString = [[dvc generateData] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-        NSString *urlString = [NSString stringWithFormat:@"http://campus.mbs.net/MBSNow/scripts/upload_4.php?d=%@", escapedDataString];
+        NSString *urlString = [NSString stringWithFormat:@"http://mister.gdyer.de/mbs-now-data-upload?string=%@", escapedDataString];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
 
         [request setHTTPMethod:@"GET"];

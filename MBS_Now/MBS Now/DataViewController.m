@@ -12,6 +12,7 @@
 @implementation DataViewController
 
 - (void)viewDidLoad {
+    NSLog(@"%@",[self generateData]);
     [super viewDidLoad];
     q = [[NSUserDefaults standardUserDefaults] integerForKey:@"four-dfl"];
 
@@ -118,7 +119,7 @@
 
         [composerView addAttachmentData:[[self generateData] dataUsingEncoding:NSUTF8StringEncoding] mimeType:@"text/rtf" fileName:[NSString stringWithFormat:@"Data_%@.txt", version]];
 
-        [composerView setMessageBody:@"You'll be able to view the attachment on any computer. Devices with iOS 7 and later can natively view it. We only see the attachment data upon automatic uploads — nothing else." isHTML:NO];
+        [composerView setMessageBody:@"To match up the string with its value (meaning), go to <a href='https://mbsdev.github.io/meta/privacy.html'>mbsdev.github.io/meta/privacy.html</a>. We only see the attachment data upon automatic uploads — nothing else." isHTML:YES];
 
         [self presentViewController:composerView animated:YES completion:nil];
     } else {
