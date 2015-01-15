@@ -1,6 +1,6 @@
 # MBS Now
 
-This branch doesn't include the collection view seen in the [master repository](https://github.com/mbsdev/MBS-Now). On the positive side, it has no known bugs.
+This doesn't include the collection view seen in the [master branch](https://github.com/mbsdev/MBS-Now). On the positive side, it has no known bugs. Lunch menus only update in master.
 
 MBS Now does not support iOS versions less than `7.0`
 
