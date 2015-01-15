@@ -10,14 +10,15 @@
 #import "AddItemViewController.h"
 #import "DetailViewController.h"
 #import "UITableView+Reload.h"
+#define CONNECTION_FAILURE_MESSAGE @"Connection failed"
+#define CONNECTION_WAITING_MESSAGE @"Hang tight... updating!"
 @implementation ClubsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.csv = [NSMutableArray arrayWithObject:@[@"Hang tight... updating", @"Hang tight... updating!", @"...? Fetching!"]];
+    self.csv = [NSMutableArray arrayWithObject:@[CONNECTION_WAITING_MESSAGE, CONNECTION_WAITING_MESSAGE, @"...? Fetching!"]];
     self.descriptions = @[@"Please refresh meetings", @"Return to previous screen"];
-    self.tableView.userInteractionEnabled = NO;
 
     [self refreshData];
 
@@ -122,7 +123,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     [self.refreshControl endRefreshing];
     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"Cannot fetch meetings. %@",[error localizedDescription]]];
-    self.csv = [NSMutableArray arrayWithObjects:@[@"Connection failed", @"Connection failed", @"...? Tap refresh to try again"], nil];
+    self.csv = [NSMutableArray arrayWithObjects:@[CONNECTION_FAILURE_MESSAGE, CONNECTION_FAILURE_MESSAGE, @"...? Pull ↓ to try again"], nil];
     [self.tableView reload];
 }
 
@@ -157,6 +158,7 @@
     if (_showHistory)
         cell.textLabel.textColor = (future) ? [UIColor blackColor] : [UIColor lightGrayColor];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ on %@", (future) ? @"Meeting" : @"Met", [[self.csv objectAtIndex:indexPath.row] objectAtIndex:2]];
+    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
 	return cell;
@@ -172,6 +174,14 @@
 
 - (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (![@[CONNECTION_WAITING_MESSAGE,CONNECTION_FAILURE_MESSAGE] containsObject:self.csv[indexPath.row][1]]) {
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
+    } else {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 #pragma mark Segues
@@ -196,7 +206,7 @@
         [segue.destinationViewController setDescriptions:mod];
 
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [segue.destinationViewController setDetails:[self.csv objectAtIndex:indexPath.row]];
+        [segue.destinationViewController setDetails:self.csv[indexPath.row]];
     }
 }
 

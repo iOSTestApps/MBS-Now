@@ -21,19 +21,17 @@
 #import "EventTableViewCell.h"
 #import "ShortEventTableViewCell.h"
 #import "UIImageView+WebCache.h"
-//#import <EventKit/EventKit.h>
 
-// constants that help in handling in-transit or failed connections
 #define CONNECTION_FAILTURE 2
 #define CONNECTION_LOADING 1
 #define CONNECTION_SUCCESS 0
 
-// constants that are used more than once
 #define UPDATE_URL @"https://itunes.apple.com/us/app/mbs-now/id617180145?mt=8"
 #define ANNOUNCEMENTS_IMG @"notifications-board.png"
 #define WEATHER_IMG @"cloud-7.png"
 #define DATE_IMG @"push-pin-7.png"
 
+// graham loves Today
 @implementation Today
 
 - (void)viewDidLoad {
@@ -606,7 +604,6 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     _feeds = nil; // prevent incomplete data from causing a crash
-    NSLog(@"URL causing failure: %@", connection.currentRequest.URL.absoluteString);
     [self.refreshControl endRefreshing];
     _ret = CONNECTION_FAILTURE;
     [SVProgressHUD dismiss];
