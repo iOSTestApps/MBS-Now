@@ -1,22 +1,6 @@
 # MBS Now
 
-... a free, student-run iOS and web app made for the Morristown-Beard School and available on the [App Store](http://gdyer.de/appstore). This is a reference application. Take a look at our [site](http://campus.mbs.net/mbsnow/home) to learn more about us and the app.
-
-
-> MBS Now admins: keep [the transition wiki](https://github.com/mbsdev/MBS-Now/wiki/Transition) and [the new features wiki](https://github.com/mbdev/mbs-now/wiki/goals) up to date.
-
-
-Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. [Learn more](https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school).
-
-## Explore our UI
-
-We now have a YouTube demo, posted [here](http://youtu.be/_jhYwPW_TC8). It's a much more fluid (and exciting!) way to explore our interface.
-
-![Nice app, right?](https://raw.githubusercontent.com/mbsdev/media/master/marketing/cover-2.png)
-# More
-This project uses [SVProgressHUD](https://github.com/samvermette/SVProgressHUD) and [SVWebVC](https://github.com/samvermette/SVWebViewController) by Sam Vermette, [XMLDictionary](https://github.com/nicklockwood/XMLDictionary) by Nick Lockwood, [SDWebImage](https://github.com/rs/SDWebImage) by Olivier Poitrey, and [Toast](https://github.com/scalessec/Toast) by Charles Scalesse.
-
-For images—launch screens, app icons, wallpapers, marketing stuff—go [here](https://github.com/mbsdev/media).
+This branch doesn't include the collection view seen in the [master repository](https://github.com/mbsdev/MBS-Now). On the positive side, it has no known bugs.
 
 MBS Now does not support iOS versions less than `7.0`
 
