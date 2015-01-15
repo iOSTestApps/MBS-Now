@@ -1,0 +1,7 @@
+== MBS Now
+
+*this version should be submitted to apple as 4.5.2 on sunday, 18 jan 2015*
+
+This doesn't include the collection view seen in the https://github.com/mbsdev/mbs-now[master branch]. On the positive side, it has no known bugs. Lunch menus only update in master.
+
+https://creativecommons.org/licenses/by-nc/3.0/[some rights reserved]
