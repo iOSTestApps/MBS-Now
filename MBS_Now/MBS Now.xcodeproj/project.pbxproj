@@ -276,7 +276,7 @@
 		3B5DFEF51A56F69700B4410E /* schedule.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEF1A56F69700B4410E /* schedule.jpg */; };
 		3B5DFEF61A56F69700B4410E /* cal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF01A56F69700B4410E /* cal.jpg */; };
 		3B5DFEF71A56F69700B4410E /* database.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF11A56F69700B4410E /* database.jpg */; };
-		3BB573311AA53A250040F590 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB573301AA53A250040F590 /* 02.png */; };
+		3BB573331AA53AAA0040F590 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB573321AA53AAA0040F590 /* 02.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -619,7 +619,7 @@
 		3B5DFEEF1A56F69700B4410E /* schedule.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = schedule.jpg; sourceTree = "<group>"; };
 		3B5DFEF01A56F69700B4410E /* cal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cal.jpg; sourceTree = "<group>"; };
 		3B5DFEF11A56F69700B4410E /* database.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = database.jpg; sourceTree = "<group>"; };
-		3BB573301AA53A250040F590 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
+		3BB573321AA53AAA0040F590 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1121,7 +1121,7 @@
 			children = (
 				15AD7C531995905C00E21F02 /* 00.png */,
 				15AD7C541995905C00E21F02 /* 01.png */,
-				3BB573301AA53A250040F590 /* 02.png */,
+				3BB573321AA53AAA0040F590 /* 02.png */,
 				15AD7C561995905C00E21F02 /* 03.png */,
 				15AD7C571995905C00E21F02 /* 10.png */,
 				15AD7C581995905C00E21F02 /* 11.png */,
@@ -1412,7 +1412,7 @@
 				15AD7C1E1995901100E21F02 /* P0.png in Resources */,
 				15AD7C76199590F900E21F02 /* greyButtonHighlight.png in Resources */,
 				15AD7C8C1995934F00E21F02 /* 3DCulpolaIcon144.png in Resources */,
-				3BB573311AA53A250040F590 /* 02.png in Resources */,
+				3BB573331AA53AAA0040F590 /* 02.png in Resources */,
 				153B638618195A7400726215 /* StoryboardPad_7.storyboard in Resources */,
 				15AD7AD41995806B00E21F02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				15AD7C3D1995901100E21F02 /* star-7@2x.png in Resources */,
