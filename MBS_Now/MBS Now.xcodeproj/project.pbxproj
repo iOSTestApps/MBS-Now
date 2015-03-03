@@ -208,7 +208,6 @@
 		15AD7C4F1995901100E21F02 /* t2.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7BA31995901100E21F02 /* t2.png */; };
 		15AD7C5B1995905C00E21F02 /* 00.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C531995905C00E21F02 /* 00.png */; };
 		15AD7C5C1995905C00E21F02 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C541995905C00E21F02 /* 01.png */; };
-		15AD7C5D1995905C00E21F02 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C551995905C00E21F02 /* 02.png */; };
 		15AD7C5E1995905C00E21F02 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C561995905C00E21F02 /* 03.png */; };
 		15AD7C5F1995905C00E21F02 /* 10.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C571995905C00E21F02 /* 10.png */; };
 		15AD7C601995905C00E21F02 /* 11.png in Resources */ = {isa = PBXBuildFile; fileRef = 15AD7C581995905C00E21F02 /* 11.png */; };
@@ -277,6 +276,7 @@
 		3B5DFEF51A56F69700B4410E /* schedule.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEEF1A56F69700B4410E /* schedule.jpg */; };
 		3B5DFEF61A56F69700B4410E /* cal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF01A56F69700B4410E /* cal.jpg */; };
 		3B5DFEF71A56F69700B4410E /* database.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3B5DFEF11A56F69700B4410E /* database.jpg */; };
+		3BB573311AA53A250040F590 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB573301AA53A250040F590 /* 02.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -534,7 +534,6 @@
 		15AD7BA31995901100E21F02 /* t2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = t2.png; sourceTree = "<group>"; };
 		15AD7C531995905C00E21F02 /* 00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 00.png; sourceTree = "<group>"; };
 		15AD7C541995905C00E21F02 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
-		15AD7C551995905C00E21F02 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 		15AD7C561995905C00E21F02 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		15AD7C571995905C00E21F02 /* 10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10.png; sourceTree = "<group>"; };
 		15AD7C581995905C00E21F02 /* 11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 11.png; sourceTree = "<group>"; };
@@ -620,6 +619,7 @@
 		3B5DFEEF1A56F69700B4410E /* schedule.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = schedule.jpg; sourceTree = "<group>"; };
 		3B5DFEF01A56F69700B4410E /* cal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cal.jpg; sourceTree = "<group>"; };
 		3B5DFEF11A56F69700B4410E /* database.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = database.jpg; sourceTree = "<group>"; };
+		3BB573301AA53A250040F590 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1121,7 +1121,7 @@
 			children = (
 				15AD7C531995905C00E21F02 /* 00.png */,
 				15AD7C541995905C00E21F02 /* 01.png */,
-				15AD7C551995905C00E21F02 /* 02.png */,
+				3BB573301AA53A250040F590 /* 02.png */,
 				15AD7C561995905C00E21F02 /* 03.png */,
 				15AD7C571995905C00E21F02 /* 10.png */,
 				15AD7C581995905C00E21F02 /* 11.png */,
@@ -1412,6 +1412,7 @@
 				15AD7C1E1995901100E21F02 /* P0.png in Resources */,
 				15AD7C76199590F900E21F02 /* greyButtonHighlight.png in Resources */,
 				15AD7C8C1995934F00E21F02 /* 3DCulpolaIcon144.png in Resources */,
+				3BB573311AA53A250040F590 /* 02.png in Resources */,
 				153B638618195A7400726215 /* StoryboardPad_7.storyboard in Resources */,
 				15AD7AD41995806B00E21F02 /* SVWebViewControllerActivitySafari-iPad@2x.png in Resources */,
 				15AD7C3D1995901100E21F02 /* star-7@2x.png in Resources */,
@@ -1420,7 +1421,6 @@
 				15AD7C5E1995905C00E21F02 /* 03.png in Resources */,
 				15454A70185791E50064A610 /* PhotoBrowser_7.xib in Resources */,
 				15AD7BC41995901100E21F02 /* bank.png in Resources */,
-				15AD7C5D1995905C00E21F02 /* 02.png in Resources */,
 				15AD7BB81995901100E21F02 /* arrow-circle-02@2x.png in Resources */,
 				3B4EA19519E70C24009337AA /* StoryboardPhone_7.storyboard in Resources */,
 				15AD7C3F1995901100E21F02 /* sun-7@2x.png in Resources */,
