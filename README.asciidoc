@@ -1,5 +1,0 @@
-== MBS Now
-
-This doesn't include the collection view seen in the https://github.com/mbsdev/mbs-now[master branch]. On the positive side, it has no known bugs. Lunch menus only update in master.
-
-https://creativecommons.org/licenses/by-nc/3.0/[some rights reserved]
