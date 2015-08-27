@@ -1,45 +1,46 @@
-09/03/2014 $ | Classes Begin-Dress Up Day
-09/12/2014 $ | SGA Inductions-Dress Up Day
-11/18/2014 $ | US Sports Awards-Dress Up Day
-01/16/2015 $ | Dress Up Day
-01/20/2015 $ | 1st Day of 2nd Semester-Dress Up Day
-03/03/2015 $ | US Winter Sports Awards-Dress Up Day
-04/24/2015 $ | Dress Up Day
-04/30/2015 $ | Upper School Academic Awards  Dress-Up Day
-05/05/2015 $ | Upper School Community Service Awards Assembly - Dress Up Day
-05/19/2015 $ | US Sports Awards -Dress Up Day^
-09/08/2014 08 00 | It's an A week
-09/22/2014 08 00 | It's an A week
-10/06/2014 08 00 | It's an A week
-10/20/2014 08 00 | It's an A week
-11/03/2014 08 00 | It's an A week
-11/17/2014 08 00 | It's an A week
-12/08/2014 08 00 | It's an A week
-01/05/2015 08 00 | It's an A week
-01/19/2015 08 00 | It's an A week
-02/02/2015 08 00 | It's an A week
-02/16/2015 08 00 | It's an A week
-03/02/2015 08 00 | It's an A week
-03/30/2015 08 00 | It's an A week
-04/13/2015 08 00 | It's an A week
-04/27/2015 08 00 | It's an A week
-05/11/2015 08 00 | It's an A week
-05/25/2015 08 00 | It's an A week
-09/15/2014 08 00 | It's a B week
-09/29/2014 08 00 | It's a B week
-10/13/2014 08 00 | It's a B week
-10/27/2014 08 00 | It's a B week
-11/10/2014 08 00 | It's a B week
-12/01/2014 08 00 | It's a B week
-12/15/2014 08 00 | It's a B week
-01/12/2015 08 00 | It's a B week
-01/26/2015 08 00 | It's a B week
-02/09/2015 08 00 | It's a B week
-02/23/2015 08 00 | It's a B week
-03/23/2015 08 00 | It's a B week
-04/06/2015 08 00 | It's a B week
-04/20/2015 08 00 | It's a B week
-05/04/2015 08 00 | It's a B week
-05/18/2015 08 00 | It's a B week^
-05/08/2015 08 00 | Best of luck on APs!
-06/02/2015 08 00 | The second semester ends today. Have a great summer!
+09/08/2015 $ | Convocation and Community Day
+09/18/2015 $ | SGA Inductions-Dress Up Day
+11/17/2015 $ | US Sports Awards-Dress Up Day
+01/15/2016 $ | MLK Assembly-Dress Up Day
+01/25/2016 $ | 1st Day of 2nd Semester-Dress Up Day
+03/08/2016 $ | US Winter Sports Awards-Dress Up Day
+04/29/2016 $ | Grandparents' Day-Dress Up Day
+04/28/2016 $ | Upper School Academic Awards  Dress-Up Day
+05/03/2016 $ | Upper School Community Service Awards Assembly - Dress Up Day
+05/17/2016 $ | US Sports Awards -Dress Up Day^
+09/14/2015 08 00 | It's an A week
+09/28/2015 08 00 | It's an A week
+10/12/2015 08 00 | It's an A week
+10/26/2015 08 00 | It's an A week
+11/09/2015 08 00 | It's an A week
+11/30/2015 08 00 | It's an A week
+12/14/2016 08 00 | It's an A week
+01/11/2016 08 00 | It's an A week
+01/25/2016 08 00 | It's an A week
+02/08/2016 08 00 | It's an A week
+02/22/2016 08 00 | It's an A week
+03/07/2016 08 00 | It's an A week
+04/04/2016 08 00 | It's an A week
+04/18/2016 08 00 | It's an A week
+05/02/2016 08 00 | It's an A week
+05/16/2016 08 00 | It's an A week
+05/30/2016 08 00 | It's an A week
+09/21/2015 08 00 | It's a B week
+10/05/2015 08 00 | It's a B week
+10/19/2015 08 00 | It's a B week
+11/2/2015 08 00 | It's a B week
+11/16/2015 08 00 | It's a B week
+12/07/2015 08 00 | It's a B week
+01/04/2016 08 00 | It's a B week
+01/18/2016 08 00 | It's a B week
+02/01/2016 08 00 | It's a B week
+02/15/2016 08 00 | It's a B week
+02/29/2016 08 00 | It's a B week
+03/28/2016 08 00 | It's a B week
+04/11/2016 08 00 | It's a B week
+04/25/2016 08 00 | It's a B week
+05/09/2016 08 00 | It's a B week
+05/23/2016 08 00 | It's a B week
+06/06/2016 08 00 | It's a B week^
+05/25/2016 08 00 | Lucas gets home from Spain today!
+06/07/2016 08 00 | The second semester ends today. Have a great summer!
