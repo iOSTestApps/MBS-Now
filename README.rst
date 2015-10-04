@@ -43,7 +43,7 @@ Some rights reserved.
 .. _SVWebVC: https://github.com/samvermette/SVWebViewController
 .. _SVProgressHUD: https://github.com/samvermette/SVProgressHUD
 .. _YouTube demo: https://www.youtube.com/embed/_jhYwPW_TC8
-.. _Learn more: wiki#___-now-at-your-school
-.. _the transition wiki: wiki/Transition
+.. _Learn more: https://github.com/mbsdev/MBS-Now/wiki#___-now-at-your-school
+.. _the transition wiki: https://github.com/mbsdev/MBS-Now/wiki/Transition
 .. _site: https://mbsdev.github.io
 .. _App Store: https://itunes.apple.com/us/app/mbs-now/id617180145?mt=8
