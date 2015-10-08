@@ -7,9 +7,7 @@ MBS Now
 |...| a free, student-run iOS and web app made for the Morristown-Beard School and available on the `App Store`_. This is a reference application. Take a look at our `site`_ to learn more about us and the app.
 
 
-MBS Now admins
-
-	Keep `the transition wiki`_ up to date.
+	MBS Now admins: Keep `the transition wiki`_ up to date.
 
 
 Hey! **Interested in bringing MBS Now to your school?** Great, we'll walk you through porting our code. `Learn more`_.
@@ -27,7 +25,7 @@ More
 
 This project uses a few open-source libraries including `SVProgressHUD`_ and `SVWebVC`_ by Sam Vermette, `XMLDictionary`_ by Nick Lockwood, `SDWebImage`_ by Olivier Poitrey, and `Toast`_ by Charles Scalesse.
 
-For media |---| lunch screens, app icons, wallpapers, marketing stuff |---| go here.
+For media |---| lunch screens, app icons, wallpapers, marketing stuff |---| `go here`_ (the ``media`` repo).
 
 MBS Now does not support iOS versions less than ``7.0``
 
@@ -37,6 +35,7 @@ Some rights reserved.
 	:alt: Some rights reserved
 	:target: https://creativecommons.org/licenses/by-nc/3.0/
 
+.. _go here: https://github.com/mbsdev/media
 .. _Toast: https://github.com/scalessec/Toast
 .. _SDWebImage: https://github.com/rs/SDWebImage
 .. _XMLDictionary: https://github.com/nicklockwood/XMLDictionary
